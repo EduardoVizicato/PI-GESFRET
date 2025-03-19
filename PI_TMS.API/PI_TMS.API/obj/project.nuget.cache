@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Yo/1R74kIyQ=",
+  "dgSpecHash": "kyZCZhzemEU=",
   "success": true,
-  "projectFilePath": "C:\\ESTUDARPROGRAMACAO\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
+  "projectFilePath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\eduar\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
-    "C:\\Users\\eduar\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+    "C:\\Users\\Felipe\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\Felipe\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
   ],
   "logs": []
 }

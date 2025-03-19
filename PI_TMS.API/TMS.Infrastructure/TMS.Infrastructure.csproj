@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Mapping\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>
