@@ -14,3 +14,5 @@ C:\FATEC\PI-TMS\PI_TMS.API\TMS.Infrastructure\obj\Debug\net9.0\TMS.Infrastructur
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Infrastructure\obj\Debug\net9.0\refint\TMS.Infrastructure.dll
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Infrastructure\obj\Debug\net9.0\TMS.Infrastructure.pdb
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Infrastructure\obj\Debug\net9.0\ref\TMS.Infrastructure.dll
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Infrastructure\bin\Debug\net9.0\TMS.Infrastructure.runtimeconfig.json
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Infrastructure\obj\Debug\net9.0\TMS.Infrastructure.genruntimeconfig.cache

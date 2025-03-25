@@ -1,34 +1,28 @@
 [
   {
-    "ContainingType": "PI_TMS.API.Controllers.AuthenticationController",
-    "Method": "Login",
-    "RelativePath": "auth/login",
+    "ContainingType": "PI_TMS.API.Controllers.UserController",
+    "Method": "AddUser",
+    "RelativePath": "user/adduser",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "TMS.Contracts.Authentication.LoginRequestModel",
+        "Name": "user",
+        "Type": "TMS.Domain.Entities.User",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PI_TMS.API.Controllers.AuthenticationController",
-    "Method": "Register",
-    "RelativePath": "auth/register",
-    "HttpMethod": "POST",
+    "ContainingType": "PI_TMS.API.Controllers.UserController",
+    "Method": "GetAll",
+    "RelativePath": "user/getallusers",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "TMS.Contracts.Authentication.RegisterRequestModel",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

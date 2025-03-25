@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using TMS.Infrastructure;
+using TMS.Infrastructure.Data;
 using TMS.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    builder.Services.AddDbContext<ApplicationDataContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 }
 
 var app = builder.Build();

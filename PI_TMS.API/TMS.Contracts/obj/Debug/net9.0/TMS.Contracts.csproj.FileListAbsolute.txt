@@ -16,3 +16,5 @@ C:\FATEC\PI-TMS\PI_TMS.API\TMS.Contracts\obj\Debug\net9.0\TMS.Contracts.dll
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Contracts\obj\Debug\net9.0\refint\TMS.Contracts.dll
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Contracts\obj\Debug\net9.0\TMS.Contracts.pdb
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Contracts\obj\Debug\net9.0\ref\TMS.Contracts.dll
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Contracts\bin\Debug\net9.0\TMS.Contracts.runtimeconfig.json
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Contracts\obj\Debug\net9.0\TMS.Contracts.genruntimeconfig.cache

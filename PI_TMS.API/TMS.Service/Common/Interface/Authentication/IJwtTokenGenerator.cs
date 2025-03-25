@@ -8,6 +8,6 @@ namespace TMS.Service.Common.Interface.Authentication
 {
     public interface IJwtTokenGenerator
     {
-        string GenerateToken(Guid userId);
+        public string GenerateToken(Guid userId, string firstName, string lastName);
     }
 }
