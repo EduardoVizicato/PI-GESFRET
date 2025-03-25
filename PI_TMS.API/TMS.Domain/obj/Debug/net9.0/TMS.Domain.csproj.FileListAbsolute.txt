@@ -1,0 +1,15 @@
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\bin\Debug\net9.0\TMS.Domain.deps.json
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\bin\Debug\net9.0\TMS.Domain.dll
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\bin\Debug\net9.0\TMS.Domain.pdb
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\TMS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\TMS.Domain.AssemblyInfoInputs.cache
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\TMS.Domain.AssemblyInfo.cs
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\TMS.Domain.csproj.CoreCompileInputs.cache
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\TMS.Domain.sourcelink.json
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\TMS.Domain.dll
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\refint\TMS.Domain.dll
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\TMS.Domain.pdb
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\ref\TMS.Domain.dll
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\bin\Debug\net9.0\TMS.Domain.runtimeconfig.json
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\TMS.Domain.csproj.AssemblyReference.cache
+C:\FATEC\PI-TMS\PI_TMS.API\TMS.Domain\obj\Debug\net9.0\TMS.Domain.genruntimeconfig.cache

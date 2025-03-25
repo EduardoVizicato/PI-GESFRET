@@ -1,23 +1,37 @@
+using Microsoft.EntityFrameworkCore;
+using TMS.Infrastructure;
+using TMS.Infrastructure.Data;
+using TMS.Service.Services;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    builder.Services.AddControllers();
+    builder.Services.AddInfrastructure();
+    builder.Services.AddApplication();
+
+    builder.Services.AddOpenApi();
+
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    builder.Services.AddDbContext<ApplicationDataContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 }
 
-app.UseHttpsRedirection();
+var app = builder.Build();
+{
+    if (app.Environment.IsDevelopment())
+    {
+        app.MapOpenApi();
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
-app.UseAuthorization();
+    app.UseHttpsRedirection();
 
-app.MapControllers();
+    app.UseAuthorization();
 
-app.Run();
+    app.MapControllers();
+
+    app.Run();
+}
