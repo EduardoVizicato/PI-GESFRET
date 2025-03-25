@@ -21,6 +21,22 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
       "Microsoft.OpenApi/1.6.17": {
         "type": "package",
         "compile": {
@@ -32,6 +48,59 @@
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "TMS.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "TMS.Domain": "1.0.0",
+          "TMS.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TMS.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TMS.Contracts.dll": {}
+        }
+      },
+      "TMS.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/TMS.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TMS.Domain.dll": {}
+        }
+      },
+      "TMS.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "TMS.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TMS.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TMS.Infrastructure.dll": {}
+        }
+      },
+      "TMS.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3",
+          "TMS.Contracts": "1.0.0",
+          "TMS.Domain": "1.0.0",
+          "TMS.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TMS.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TMS.Service.dll": {}
         }
       }
     }
@@ -53,6 +122,36 @@
         "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.3": {
+      "sha512": "TfaHPSe39NyL2wxkisRxXK7xvHGZYBZ+dy3r+mqGvnxKgAPdHkMu3QMQZI4pquP6W5FIQBqs8FJpWV8ffCgDqQ==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.9.0.3.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "Microsoft.OpenApi/1.6.17": {
       "sha512": "Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA==",
       "type": "package",
@@ -67,31 +166,54 @@
         "microsoft.openapi.1.6.17.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+    },
+    "TMS.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../TMS.Contracts/TMS.Contracts.csproj",
+      "msbuildProject": "../TMS.Contracts/TMS.Contracts.csproj"
+    },
+    "TMS.Domain/1.0.0": {
+      "type": "project",
+      "path": "../TMS.Domain/TMS.Domain.csproj",
+      "msbuildProject": "../TMS.Domain/TMS.Domain.csproj"
+    },
+    "TMS.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../TMS.Infrastructure/TMS.Infrastructure.csproj",
+      "msbuildProject": "../TMS.Infrastructure/TMS.Infrastructure.csproj"
+    },
+    "TMS.Service/1.0.0": {
+      "type": "project",
+      "path": "../TMS.Service/TMS.Service.csproj",
+      "msbuildProject": "../TMS.Service/TMS.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Microsoft.AspNetCore.OpenApi >= 9.0.3"
+      "Microsoft.AspNetCore.OpenApi >= 9.0.3",
+      "TMS.Contracts >= 1.0.0",
+      "TMS.Infrastructure >= 1.0.0",
+      "TMS.Service >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Felipe\\.nuget\\packages\\": {},
+    "C:\\Users\\eduar\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
+      "projectUniqueName": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
       "projectName": "PI_TMS.API",
-      "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
-      "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\obj\\",
+      "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
+      "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
+      "outputPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\eduar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -100,13 +222,22 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj": {
+              "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj"
+            },
+            "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
+              "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
+            },
+            "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Service\\TMS.Service.csproj": {
+              "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Service\\TMS.Service.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -119,7 +250,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -149,7 +280,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

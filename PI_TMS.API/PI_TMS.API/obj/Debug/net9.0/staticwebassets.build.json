@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "jJxxPqYvJMExw+RbW7XJSMSCixiBeTgu9ndHWGAAv5w=",
+  "Source": "PI_TMS.API",
+  "BasePath": "_content/PI_TMS.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\TMS.Contracts\TMS.Contracts.csproj" />
+    <ProjectReference Include="..\TMS.Infrastructure\TMS.Infrastructure.csproj" />
+    <ProjectReference Include="..\TMS.Service\TMS.Service.csproj" />
   </ItemGroup>
 
 </Project>
