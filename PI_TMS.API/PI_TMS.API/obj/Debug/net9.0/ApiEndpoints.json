@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "TMS.Contracts.Authentication.LoginRequest",
+        "Type": "TMS.Contracts.Authentication.LoginRequestModel",
         "IsRequired": true
       }
     ],
@@ -25,7 +25,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "TMS.Contracts.Authentication.RegisterRequest",
+        "Type": "TMS.Contracts.Authentication.RegisterRequestModel",
         "IsRequired": true
       }
     ],

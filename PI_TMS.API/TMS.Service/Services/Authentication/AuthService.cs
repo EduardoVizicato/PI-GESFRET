@@ -10,15 +10,29 @@ namespace TMS.Service.Services.Authentication
     {
         public AuthResult Login(string email, string password)
         {
-            return new AuthResult
+            var user = new AuthResult
             {
+                Id = Guid.NewGuid(),
+                FirstName = "FirstName", 
+                LastName = "LastName",   
+                Email = email,
+                Password = password,     
+                Token = "GeneratedToken"
             };
+
+            return user;
         }
 
         public AuthResult Register(string firstname, string lastname, string email, string password)
         {
             return new AuthResult
             {
+                Id = Guid.NewGuid(),
+                FirstName = firstname,
+                LastName = lastname,
+                Email = email,
+                Password = password,
+                Token = "GeneratedToken"
             };
         }
     }

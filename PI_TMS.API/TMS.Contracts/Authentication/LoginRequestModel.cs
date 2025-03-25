@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace TMS.Contracts.Authentication
 {
-    class AuthenticationResponse
+    public record LoginRequestModel
     {
-        Guid id;
-        string FirstName;
-        string LastName;
-        string Email;
-        string Token;
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -42,3 +42,6 @@ C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\staticwebassets.upToDateC
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\TMS.Contracts.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\TMS.Contracts.pdb
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll

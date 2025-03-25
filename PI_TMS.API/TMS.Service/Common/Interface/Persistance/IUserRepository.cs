@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMS.Contracts.Authentication
+namespace TMS.Service.Common.Interface.Persistance
 {
-    public record LoginRequest
+    public interface IUserRepository
     {
-        string Email;
-        string Password;
     }
 }
