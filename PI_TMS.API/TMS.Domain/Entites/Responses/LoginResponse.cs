@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMS.Service.Common.Application.Persistance
+namespace TMS.Domain.Entites.Responses
 {
-    public interface IUserRepository
+    public class LoginResponse
     {
     }
 }
