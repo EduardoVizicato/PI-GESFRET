@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entites.Requests;
+using TMS.Domain.Entites.Requests.User;
 
 namespace TMS.Contracts.Authentication
 {
-    public interface ILoginrequestService
+    public interface ILoginRequestService
     {
-        Task<ILoginrequest> Login(LoginRequest request);
+        Task<ILoginRequestService> Login(LoginUserRequest request);
     }
 }
