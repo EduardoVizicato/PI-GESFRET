@@ -8,5 +8,6 @@ namespace TMS.Domain.Entites.Responses
 {
     public class LoginResponse
     {
+
     }
 }
