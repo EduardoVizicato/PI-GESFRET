@@ -15,7 +15,7 @@ namespace PI_TMS.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var data = await _repository.GetAllAsync();
-            if(data.Count == 0)
+            if(data == null)
             {
                 return NoContent();
             }

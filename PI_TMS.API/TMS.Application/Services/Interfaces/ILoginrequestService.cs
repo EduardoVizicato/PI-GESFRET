@@ -9,6 +9,6 @@ namespace TMS.Contracts.Authentication
 {
     public interface ILoginrequestService
     {
-        Task<ILoginrequest> Login(LoginRequest request);
+        Task<LoginRequest> Login(LoginRequest request);
     }
 }
