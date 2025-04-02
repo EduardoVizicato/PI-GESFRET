@@ -17,8 +17,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entites\Requests\Vehicle\" />
-  </ItemGroup>
-
 </Project>
