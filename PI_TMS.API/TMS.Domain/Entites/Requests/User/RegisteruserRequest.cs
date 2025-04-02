@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMS.Domain.Entites.Requests
+namespace TMS.Domain.Entites.Requests.User
 {
-    public record RegisterRequest
+    public record RegisteruserRequest
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
