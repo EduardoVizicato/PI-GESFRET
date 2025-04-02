@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "415cpacqoX8=",
+=======
+  "dgSpecHash": "iJk61waMftI=",
+>>>>>>> 54a131594c3821b024ad1e993b4e11ae27d66cd5
   "success": true,
   "projectFilePath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj",
   "expectedPackageFiles": [

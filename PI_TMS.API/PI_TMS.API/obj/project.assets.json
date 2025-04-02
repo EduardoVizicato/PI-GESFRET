@@ -1198,7 +1198,6 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Sqlite": "9.0.3",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3",
-          "TMS.Contracts": "1.0.0",
           "TMS.Domain": "1.0.0",
           "TMS.Infrastructure": "1.0.0"
         },
@@ -1207,24 +1206,6 @@
         },
         "runtime": {
           "bin/placeholder/TMS.Application.dll": {}
-        }
-      },
-      "TMS.Contracts/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v9.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.3",
-          "Microsoft.EntityFrameworkCore.Abstractions": "9.0.3",
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.3",
-          "Microsoft.EntityFrameworkCore.Sqlite": "9.0.3",
-          "TMS.Domain": "1.0.0",
-          "TMS.Infrastructure": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/TMS.Contracts.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TMS.Contracts.dll": {}
         }
       },
       "TMS.Domain/1.0.0": {
@@ -3645,11 +3626,6 @@
       "path": "../TMS.Application/TMS.Application.csproj",
       "msbuildProject": "../TMS.Application/TMS.Application.csproj"
     },
-    "TMS.Contracts/1.0.0": {
-      "type": "project",
-      "path": "../TMS.Contracts/TMS.Contracts.csproj",
-      "msbuildProject": "../TMS.Contracts/TMS.Contracts.csproj"
-    },
     "TMS.Domain/1.0.0": {
       "type": "project",
       "path": "../TMS.Domain/TMS.Domain.csproj",
@@ -3671,7 +3647,6 @@
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.3",
       "Swashbuckle.AspNetCore >= 6.6.2",
       "TMS.Application >= 1.0.0",
-      "TMS.Contracts >= 1.0.0",
       "TMS.Infrastructure >= 1.0.0"
     ]
   },
@@ -3711,11 +3686,16 @@
             "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj": {
               "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj"
             },
+<<<<<<< HEAD
             "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj": {
               "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj"
             },
             "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
               "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
+=======
+            "C:\\Users\\0221432511014\\Desktop\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\0221432511014\\Desktop\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
+>>>>>>> 54a131594c3821b024ad1e993b4e11ae27d66cd5
             }
           }
         }

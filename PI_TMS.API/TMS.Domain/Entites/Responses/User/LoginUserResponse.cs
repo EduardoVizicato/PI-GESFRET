@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMS.Domain.Entites.Responses
+namespace TMS.Domain.Entites.Responses.User
 {
-    public class LoginResponse
+    public class LoginUserResponse
     {
+
     }
 }

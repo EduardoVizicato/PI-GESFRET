@@ -33,11 +33,16 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj": {
                 "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj"
               },
               "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
                 "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj"
+=======
+              "C:\\Users\\0221432511014\\Desktop\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
+                "projectPath": "C:\\Users\\0221432511014\\Desktop\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj"
+>>>>>>> 54a131594c3821b024ad1e993b4e11ae27d66cd5
               },
               "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
                 "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
@@ -90,6 +95,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -188,6 +194,9 @@
       }
     },
     "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
+=======
+    "C:\\Users\\0221432511014\\Desktop\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
+>>>>>>> 54a131594c3821b024ad1e993b4e11ae27d66cd5
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",

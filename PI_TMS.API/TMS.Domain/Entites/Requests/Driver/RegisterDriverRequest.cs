@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entites.Enums;
 
-namespace TMS.Domain.Entites
+namespace TMS.Domain.Entites.Requests.Driver
 {
-    public class Driver : BaseEntity
+    public class RegisterDriverRequest
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
