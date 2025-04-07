@@ -10,6 +10,6 @@ namespace TMS.Domain.Repositories
 {
     public interface IRegisterRequestService
     {
-        Task<RegisteruserRequest> RegisterUser(RegisteruserRequest request);
+        Task<RegisterUserRequest> RegisterUser(RegisterUserRequest request);
     }
 }

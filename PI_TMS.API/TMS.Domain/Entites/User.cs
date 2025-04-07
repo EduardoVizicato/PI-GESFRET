@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entites;
@@ -18,6 +19,7 @@ namespace TMS.Domain.Entities
         public string Email { get; set; }
         [NotNull]
         public string Password { get; set; }
+        public bool IsActive { get; set; }
        
     }
 }
