@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Common\Interface\Persistance\**" />
+    <Compile Remove="Services\Authentication\**" />
+    <EmbeddedResource Remove="Common\Interface\Persistance\**" />
+    <EmbeddedResource Remove="Services\Authentication\**" />
+    <None Remove="Common\Interface\Persistance\**" />
+    <None Remove="Services\Authentication\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.3" />
   </ItemGroup>
@@ -14,11 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TMS.Domain\TMS.Domain.csproj" />
     <ProjectReference Include="..\TMS.Infrastructure\TMS.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Common\Interface\Persistance\" />
-    <Folder Include="Services\Authentication\" />
   </ItemGroup>
 
 </Project>

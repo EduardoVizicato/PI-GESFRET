@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TMS.Domain.Entites.Requests.User;
 using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
 
@@ -24,14 +25,9 @@ namespace PI_TMS.API.Controllers
         }
 
         [HttpPost("adduser")]
-        public async Task<IActionResult> AddUser(User user)
+        public async Task<IActionResult> AddUser(RegisterUserRequest user)
         {
-            var data = await _repository.AddAsync(user);
-            if (data == null)
-            {
-                return BadRequest();
-            }
-            return Ok(data);
+            throw new NotImplementedException();
         }
     }
 }
