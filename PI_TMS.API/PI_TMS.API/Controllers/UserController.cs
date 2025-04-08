@@ -18,7 +18,7 @@ namespace PI_TMS.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var data = await _repository.GetAllAsync();
-            return Ok();
+            return Ok(data);
         
         }
 
@@ -27,7 +27,7 @@ namespace PI_TMS.API.Controllers
         {
 
             var data = await _repository.AddAsync(user);
-            return Ok();
+            return Ok(data);
         }
         
         [HttpGet("getUserbyId")]
