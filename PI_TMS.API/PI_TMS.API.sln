@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.Domain", "TMS.Domain\TM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.Infrastructure", "TMS.Infrastructure\TMS.Infrastructure.csproj", "{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.Contracts", "TMS.Contracts\TMS.Contracts.csproj", "{9B7525F9-F4F3-4FD1-B46A-A022C4809CE3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.Application", "TMS.Application\TMS.Application.csproj", "{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B7525F9-F4F3-4FD1-B46A-A022C4809CE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B7525F9-F4F3-4FD1-B46A-A022C4809CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B7525F9-F4F3-4FD1-B46A-A022C4809CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B7525F9-F4F3-4FD1-B46A-A022C4809CE3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}.Release|Any CPU.ActiveCfg = Release|Any CPU

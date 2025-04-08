@@ -36,11 +36,16 @@
               "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj": {
                 "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj"
               },
+<<<<<<< HEAD
               "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj": {
                 "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj"
               },
               "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
                 "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
+=======
+              "C:\\Users\\0221432511014\\Desktop\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\0221432511014\\Desktop\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
+>>>>>>> main
               }
             }
           }
@@ -61,6 +66,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.3, )"
@@ -144,11 +153,16 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj": {
                 "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Contracts\\TMS.Contracts.csproj"
               },
               "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
                 "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj"
+=======
+              "C:\\Users\\0221432511014\\Desktop\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
+                "projectPath": "C:\\Users\\0221432511014\\Desktop\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj"
+>>>>>>> main
               },
               "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
                 "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
@@ -172,6 +186,7 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+<<<<<<< HEAD
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[9.0.3, )"
@@ -264,6 +279,9 @@
               "version": "[9.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
+=======
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+>>>>>>> main
               "target": "Package",
               "version": "[9.0.3, )"
             },
@@ -271,9 +289,7 @@
               "target": "Package",
               "version": "[9.0.3, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
               "version": "[9.0.3, )"
             }
@@ -345,6 +361,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.3, )"
@@ -439,6 +459,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.3, )"
