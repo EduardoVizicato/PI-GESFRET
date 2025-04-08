@@ -14,7 +14,7 @@ namespace TMS.Domain.Repositories
         Task<List<User>> GetAllAsync();
         Task<User> GetByIdAsync(Guid id);
         Task<RegisterUserRequest> AddAsync(RegisterUserRequest user);
-        Task<bool?> UpdatesUserAsync(RegisterUserRequest user);
+        Task<bool?> UpdatesUserAsync(Guid id,RegisterUserResponse user);
         Task<bool?> DesactiveUserAsync(Guid id);
 
     }

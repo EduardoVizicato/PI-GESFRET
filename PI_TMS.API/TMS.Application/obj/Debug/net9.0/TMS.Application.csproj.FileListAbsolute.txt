@@ -11,10 +11,8 @@ C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\obj\Debug\net9.0\TMS.Application.dll
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\obj\Debug\net9.0\refint\TMS.Application.dll
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\obj\Debug\net9.0\TMS.Application.pdb
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\obj\Debug\net9.0\ref\TMS.Application.dll
-C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Contracts.dll
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Domain.dll
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Infrastructure.dll
-C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Contracts.pdb
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Domain.pdb
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Infrastructure.pdb
 C:\FATEC\PI-TMS\PI_TMS.API\TMS.Application\obj\Debug\net9.0\TMS.Appl.24C5A7C5.Up2Date

@@ -1,15 +1,78 @@
 [
   {
-    "ContainingType": "PI_TMS.API.Controllers.UserController",
-    "Method": "AddUser",
-    "RelativePath": "user/adduser",
+    "ContainingType": "PI_TMS.API.Controllers.DriverController",
+    "Method": "AddDriver",
+    "RelativePath": "driver/addDriver",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "user",
-        "Type": "TMS.Domain.Entities.User",
+        "Name": "driver",
+        "Type": "TMS.Domain.Entites.Requests.Driver.RegisterDriverRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.DriverController",
+    "Method": "DesactiveDriver",
+    "RelativePath": "driver/desactiveDriver",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.DriverController",
+    "Method": "GetAllDrivers",
+    "RelativePath": "driver/getAllDrivers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.DriverController",
+    "Method": "GetDriverById",
+    "RelativePath": "driver/getDriverById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.DriverController",
+    "Method": "UpdateDriver",
+    "RelativePath": "driver/updateDriver",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "driver",
+        "Type": "TMS.Domain.Entites.Responses.Drivers.DriverResponse",
         "IsRequired": true
       }
     ],
@@ -17,12 +80,160 @@
   },
   {
     "ContainingType": "PI_TMS.API.Controllers.UserController",
+    "Method": "AddUser",
+    "RelativePath": "user/addUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "TMS.Domain.Entites.Requests.User.RegisterUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.UserController",
+    "Method": "DesactiveUser",
+    "RelativePath": "user/desactiveUser",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.UserController",
     "Method": "GetAll",
-    "RelativePath": "user/getallusers",
+    "RelativePath": "user/getAllUsers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.UserController",
+    "Method": "GetUserById",
+    "RelativePath": "user/getUserbyId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "user/updateUser",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "user",
+        "Type": "TMS.Domain.Entites.Responses.User.RegisterUserResponse",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.VehicleController",
+    "Method": "AddVehicle",
+    "RelativePath": "vehicle/addVehicle",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vehicle",
+        "Type": "TMS.Domain.Entites.Requests.Vehicle.VehicleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.VehicleController",
+    "Method": "DesactiveVehicle",
+    "RelativePath": "vehicle/desactiveVehicle",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.VehicleController",
+    "Method": "GetAllVehicles",
+    "RelativePath": "vehicle/getAllVehicles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.VehicleController",
+    "Method": "GetVehicleById",
+    "RelativePath": "vehicle/getVehicleById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.VehicleController",
+    "Method": "UpdateVehicle",
+    "RelativePath": "vehicle/updateVehicle",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "vehicle",
+        "Type": "TMS.Domain.Entites.Responses.Vehicle.VehicleResponse",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]

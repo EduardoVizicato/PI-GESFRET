@@ -35,9 +35,6 @@ C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\refint\PI_TMS.API.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\PI_TMS.API.pdb
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\PI_TMS.API.genruntimeconfig.cache
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\ref\PI_TMS.API.dll
-C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
-C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\TMS.Contracts.dll
-C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\TMS.Contracts.pdb
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -74,7 +71,6 @@ C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\System.Composition.Conven
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\System.Composition.Hosting.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\System.Composition.Runtime.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\System.Composition.TypedParts.dll
-C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\System.Text.Json.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -333,3 +329,12 @@ C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\PI_TMS.API.csproj.Up2D
 C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\PI_TMS.API.genruntimeconfig.cache
 C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\ref\PI_TMS.API.dll
 C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
