@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,12 @@ namespace TMS.Infrastructure.Repositories
         }
         public async Task<RegisterUserRequest> AddAsync(RegisterUserRequest user)
         {
-                var addUser = new User()
+            if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
+            {
+                _logger.LogWarning("Adicione valor a todos os campos");
+                return null;
+            }
+            var addUser = new User()
                 {
                     FirstName = user.FirstName,
                     LastName = user.LastName,
@@ -31,11 +37,6 @@ namespace TMS.Infrastructure.Repositories
                     Password = user.Password,
                     IsActive = true
                 };
-
-                if(addUser.FirstName == null || addUser.LastName == null || addUser.Email == null || addUser.Password == null)
-                {
-                    _logger.LogWarning("Preencha todos os campos");
-                }
                 
                 _context.Users.Add(addUser);
                 await _context.SaveChangesAsync();
@@ -50,27 +51,29 @@ namespace TMS.Infrastructure.Repositories
             {
                 _logger.LogError($"Usuário de Id {id} não encontrado");
             }
+
             userToDesactive.IsActive = false;
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             _logger.LogError($"Usuário de Id {id} desativado com sucesso");
             return true;
         }
 
         public async Task<List<User>> GetAllAsync()
         {
-            _logger.LogInformation("Getting all users");
-            return _context.Users.ToList();
+            _logger.LogInformation("Carregando todos os usuários");
+            return await _context.Users.ToListAsync();
         }
 
         public async Task<User> GetByIdAsync(Guid id)
         {
+            var userById = await _context.Users.FindAsync(id);
             if (id == null)
             {
                 _logger.LogError($"usuário de id: {id} não encontrado");
                 return null;
             }
             _logger.LogInformation($"Usário de id: {id} encontrado");
-            return await _context.Users.FindAsync(id);
+            return userById;
         }
 
         public async Task<bool?>  UpdatesUserAsync(Guid id, RegisterUserResponse user)
@@ -81,11 +84,12 @@ namespace TMS.Infrastructure.Repositories
                 _logger.LogError($"Usuário de id: {id} nao encontrado");
                 return null;
             }
+
            userToUpdate.FirstName = user.FirstName;
            userToUpdate.LastName = user.LastName;
            userToUpdate.Email = user.Email;
-           userToUpdate.IsActive = true; 
-            _context.SaveChanges();
+
+            await _context.SaveChangesAsync();
             _logger.LogInformation($"Usuário de id: {id} atualizado com sucesso");
             return true;
         }

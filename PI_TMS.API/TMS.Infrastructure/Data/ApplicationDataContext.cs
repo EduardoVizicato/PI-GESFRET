@@ -16,5 +16,11 @@ namespace TMS.Infrastructure.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDataContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
