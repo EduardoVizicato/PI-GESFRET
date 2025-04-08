@@ -10,5 +10,6 @@ namespace TMS.Domain.Entites.Enums
     {
         Carro,
         Caminhão,
+        Carreta,
     }
 }
