@@ -14,6 +14,7 @@ namespace TMS.Infrastructure.Data.Configuration.UserConfiguration
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(x => x.Id);
+
             builder.Property(x => x.FirstName)
                 .IsRequired()
                 .HasMaxLength(50);
@@ -22,7 +23,7 @@ namespace TMS.Infrastructure.Data.Configuration.UserConfiguration
                 .IsRequired()
                 .HasMaxLength(50);
 
-            builder.Property<string>(x => x.Email)
+            builder.Property(x => x.Email)
                 .IsRequired()
                 .HasMaxLength(250);
 
