@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "TMS-UI": {
+    "PI_TMS.UI": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/tms-ui",
+            "outputPath": "dist/pi-tms.ui",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -29,16 +29,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/lodash/lodash.min.js",
-              "node_modules/dropzone/dist/dropzone-min.js",
-              "node_modules/nouislider/dist/nouislider.min.js",
-              "node_modules/datatables.net/js/dataTables.min.js",
-              "node_modules/vanilla-calendar-pro/index.js",
-
-              "node_modules/preline/dist/index.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -68,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "TMS-UI:build:production"
+              "buildTarget": "PI_TMS.UI:build:production"
             },
             "development": {
-              "buildTarget": "TMS-UI:build:development"
+              "buildTarget": "PI_TMS.UI:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -103,6 +94,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "b46dfa4b-e163-498e-9179-bc84d5c5f678"
   }
 }
