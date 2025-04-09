@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'TMS-UI' title`, () => {
+  it(`should have the 'PI_TMS.UI' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('TMS-UI');
+    expect(app.title).toEqual('PI_TMS.UI');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, TMS-UI');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, PI_TMS.UI');
   });
 });
