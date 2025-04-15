@@ -98,6 +98,7 @@
   top: 639px;
   width: 67px;
   height: 25px;
+ 
 }
 .senha {
   width: 540px;
@@ -115,6 +116,7 @@
   position: absolute;
   left: 205.25px;
   top: 484px;
+  font-size: 30px;
 }
 .rectangle-13 {
   background: #ffffff;
@@ -172,6 +174,7 @@
   position: absolute;
   left: 205.25px;
   top: 394px;
+  font-size: 30px;
 }
 .rectangle-12 {
   background: #ffffff;

@@ -28,10 +28,8 @@ C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\obj\Debug\net9.0\TMS.Application.p
 C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Application.deps.json
 C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Application.dll
 C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Application.pdb
-C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Contracts.dll
 C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Domain.dll
 C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Infrastructure.dll
-C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Contracts.pdb
 C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Domain.pdb
 C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\bin\Debug\net9.0\TMS.Infrastructure.pdb
 C:\Projects\PI-TMS\PI_TMS.API\TMS.Application\obj\Debug\net9.0\TMS.Appl.24C5A7C5.Up2Date
