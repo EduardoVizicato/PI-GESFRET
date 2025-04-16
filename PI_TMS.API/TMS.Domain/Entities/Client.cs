@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMS.Domain.Entites
 {
-    internal class Client : BaseEntity
+    public class Client : BaseEntity
     {
         public string Name { get; set; }
         public string IdentificationNumber { get; set; }

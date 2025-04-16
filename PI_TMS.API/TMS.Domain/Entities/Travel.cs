@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entities;
+using TMS.Domain.Entities.Enums;
 
 namespace TMS.Domain.Entites
 {
-    internal class Travel : BaseEntity
+    public class Travel : BaseEntity
     {
         public string TravelName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public TravelStatus TravelStatus { get; set; }
         public DateTime DateCreate { get; set; }
         public string DepartureLocation { get; set; }
         public string ArrivalLocation { get; set; }

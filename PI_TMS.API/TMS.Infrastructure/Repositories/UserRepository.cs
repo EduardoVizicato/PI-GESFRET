@@ -76,6 +76,18 @@ namespace TMS.Infrastructure.Repositories
             return userById;
         }
 
+        public async Task<RegisterUserResponse> GetUserByEmail(string email)
+        {
+            var userByEmail = await _context.Users.FindAsync(email);
+            if (userByEmail == null) 
+            {
+                _logger.LogError($"Usuário de email: {email} não encontrado");
+                return null;
+            }
+            _logger.LogInformation($"Usuário encontrado");
+            return userByEmail;
+        }
+
         public async Task<bool?>  UpdatesUserAsync(Guid id, RegisterUserResponse user)
         {
             var userToUpdate = await _context.Users.FindAsync(id);

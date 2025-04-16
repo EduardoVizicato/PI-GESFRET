@@ -7,7 +7,7 @@ using TMS.Domain.Entites;
 
 namespace TMS.Domain.Entities
 {
-    internal class Load : BaseEntity
+    public class Load : BaseEntity
     {
         public string Description { get; set; }
         public float Quantity {get; set;}
