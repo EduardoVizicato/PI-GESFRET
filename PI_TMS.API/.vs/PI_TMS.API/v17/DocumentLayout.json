@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\fatec\\pi-tms\\pi_tms.api\\tms.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\fatec\\pi-tms\\pi_tms.api\\tms.infrastructure\\repositories\\vehiclerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\repositories\\vehiclerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BAB4AE38-4F06-465B-B3DA-82DB112F0028}|PI_TMS.API\\PI_TMS.API.csproj|c:\\fatec\\pi-tms\\pi_tms.api\\pi_tms.api\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAB4AE38-4F06-465B-B3DA-82DB112F0028}|PI_TMS.API\\PI_TMS.API.csproj|solutionrelative:pi_tms.api\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,14 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BAB4AE38-4F06-465B-B3DA-82DB112F0028}|PI_TMS.API\\PI_TMS.API.csproj|c:\\fatec\\pi-tms\\pi_tms.api\\pi_tms.api\\controllers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAB4AE38-4F06-465B-B3DA-82DB112F0028}|PI_TMS.API\\PI_TMS.API.csproj|solutionrelative:pi_tms.api\\controllers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\fatec\\pi-tms\\pi_tms.api\\tms.infrastructure\\repositories\\vehiclerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\repositories\\vehiclerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\fatec\\pi-tms\\pi_tms.api\\tms.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\fatec\\pi-tms\\pi_tms.api\\tms.infrastructure\\repositories\\driverrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -132,7 +132,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -152,20 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DriverController.cs",
-              "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\DriverController.cs",
-              "RelativeDocumentMoniker": "PI_TMS.API\\Controllers\\DriverController.cs",
-              "ToolTip": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\DriverController.cs",
-              "RelativeToolTip": "PI_TMS.API\\Controllers\\DriverController.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAA9wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T00:25:36.03Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "VehicleRepository.cs",
               "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Repositories\\VehicleRepository.cs",
               "RelativeDocumentMoniker": "TMS.Infrastructure\\Repositories\\VehicleRepository.cs",
@@ -186,12 +173,11 @@
               "RelativeToolTip": "TMS.Domain\\Repositories\\IVehicleRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T00:03:52.777Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T00:03:52.777Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "PI_TMS.API\\Controllers\\UserController.cs",
@@ -199,8 +185,7 @@
               "RelativeToolTip": "PI_TMS.API\\Controllers\\UserController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T21:05:19.233Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T21:05:19.233Z"
             },
             {
               "$type": "Document",
@@ -224,8 +209,7 @@
               "RelativeToolTip": "TMS.Domain\\Repositories\\IUserRepository.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAABAAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T21:05:19.245Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T21:05:19.245Z"
             },
             {
               "$type": "Document",
@@ -237,8 +221,7 @@
               "RelativeToolTip": "TMS.Domain\\Entites\\User.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAUwBUAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T13:11:00.914Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T13:11:00.914Z"
             },
             {
               "$type": "Document",
@@ -250,8 +233,7 @@
               "RelativeToolTip": "TMS.Domain\\Entites\\Responses\\Vehicle\\VehicleResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T21:06:47.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T21:06:47.638Z"
             },
             {
               "$type": "Document",
@@ -263,18 +245,17 @@
               "RelativeToolTip": "TMS.Domain\\Entites\\Vehicle.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T21:07:27.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T21:07:27.679Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "VehicleController.cs",
               "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\VehicleController.cs",
               "RelativeDocumentMoniker": "PI_TMS.API\\Controllers\\VehicleController.cs",
               "ToolTip": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\VehicleController.cs",
               "RelativeToolTip": "PI_TMS.API\\Controllers\\VehicleController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T00:08:16.153Z",
               "EditorCaption": ""
@@ -289,12 +270,11 @@
               "RelativeToolTip": "TMS.Domain\\Repositories\\IDriverRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T00:03:53.636Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T00:03:53.636Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "TMS.Infrastructure\\Repositories\\UserRepository.cs",
@@ -307,6 +287,18 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DriverController.cs",
+              "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\DriverController.cs",
+              "RelativeDocumentMoniker": "PI_TMS.API\\Controllers\\DriverController.cs",
+              "ToolTip": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\DriverController.cs",
+              "RelativeToolTip": "PI_TMS.API\\Controllers\\DriverController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAA9wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T00:25:36.03Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
               "Title": "DriverRepository.cs",
               "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Repositories\\DriverRepository.cs",
@@ -315,8 +307,7 @@
               "RelativeToolTip": "TMS.Infrastructure\\Repositories\\DriverRepository.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAgwBYAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T00:04:11.428Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T00:04:11.428Z"
             },
             {
               "$type": "Document",
@@ -328,8 +319,7 @@
               "RelativeToolTip": "TMS.Domain\\Entites\\Enums\\VehicleType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T00:06:23.218Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T00:06:23.218Z"
             },
             {
               "$type": "Document",
@@ -341,8 +331,7 @@
               "RelativeToolTip": "TMS.Domain\\Entites\\BaseEntity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T21:05:19.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T21:05:19.249Z"
             },
             {
               "$type": "Document",
@@ -402,8 +391,7 @@
               "RelativeToolTip": "TMS.Domain\\Entites\\Responses\\Drivers\\DriverResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T21:06:38.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T21:06:38.282Z"
             },
             {
               "$type": "Document",
@@ -415,8 +403,7 @@
               "RelativeToolTip": "TMS.Infrastructure\\Migrations\\20250407212108_AddingOtherTables.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T21:21:08.247Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T21:21:08.247Z"
             },
             {
               "$type": "Document",

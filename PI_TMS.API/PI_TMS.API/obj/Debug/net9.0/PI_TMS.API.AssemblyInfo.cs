@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PI_TMS.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f0388354ad240994bfac0c598a9ad53424d5faf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b8e68ba3997a76bfecf5fccee12aab39d4d8689")]
 [assembly: System.Reflection.AssemblyProductAttribute("PI_TMS.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PI_TMS.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
