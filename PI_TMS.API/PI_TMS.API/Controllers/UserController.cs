@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SQLitePCL;
 using TMS.Domain.Entites.Requests.User;
+using TMS.Domain.Entites.Responses.User;
 using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
 
@@ -12,22 +14,43 @@ namespace PI_TMS.API.Controllers
     {
         private readonly IUserRepository _repository = repository;
 
-        [HttpGet("getallusers")]
+        [HttpGet("getAllUsers")]
         public async Task<IActionResult> GetAll()
         {
             var data = await _repository.GetAllAsync();
-            if(data == null)
-            {
-                return NoContent();
-            }
+            return Ok(data);
+        
+        }
 
+        [HttpPost("addUser")]
+        public async Task<IActionResult> AddUser(RegisterUserRequest user)
+        {
+
+            var data = await _repository.AddAsync(user);
+            return Ok(data);
+        }
+        
+        [HttpGet("getUserbyId")]
+        public async Task<IActionResult> GetUserById(Guid id)
+        {
+            var data = await _repository.GetByIdAsync(id);
             return Ok(data);
         }
 
-        [HttpPost("adduser")]
-        public async Task<IActionResult> AddUser(RegisterUserRequest user)
+        [HttpPut("updateUser")]
+        public async Task<IActionResult> UpdateUser(Guid id, [FromBody] RegisterUserResponse user)
         {
-            throw new NotImplementedException();
+            var data = await _repository.UpdatesUserAsync(id, user);
+            return Ok(data);
+            
         }
+
+        [HttpDelete("desactiveUser")]
+        public async Task<IActionResult> DesactiveUser(Guid id)
+        {
+            var data = await _repository.DesactiveUserAsync(id);
+            return Ok(data);
+        }
+        
     }
 }
