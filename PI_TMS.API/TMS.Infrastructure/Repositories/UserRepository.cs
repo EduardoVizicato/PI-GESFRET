@@ -22,13 +22,9 @@ namespace TMS.Infrastructure.Repositories
             _context = context;
             _logger = logger;
         }
+
         public async Task<RegisterUserRequest> AddAsync(RegisterUserRequest user)
         {
-            if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
-            {
-                _logger.LogWarning("Adicione valor a todos os campos");
-                return null;
-            }
             var addUser = new User()
                 {
                     FirstName = user.FirstName,
@@ -47,15 +43,16 @@ namespace TMS.Infrastructure.Repositories
         public async Task<bool?> DesactiveUserAsync(Guid id)
         {
             var userToDesactive = await _context.Users.FindAsync(id);
-            if (userToDesactive == null)
-            {
-                _logger.LogError($"Usuário de Id {id} não encontrado");
-            }
-
             userToDesactive.IsActive = false;
+
             await _context.SaveChangesAsync();
             _logger.LogError($"Usuário de Id {id} desativado com sucesso");
             return true;
+        }
+
+        public async Task<List<User>> GetAllActivedUser()
+        {
+            return await _context.Users.Where(x => x.IsActive == true).ToListAsync(); 
         }
 
         public async Task<List<User>> GetAllAsync()
@@ -64,27 +61,27 @@ namespace TMS.Infrastructure.Repositories
             return await _context.Users.ToListAsync();
         }
 
+        public async Task<List<User>> GetAllDesactivedUser()
+        {
+            return await _context.Users.Where(x => x.IsActive == false).ToListAsync();
+        }
+
         public async Task<User> GetByIdAsync(Guid id)
         {
             var userById = await _context.Users.FindAsync(id);
-            if (id == null)
-            {
-                _logger.LogError($"usuário de id: {id} não encontrado");
-                return null;
-            }
             _logger.LogInformation($"Usário de id: {id} encontrado");
             return userById;
         }
 
+        public async Task<User> GetUserByEmail(string email)
+        {
+            var userEmail = await _context.Users.FindAsync(email);
+            return userEmail;
+        }
+
         public async Task<bool?>  UpdatesUserAsync(Guid id, RegisterUserResponse user)
         {
-            var userToUpdate = await _context.Users.FindAsync(id);
-            if (userToUpdate == null)
-            {
-                _logger.LogError($"Usuário de id: {id} nao encontrado");
-                return null;
-            }
-
+           var userToUpdate = await _context.Users.FindAsync(id);
            userToUpdate.FirstName = user.FirstName;
            userToUpdate.LastName = user.LastName;
            userToUpdate.Email = user.Email;

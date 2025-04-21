@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,8 @@ using TMS.Domain.Entites.Requests.User;
 
 namespace TMS.Contracts.Authentication
 {
-    public interface ILoginRequestService
+    public interface ILoginService
     {
-        Task<LoginUserRequest> Login(LoginUserRequest request);
-       // Task<ILoginRequestService> Login(LoginUserRequest request);
+        Task<T> Login(T request);
     }
 }
