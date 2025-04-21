@@ -11,6 +11,5 @@ namespace TMS.Contracts.Authentication
     public interface ILoginRequestService
     {
         Task<LoginUserRequest> Login(LoginUserRequest request);
-       // Task<ILoginRequestService> Login(LoginUserRequest request);
     }
 }

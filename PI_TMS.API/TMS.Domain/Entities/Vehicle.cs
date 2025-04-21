@@ -14,5 +14,6 @@ namespace TMS.Domain.Entites
         public string Name { get; set; }
         public string VehicleRegistrationPlate { get; set; }
         public VehicleType VehicleType { get; set; }
+        public bool IsActive { get; set; }
     }
 }

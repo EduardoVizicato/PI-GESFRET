@@ -17,6 +17,43 @@ namespace TMS.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.3");
 
+            modelBuilder.Entity("TMS.Domain.Entites.Client", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("IdentificationNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("TMS.Domain.Entites.Driver", b =>
                 {
                     b.Property<Guid>("Id")
@@ -44,6 +81,66 @@ namespace TMS.Infrastructure.Migrations
                     b.ToTable("Drivers");
                 });
 
+            modelBuilder.Entity("TMS.Domain.Entites.Travel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ArrivalLocation")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartureLocation")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("LoadGuid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("LoadId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("REAL");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TravelName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TravelStatus")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Weight")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoadId");
+
+                    b.ToTable("Travels");
+                });
+
             modelBuilder.Entity("TMS.Domain.Entites.Vehicle", b =>
                 {
                     b.Property<Guid>("Id")
@@ -68,6 +165,41 @@ namespace TMS.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vehicles");
+                });
+
+            modelBuilder.Entity("TMS.Domain.Entities.Load", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ClientGuid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Quantity")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Loads");
                 });
 
             modelBuilder.Entity("TMS.Domain.Entities.User", b =>
@@ -101,6 +233,28 @@ namespace TMS.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("TMS.Domain.Entites.Travel", b =>
+                {
+                    b.HasOne("TMS.Domain.Entities.Load", "Load")
+                        .WithMany()
+                        .HasForeignKey("LoadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Load");
+                });
+
+            modelBuilder.Entity("TMS.Domain.Entities.Load", b =>
+                {
+                    b.HasOne("TMS.Domain.Entites.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
                 });
 #pragma warning restore 612, 618
         }

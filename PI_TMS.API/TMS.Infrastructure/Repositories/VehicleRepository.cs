@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using TMS.Domain.Entites;
 using TMS.Domain.Entites.Requests.Vehicle;
 using TMS.Domain.Entites.Responses.Vehicle;
+using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
 using TMS.Infrastructure.Data;
 
@@ -83,5 +84,15 @@ public class VehicleRepository : IVehicleRepository
         desactiveVehicle.IsActive = false;
         await _context.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<List<Vehicle>> GetAllDesactivedVehicles()
+    {
+        return await _context.Vehicles.Where(x => x.IsActive == true).ToListAsync();
+    }
+
+    public async Task<List<Vehicle>> GetAllDesactivedVehciles()
+    {
+        return await _context.Vehicles.Where(x => x.IsActive == true).ToListAsync();
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using TMS.Domain.Entites;
 using TMS.Domain.Entites.Requests.Driver;
 using TMS.Domain.Entites.Responses.Drivers;
+using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
 using TMS.Infrastructure.Data;
 
@@ -82,5 +83,15 @@ public class DriverRepository : IDriverRepository
         await _context.SaveChangesAsync();
         _logger.LogInformation($"Motorista de Id: {id} desativado com sucesso");
         return true;
+    }
+
+    public async Task<List<Driver>> GetAllActivedDrivers()
+    {
+        return await _context.Drivers.Where(x => x.IsActive == true).ToListAsync();
+    }
+
+    public async Task<List<Driver>> GetAllDesactivedDrivers()
+    {
+        return await _context.Drivers.Where(x => x.IsActive == false).ToListAsync();
     }
 }

@@ -58,10 +58,20 @@ namespace TMS.Infrastructure.Repositories
             return true;
         }
 
+        public async Task<List<User>> GetAllActivedUsers()
+        {
+            return await _context.Users.Where(x => x.IsActive == true).ToListAsync();
+        }
+
         public async Task<List<User>> GetAllAsync()
         {
             _logger.LogInformation("Carregando todos os usuários");
             return await _context.Users.ToListAsync();
+        }
+
+        public async Task<List<User>> GetAllDesactivedUsers()
+        {
+            return await _context.Users.Where(x => x.IsActive == false).ToListAsync();
         }
 
         public async Task<User> GetByIdAsync(Guid id)
@@ -76,7 +86,7 @@ namespace TMS.Infrastructure.Repositories
             return userById;
         }
 
-        public async Task<RegisterUserResponse> GetUserByEmail(string email)
+        public async Task<User> GetUserByEmail(string email)
         {
             var userByEmail = await _context.Users.FindAsync(email);
             if (userByEmail == null) 

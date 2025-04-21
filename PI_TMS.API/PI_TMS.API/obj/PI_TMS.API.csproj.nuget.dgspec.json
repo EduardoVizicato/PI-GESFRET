@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj": {}
+    "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj": {
+    "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
+        "projectUniqueName": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
         "projectName": "PI_TMS.API",
-        "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
-        "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\obj\\",
+        "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\PI_TMS.API.csproj",
+        "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
+        "outputPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\eduar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,18 +26,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj": {
-                "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj"
+              "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj": {
+                "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj"
               },
-              "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
-                "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
+              "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
+                "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
               }
             }
           }
@@ -112,24 +111,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj": {
+    "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj",
+        "projectUniqueName": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj",
         "projectName": "TMS.Application",
-        "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj",
-        "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\obj\\",
+        "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Application\\TMS.Application.csproj",
+        "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
+        "outputPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\eduar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -138,18 +137,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
-                "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj"
+              "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
+                "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj"
               },
-              "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
-                "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
+              "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
+                "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj"
               }
             }
           }
@@ -199,24 +197,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
+    "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
+        "projectUniqueName": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
         "projectName": "TMS.Domain",
-        "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
-        "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\obj\\",
+        "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
+        "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
+        "outputPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\eduar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -225,7 +223,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -293,24 +290,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
+    "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj",
+        "projectUniqueName": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj",
         "projectName": "TMS.Infrastructure",
-        "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\obj\\",
+        "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\TMS.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
+        "outputPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\eduar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -319,15 +316,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
-                "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj"
+              "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
+                "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj"
               }
             }
           }
@@ -391,7 +387,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

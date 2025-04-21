@@ -33,6 +33,26 @@
   },
   {
     "ContainingType": "PI_TMS.API.Controllers.DriverController",
+    "Method": "GetAllActived",
+    "RelativePath": "driver/getAllActivedDrivers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.DriverController",
+    "Method": "GetAllDesactived",
+    "RelativePath": "driver/getAllDesactivedVehicles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.DriverController",
     "Method": "GetAllDrivers",
     "RelativePath": "driver/getAllDrivers",
     "HttpMethod": "GET",
@@ -112,6 +132,26 @@
   },
   {
     "ContainingType": "PI_TMS.API.Controllers.UserController",
+    "Method": "GetAllActived",
+    "RelativePath": "user/getAllActivedUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.UserController",
+    "Method": "GetAllDesactived",
+    "RelativePath": "user/getAllDesactivedUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.UserController",
     "Method": "GetAll",
     "RelativePath": "user/getAllUsers",
     "HttpMethod": "GET",
@@ -187,6 +227,26 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.VehicleController",
+    "Method": "GetAllActived",
+    "RelativePath": "vehicle/getAllActivedVehicles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.VehicleController",
+    "Method": "GetAllDesactived",
+    "RelativePath": "vehicle/getAllDesactivedVehicles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
