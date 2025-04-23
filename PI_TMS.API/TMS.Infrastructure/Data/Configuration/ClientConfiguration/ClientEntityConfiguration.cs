@@ -22,9 +22,10 @@ namespace TMS.Infrastructure.Data.Configuration.ClientConfiguration
             builder.Property(x => x.IdentificationNumber)
                 .IsRequired();
             
-            builder.Property(x => x.Address)
-                .IsRequired()
-                .HasMaxLength(200);
+            builder.HasOne(x => x.Address)
+                .WithMany()  
+                .HasForeignKey(x => x.AdressId)
+                .OnDelete(DeleteBehavior.Restrict);
             
             builder.Property(x => x.PhoneNumber)
                 .IsRequired();

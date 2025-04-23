@@ -1329,6 +1329,7 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.3",
           "Microsoft.EntityFrameworkCore.Sqlite": "9.0.3",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3",
+          "System.Text.Json": "9.0.3",
           "TMS.Domain": "1.0.0",
           "TMS.Infrastructure": "1.0.0"
         },
@@ -1347,7 +1348,8 @@
           "Microsoft.EntityFrameworkCore": "9.0.3",
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.3",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.3",
-          "Microsoft.EntityFrameworkCore.Sqlite": "9.0.3"
+          "Microsoft.EntityFrameworkCore.Sqlite": "9.0.3",
+          "System.Text.Json": "9.0.3"
         },
         "compile": {
           "bin/placeholder/TMS.Domain.dll": {}
@@ -1365,6 +1367,7 @@
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.3",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.3",
           "Microsoft.EntityFrameworkCore.Sqlite": "9.0.3",
+          "System.Text.Json": "9.0.3",
           "TMS.Domain": "1.0.0"
         },
         "compile": {
@@ -3957,6 +3960,7 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 9.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.3",
       "Swashbuckle.AspNetCore >= 6.6.2",
+      "System.Text.Json >= 9.0.3",
       "TMS.Application >= 1.0.0",
       "TMS.Infrastructure >= 1.0.0"
     ]
@@ -4051,6 +4055,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.6.2, )"
+          },
+          "System.Text.Json": {
+            "target": "Package",
+            "version": "[9.0.3, )"
           }
         },
         "imports": [

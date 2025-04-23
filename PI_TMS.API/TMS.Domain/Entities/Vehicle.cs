@@ -11,9 +11,21 @@ namespace TMS.Domain.Entites
 {
     public class Vehicle : BaseEntity
     {
-        public string Name { get; set; }
-        public string VehicleRegistrationPlate { get; set; }
-        public VehicleType VehicleType { get; set; }
-        public bool IsActive { get; set; }
+        public Vehicle(string name, string vehicleRegistrationPlate, VehicleType vehicleType)
+        {
+            Name = name;
+            VehicleRegistrationPlate = vehicleRegistrationPlate;
+            VehicleType = vehicleType;
+        }
+        public string Name { get; private set; }
+        public string VehicleRegistrationPlate { get; private set; }
+        public VehicleType VehicleType { get; private set; }
+
+        public void UpdateVehicle(string name, string vehicleRegistrationPlate, VehicleType vehicleType)
+        {
+            Name = name;
+            VehicleRegistrationPlate = vehicleRegistrationPlate;
+            VehicleType = vehicleType;
+        }
     }
 }

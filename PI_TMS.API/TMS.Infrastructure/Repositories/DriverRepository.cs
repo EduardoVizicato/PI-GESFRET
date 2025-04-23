@@ -38,13 +38,8 @@ public class DriverRepository : IDriverRepository
 
     public async Task<RegisterDriverRequest> AddDriverAsync(RegisterDriverRequest driver)
     {
-        var addDriver = new Driver()
-        {
-            FirstName = driver.FirstName,
-            LastName = driver.LastName,
-            IsActive = true,
-            DriverLicensesCategory = driver.DriverLicensesCategory,
-        };
+        var addDriver = new Driver(driver.FirstName, driver.LastName, driver.DriverLicensesCategory);
+
         if (addDriver.DriverLicensesCategory == null || addDriver.FirstName == null || addDriver.LastName == null)
         {
             _logger.LogWarning("Preencha todos os campos");
@@ -61,10 +56,8 @@ public class DriverRepository : IDriverRepository
         {
             _logger.LogError($"Motorista de Id: {id} não encontrado");
         }
-        updateDriver.FirstName = driver.FirstName;
-        updateDriver.LastName = driver.LastName;
-        updateDriver.DriverLicensesCategory = driver.DriverLicensesCategory;
-        updateDriver.IsActive = true;
+
+        updateDriver.UpdateDriver(updateDriver.FirstName, updateDriver.LastName, updateDriver.DriverLicensesCategory);
         
         _context.Drivers.Update(updateDriver);
         await _context.SaveChangesAsync();

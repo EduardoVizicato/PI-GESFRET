@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMS.Domain.Entites.Responses.Travel
 {
-    internal class TravelResponse
+    public class TravelResponse
     {
         public string TravelName { get; set; }
         public DateTime StartDate { get; set; }

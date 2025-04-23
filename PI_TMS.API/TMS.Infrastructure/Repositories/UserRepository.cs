@@ -29,12 +29,8 @@ namespace TMS.Infrastructure.Repositories
                 _logger.LogWarning("Adicione valor a todos os campos");
                 return null;
             }
-            var addUser = new User()
+            var addUser = new User(user.FirstName, user.LastName, user.Email, user.Password)
                 {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email,
-                    Password = user.Password,
                     IsActive = true
                 };
                 
@@ -106,12 +102,9 @@ namespace TMS.Infrastructure.Repositories
                 _logger.LogError($"Usuário de id: {id} nao encontrado");
                 return null;
             }
-
-           userToUpdate.FirstName = user.FirstName;
-           userToUpdate.LastName = user.LastName;
-           userToUpdate.Email = user.Email;
-
+            userToUpdate.UpdateUser(user.FirstName, user.LastName, user.Email);
             await _context.SaveChangesAsync();
+
             _logger.LogInformation($"Usuário de id: {id} atualizado com sucesso");
             return true;
         }

@@ -11,7 +11,6 @@ namespace TMS.Domain.Entites.Requests.Driver
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public bool IsActive { get; set; }
         public DriverLicensesCategory DriverLicensesCategory { get; set; }
     }
 }
