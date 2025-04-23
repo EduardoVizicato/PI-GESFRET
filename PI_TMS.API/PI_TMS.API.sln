@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.Infrastructure", "TMS.I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.Application", "TMS.Application\TMS.Application.csproj", "{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A8135E8B-32EA-4F1E-851B-E71D6AAE981D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9EF63A16-DAD2-434E-9E15-EAC44EA0CE33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,5 +43,11 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3588AA9E-5F97-4BB3-B4FF-90780A1ECFB2}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EEAAD074-7D4B-438A-B179-042B20D59545} = {A8135E8B-32EA-4F1E-851B-E71D6AAE981D}
+		{12536FA6-A5A4-4AC4-B008-9F9311D86AA9} = {A8135E8B-32EA-4F1E-851B-E71D6AAE981D}
+		{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA} = {A8135E8B-32EA-4F1E-851B-E71D6AAE981D}
+		{BAB4AE38-4F06-465B-B3DA-82DB112F0028} = {A8135E8B-32EA-4F1E-851B-E71D6AAE981D}
 	EndGlobalSection
 EndGlobal
