@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Application.Services.Implementation;
 using TMS.Application.Services.Interfaces;
+using TMS.Domain.Repositories;
 
 namespace TMS.Service.Services
 {
@@ -17,6 +18,8 @@ namespace TMS.Service.Services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IDriverService, DriverService>();
             services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<ILoadService, LoadService>();
+            services.AddScoped<ITravelService, TravelService>();
             return services;
         }
     }

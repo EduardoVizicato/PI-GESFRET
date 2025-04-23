@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMS.Domain.Entites.Requests.Load
 {
-    internal class LoadRequest
+    public class LoadRequest
     {
         public string Description { get; set; }
         public float Quantity { get; set; }

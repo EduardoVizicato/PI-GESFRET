@@ -23,9 +23,7 @@ namespace TMS.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(200)
+                    b.Property<Guid>("AdressId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -45,11 +43,17 @@ namespace TMS.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdressId");
 
                     b.ToTable("Clients");
                 });
@@ -87,17 +91,13 @@ namespace TMS.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ArrivalLocation")
-                        .IsRequired()
-                        .HasMaxLength(200)
+                    b.Property<Guid>("ArrivalLocationId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DepartureLocation")
-                        .IsRequired()
-                        .HasMaxLength(200)
+                    b.Property<Guid>("DepartureLocationId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -110,9 +110,6 @@ namespace TMS.Infrastructure.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("LoadGuid")
-                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("LoadId")
                         .HasColumnType("TEXT");
@@ -135,6 +132,10 @@ namespace TMS.Infrastructure.Migrations
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArrivalLocationId");
+
+                    b.HasIndex("DepartureLocationId");
 
                     b.HasIndex("LoadId");
 
@@ -167,13 +168,47 @@ namespace TMS.Infrastructure.Migrations
                     b.ToTable("Vehicles");
                 });
 
-            modelBuilder.Entity("TMS.Domain.Entities.Load", b =>
+            modelBuilder.Entity("TMS.Domain.Entities.Adress", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ClientGuid")
+                    b.Property<int>("AdressNumber")
+                        .HasMaxLength(10)
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PostalCode")
+                        .HasMaxLength(8)
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Adresses");
+                });
+
+            modelBuilder.Entity("TMS.Domain.Entities.Load", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("ClientId")
@@ -235,13 +270,40 @@ namespace TMS.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("TMS.Domain.Entites.Client", b =>
+                {
+                    b.HasOne("TMS.Domain.Entities.Adress", "Address")
+                        .WithMany()
+                        .HasForeignKey("AdressId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
             modelBuilder.Entity("TMS.Domain.Entites.Travel", b =>
                 {
+                    b.HasOne("TMS.Domain.Entities.Adress", "ArrivalLocation")
+                        .WithMany()
+                        .HasForeignKey("ArrivalLocationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TMS.Domain.Entities.Adress", "DepartureLocation")
+                        .WithMany()
+                        .HasForeignKey("DepartureLocationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("TMS.Domain.Entities.Load", "Load")
                         .WithMany()
                         .HasForeignKey("LoadId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ArrivalLocation");
+
+                    b.Navigation("DepartureLocation");
 
                     b.Navigation("Load");
                 });

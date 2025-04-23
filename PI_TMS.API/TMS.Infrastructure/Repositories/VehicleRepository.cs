@@ -40,12 +40,8 @@ public class VehicleRepository : IVehicleRepository
 
     public async Task<VehicleRequest> AddVehicleAsync(VehicleRequest vehicle)
     {
-        var addVehicle = new Vehicle()
-        {
-            Name = vehicle.Name,
-            VehicleType = vehicle.VehicleType,
-            VehicleRegistrationPlate = vehicle.VehicleRegistrationPlate,
-        };
+        var addVehicle = new Vehicle(vehicle.Name, vehicle.VehicleRegistrationPlate, vehicle.VehicleType);
+        
         if (addVehicle.Name == null || addVehicle.VehicleRegistrationPlate == null || addVehicle.VehicleType == null)
         {
             _logger.LogWarning("Preencha todos os campos");
@@ -64,9 +60,8 @@ public class VehicleRepository : IVehicleRepository
             _logger.LogError($"veículo de Id: {id} não encontrado");
         }
 
-        vehicleToUpdate.Name = vehicle.Name;
-        vehicleToUpdate.VehicleType = vehicle.VehicleType;
-        vehicleToUpdate.VehicleRegistrationPlate = vehicle.VehicleRegistrationPlate;
+        vehicleToUpdate.UpdateVehicle(vehicle.Name, vehicle.VehicleRegistrationPlate, vehicle.VehicleType);
+        
         _context.Vehicles.Update(vehicleToUpdate);
         _context.SaveChanges();
         return true;
