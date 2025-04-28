@@ -41,9 +41,8 @@
   }
   
   .sidenav-nav li {
-    margin-bottom: 10px; /* Espaço entre os itens de nível superior */
-    /* Necessário para position: relative se quiser posicionar o submenu absolutamente */
-    /* position: relative; */
+    margin-bottom: 10px;
+
   }
   
   .sidenav-nav a {
@@ -61,19 +60,19 @@
     margin-right: 10px;
   }
   
-  /* Estilo para o item de menu superior quando ativo (como Dashboard) */
+  
   .sidenav-nav li.active > a {
-    background-color: #8ACE00; /* Fundo verde para o item ativo */
-    color: #262626; /* Cor do texto no item ativo */
+    background-color: #8ACE00;
+    color: #262626;
     font-weight: bold;
   }
   
-  /* NOVO: Estilo para o cabeçalho do menu expansível quando um sub-item está ativo */
+  
 .sidenav-nav li.has-submenu.parent-active > a {
-    background-color: #8ACE00; /* Fundo verde */
-    color: #262626; /* Cor do texto */
+    background-color: #8ACE00; 
+    color: #262626; 
     font-weight: bold;
-    /* Pode querer ajustar o padding se for diferente dos links de nível superior */
+   
 }
 
 
@@ -82,7 +81,7 @@
   color: #FFFFFF;
 }
 
-/* Estilos específicos para o menu expansível */
+
 .submenu {
   list-style: none;
   padding: 0;
@@ -90,13 +89,12 @@
   background-color: #3a3a3a;
   border-radius: 4px;
   overflow: hidden;
-  display: none; /* Inicialmente escondido */
-  /* transition: max-height 0.3s ease-out; */
+  display: none;
 }
 
 .has-submenu.open > .submenu {
   display: block;
-  /* max-height: 500px; */
+  
 }
 
 .submenu li {
@@ -104,19 +102,18 @@
 }
   
   .submenu li a {
-    padding: 10px 16px 10px 30px; /* Ajusta o padding para indentar os sub-itens */
-    font-size: 1rem; /* Tamanho de fonte ligeiramente menor */
-    color: #CCCCCC; /* Cor dos links do submenu */
+    padding: 10px 16px 10px 30px;
+    font-size: 1rem;
+    color: #CCCCCC;
   }
   
-  /* Estilo para o sub-item ativo (como Caminhões) */
   .submenu li.active-submenu-item a {
-    background-color: #555555; /* Cor de fundo cinza mais claro para o item selecionado */
-    color: #FFFFFF; /* Cor do texto branca */
+    background-color: #555555;
+    color: #FFFFFF;
   }
   
   .submenu li a:hover {
-    background-color: #4a4a4a; /* Cor de fundo ao passar o mouse nos sub-itens */
+    background-color: #4a4a4a;
     color: #FFFFFF;
   }
   
