@@ -1,6 +1,12 @@
-﻿namespace TMS.Application.Common.Implementation.Authentication;
+﻿using TMS.Domain.Entities;
+using TMS.Service.Common.Application.Authentication;
 
-public class JwtTokenGenerator
+namespace TMS.Application.Common.Implementation.Authentication;
+
+public class JwtTokenGenerator : IJwtTokenGenerator
 {
-    
+    public string GenerateToken(User user)
+    {
+        throw new NotImplementedException();
+    }
 }

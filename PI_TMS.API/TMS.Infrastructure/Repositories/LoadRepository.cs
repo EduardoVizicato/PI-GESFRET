@@ -1,48 +1,58 @@
-﻿using TMS.Domain.Entites.Requests.Load;
+﻿using Microsoft.EntityFrameworkCore;
+using TMS.Domain.Entites.Requests.Load;
+using TMS.Domain.Entites.Responses.Load;
 using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
+using TMS.Infrastructure.Data;
 
 namespace TMS.Infrastructure.Repositories;
 
 public class LoadRepository: ILoadRepository
 {
-    public Task<List<Load>> GetAllAsync()
+    private readonly ApplicationDataContext _context;
+    public LoadRepository(ApplicationDataContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    public async Task<List<Load>> GetAllAsync()
+    {
+        return await _context.Loads.ToListAsync();
     }
 
-    public Task<Load> GetByIdAsync(Guid id)
+    public async Task<Load> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return  await _context.Loads.FindAsync(id);
     }
 
-    public Task<Load> GetByEmail(string email)
+    public async Task<Load> GetByEmail(string email)
     {
-        throw new NotImplementedException();
+        return await _context.Loads.FindAsync(email);
     }
 
-    public Task<LoadRequest> AddAsync(LoadRequest user)
+    public async Task<LoadRequest> AddAsync(LoadRequest load)
     {
-        throw new NotImplementedException();
+        throw new Exception();
     }
 
-    public Task<bool?> UpdatesAsync(Guid id, LoadRequest user)
+    public async Task<bool?> UpdatesAsync(Guid id, LoadResponse load)
     {
-        throw new NotImplementedException();
+        throw new Exception();
     }
 
-    public Task<bool?> DesactiveAsync(Guid id)
+    public async Task<bool?> DesactiveAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var checkId = await _context.Loads.FindAsync(id);
+        checkId.IsActive = false;
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public Task<List<Load>> GetAllActived()
+    public async Task<List<Load>> GetAllActived()
     {
-        throw new NotImplementedException();
+        return await _context.Loads.Where(x => x.IsActive == true).ToListAsync();
     }
 
-    public Task<List<Load>> GetAllDesactived()
+    public async Task<List<Load>> GetAllDesactived()
     {
-        throw new NotImplementedException();
+        return await _context.Loads.Where(x => x.IsActive == false).ToListAsync();
     }
 }

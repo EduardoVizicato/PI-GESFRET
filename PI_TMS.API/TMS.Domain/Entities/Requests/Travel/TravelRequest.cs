@@ -13,13 +13,14 @@ namespace TMS.Domain.Entites.Requests.Travel
         public string TravelName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public TravelStatus TravelStatus { get; set; }
+        public Guid DepartureLocationId { get; set; }
         public Adress DepartureLocation { get; set; }
+        public Guid ArrivalLocationId { get; set; }
         public Adress ArrivalLocation { get; set; }
         public float Weight { get; set; }
         public float Price { get; set; }
         public string Description { get; set; }
-
-        public Guid LoadGuid { get; set; }
+        public Guid LoadId { get; set; }
+        public Entities.Load Load { get; set; }
     }
 }

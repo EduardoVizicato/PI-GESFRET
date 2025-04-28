@@ -26,9 +26,6 @@ namespace TMS.Infrastructure.Data.Configuration.LoadConfiguration
             builder.Property(x => x.Type)
                 .IsRequired()
                 .HasMaxLength(50);
-
-            builder.Property(x => x.ClientId)
-                .IsRequired();
         }
     }
     

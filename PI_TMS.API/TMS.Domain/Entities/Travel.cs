@@ -16,9 +16,7 @@ namespace TMS.Domain.Entites
         }
         public Travel(string travelName, 
             DateTime startDate, 
-            DateTime endDate, 
-            TravelStatus travelStatus, 
-            DateTime dateCreate, 
+            DateTime endDate,
             Guid departureLocationId,
             Adress departureLocation,
             Guid arrivalLocationId,
@@ -32,8 +30,6 @@ namespace TMS.Domain.Entites
             TravelName = travelName;
             StartDate = startDate;
             EndDate = endDate;
-            TravelStatus = travelStatus;
-            DateCreate = dateCreate;
             DepartureLocationId = departureLocationId;
             DepartureLocation = departureLocation;
             ArrivalLocationId = arrivalLocationId;
@@ -47,8 +43,8 @@ namespace TMS.Domain.Entites
         public string TravelName { get; private set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
-        public TravelStatus TravelStatus { get; private set; }
-        public DateTime DateCreate { get; private set; }
+        public TravelStatus TravelStatus { get; private set; } = TravelStatus.Todo;
+        public DateTime DateCreate { get; } = DateTime.Now;
         public Guid DepartureLocationId { get; private set; }
         public Adress DepartureLocation { get; private set; }
         public Guid ArrivalLocationId { get; private set; }
@@ -62,6 +58,7 @@ namespace TMS.Domain.Entites
         public void UpdateTravel(string travelName, 
             DateTime startDate, 
             DateTime endDate,
+            TravelStatus travelStatus,
             Adress departureLocation, 
             Adress arrivalLocation, 
             float weight,
