@@ -1,0 +1,151 @@
+  
+  .sidebar {
+    background-color: #262626;
+    width: 20%;
+    height: 100vh;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+  }
+  
+  .sidenav-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+  
+  .teste {
+    color: #8ACE00;
+  }
+  
+  .sidenav-nav {
+    width: 100%; 
+    flex-grow: 1;
+  }
+  
+  .sidenav-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidenav-nav li {
+    margin-bottom: 10px; /* Espaço entre os itens de nível superior */
+    /* Necessário para position: relative se quiser posicionar o submenu absolutamente */
+    /* position: relative; */
+  }
+  
+  .sidenav-nav a {
+    color: #CCCCCC;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidenav-nav a .icon {
+    margin-right: 10px;
+  }
+  
+  /* Estilo para o item de menu superior quando ativo (como Dashboard) */
+  .sidenav-nav li.active > a {
+    background-color: #8ACE00; /* Fundo verde para o item ativo */
+    color: #262626; /* Cor do texto no item ativo */
+    font-weight: bold;
+  }
+  
+  /* NOVO: Estilo para o cabeçalho do menu expansível quando um sub-item está ativo */
+.sidenav-nav li.has-submenu.parent-active > a {
+    background-color: #8ACE00; /* Fundo verde */
+    color: #262626; /* Cor do texto */
+    font-weight: bold;
+    /* Pode querer ajustar o padding se for diferente dos links de nível superior */
+}
+
+
+.sidenav-nav a:hover {
+  background-color: #3a3a3a;
+  color: #FFFFFF;
+}
+
+/* Estilos específicos para o menu expansível */
+.submenu {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  background-color: #3a3a3a;
+  border-radius: 4px;
+  overflow: hidden;
+  display: none; /* Inicialmente escondido */
+  /* transition: max-height 0.3s ease-out; */
+}
+
+.has-submenu.open > .submenu {
+  display: block;
+  /* max-height: 500px; */
+}
+
+.submenu li {
+  margin-bottom: 0;
+}
+  
+  .submenu li a {
+    padding: 10px 16px 10px 30px; /* Ajusta o padding para indentar os sub-itens */
+    font-size: 1rem; /* Tamanho de fonte ligeiramente menor */
+    color: #CCCCCC; /* Cor dos links do submenu */
+  }
+  
+  /* Estilo para o sub-item ativo (como Caminhões) */
+  .submenu li.active-submenu-item a {
+    background-color: #555555; /* Cor de fundo cinza mais claro para o item selecionado */
+    color: #FFFFFF; /* Cor do texto branca */
+  }
+  
+  .submenu li a:hover {
+    background-color: #4a4a4a; /* Cor de fundo ao passar o mouse nos sub-itens */
+    color: #FFFFFF;
+  }
+  
+  
+.sidenav-footer {
+      width: 100%;
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid #3a3a3a;
+      text-align: center;
+}
+  
+.btn-sair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E53935;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+  
+.btn-sair .icon {
+    margin-right: 8px;
+}
+  
+.btn-sair:hover {
+    background-color: #D32F2F;
+}
