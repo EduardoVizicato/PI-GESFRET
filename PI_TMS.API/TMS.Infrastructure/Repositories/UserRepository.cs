@@ -29,7 +29,7 @@ namespace TMS.Infrastructure.Repositories
                 _logger.LogWarning("Adicione valor a todos os campos");
                 return null;
             }
-            var addUser = new User(user.FirstName, user.LastName, user.Email, user.Password)
+            var addUser = new User(user.FirstName, user.LastName, user.Email, user.Password, user.IdentificationNumber, user.PhoneNumber)
                 {
                     IsActive = true
                 };
@@ -43,11 +43,6 @@ namespace TMS.Infrastructure.Repositories
         public async Task<bool?> DesactiveUserAsync(Guid id)
         {
             var userToDesactive = await _context.Users.FindAsync(id);
-            if (userToDesactive == null)
-            {
-                _logger.LogError($"Usuário de Id {id} não encontrado");
-            }
-
             userToDesactive.IsActive = false;
             await _context.SaveChangesAsync();
             _logger.LogError($"Usuário de Id {id} desativado com sucesso");
@@ -97,12 +92,9 @@ namespace TMS.Infrastructure.Repositories
         public async Task<bool?>  UpdatesUserAsync(Guid id, RegisterUserResponse user)
         {
             var userToUpdate = await _context.Users.FindAsync(id);
-            if (userToUpdate == null)
-            {
-                _logger.LogError($"Usuário de id: {id} nao encontrado");
-                return null;
-            }
-            userToUpdate.UpdateUser(user.FirstName, user.LastName, user.Email);
+            
+            userToUpdate.UpdateUser(user.FirstName, user.LastName, user.Email, user.IdentificationNumber, user.PhoneNumber);
+            _context.Users.Update(userToUpdate);
             await _context.SaveChangesAsync();
 
             _logger.LogInformation($"Usuário de id: {id} atualizado com sucesso");

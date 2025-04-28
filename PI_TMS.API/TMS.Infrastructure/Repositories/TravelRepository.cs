@@ -1,33 +1,57 @@
-﻿using TMS.Domain.Entites;
+﻿using Microsoft.EntityFrameworkCore;
+using TMS.Domain.Entites;
 using TMS.Domain.Entites.Requests.Travel;
 using TMS.Domain.Entites.Responses.Travel;
+using TMS.Domain.Entities.Enums;
 using TMS.Domain.Repositories;
+using TMS.Infrastructure.Data;
 
 namespace TMS.Infrastructure.Repositories;
 
 public class TravelRepository : ITravelRepository
 {
-    public Task<List<Travel>> GetAllAsync()
+    private readonly ApplicationDataContext _context;
+    public TravelRepository(ApplicationDataContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    public async Task<List<Travel>> GetAllAsync()
+    {
+        return await _context.Travels.ToListAsync();
     }
 
-    public Task<Travel> GetByIdAsync(Guid id)
+    public async Task<Travel> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await _context.Travels.FindAsync(id);
     }
 
-    public Task<Travel> GetByEmail(string email)
+    public async Task<Travel> GetByEmail(string email)
     {
-        throw new NotImplementedException();
+        return await _context.Travels.FindAsync(email);
     }
 
-    public Task<TravelRequest> AddAsync(TravelRequest user)
+    public async Task<TravelRequest> AddAsync(TravelRequest travel)
     {
-        throw new NotImplementedException();
+        var addTravel = new Travel(
+            travel.TravelName,
+            travel.StartDate,
+            travel.EndDate,
+            travel.DepartureLocationId,
+            travel.DepartureLocation,
+            travel.ArrivalLocationId,
+            travel.ArrivalLocation,
+            travel.Weight,
+            travel.Price,
+            travel.Description,
+            travel.LoadId,
+            travel.Load
+            );
+        _context.Travels.Add(addTravel);
+        _context.SaveChanges();
+        return travel;
     }
 
-    public Task<bool?> UpdatesAsync(Guid id, TravelResponse user)
+    public Task<bool?> UpdatesAsync(Guid id, TravelResponse travel)
     {
         throw new NotImplementedException();
     }

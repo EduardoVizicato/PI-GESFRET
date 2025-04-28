@@ -337,7 +337,6 @@ C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.IdentityModel.P
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
-C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\0221432511014\Desktop\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\0221432511014\Desktop\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\appsettings.json
 C:\Users\0221432511014\Desktop\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\PI_TMS.API.staticwebassets.endpoints.json
