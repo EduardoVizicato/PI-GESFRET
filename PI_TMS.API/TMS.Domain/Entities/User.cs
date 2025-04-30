@@ -12,7 +12,7 @@ namespace TMS.Domain.Entities
 {
     public class User : BaseEntity
     {
-        public User(string firstName, string lastName, string email, string password, int identificationNumber, int phoneNumber)
+        public User(string firstName, string lastName, string email, string password, string identificationNumber, string phoneNumber)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -23,13 +23,14 @@ namespace TMS.Domain.Entities
         }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public int IdentificationNumber { get; private set; }
-        public int PhoneNumber { get; private set; }
+        public string IdentificationNumber { get; private set; }
+        public string PhoneNumber { get; private set; }
         public string Email { get; private set; }
         public string Password { get; private set; }
         
         public UserRole UserRole { get; set; } = UserRole.Client;
-        public void UpdateUser(string firstName, string lastName, string email, int identificationNumber, int phoneNumber)
+        
+        public void UpdateUser(string firstName, string lastName, string email, string identificationNumber, string phoneNumber)
         {
             FirstName = firstName;
             LastName = lastName;

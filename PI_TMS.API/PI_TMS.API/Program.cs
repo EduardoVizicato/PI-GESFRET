@@ -1,4 +1,6 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using TMS.Infrastructure;
 using TMS.Infrastructure.Data;
 using TMS.Service.Services;
@@ -16,6 +18,24 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddDbContext<ApplicationDataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddAuthentication("Bearer")
+        .AddJwtBearer("Bearer", options =>
+        {
+            var jwtSettings = builder.Configuration.GetSection("Jwt");
+
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = jwtSettings["Issuer"],
+                ValidAudience = jwtSettings["Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(jwtSettings["Key"]))
+            };
+        });
 }
 
 var app = builder.Build();

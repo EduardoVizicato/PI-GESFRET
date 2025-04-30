@@ -68,5 +68,13 @@ namespace PI_TMS.API.Controllers
             return Ok(data);
 
         }
+        
+        [HttpGet("getbyEmail")]
+        public async Task<IActionResult> GetByEmail(string email)
+        {
+            var data = await _service.GetUserByEmail(email);
+            return Ok(data);
+
+        }
     }
 }
