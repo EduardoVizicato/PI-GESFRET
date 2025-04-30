@@ -24,19 +24,20 @@ public class LoadRepository: ILoadRepository
         return  await _context.Loads.FindAsync(id);
     }
 
-    public async Task<Load> GetByEmail(string email)
-    {
-        return await _context.Loads.FindAsync(email);
-    }
-
     public async Task<LoadRequest> AddAsync(LoadRequest load)
     {
-        throw new Exception();
+        var addLoad = new Load(load.Description, load.Quantity, load.Type);
+        _context.Loads.Add(addLoad);
+        await _context.SaveChangesAsync();
+        return load;
     }
 
     public async Task<bool?> UpdatesAsync(Guid id, LoadResponse load)
     {
-        throw new Exception();
+        var updateLoad = await _context.Loads.FindAsync(id);
+        updateLoad.Updateload(load.Description, load.Quantity, load.Type);
+        _context.Loads.Update(updateLoad);
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<bool?> DesactiveAsync(Guid id)

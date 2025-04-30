@@ -29,6 +29,15 @@ namespace TMS.Infrastructure.Data.Configuration.UserConfiguration
 
             builder.Property(x => x.Password)
                 .IsRequired();
+            
+            builder.Property(x=>x.PhoneNumber)
+                .IsRequired()
+                .HasMaxLength(14);
+
+            builder.Property(x => x.IdentificationNumber)
+                .IsRequired();
+
+            builder.Property(x => x.UserRole);
 
         }
     }

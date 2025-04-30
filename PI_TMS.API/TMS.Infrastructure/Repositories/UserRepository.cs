@@ -22,23 +22,6 @@ namespace TMS.Infrastructure.Repositories
             _context = context;
             _logger = logger;
         }
-        public async Task<RegisterUserRequest> AddAsync(RegisterUserRequest user)
-        {
-            if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
-            {
-                _logger.LogWarning("Adicione valor a todos os campos");
-                return null;
-            }
-            var addUser = new User(user.FirstName, user.LastName, user.Email, user.Password, user.IdentificationNumber, user.PhoneNumber)
-                {
-                    IsActive = true
-                };
-                
-                _context.Users.Add(addUser);
-                await _context.SaveChangesAsync();
-                _logger.LogInformation($"Usuário adicionado com sucesso");
-            return user;
-        }
 
         public async Task<bool?> DesactiveUserAsync(Guid id)
         {
@@ -79,14 +62,17 @@ namespace TMS.Infrastructure.Repositories
 
         public async Task<User> GetUserByEmail(string email)
         {
-            var userByEmail = await _context.Users.FindAsync(email);
-            if (userByEmail == null) 
-            {
-                _logger.LogError($"Usuário de email: {email} não encontrado");
-                return null;
-            }
+            var userByEmail = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+
             _logger.LogInformation($"Usuário encontrado");
             return userByEmail;
+        }
+
+        public async Task<User> AddAsync(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            return user;
         }
 
         public async Task<bool?>  UpdatesUserAsync(Guid id, RegisterUserResponse user)

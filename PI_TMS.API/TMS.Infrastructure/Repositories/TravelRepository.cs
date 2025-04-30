@@ -25,11 +25,6 @@ public class TravelRepository : ITravelRepository
         return await _context.Travels.FindAsync(id);
     }
 
-    public async Task<Travel> GetByEmail(string email)
-    {
-        return await _context.Travels.FindAsync(email);
-    }
-
     public async Task<TravelRequest> AddAsync(TravelRequest travel)
     {
         var addTravel = new Travel(
@@ -47,26 +42,11 @@ public class TravelRepository : ITravelRepository
             travel.Load
             );
         _context.Travels.Add(addTravel);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return travel;
     }
 
     public Task<bool?> UpdatesAsync(Guid id, TravelResponse travel)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<bool?> DesactiveAsync(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<Travel>> GetAllActived()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<Travel>> GetAllDesactived()
     {
         throw new NotImplementedException();
     }

@@ -11,7 +11,7 @@ namespace TMS.Application.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<RegisterUserRequest> RegisterUser(RegisterUserRequest request);
+        Task<bool?> RegisterUser(RegisterUserRequest request);
         Task<bool?> DesactiveUser(Guid id);
         Task<bool?> UpdateUser(Guid id, RegisterUserResponse request);
         Task<List<User>> ListAllUsers();
@@ -19,5 +19,6 @@ namespace TMS.Application.Services.Interfaces
         Task<User> GetUserByEmail(string email);
         Task<List<User>> ListAllActivedUsers();
         Task<List<User>> ListAllDesactivedUsers();
+        Task<User> ValidateUser(string email, string password);
     }
 }

@@ -178,7 +178,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -195,18 +195,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Driver.cs",
-              "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Driver.cs",
-              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Driver.cs",
-              "ToolTip": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Driver.cs",
-              "RelativeToolTip": "TMS.Domain\\Entities\\Driver.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T21:13:27.549Z"
             },
             {
               "$type": "Document",
@@ -259,11 +247,11 @@
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "RegisteruserRequest.cs",
-              "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Requests\\User\\RegisteruserRequest.cs",
-              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Requests\\User\\RegisteruserRequest.cs",
-              "ToolTip": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Requests\\User\\RegisteruserRequest.cs",
-              "RelativeToolTip": "TMS.Domain\\Entities\\Requests\\User\\RegisteruserRequest.cs",
+              "Title": "RegisterUserRequest.cs",
+              "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Requests\\User\\RegisterUserRequest.cs",
+              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Requests\\User\\RegisterUserRequest.cs",
+              "ToolTip": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Requests\\User\\RegisterUserRequest.cs",
+              "RelativeToolTip": "TMS.Domain\\Entities\\Requests\\User\\RegisterUserRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-21T21:15:08.852Z"
@@ -324,10 +312,22 @@
               "RelativeDocumentMoniker": "TMS.Infrastructure\\Repositories\\DriverRepository.cs",
               "ToolTip": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Repositories\\DriverRepository.cs",
               "RelativeToolTip": "TMS.Infrastructure\\Repositories\\DriverRepository.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwFkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-21T20:51:21.9Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Driver.cs",
+              "DocumentMoniker": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Driver.cs",
+              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Driver.cs",
+              "ToolTip": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Driver.cs",
+              "RelativeToolTip": "TMS.Domain\\Entities\\Driver.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-21T21:13:27.549Z"
             },
             {
               "$type": "Document",

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMS.Application.Common.Interface.Authentication;
 using TMS.Application.Services.Interfaces;
 using TMS.Domain.Entites.Requests.User;
 using TMS.Domain.Entites.Responses.User;
@@ -16,16 +17,23 @@ namespace TMS.Application.Services.Implementation
     {
         private readonly IUserRepository _userRepository;
         private readonly ILogger<UserService> _logger;
-        public UserService(IUserRepository userRepository, ILogger<UserService> logger)
+        private readonly IPasswordHasherService _passwordHasherService;
+        public UserService(IUserRepository userRepository, ILogger<UserService> logger, IPasswordHasherService passwordHasherService)
         {
             _userRepository = userRepository;
             _logger = logger;
+            _passwordHasherService = passwordHasherService;
 
         }
         public Task<bool?> DesactiveUser(Guid id)
         {
             var desactiveUser = _userRepository.DesactiveUserAsync(id);
             return desactiveUser;
+        }
+
+        public Task<bool?> UpdateUser(Guid id, RegisterUserResponse request)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<User> GetUserByEmail(string email)
@@ -61,27 +69,41 @@ namespace TMS.Application.Services.Implementation
             return listAllDesactivedUsers;
         }
 
+        public async Task<User> ValidateUser(string email, string password)
+        {
+            var user = await _userRepository.GetUserByEmail(email);
+            if (user == null) return null;
+
+            var isValid = _passwordHasherService.VerifyPassword(user.Password, password);
+            return isValid ? user : null;
+        }
+
         public Task<List<User>> ListAllUsers()
         {
             var listAllUsers = _userRepository.GetAllAsync();
             return listAllUsers;
         }
 
-        public Task<RegisterUserRequest> RegisterUser(RegisterUserRequest request)
+        public async Task<bool?> RegisterUser(RegisterUserRequest request)
         {
-            if (string.IsNullOrEmpty(request.FirstName) || string.IsNullOrEmpty(request.LastName) || string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+            if (string.IsNullOrWhiteSpace(request.Password)) return false;
+
+            var hashedPassword = _passwordHasherService.HashPassword(request.Password);
+
+            var user = new User(
+                request.FirstName,
+                request.LastName,
+                request.Email,
+                hashedPassword,
+                request.IdentificationNumber,
+                request.PhoneNumber
+            )
             {
-                _logger.LogInformation("Add a value to all fields");
-            }
-            var registerUser = _userRepository.AddAsync(request);
-            return registerUser;
-        }
+                IsActive = true
+            };
 
-        public Task<bool?> UpdateUser(Guid id, RegisterUserResponse request)
-        {
-            var updateUser = _userRepository.UpdatesUserAsync(id, request);
-
-            return updateUser;
+            await _userRepository.AddAsync(user);
+            return true;
         }
     }
 }
