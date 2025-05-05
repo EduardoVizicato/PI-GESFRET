@@ -79,9 +79,34 @@ namespace TMS.Domain.Entites
             Load = load;
         }
 
-        public void UpdateTraveStatus(TravelStatus travelStatus)
+        private static Dictionary<TravelStatus, TravelStatus> _nextStatus = new()
         {
-            TravelStatus = travelStatus;
+            { TravelStatus.Todo, TravelStatus.InProgress },
+            { TravelStatus.InProgress, TravelStatus.Done },
+        };
+
+        public void CancelTravel()
+        {
+            if (TravelStatus == TravelStatus.Done)
+            {
+                throw new InvalidOperationException("Cannot cancel a done travel.");
+            }
+            TravelStatus = TravelStatus.Cancelled;
+        }
+
+        public void AdvanceStatus()
+        {
+            if (TravelStatus == TravelStatus.Cancelled)
+            {
+                throw new InvalidOperationException("Cannot advance a cancelled travel.");
+            }
+
+            if (!_nextStatus.TryGetValue(TravelStatus, out var next))
+            {
+                throw new InvalidOperationException("No next status available.");
+            }
+            
+            TravelStatus = next;
         }
     }
 }
