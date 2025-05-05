@@ -10,6 +10,7 @@ namespace TMS.Domain.Entities.Enums
     {
         Todo,
         InProgress,
-        Done
+        Done,
+        Cancelled
     }
 }

@@ -8,7 +8,7 @@ using TMS.Infrastructure.Repositories;
 namespace PI_TMS.API.Controllers
 {
 
-    [Route("vehicle")]
+    [Route("api/vehicle")]
     [ApiController]
 
     public class VehicleController(IVehicleService service) : Controller

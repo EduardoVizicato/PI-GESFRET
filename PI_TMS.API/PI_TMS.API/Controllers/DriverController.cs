@@ -8,7 +8,7 @@ using TMS.Domain.Repositories;
 namespace PI_TMS.API.Controllers
 {
 
-    [Route("driver")]
+    [Route("api/driver")]
     [ApiController]
 
     public class DriverController(IDriverService service) : Controller

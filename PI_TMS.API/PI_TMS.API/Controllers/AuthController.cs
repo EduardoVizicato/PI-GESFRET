@@ -5,7 +5,7 @@ using TMS.Application.Services.Interfaces;
 
 namespace PI_TMS.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {

@@ -9,7 +9,7 @@ using TMS.Domain.Repositories;
 
 namespace PI_TMS.API.Controllers
 {
-    [Route("user")]
+    [Route("api/user")]
     [ApiController]
     public class UserController(IUserService service) : ControllerBase
     {

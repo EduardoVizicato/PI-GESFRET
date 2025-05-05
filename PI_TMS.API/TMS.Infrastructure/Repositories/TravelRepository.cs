@@ -46,8 +46,22 @@ public class TravelRepository : ITravelRepository
         return travel;
     }
 
-    public Task<bool?> UpdatesAsync(Guid id, TravelResponse travel)
+    public async Task<bool?> UpdatesAsync(Guid id, TravelResponse travel)
     {
-        throw new NotImplementedException();
+        throw new Exception();
+    }
+
+    public async Task<bool> ChangeStatusAsync(Guid id)
+    {
+        var changeStatus = await _context.Travels.FindAsync(id);
+        changeStatus.AdvanceStatus();
+        return await _context.SaveChangesAsync() > 0;
+    }
+
+    public async Task<bool> CancelTravel(Guid id)
+    {
+        var checkStatus = await _context.Travels.FindAsync(id);
+        checkStatus.CancelTravel();
+        return await _context.SaveChangesAsync() > 0;
     }
 }
