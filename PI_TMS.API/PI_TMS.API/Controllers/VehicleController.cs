@@ -11,9 +11,14 @@ namespace PI_TMS.API.Controllers
     [Route("api/vehicle")]
     [ApiController]
 
-    public class VehicleController(IVehicleService service) : Controller
+    public class VehicleController : Controller
     {
-        private readonly IVehicleService _service = service;
+        private readonly IVehicleService _service;
+
+        public VehicleController(IVehicleService service)
+        {
+            _service = service;
+        }
 
         [HttpGet("getAllVehicles")]
         public async Task<IActionResult> GetAllVehicles()

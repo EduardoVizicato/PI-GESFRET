@@ -11,14 +11,19 @@ namespace PI_TMS.API.Controllers
 {
     [Route("api/user")]
     [ApiController]
-    public class UserController(IUserService service) : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly IUserService _service = service;
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
         [HttpGet("getAllUsers")]
         public async Task<IActionResult> GetAll()
         {
-            var data = await _service.ListAllUsers();
+            var data = await _userService.ListAllUsers();
             return Ok(data);
         
         }
@@ -27,21 +32,21 @@ namespace PI_TMS.API.Controllers
         public async Task<IActionResult> AddUser(RegisterUserRequest user)
         {
 
-            var data = await _service.RegisterUser(user);
+            var data = await _userService.RegisterUser(user);
             return Ok(data);
         }
         
         [HttpGet("getUserbyId")]
         public async Task<IActionResult> GetUserById(Guid id)
         {
-            var data = await _service.GetUserById(id);
+            var data = await _userService.GetUserById(id);
             return Ok(data);
         }
 
         [HttpPut("updateUser")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] RegisterUserResponse user)
         {
-            var data = await _service.UpdateUser(id, user);
+            var data = await _userService.UpdateUser(id, user);
             return Ok(data);
             
         }
@@ -49,14 +54,14 @@ namespace PI_TMS.API.Controllers
         [HttpDelete("desactiveUser")]
         public async Task<IActionResult> DesactiveUser(Guid id)
         {
-            var data = await _service.DesactiveUser(id);
+            var data = await _userService.DesactiveUser(id);
             return Ok(data);
         }
 
         [HttpGet("getAllActivedUsers")]
         public async Task<IActionResult> GetAllActived()
         {
-            var data = await _service.ListAllActivedUsers();
+            var data = await _userService.ListAllActivedUsers();
             return Ok(data);
 
         }
@@ -64,7 +69,7 @@ namespace PI_TMS.API.Controllers
         [HttpGet("getAllDesactivedUsers")]
         public async Task<IActionResult> GetAllDesactived()
         {
-            var data = await _service.ListAllDesactivedUsers();
+            var data = await _userService.ListAllDesactivedUsers();
             return Ok(data);
 
         }
@@ -72,7 +77,7 @@ namespace PI_TMS.API.Controllers
         [HttpGet("getbyEmail")]
         public async Task<IActionResult> GetByEmail(string email)
         {
-            var data = await _service.GetUserByEmail(email);
+            var data = await _userService.GetUserByEmail(email);
             return Ok(data);
 
         }
