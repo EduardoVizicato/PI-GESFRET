@@ -1,25 +1,48 @@
-﻿using TMS.Application.Services.Interfaces;
+﻿using Microsoft.Extensions.Logging;
+using TMS.Application.Services.Interfaces;
 using TMS.Domain.Entites.Requests.Load;
 using TMS.Domain.Entites.Responses.Load;
 using TMS.Domain.Entities;
+using TMS.Domain.Repositories;
 
 namespace TMS.Application.Services.Implementation;
 
 public class LoadService : ILoadService
 {
-    public Task<List<Load>> GetAllAsync()
+    private readonly ILoadRepository _loadRepository;
+    private readonly ILogger<LoadService> _logger;
+
+    public LoadService(ILoadRepository loadRepository, ILogger<LoadService> logger)
     {
-        throw new NotImplementedException();
+        _loadRepository = loadRepository;
+        _logger = logger;
+    }
+
+    public async Task<List<Load>> GetAllAsync()
+    {
+        var getAllLoads = await _loadRepository.GetAllAsync();
+        if (getAllLoads == null)
+        {
+            return null;
+        }
+        return getAllLoads;
     }
 
     public Task<Load> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var getLoadById = _loadRepository.GetByIdAsync(id);
+        if(getLoadById == null)
+        {
+            return null;
+        }
+        return getLoadById;
     }
 
-    public Task<LoadRequest> AddAsync(LoadRequest load)
+    public async Task<LoadRequest> AddAsync(LoadRequest load)
     {
-        throw new NotImplementedException();
+        var addLoad = await _loadRepository.AddAsync(load);
+        //Lógica será adicionada depois 
+        return addLoad;
     }
 
     public Task<bool?> UpdatesAsync(Guid id, LoadResponse load)
@@ -27,18 +50,37 @@ public class LoadService : ILoadService
         throw new NotImplementedException();
     }
 
-    public Task<bool?> DesactiveAsync(Guid id)
+    public async Task<bool?> DesactiveAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var checkId = await _loadRepository.GetByIdAsync(id);
+       
+        if (checkId == null)
+        {
+            _logger.LogError("The user was not found");
+        }
+
+        return await _loadRepository.DesactiveAsync(id);
     }
 
-    public Task<List<Load>> GetAllActived()
+    public async Task<List<Load>> GetAllActived()
     {
-        throw new NotImplementedException();
+        var getAllActivedLoads = await _loadRepository.GetAllActived();
+        if(getAllActivedLoads == null)
+        {
+            _logger.LogError("There is no Actived Loads");
+        }
+
+        return getAllActivedLoads;
     }
 
-    public Task<List<Load>> GetAllDesactived()
+    public async Task<List<Load>> GetAllDesactived()
     {
-        throw new NotImplementedException();
+        var getAllDesactivedLoads = await _loadRepository.GetAllDesactived();
+        if (getAllDesactivedLoads == null)
+        {
+            _logger.LogError("There is no Desactived Loads");
+        }
+
+        return getAllDesactivedLoads;
     }
 }

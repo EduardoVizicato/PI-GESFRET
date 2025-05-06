@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {     
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    font-family: Roboto;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  .main-content {
+    margin-left: 20%;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 80%;
+    height: 100vh;
+    overflow-y: auto;
+}
+  

@@ -3,7 +3,7 @@
 namespace PI_TMS.API.Controllers
 {
 
-    [Route("api/user")]
+    [Route("api/travel")]
     [ApiController]
     public class LoadController : Controller
     {

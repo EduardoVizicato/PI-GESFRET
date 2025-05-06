@@ -1,8 +1,24 @@
 [
   {
+    "ContainingType": "PI_TMS.API.Controllers.AuthController",
+    "Method": "LoginAsync",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Microsoft.AspNetCore.Identity.Data.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PI_TMS.API.Controllers.DriverController",
     "Method": "AddDriver",
-    "RelativePath": "driver/addDriver",
+    "RelativePath": "api/driver/addDriver",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -18,7 +34,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.DriverController",
     "Method": "DesactiveDriver",
-    "RelativePath": "driver/desactiveDriver",
+    "RelativePath": "api/driver/desactiveDriver",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -34,7 +50,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.DriverController",
     "Method": "GetAllActived",
-    "RelativePath": "driver/getAllActivedDrivers",
+    "RelativePath": "api/driver/getAllActivedDrivers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -44,7 +60,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.DriverController",
     "Method": "GetAllDesactived",
-    "RelativePath": "driver/getAllDesactivedVehicles",
+    "RelativePath": "api/driver/getAllDesactivedVehicles",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -54,7 +70,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.DriverController",
     "Method": "GetAllDrivers",
-    "RelativePath": "driver/getAllDrivers",
+    "RelativePath": "api/driver/getAllDrivers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -64,7 +80,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.DriverController",
     "Method": "GetDriverById",
-    "RelativePath": "driver/getDriverById",
+    "RelativePath": "api/driver/getDriverById",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -80,7 +96,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.DriverController",
     "Method": "UpdateDriver",
-    "RelativePath": "driver/updateDriver",
+    "RelativePath": "api/driver/updateDriver",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -99,9 +115,19 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PI_TMS.API.Controllers.TravelController",
+    "Method": "GetAll",
+    "RelativePath": "api/travel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PI_TMS.API.Controllers.UserController",
     "Method": "AddUser",
-    "RelativePath": "user/addUser",
+    "RelativePath": "api/user/addUser",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -117,7 +143,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.UserController",
     "Method": "DesactiveUser",
-    "RelativePath": "user/desactiveUser",
+    "RelativePath": "api/user/desactiveUser",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -133,7 +159,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.UserController",
     "Method": "GetAllActived",
-    "RelativePath": "user/getAllActivedUsers",
+    "RelativePath": "api/user/getAllActivedUsers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -143,7 +169,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.UserController",
     "Method": "GetAllDesactived",
-    "RelativePath": "user/getAllDesactivedUsers",
+    "RelativePath": "api/user/getAllDesactivedUsers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -153,7 +179,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.UserController",
     "Method": "GetAll",
-    "RelativePath": "user/getAllUsers",
+    "RelativePath": "api/user/getAllUsers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -162,8 +188,24 @@
   },
   {
     "ContainingType": "PI_TMS.API.Controllers.UserController",
+    "Method": "GetByEmail",
+    "RelativePath": "api/user/getbyEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PI_TMS.API.Controllers.UserController",
     "Method": "GetUserById",
-    "RelativePath": "user/getUserbyId",
+    "RelativePath": "api/user/getUserbyId",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -179,7 +221,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.UserController",
     "Method": "UpdateUser",
-    "RelativePath": "user/updateUser",
+    "RelativePath": "api/user/updateUser",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -200,7 +242,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.VehicleController",
     "Method": "AddVehicle",
-    "RelativePath": "vehicle/addVehicle",
+    "RelativePath": "api/vehicle/addVehicle",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -216,7 +258,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.VehicleController",
     "Method": "DesactiveVehicle",
-    "RelativePath": "vehicle/desactiveVehicle",
+    "RelativePath": "api/vehicle/desactiveVehicle",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -232,7 +274,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.VehicleController",
     "Method": "GetAllActived",
-    "RelativePath": "vehicle/getAllActivedVehicles",
+    "RelativePath": "api/vehicle/getAllActivedVehicles",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -242,7 +284,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.VehicleController",
     "Method": "GetAllDesactived",
-    "RelativePath": "vehicle/getAllDesactivedVehicles",
+    "RelativePath": "api/vehicle/getAllDesactivedVehicles",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -252,7 +294,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.VehicleController",
     "Method": "GetAllVehicles",
-    "RelativePath": "vehicle/getAllVehicles",
+    "RelativePath": "api/vehicle/getAllVehicles",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -262,7 +304,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.VehicleController",
     "Method": "GetVehicleById",
-    "RelativePath": "vehicle/getVehicleById",
+    "RelativePath": "api/vehicle/getVehicleById",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -278,7 +320,7 @@
   {
     "ContainingType": "PI_TMS.API.Controllers.VehicleController",
     "Method": "UpdateVehicle",
-    "RelativePath": "vehicle/updateVehicle",
+    "RelativePath": "api/vehicle/updateVehicle",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
