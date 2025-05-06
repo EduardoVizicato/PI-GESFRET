@@ -1,25 +1,47 @@
-﻿using TMS.Application.Services.Interfaces;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using TMS.Application.Services.Interfaces;
 using TMS.Domain.Entites;
 using TMS.Domain.Entites.Requests.Travel;
 using TMS.Domain.Entites.Responses.Travel;
+using TMS.Domain.Repositories;
 
 namespace TMS.Application.Services.Implementation;
 
 public class TravelService : ITravelService
 {
-    public Task<List<Travel>> GetAllAsync()
+    private readonly  ITravelRepository _travelRepository;
+    public TravelService(ITravelRepository travelRepository)
     {
-        throw new NotImplementedException();
+        _travelRepository = travelRepository;   
     }
 
-    public Task<Travel> GetByIdAsync(Guid id)
+    public async Task<List<Travel>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var getAllTravels = await _travelRepository.GetAllAsync();
+        if (getAllTravels == null)
+        {
+            return null;
+        }
+
+        return getAllTravels;
     }
 
-    public Task<TravelRequest> AddAsync(TravelRequest travel)
+    public async Task<Travel> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var travelById = await _travelRepository.GetByIdAsync(id);
+        if(travelById == null)
+        {
+            return null;
+        }
+
+        return travelById;
+    }
+
+    public async Task<TravelRequest> AddAsync(TravelRequest travel)
+    {
+       var addTravel = await _travelRepository.AddAsync(travel);
+       
+        return addTravel;
     }
 
     public Task<bool?> UpdatesAsync(Guid id, TravelResponse travel)
@@ -27,13 +49,26 @@ public class TravelService : ITravelService
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeStatusAsync(Guid id)
+    public async Task<bool> ChangeStatusAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var checkId = await _travelRepository.GetByIdAsync(id);
+        if(checkId == null)
+        {
+            return false;
+        }
+        var changeTravelStatus = await _travelRepository.ChangeStatusAsync(id);
+
+        return changeTravelStatus;
     }
 
-    public Task<bool> CancelTravel(Guid id)
+    public async Task<bool> CancelTravel(Guid id)
     {
-        throw new NotImplementedException();
+        var cancelTravel = await _travelRepository.CancelTravel(id);
+
+        if(id == null)
+        {
+            return false;
+        }
+        return cancelTravel;
     }
 }

@@ -17,7 +17,7 @@ public class TravelRepository : ITravelRepository
     }
     public async Task<List<Travel>> GetAllAsync()
     {
-        return await _context.Travels.ToListAsync();
+         return await _context.Travels.ToListAsync();
     }
 
     public async Task<Travel> GetByIdAsync(Guid id)
