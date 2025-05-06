@@ -11,9 +11,14 @@ namespace PI_TMS.API.Controllers
     [Route("api/driver")]
     [ApiController]
 
-    public class DriverController(IDriverService service) : Controller
+    public class DriverController : Controller
     {
-        private readonly IDriverService _service = service;
+        private readonly IDriverService _service;
+
+        public DriverController(IDriverService service)
+        {
+            _service = service;
+        }
 
         [HttpGet("getAllDrivers")]
         public async Task<IActionResult> GetAllDrivers()
