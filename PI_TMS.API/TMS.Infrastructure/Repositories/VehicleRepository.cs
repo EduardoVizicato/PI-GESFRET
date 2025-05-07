@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using TMS.Domain.Entites;
 using TMS.Domain.Entites.Requests.Vehicle;
 using TMS.Domain.Entites.Responses.Vehicle;
+using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
 using TMS.Infrastructure.Data;
 
@@ -39,12 +40,8 @@ public class VehicleRepository : IVehicleRepository
 
     public async Task<VehicleRequest> AddVehicleAsync(VehicleRequest vehicle)
     {
-        var addVehicle = new Vehicle()
-        {
-            Name = vehicle.Name,
-            VehicleType = vehicle.VehicleType,
-            VehicleRegistrationPlate = vehicle.VehicleRegistrationPlate,
-        };
+        var addVehicle = new Vehicle(vehicle.Name, vehicle.VehicleRegistrationPlate, vehicle.VehicleType);
+        
         if (addVehicle.Name == null || addVehicle.VehicleRegistrationPlate == null || addVehicle.VehicleType == null)
         {
             _logger.LogWarning("Preencha todos os campos");
@@ -63,9 +60,8 @@ public class VehicleRepository : IVehicleRepository
             _logger.LogError($"veículo de Id: {id} não encontrado");
         }
 
-        vehicleToUpdate.Name = vehicle.Name;
-        vehicleToUpdate.VehicleType = vehicle.VehicleType;
-        vehicleToUpdate.VehicleRegistrationPlate = vehicle.VehicleRegistrationPlate;
+        vehicleToUpdate.UpdateVehicle(vehicle.Name, vehicle.VehicleRegistrationPlate, vehicle.VehicleType);
+        
         _context.Vehicles.Update(vehicleToUpdate);
         _context.SaveChanges();
         return true;
@@ -83,5 +79,15 @@ public class VehicleRepository : IVehicleRepository
         desactiveVehicle.IsActive = false;
         await _context.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<List<Vehicle>> GetAllDesactivedVehicles()
+    {
+        return await _context.Vehicles.Where(x => x.IsActive == true).ToListAsync();
+    }
+
+    public async Task<List<Vehicle>> GetAllDesactivedVehciles()
+    {
+        return await _context.Vehicles.Where(x => x.IsActive == true).ToListAsync();
     }
 }

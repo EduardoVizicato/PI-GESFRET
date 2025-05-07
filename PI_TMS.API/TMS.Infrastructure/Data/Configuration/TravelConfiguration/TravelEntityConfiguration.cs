@@ -29,13 +29,15 @@ namespace TMS.Infrastructure.Data.Configuration.TravelConfiguration
             builder.Property(x => x.DateCreate)
                 .IsRequired();
             
-            builder.Property(x => x.DepartureLocation)
-                .IsRequired()
-                .HasMaxLength(200);
+            builder.HasOne(x => x.DepartureLocation)
+                .WithMany()  
+                .HasForeignKey(x => x.DepartureLocationId)
+                .OnDelete(DeleteBehavior.Restrict);
             
-            builder.Property(x => x.ArrivalLocation)
-                .IsRequired()
-                .HasMaxLength(200);
+            builder.HasOne(x => x.ArrivalLocation)
+                .WithMany()  
+                .HasForeignKey(x => x.ArrivalLocationId)
+                .OnDelete(DeleteBehavior.Restrict);
             
             builder.Property(x => x.Weight)
                 .IsRequired();
@@ -44,7 +46,7 @@ namespace TMS.Infrastructure.Data.Configuration.TravelConfiguration
                 .IsRequired()
                 .HasMaxLength(200);
             
-            builder.Property(x => x.LoadGuid)
+            builder.Property(x => x.LoadId)
                 .IsRequired();
         }
     }

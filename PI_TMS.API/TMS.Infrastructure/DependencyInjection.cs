@@ -17,6 +17,8 @@ namespace TMS.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDriverRepository, DriverRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<ILoadRepository, LoadRepository>();
+            services.AddScoped<ITravelRepository, TravelRepository>();
             return services;
         }
     }

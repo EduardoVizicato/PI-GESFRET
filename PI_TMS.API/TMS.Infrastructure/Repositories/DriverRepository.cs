@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using TMS.Domain.Entites;
 using TMS.Domain.Entites.Requests.Driver;
 using TMS.Domain.Entites.Responses.Drivers;
+using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
 using TMS.Infrastructure.Data;
 
@@ -37,13 +38,8 @@ public class DriverRepository : IDriverRepository
 
     public async Task<RegisterDriverRequest> AddDriverAsync(RegisterDriverRequest driver)
     {
-        var addDriver = new Driver()
-        {
-            FirstName = driver.FirstName,
-            LastName = driver.LastName,
-            IsActive = true,
-            DriverLicensesCategory = driver.DriverLicensesCategory,
-        };
+        var addDriver = new Driver(driver.FirstName, driver.LastName, driver.DriverLicensesCategory);
+
         if (addDriver.DriverLicensesCategory == null || addDriver.FirstName == null || addDriver.LastName == null)
         {
             _logger.LogWarning("Preencha todos os campos");
@@ -60,10 +56,8 @@ public class DriverRepository : IDriverRepository
         {
             _logger.LogError($"Motorista de Id: {id} não encontrado");
         }
-        updateDriver.FirstName = driver.FirstName;
-        updateDriver.LastName = driver.LastName;
-        updateDriver.DriverLicensesCategory = driver.DriverLicensesCategory;
-        updateDriver.IsActive = true;
+
+        updateDriver.UpdateDriver(updateDriver.FirstName, updateDriver.LastName, updateDriver.DriverLicensesCategory);
         
         _context.Drivers.Update(updateDriver);
         await _context.SaveChangesAsync();
@@ -82,5 +76,15 @@ public class DriverRepository : IDriverRepository
         await _context.SaveChangesAsync();
         _logger.LogInformation($"Motorista de Id: {id} desativado com sucesso");
         return true;
+    }
+
+    public async Task<List<Driver>> GetAllActivedDrivers()
+    {
+        return await _context.Drivers.Where(x => x.IsActive == true).ToListAsync();
+    }
+
+    public async Task<List<Driver>> GetAllDesactivedDrivers()
+    {
+        return await _context.Drivers.Where(x => x.IsActive == false).ToListAsync();
     }
 }

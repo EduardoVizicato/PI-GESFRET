@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TMS.Application.Services.Interfaces;
 using TMS.Domain.Entites;
 using TMS.Domain.Entites.Requests.Driver;
 using TMS.Domain.Entites.Responses.Drivers;
@@ -7,17 +8,22 @@ using TMS.Domain.Repositories;
 namespace PI_TMS.API.Controllers
 {
 
-    [Route("driver")]
+    [Route("api/driver")]
     [ApiController]
 
-    public class DriverController(IDriverRepository repository) : Controller
+    public class DriverController : Controller
     {
-        private readonly IDriverRepository _repository = repository;
+        private readonly IDriverService _service;
+
+        public DriverController(IDriverService service)
+        {
+            _service = service;
+        }
 
         [HttpGet("getAllDrivers")]
         public async Task<IActionResult> GetAllDrivers()
         {
-            var data = _repository.GetAllDriversAsync();
+            var data = _service.ListAllDriversAsync();
             if (data == null)
             {
                 return BadRequest();
@@ -29,7 +35,7 @@ namespace PI_TMS.API.Controllers
         [HttpGet("getDriverById")]
         public async Task<IActionResult> GetDriverById(Guid id)
         {
-            var data = _repository.GetDriverByIdAsync(id);
+            var data = _service.GetDriverByIdAsync(id);
             if (data == null)
             {
                 return BadRequest();
@@ -41,7 +47,7 @@ namespace PI_TMS.API.Controllers
         [HttpPost("addDriver")]
         public async Task<IActionResult> AddDriver(RegisterDriverRequest driver)
         {
-            var data = _repository.AddDriverAsync(driver);
+            var data = _service.RegisterDriverAsync(driver);
             if (data == null)
             {
                 return BadRequest();
@@ -52,7 +58,7 @@ namespace PI_TMS.API.Controllers
         [HttpPut("updateDriver")]
         public async Task<IActionResult> UpdateDriver(Guid id, DriverResponse driver)
         {
-            var data = _repository.UpdateDriverAsync(id, driver);
+            var data = _service.UpdateDriverAsync(id, driver);
             if (id == null)
             {
                 return BadRequest();
@@ -63,12 +69,28 @@ namespace PI_TMS.API.Controllers
         [HttpDelete("desactiveDriver")]
         public async Task<IActionResult> DesactiveDriver(Guid id)
         {
-            var data = _repository.DesactiveDriverAsync(id);
+            var data = _service.DesactiveDriverAsync(id);
             if (data == null)
             {
                 return BadRequest();
             }
             return Ok(data);
         }
-}   
+
+        [HttpGet("getAllActivedDrivers")]
+        public async Task<IActionResult> GetAllActived()
+        {
+            var data = await _service.ListAllActivedDrivers();
+            return Ok(data);
+
+        }
+
+        [HttpGet("getAllDesactivedVehicles")]
+        public async Task<IActionResult> GetAllDesactived()
+        {
+            var data = await _service.ListAllDesactivedDrivers();
+            return Ok(data);
+
+        }
+    }   
 }
