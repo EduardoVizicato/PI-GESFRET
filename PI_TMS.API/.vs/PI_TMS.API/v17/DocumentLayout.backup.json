@@ -3,28 +3,52 @@
   "WorkspaceRootPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.infrastructure\\data\\configuration\\loadconfiguration\\loadentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\data\\configuration\\loadconfiguration\\loadentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.domain\\entities\\responses\\user\\registeruserresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|solutionrelative:tms.domain\\entities\\responses\\user\\registeruserresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.domain\\entities\\load.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|solutionrelative:tms.domain\\entities\\load.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BAB4AE38-4F06-465B-B3DA-82DB112F0028}|PI_TMS.API\\PI_TMS.API.csproj|c:\\projects\\pi-tms\\pi_tms.api\\pi_tms.api\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAB4AE38-4F06-465B-B3DA-82DB112F0028}|PI_TMS.API\\PI_TMS.API.csproj|solutionrelative:pi_tms.api\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.domain\\entities\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|solutionrelative:tms.domain\\entities\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}|TMS.Application\\TMS.Application.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.application\\services\\implementation\\loginrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}|TMS.Application\\TMS.Application.csproj|solutionrelative:tms.application\\services\\implementation\\loginrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}|TMS.Application\\TMS.Application.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.application\\services\\implementation\\registerrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}|TMS.Application\\TMS.Application.csproj|solutionrelative:tms.application\\services\\implementation\\registerrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.domain\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|solutionrelative:tms.domain\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}|TMS.Application\\TMS.Application.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.application\\services\\interfaces\\iloginrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6AC3F24-0010-4C5C-8C97-F91B10F7E0CA}|TMS.Application\\TMS.Application.csproj|solutionrelative:tms.application\\services\\interfaces\\iloginrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAB4AE38-4F06-465B-B3DA-82DB112F0028}|PI_TMS.API\\PI_TMS.API.csproj|c:\\projects\\pi-tms\\pi_tms.api\\pi_tms.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAB4AE38-4F06-465B-B3DA-82DB112F0028}|PI_TMS.API\\PI_TMS.API.csproj|solutionrelative:pi_tms.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.domain\\entities\\requests\\travel\\travelrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|solutionrelative:tms.domain\\entities\\requests\\travel\\travelrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.domain\\entities\\travel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|solutionrelative:tms.domain\\entities\\travel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.domain\\entities\\enums\\travelstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEAAD074-7D4B-438A-B179-042B20D59545}|TMS.Domain\\TMS.Domain.csproj|solutionrelative:tms.domain\\entities\\enums\\travelstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.infrastructure\\data\\configuration\\clientconfiguration\\cliententityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\data\\configuration\\clientconfiguration\\cliententityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.infrastructure\\data\\configuration\\userconfiguration\\userentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\data\\configuration\\userconfiguration\\userentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|c:\\projects\\pi-tms\\pi_tms.api\\tms.infrastructure\\data\\configuration\\travelconfiguration\\travelentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\data\\configuration\\travelconfiguration\\travelentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,59 +63,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LoadEntityConfiguration.cs",
-              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\LoadConfiguration\\LoadEntityConfiguration.cs",
-              "RelativeDocumentMoniker": "TMS.Infrastructure\\Data\\Configuration\\LoadConfiguration\\LoadEntityConfiguration.cs",
-              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\LoadConfiguration\\LoadEntityConfiguration.cs",
-              "RelativeToolTip": "TMS.Infrastructure\\Data\\Configuration\\LoadConfiguration\\LoadEntityConfiguration.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABcAAAAeAAAAAAAAAA==",
+              "Title": "RegisterUserResponse.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Responses\\User\\RegisterUserResponse.cs",
+              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Responses\\User\\RegisterUserResponse.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Responses\\User\\RegisterUserResponse.cs*",
+              "RelativeToolTip": "TMS.Domain\\Entities\\Responses\\User\\RegisterUserResponse.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T13:59:52.975Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ClientEntityConfiguration.cs",
-              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\ClientConfiguration\\ClientEntityConfiguration.cs",
-              "RelativeDocumentMoniker": "TMS.Infrastructure\\Data\\Configuration\\ClientConfiguration\\ClientEntityConfiguration.cs",
-              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\ClientConfiguration\\ClientEntityConfiguration.cs",
-              "RelativeToolTip": "TMS.Infrastructure\\Data\\Configuration\\ClientConfiguration\\ClientEntityConfiguration.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCMAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T13:52:41.946Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TravelEntityConfiguration.cs",
-              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\TravelConfiguration\\TravelEntityConfiguration.cs",
-              "RelativeDocumentMoniker": "TMS.Infrastructure\\Data\\Configuration\\TravelConfiguration\\TravelEntityConfiguration.cs",
-              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\TravelConfiguration\\TravelEntityConfiguration.cs",
-              "RelativeToolTip": "TMS.Infrastructure\\Data\\Configuration\\TravelConfiguration\\TravelEntityConfiguration.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAUwDIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T13:30:33.834Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 4,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Client.cs",
-              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Client.cs",
-              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Client.cs",
-              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Client.cs",
-              "RelativeToolTip": "TMS.Domain\\Entities\\Client.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T13:52:55.673Z",
+              "WhenOpened": "2025-05-07T10:14:13.134Z",
               "EditorCaption": ""
             },
             {
@@ -108,29 +87,136 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Load.cs",
-              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Load.cs",
-              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Load.cs",
-              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Load.cs",
-              "RelativeToolTip": "TMS.Domain\\Entities\\Load.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "ILoginrequestService.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\Services\\Interfaces\\ILoginrequestService.cs",
+              "RelativeDocumentMoniker": "TMS.Application\\Services\\Interfaces\\ILoginrequestService.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\Services\\Interfaces\\ILoginrequestService.cs",
+              "RelativeToolTip": "TMS.Application\\Services\\Interfaces\\ILoginrequestService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T14:00:00.896Z",
+              "WhenOpened": "2025-04-16T15:05:07.168Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "PI_TMS.API\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "PI_TMS.API\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T15:04:40.876Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserEntityConfiguration.cs",
-              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\UserConfiguration\\UserEntityConfiguration.cs",
-              "RelativeDocumentMoniker": "TMS.Infrastructure\\Data\\Configuration\\UserConfiguration\\UserEntityConfiguration.cs",
-              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\UserConfiguration\\UserEntityConfiguration.cs",
-              "RelativeToolTip": "TMS.Infrastructure\\Data\\Configuration\\UserConfiguration\\UserEntityConfiguration.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "PI_TMS.API\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "PI_TMS.API\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T13:30:11.481Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-16T15:03:49.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegisterRequestService.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\Services\\Implementation\\RegisterRequestService.cs",
+              "RelativeDocumentMoniker": "TMS.Application\\Services\\Implementation\\RegisterRequestService.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\Services\\Implementation\\RegisterRequestService.cs",
+              "RelativeToolTip": "TMS.Application\\Services\\Implementation\\RegisterRequestService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wA8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T15:00:16.199Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginRequestService.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\Services\\Implementation\\LoginRequestService.cs",
+              "RelativeDocumentMoniker": "TMS.Application\\Services\\Implementation\\LoginRequestService.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Application\\Services\\Implementation\\LoginRequestService.cs",
+              "RelativeToolTip": "TMS.Application\\Services\\Implementation\\LoginRequestService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T14:59:58.856Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "TMS.Infrastructure\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "TMS.Infrastructure\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAiwFcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T14:53:40.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Repositories\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "TMS.Domain\\Repositories\\IUserRepository.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Repositories\\IUserRepository.cs",
+              "RelativeToolTip": "TMS.Domain\\Repositories\\IUserRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T14:52:08.805Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TravelRequest.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Requests\\Travel\\TravelRequest.cs",
+              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Requests\\Travel\\TravelRequest.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Requests\\Travel\\TravelRequest.cs",
+              "RelativeToolTip": "TMS.Domain\\Entities\\Requests\\Travel\\TravelRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T14:51:39.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TravelStatus.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Enums\\TravelStatus.cs",
+              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Enums\\TravelStatus.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Enums\\TravelStatus.cs",
+              "RelativeToolTip": "TMS.Domain\\Entities\\Enums\\TravelStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T14:50:01.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Travel.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Travel.cs",
+              "RelativeDocumentMoniker": "TMS.Domain\\Entities\\Travel.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\Entities\\Travel.cs",
+              "RelativeToolTip": "TMS.Domain\\Entities\\Travel.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA8AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T14:49:17.786Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ClientEntityConfiguration.cs",
+              "DocumentMoniker": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\ClientConfiguration\\ClientEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "TMS.Infrastructure\\Data\\Configuration\\ClientConfiguration\\ClientEntityConfiguration.cs",
+              "ToolTip": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\Data\\Configuration\\ClientConfiguration\\ClientEntityConfiguration.cs",
+              "RelativeToolTip": "TMS.Infrastructure\\Data\\Configuration\\ClientConfiguration\\ClientEntityConfiguration.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACEAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T14:03:30.548Z"
             }
           ]
         }
