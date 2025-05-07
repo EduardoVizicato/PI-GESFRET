@@ -10,6 +10,6 @@ namespace TMS.Domain.Entites
     public class BaseEntity
     {
         public Guid Id { get; set; } = Guid.NewGuid();
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

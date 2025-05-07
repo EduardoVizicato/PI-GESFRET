@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entites;
 using TMS.Domain.Entities.Common.Enums;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Domain.Entities
 {
@@ -20,12 +21,15 @@ namespace TMS.Domain.Entities
             Password = password;
             IdentificationNumber = identificationNumber;
             PhoneNumber = phoneNumber;
+
+            if(email.Length ==0)
+                throw new ArgumentException(....)
         }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public string IdentificationNumber { get; private set; }
-        public string PhoneNumber { get; private set; }
-        public string Email { get; private set; }
+        public string TaxId { get; private set; }
+        public PhoneVO PhoneNumber { get; private set; }
+        public Email Email { get;}
         public string Password { get; private set; }
         
         public UserRole UserRole { get; set; } = UserRole.Client;
