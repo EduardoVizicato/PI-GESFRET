@@ -31,9 +31,10 @@ namespace TMS.Application.Services.Implementation
             return desactiveUser;
         }
 
-        public Task<bool?> UpdateUser(Guid id, RegisterUserResponse request)
+        public async Task<bool?> UpdateUser(Guid id, RegisterUserResponse request)
         {
-            throw new NotImplementedException();
+            var updateUser = await _userRepository.UpdatesUserAsync(id, request);
+            return updateUser;
         }
 
         public Task<User> GetUserByEmail(string email)
