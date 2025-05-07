@@ -19,6 +19,16 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddDbContext<ApplicationDataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowLocalhost4200", policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+    });
+
     builder.Services.AddAuthentication("Bearer")
         .AddJwtBearer("Bearer", options =>
         {
@@ -47,6 +57,8 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
+    app.UseCors("AllowLocalhost4200");
+         
     app.UseHttpsRedirection();
 
     app.UseAuthorization();

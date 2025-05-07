@@ -115,9 +115,19 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PI_TMS.API.Controllers.LoadController",
+    "Method": "GetAll",
+    "RelativePath": "api/load",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PI_TMS.API.Controllers.TravelController",
     "Method": "GetAll",
-    "RelativePath": "api/travel",
+    "RelativePath": "api/travel/getAll",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
