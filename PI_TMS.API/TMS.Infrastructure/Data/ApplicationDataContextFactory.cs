@@ -9,7 +9,7 @@ public class ApplicationDataContextFactory : IDesignTimeDbContextFactory<Applica
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDataContext>();
 
-        optionsBuilder.UseSqlite("Data Source = \"C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Infrastructure\\PI_TMS_BD.bd\"");
+        optionsBuilder.UseSqlite("Data Source = PI_TMS_BD.bd");
         
         return new ApplicationDataContext(optionsBuilder.Options);
     }

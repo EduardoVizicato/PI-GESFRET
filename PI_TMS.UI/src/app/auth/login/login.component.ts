@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginService } from './services/login.service';
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [HttpClientModule,BrowserModule,FormsModule],
+  imports: [HttpClientModule,FormsModule, CommonModule,],
   providers: [LoginService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -18,7 +19,7 @@ export class LoginComponent {
   SendLogin() {
     this.loginService.registerLogin(this.email, this.password).subscribe(
       (response) => {
-        console.log('Login successful', response);
+        console.log('Login successful');
       },
       (error) => {
         console.error('Login failed', error);
