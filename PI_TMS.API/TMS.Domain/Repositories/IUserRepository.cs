@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TMS.Domain.Entites.Requests.User;
 using TMS.Domain.Entites.Responses.User;
 using TMS.Domain.Entities;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Domain.Repositories
 {
@@ -13,7 +14,7 @@ namespace TMS.Domain.Repositories
     {
         Task<List<User>> GetAllAsync();
         Task<User> GetByIdAsync(Guid id);
-        Task<User> GetUserByEmail(string email);
+        Task<User> GetUserByEmail(EmailVO email);
         Task<User> AddAsync(User user);
         Task<bool?> UpdatesUserAsync(Guid id,RegisterUserResponse user);
         Task<bool?> DesactiveUserAsync(Guid id);

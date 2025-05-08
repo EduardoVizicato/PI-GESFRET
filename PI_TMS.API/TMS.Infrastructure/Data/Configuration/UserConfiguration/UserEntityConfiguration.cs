@@ -35,7 +35,7 @@ namespace TMS.Infrastructure.Data.Configuration.UserConfiguration
                 .HasColumnName("Phone")
                 .HasMaxLength(14);
 
-            builder.Property(x => x.IdentificationNumber)
+            builder.Property(x => x.TaxId)
                 .IsRequired();
 
             builder.Property(x => x.UserRole);
