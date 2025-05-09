@@ -17,9 +17,15 @@ namespace TMS.Infrastructure.Data.Configuration.VehicleConfiguration
 
             builder.Property(x => x.Name)
                 .HasMaxLength(50)
+                .HasColumnName("Name")
+                .IsRequired();
+            
+            builder.Property(x => x.VehicleRegistrationPlate)
+                .HasColumnName("VehicleRegistrationPlate")
                 .IsRequired();
 
             builder.Property(x => x.VehicleType)
+                .HasColumnName("VehicleType")
                 .IsRequired();
         }
     }

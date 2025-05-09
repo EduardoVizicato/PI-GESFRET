@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entities;
 using TMS.Domain.Entities.Enums;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Domain.Entites.Requests.Travel
 {
@@ -19,7 +20,7 @@ namespace TMS.Domain.Entites.Requests.Travel
         public Adress ArrivalLocation { get; set; }
         public float Weight { get; set; }
         public float Price { get; set; }
-        public string Description { get; set; }
+        public DescriptionVO Description { get; set; }
         public Guid LoadId { get; set; }
         public Entities.Load Load { get; set; }
     }

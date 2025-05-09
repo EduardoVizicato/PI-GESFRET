@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entities;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Infrastructure.Data.Configuration.UserConfiguration
 {
@@ -17,28 +18,36 @@ namespace TMS.Infrastructure.Data.Configuration.UserConfiguration
 
             builder.Property(x => x.FirstName)
                 .IsRequired()
+                .HasColumnName("FirstName")
                 .HasMaxLength(50);
 
             builder.Property(x => x.LastName)
                 .IsRequired()
+                .HasColumnName("LastName")
                 .HasMaxLength(50);
 
             builder.Property(x => x.Email)
                 .IsRequired()
-                .HasMaxLength(250);
+                .HasColumnName("Email")
+                .HasConversion(email => email.Value, value => new EmailVO(value));
 
             builder.Property(x => x.Password)
-                .IsRequired();
-            
-            builder.Property(x=>x.PhoneNumber)
+                .IsRequired()
+                .HasConversion(password => password.Value, value => new PasswordVO(value))
+                .HasColumnName("Password");
+
+            builder.Property(x => x.PhoneNumber)
                 .IsRequired()
                 .HasColumnName("Phone")
-                .HasMaxLength(14);
+                .HasConversion(phone => phone.Value, value => new PhoneVO(value));
 
             builder.Property(x => x.TaxId)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("TaxID")
+                .HasConversion(taxId => taxId.Value, value => new TaxIdVO(value));
 
-            builder.Property(x => x.UserRole);
+            builder.Property(x => x.UserRole)
+                .HasColumnName("UserRole");
 
         }
     }

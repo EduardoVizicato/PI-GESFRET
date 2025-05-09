@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using TMS.Application.Services.Interfaces;
+using TMS.Domain.Entites.Requests.User;
 
 namespace PI_TMS.API.Controllers
 {
@@ -16,7 +17,7 @@ namespace PI_TMS.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync(LoginRequest request)
+        public async Task<IActionResult> LoginAsync(LoginUserRequest request)
         {
             var token = await _loginService.LoginAsync(request.Email, request.Password);
             if (token == null)

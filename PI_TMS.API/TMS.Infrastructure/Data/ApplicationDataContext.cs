@@ -22,7 +22,6 @@ namespace TMS.Infrastructure.Data
         }
         
         public DbSet<User> Users { get; set; }
-        public DbSet<Driver> Drivers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Load> Loads { get; set; }
         public DbSet<Travel> Travels { get; set; }

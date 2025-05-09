@@ -30,7 +30,7 @@ namespace TMS.Domain.Entities
         public EmailVO Email { get; set; }
         public PasswordVO Password { get; private set; }
         
-        public UserRole UserRole { get; set; } = UserRole.Client;
+        public UserRole UserRole { get; set; }
         
         public void UpdateUser(string firstName, string lastName, EmailVO email, TaxIdVO taxId, PhoneVO phoneNumber)
         {

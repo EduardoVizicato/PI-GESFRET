@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Extensions;
 using TMS.Application.Common.Interface.Authentication;
 using TMS.Application.Services.Interfaces;
 using TMS.Domain.Entites.Requests.User;
 using TMS.Domain.Entites.Responses.User;
 using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Application.Services.Implementation
 {
@@ -37,7 +39,7 @@ namespace TMS.Application.Services.Implementation
             return updateUser;
         }
 
-        public Task<User> GetUserByEmail(string email)
+        public Task<User> GetUserByEmail(EmailVO email)
         {
             var getUserByEmail = _userRepository.GetUserByEmail(email);
             if (getUserByEmail == null)
@@ -70,7 +72,7 @@ namespace TMS.Application.Services.Implementation
             return listAllDesactivedUsers;
         }
 
-        public async Task<User> ValidateUser(string email, string password)
+        public async Task<User> ValidateUser(EmailVO email, PasswordVO password)
         {
             var user = await _userRepository.GetUserByEmail(email);
             if (user == null) return null;
@@ -87,16 +89,17 @@ namespace TMS.Application.Services.Implementation
 
         public async Task<bool?> RegisterUser(RegisterUserRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Password)) return false;
+            if (string.IsNullOrWhiteSpace(request.Password.ToString())) return false;
 
-            var hashedPassword = _passwordHasherService.HashPassword(request.Password);
+            var hashed = _passwordHasherService.HashPassword(request.Password);
+            var hashedPassword = new PasswordVO(hashed);
 
             var user = new User(
                 request.FirstName,
                 request.LastName,
                 request.Email,
                 hashedPassword,
-                request.IdentificationNumber,
+                request.TaxId,
                 request.PhoneNumber
             )
             {

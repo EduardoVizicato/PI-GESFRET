@@ -1,0 +1,15 @@
+﻿version: '3.4'
+
+services:
+  pi_tms_api:
+    build: .
+    ports:
+      - "5028:80"
+    env_file:
+      - .env 
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge

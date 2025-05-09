@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PI_TMS.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3aa4fc3a45ad73fd84f0d90f596cbd0d8cf81995")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5132e115d78674ebfa5007952dccb64585560049")]
 [assembly: System.Reflection.AssemblyProductAttribute("PI_TMS.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PI_TMS.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

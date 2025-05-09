@@ -18,13 +18,16 @@ namespace TMS.Infrastructure.Data.Configuration.LoadConfiguration
 
             builder.Property(x => x.Description)
                 .IsRequired()
+                .HasColumnName("Description")
                 .HasMaxLength(200);
 
             builder.Property(x => x.Quantity)
+                .HasColumnName("Quantity")
                 .IsRequired();
 
             builder.Property(x => x.Type)
                 .IsRequired()
+                .HasColumnName("Type")
                 .HasMaxLength(50);
         }
     }

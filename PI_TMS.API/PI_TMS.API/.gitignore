@@ -1,0 +1,11 @@
+﻿.vs/
+.vscode/
+.idea/
+
+bin/
+obj/
+
+appsettings.Development.json
+.env
+
+docker-compose.override.yml

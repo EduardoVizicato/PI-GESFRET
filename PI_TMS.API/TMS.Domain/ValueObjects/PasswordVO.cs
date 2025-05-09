@@ -10,18 +10,14 @@ public class PasswordVO
         if (string.IsNullOrEmpty(password) || password.Length < 6)
             throw new InvalidExpressionException("The password length is invalid.");
 
-        foreach (char c in password)
-        {
-            if (!Char.IsUpper(c))
-            {
-                throw new InvalidExpressionException("The password needs to contain one capital letter.");
-            }
-        }
-        
+        if (!password.Any(char.IsUpper))
+            throw new InvalidExpressionException("The password needs to contain at least one capital letter.");
         
         Password = password;
         
     }
+    
+    public string Value =>  Password;
     public string Password { get; }
     
 }

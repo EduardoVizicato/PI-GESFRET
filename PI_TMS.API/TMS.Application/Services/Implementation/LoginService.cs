@@ -1,4 +1,5 @@
 ﻿using TMS.Application.Services.Interfaces;
+using TMS.Domain.ValueObjects;
 using TMS.Service.Common.Application.Authentication;
 
 namespace TMS.Application.Services.Implementation;
@@ -13,7 +14,7 @@ public class LoginService : ILoginService
         _jwtTokenGenerator = jwtTokenGenerator;
     }
     
-    public async Task<string> LoginAsync(string email, string password)
+    public async Task<string> LoginAsync(EmailVO email, PasswordVO password)
     {
         var user = await _userService.ValidateUser(email, password);
         

@@ -9,19 +9,25 @@ public class EmailVO
 {
     public EmailVO(string emailAdress)
     {
-        if (string.IsNullOrEmpty(emailAdress) || emailAdress.Length <= 5)
-        {
-            throw new InvalidExpressionException("The email needs to contain at least 5 characters.");
-        }
-        
-        EmailAdress = emailAdress.ToLower().Trim();
-        const string pattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
+        if (string.IsNullOrWhiteSpace(emailAdress))
+            throw new ArgumentException("Email cannot be empty or null.");
 
-        if (!Regex.IsMatch(emailAdress, pattern))
-        {
-            throw new InvalidExpressionException("The email address format is invalid.");
-        }
+        emailAdress = emailAdress.Trim().ToLowerInvariant();
+
+        if (!IsValidFormat(emailAdress))
+            throw new ArgumentException("Invalid email format.");
+
+        EmailAdress = emailAdress;
     }
-    
+    public string Value =>  EmailAdress;
     public string EmailAdress { get; }
+    
+    public static bool IsValidFormat(string validEmail)
+    {
+        if (validEmail.Length < 5 || validEmail.Length > 250)
+            return false;
+
+        const string pattern = @"^[\w\.\-]+@([\w\-]+\.)+[\w\-]{2,4}$";
+        return Regex.IsMatch(validEmail, pattern);  
+    }
 }
