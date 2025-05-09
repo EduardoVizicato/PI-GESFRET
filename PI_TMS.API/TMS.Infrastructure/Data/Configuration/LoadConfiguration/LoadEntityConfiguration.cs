@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entites;
 using TMS.Domain.Entities;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Infrastructure.Data.Configuration.LoadConfiguration
 {
@@ -19,7 +20,7 @@ namespace TMS.Infrastructure.Data.Configuration.LoadConfiguration
             builder.Property(x => x.Description)
                 .IsRequired()
                 .HasColumnName("Description")
-                .HasMaxLength(200);
+                .HasConversion(description => description.Value, value => new DescriptionVO(value));
 
             builder.Property(x => x.Quantity)
                 .HasColumnName("Quantity")
@@ -28,7 +29,7 @@ namespace TMS.Infrastructure.Data.Configuration.LoadConfiguration
             builder.Property(x => x.Type)
                 .IsRequired()
                 .HasColumnName("Type")
-                .HasMaxLength(50);
+                .HasConversion(type => type.Value, value => new TypeVO(value));
         }
     }
     

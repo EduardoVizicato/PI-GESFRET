@@ -18,33 +18,28 @@ namespace TMS.Domain.Entites
         public Travel(string travelName, 
             DateTime startDate, 
             DateTime endDate,
-            Guid departureLocationId,
-            Adress departureLocation,
-            Guid arrivalLocationId,
-            Adress arrivalLocation, 
             float weight,
             float price,
             DescriptionVO description,
             Guid loadId,
-            Load load)
+            Load load,
+            Adress adress)
         {
             TravelName = travelName;
             StartDate = startDate;
             EndDate = endDate;
-            DepartureLocation = departureLocation;
-            ArrivalLocation = arrivalLocation;
             Weight = weight;
             Price = price;
             Description = description;
             Load = load;
+            Adress = adress;
         }
         public string TravelName { get; private set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
         public TravelStatus TravelStatus { get; private set; } = TravelStatus.Todo;
         public DateTime DateCreate { get; } = DateTime.Now;
-        public Adress DepartureLocation { get; private set; }
-        public Adress ArrivalLocation { get; set; }
+        public Adress Adress { get; private set; }
         public float Weight { get; private set; }
         public float Price { get; private set; }
         public DescriptionVO Description { get; private set; }
@@ -54,23 +49,21 @@ namespace TMS.Domain.Entites
             DateTime startDate, 
             DateTime endDate,
             TravelStatus travelStatus,
-            Adress departureLocation, 
-            Adress arrivalLocation, 
             float weight,
             float price,
             DescriptionVO description,
             Guid loadId,
-            Load load)
+            Load load,
+            Adress adress)
         {
             TravelName = travelName;
             StartDate = startDate;
             EndDate = endDate;
-            DepartureLocation = departureLocation;
-            ArrivalLocation = arrivalLocation;
             Weight = weight;
             Price = price;
             Description = description;
             Load = load;
+            Adress = adress;
         }
 
         private static Dictionary<TravelStatus, TravelStatus> _nextStatus = new()

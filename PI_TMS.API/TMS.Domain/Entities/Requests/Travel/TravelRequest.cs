@@ -14,10 +14,7 @@ namespace TMS.Domain.Entites.Requests.Travel
         public string TravelName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public Guid DepartureLocationId { get; set; }
-        public Adress DepartureLocation { get; set; }
-        public Guid ArrivalLocationId { get; set; }
-        public Adress ArrivalLocation { get; set; }
+        public Adress Adress { get; private set; }
         public float Weight { get; set; }
         public float Price { get; set; }
         public DescriptionVO Description { get; set; }

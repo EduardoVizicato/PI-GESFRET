@@ -14,7 +14,7 @@ namespace TMS.Domain.Entities
         {
             
         }
-        public Load(DescriptionVO description, float quantity, string type)
+        public Load(DescriptionVO description, float quantity, TypeVO type)
         {
             Description = description;
             Quantity = quantity;
@@ -24,10 +24,10 @@ namespace TMS.Domain.Entities
 
         public DescriptionVO Description { get; private set; }
         public float Quantity { get; private set; }
-        public string Type { get; private set; }
+        public TypeVO Type { get; private set; }
         
         public User User { get; set; }
-        public void Updateload(DescriptionVO description, float quantity, string type)
+        public void Updateload(DescriptionVO description, float quantity, TypeVO type)
         {
             Description = description;
             Quantity = quantity;

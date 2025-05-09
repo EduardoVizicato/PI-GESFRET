@@ -3,6 +3,7 @@
 WORKDIR /app
 
 COPY . .
+COPY PI_TMS.API.csproj ./
 
 RUN dotnet restore
 

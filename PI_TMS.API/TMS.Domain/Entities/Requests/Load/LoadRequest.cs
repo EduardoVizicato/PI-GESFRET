@@ -12,6 +12,6 @@ namespace TMS.Domain.Entites.Requests.Load
     {
         public DescriptionVO Description { get; set; }
         public float Quantity { get; set; }
-        public string Type { get; set; }
+        public TypeVO Type { get; set; }
     }
 }

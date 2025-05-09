@@ -31,15 +31,12 @@ public class TravelRepository : ITravelRepository
             travel.TravelName,
             travel.StartDate,
             travel.EndDate,
-            travel.DepartureLocationId,
-            travel.DepartureLocation,
-            travel.ArrivalLocationId,
-            travel.ArrivalLocation,
             travel.Weight,
             travel.Price,
             travel.Description,
             travel.LoadId,
-            travel.Load
+            travel.Load,
+            travel.Adress
             );
         _context.Travels.Add(addTravel);
         await _context.SaveChangesAsync();

@@ -14,7 +14,9 @@ namespace TMS.Infrastructure.Data.Configuration.UserConfiguration
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id)
+                .HasColumnType("uniqueidentifier")
+                .IsRequired();
 
             builder.Property(x => x.FirstName)
                 .IsRequired()

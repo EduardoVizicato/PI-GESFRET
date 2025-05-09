@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entites;
 using TMS.Domain.Entities;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Infrastructure.Data.Configuration.TravelConfiguration
 {
@@ -39,7 +40,7 @@ namespace TMS.Infrastructure.Data.Configuration.TravelConfiguration
             
             builder.Property(x => x.Description)
                 .IsRequired()
-                .HasMaxLength(200)
+                .HasConversion(description => description.Value, value => new DescriptionVO(value))
                 .HasColumnName("Description");
         }
     }
