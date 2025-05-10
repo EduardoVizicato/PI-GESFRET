@@ -29,7 +29,6 @@ namespace TMS.Domain.Entities
         public PhoneVO PhoneNumber { get; private set; }
         public EmailVO Email { get; set; }
         public PasswordVO Password { get; private set; }
-        
         public UserRole UserRole { get; set; }
         
         public void UpdateUser(string firstName, string lastName, EmailVO email, TaxIdVO taxId, PhoneVO phoneNumber)

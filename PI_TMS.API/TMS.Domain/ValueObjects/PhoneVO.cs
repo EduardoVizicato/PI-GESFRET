@@ -11,7 +11,7 @@ namespace TMS.Domain.ValueObjects
     {
         public PhoneVO(string phone)
         {
-            if (!IsValidFormat(Phone))
+            if (IsValidFormat(Phone))
             {
                 throw new InvalidExpressionException("The phone number is invalid.");
             }

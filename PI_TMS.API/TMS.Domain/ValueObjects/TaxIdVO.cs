@@ -25,7 +25,7 @@ public class TaxIdVO
     public static bool IsValidFormat(string sanitizedTaxId)
     {
         return !string.IsNullOrWhiteSpace(sanitizedTaxId) &&
-               sanitizedTaxId.Length == 8 &&
+               sanitizedTaxId.Length == 11 &&
                sanitizedTaxId.All(char.IsDigit);
     }
 }
