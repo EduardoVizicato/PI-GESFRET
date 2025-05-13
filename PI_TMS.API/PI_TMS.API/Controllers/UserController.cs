@@ -6,6 +6,7 @@ using TMS.Domain.Entites.Requests.User;
 using TMS.Domain.Entites.Responses.User;
 using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
+using TMS.Domain.ValueObjects;
 
 namespace PI_TMS.API.Controllers
 {
@@ -75,7 +76,7 @@ namespace PI_TMS.API.Controllers
         }
         
         [HttpGet("getbyEmail")]
-        public async Task<IActionResult> GetByEmail(string email)
+        public async Task<IActionResult> GetByEmail(EmailVO email)
         {
             var data = await _userService.GetUserByEmail(email);
             return Ok(data);

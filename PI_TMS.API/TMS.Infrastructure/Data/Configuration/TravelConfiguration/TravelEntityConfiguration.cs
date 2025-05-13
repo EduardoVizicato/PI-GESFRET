@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entites;
 using TMS.Domain.Entities;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Infrastructure.Data.Configuration.TravelConfiguration
 {
@@ -18,36 +19,29 @@ namespace TMS.Infrastructure.Data.Configuration.TravelConfiguration
 
             builder.Property(x => x.TravelName)
                 .IsRequired()
+                .HasColumnName("TravelName")
                 .HasMaxLength(100);
             
             builder.Property(x => x.StartDate)
+                .HasColumnName("StartDate")
                 .IsRequired();
             
             builder.Property(x => x.EndDate)
+                .HasColumnName("EndData")
                 .IsRequired();
             
             builder.Property(x => x.DateCreate)
+                .HasColumnName("DateCreate")
                 .IsRequired();
-            
-            builder.HasOne(x => x.DepartureLocation)
-                .WithMany()  
-                .HasForeignKey(x => x.DepartureLocationId)
-                .OnDelete(DeleteBehavior.Restrict);
-            
-            builder.HasOne(x => x.ArrivalLocation)
-                .WithMany()  
-                .HasForeignKey(x => x.ArrivalLocationId)
-                .OnDelete(DeleteBehavior.Restrict);
             
             builder.Property(x => x.Weight)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("Weight");
             
             builder.Property(x => x.Description)
                 .IsRequired()
-                .HasMaxLength(200);
-            
-            builder.Property(x => x.LoadId)
-                .IsRequired();
+                .HasConversion(description => description.Value, value => new DescriptionVO(value))
+                .HasColumnName("Description");
         }
     }
 }

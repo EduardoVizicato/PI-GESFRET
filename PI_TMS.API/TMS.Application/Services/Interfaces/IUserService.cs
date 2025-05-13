@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TMS.Domain.Entites.Requests.User;
 using TMS.Domain.Entites.Responses.User;
 using TMS.Domain.Entities;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Application.Services.Interfaces
 {
@@ -16,9 +17,9 @@ namespace TMS.Application.Services.Interfaces
         Task<bool?> UpdateUser(Guid id, RegisterUserResponse request);
         Task<List<User>> ListAllUsers();
         Task<User> GetUserById(Guid id);
-        Task<User> GetUserByEmail(string email);
+        Task<User> GetUserByEmail(EmailVO email);
         Task<List<User>> ListAllActivedUsers();
         Task<List<User>> ListAllDesactivedUsers();
-        Task<User> ValidateUser(string email, string password);
+        Task<User> ValidateUser(EmailVO email, PasswordVO password);
     }
 }

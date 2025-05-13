@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PI_TMS.DomainTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47b6ba358cbdc6c88eb94e5e177440e56ccf298d")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5132e115d78674ebfa5007952dccb64585560049")]
+>>>>>>> main
 [assembly: System.Reflection.AssemblyProductAttribute("PI_TMS.DomainTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PI_TMS.DomainTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

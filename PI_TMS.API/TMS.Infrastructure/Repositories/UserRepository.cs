@@ -9,6 +9,7 @@ using TMS.Domain.Entites.Requests.User;
 using TMS.Domain.Entites.Responses.User;
 using TMS.Domain.Entities;
 using TMS.Domain.Repositories;
+using TMS.Domain.ValueObjects;
 using TMS.Infrastructure.Data;
 
 namespace TMS.Infrastructure.Repositories
@@ -60,7 +61,7 @@ namespace TMS.Infrastructure.Repositories
             return userById;
         }
 
-        public async Task<User> GetUserByEmail(string email)
+        public async Task<User> GetUserByEmail(EmailVO email)
         {
             var userByEmail = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
 
@@ -79,7 +80,7 @@ namespace TMS.Infrastructure.Repositories
         {
             var userToUpdate = await _context.Users.FindAsync(id);
             
-            userToUpdate.UpdateUser(user.FirstName, user.LastName, user.Email, user.IdentificationNumber, user.PhoneNumber);
+            userToUpdate.UpdateUser(user.FirstName, user.LastName, user.Email, user.TaxId, user.PhoneNumber);
             _context.Users.Update(userToUpdate);
             await _context.SaveChangesAsync();
 

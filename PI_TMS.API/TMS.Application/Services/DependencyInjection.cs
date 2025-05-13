@@ -21,7 +21,6 @@ namespace TMS.Service.Services
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IDriverService, DriverService>();
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<ILoadService, LoadService>();
             services.AddScoped<ITravelService, TravelService>();

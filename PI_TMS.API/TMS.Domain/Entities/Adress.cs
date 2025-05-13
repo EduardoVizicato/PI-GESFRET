@@ -1,4 +1,5 @@
 ﻿using TMS.Domain.Entites;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Domain.Entities;
 
@@ -8,7 +9,7 @@ public class Adress : BaseEntity
     {
         
     }
-    public Adress(string street, string city, string state, int postalCode, string country, int adressNumber)
+    public Adress(StreetVO street, CityVO city, StateVO state, PostalCodeVO postalCode, int adressNumber)
     {
         Street = street;
         City = city;
@@ -16,13 +17,13 @@ public class Adress : BaseEntity
         PostalCode = postalCode;
         AdressNumber = adressNumber;
     }
-    public string Street { get; private set; }
-    public string City { get; private set; }
-    public string State { get; private set; }
-    public int PostalCode { get; private set; }
+    public StreetVO Street { get; private set; }
+    public CityVO City { get; private set; }
+    public StateVO State { get; private set; }
+    public PostalCodeVO PostalCode { get; private set; }
     public int AdressNumber { get; private set; }
 
-    public void Update(string street, string city, string state, int postalCode, string country, int adressNumber)
+    public void Update(StreetVO street, CityVO city, StateVO state, PostalCodeVO postalCode, int adressNumber)
     {
         Street = street;
         City = city;

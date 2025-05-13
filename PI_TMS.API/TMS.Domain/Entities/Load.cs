@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entites;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Domain.Entities
 {
@@ -13,7 +14,7 @@ namespace TMS.Domain.Entities
         {
             
         }
-        public Load(string description, float quantity, string type)
+        public Load(DescriptionVO description, float quantity, TypeVO type)
         {
             Description = description;
             Quantity = quantity;
@@ -21,12 +22,12 @@ namespace TMS.Domain.Entities
 
         }
 
-        public string Description { get; private set; }
+        public DescriptionVO Description { get; private set; }
         public float Quantity { get; private set; }
-        public string Type { get; private set; }
+        public TypeVO Type { get; private set; }
         
         public User User { get; set; }
-        public void Updateload(string description, float quantity, string type)
+        public void Updateload(DescriptionVO description, float quantity, TypeVO type)
         {
             Description = description;
             Quantity = quantity;

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Domain.Entities;
 using TMS.Domain.Entities.Enums;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Domain.Entites
 {
@@ -17,66 +18,52 @@ namespace TMS.Domain.Entites
         public Travel(string travelName, 
             DateTime startDate, 
             DateTime endDate,
-            Guid departureLocationId,
-            Adress departureLocation,
-            Guid arrivalLocationId,
-            Adress arrivalLocation, 
             float weight,
             float price,
-            string description,
+            DescriptionVO description,
             Guid loadId,
-            Load load)
+            Load load,
+            Adress adress)
         {
             TravelName = travelName;
             StartDate = startDate;
             EndDate = endDate;
-            DepartureLocationId = departureLocationId;
-            DepartureLocation = departureLocation;
-            ArrivalLocationId = arrivalLocationId;
-            ArrivalLocation = arrivalLocation;
             Weight = weight;
             Price = price;
             Description = description;
-            LoadId = loadId;
             Load = load;
+            Adress = adress;
         }
         public string TravelName { get; private set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
         public TravelStatus TravelStatus { get; private set; } = TravelStatus.Todo;
         public DateTime DateCreate { get; } = DateTime.Now;
-        public Guid DepartureLocationId { get; private set; }
-        public Adress DepartureLocation { get; private set; }
-        public Guid ArrivalLocationId { get; private set; }
-        public Adress ArrivalLocation { get; set; }
+        public Adress Adress { get; private set; }
         public float Weight { get; private set; }
         public float Price { get; private set; }
-        public string Description { get; private set; }
-        public Guid LoadId { get; private set; }
+        public DescriptionVO Description { get; private set; }
         public Load Load { get; private set; }
 
         public void UpdateTravel(string travelName, 
             DateTime startDate, 
             DateTime endDate,
             TravelStatus travelStatus,
-            Adress departureLocation, 
-            Adress arrivalLocation, 
             float weight,
             float price,
-            string description,
+            DescriptionVO description,
             Guid loadId,
-            Load load)
+            Load load,
+            Adress adress)
         {
             TravelName = travelName;
             StartDate = startDate;
             EndDate = endDate;
-            DepartureLocation = departureLocation;
-            ArrivalLocation = arrivalLocation;
             Weight = weight;
             Price = price;
             Description = description;
-            LoadId = loadId;
             Load = load;
+            Adress = adress;
         }
 
         private static Dictionary<TravelStatus, TravelStatus> _nextStatus = new()

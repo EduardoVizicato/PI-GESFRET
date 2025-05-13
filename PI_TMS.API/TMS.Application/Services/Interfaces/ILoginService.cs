@@ -1,6 +1,8 @@
-﻿namespace TMS.Application.Services.Interfaces;
+﻿using TMS.Domain.ValueObjects;
+
+namespace TMS.Application.Services.Interfaces;
 
 public interface ILoginService
 {
-    Task<string> LoginAsync(string email, string password);
+    Task<string> LoginAsync(EmailVO email, PasswordVO password);
 }

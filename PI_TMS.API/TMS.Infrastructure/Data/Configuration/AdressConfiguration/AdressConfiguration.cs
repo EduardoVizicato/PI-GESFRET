@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TMS.Domain.Entities;
+using TMS.Domain.ValueObjects;
 
 namespace TMS.Infrastructure.Data.Configuration.AdressConfiguration;
 
@@ -12,22 +13,26 @@ public class AdressConfiguration : IEntityTypeConfiguration<Adress>
         
         builder.Property(x => x.City)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasColumnName("City")
+            .HasConversion(city => city.Value, value => new CityVO(value));
         
         builder.Property(x => x.State)
             .IsRequired()
-            .HasMaxLength(2);
+            .HasColumnName("State")
+            .HasConversion(state => state.Value, value => new StateVO(value));
         
         builder.Property(x => x.Street)
             .IsRequired()
-            .HasMaxLength(100);
-        
+            .HasColumnName("Street")
+            .HasConversion(street => street.Value, value => new StreetVO(value));
+
         builder.Property(x => x.AdressNumber)
             .IsRequired()
-            .HasMaxLength(10);
+            .HasColumnName("AdressNumber");
         
         builder.Property(x => x.PostalCode)
             .IsRequired()
-            .HasMaxLength(8);
+            .HasColumnName("PostalCode")
+            .HasConversion(postalCode => postalCode.Value, value => new PostalCodeVO(value));
     }
 }
