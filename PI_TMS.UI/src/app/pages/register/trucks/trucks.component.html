@@ -21,9 +21,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>AAA1234</td>
-                <td>Mercedes-Benz L1620</td>
+            <tr *ngFor="let truck of trucks">
+                <td>{{ truck.licensePlate}}</td>
+                <td>{{ truck.type }}</td>
                 <td>2000</td>
                 <td>Preto</td>
                 <td class="actions">

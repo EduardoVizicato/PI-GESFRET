@@ -1,5 +1,9 @@
 {
   "Version": 1,
+<<<<<<< HEAD
+  "WorkspaceRootPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\",
+  "Documents": [],
+=======
   "WorkspaceRootPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\",
   "Documents": [
     {
@@ -99,6 +103,7 @@
       "RelativeMoniker": "D:0:0:{12536FA6-A5A4-4AC4-B008-9F9311D86AA9}|TMS.Infrastructure\\TMS.Infrastructure.csproj|solutionrelative:tms.infrastructure\\data\\applicationdatacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
+>>>>>>> main
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -106,6 +111,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+=======
           "SelectedChildIndex": 4,
           "Children": [
             {
@@ -113,6 +123,7 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
+>>>>>>> main
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
@@ -122,6 +133,9 @@
             },
             {
               "$type": "Bookmark",
+<<<<<<< HEAD
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+=======
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
@@ -412,6 +426,7 @@
               "ViewState": "AgIAAAwAAAAAAAAAAAAAADwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-07T12:04:46.717Z"
+>>>>>>> main
             }
           ]
         }
