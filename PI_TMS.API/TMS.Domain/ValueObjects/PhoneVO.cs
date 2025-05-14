@@ -11,7 +11,7 @@ namespace TMS.Domain.ValueObjects
     {
         public PhoneVO(string phone)
         {
-            if (IsValidFormat(Phone))
+            if (!IsValidFormat(Phone))
             {
                 throw new InvalidExpressionException("The phone number is invalid.");
             }
@@ -23,14 +23,17 @@ namespace TMS.Domain.ValueObjects
         
         public static string Sanitize(string phoneInput)
         {
-            if (string.IsNullOrEmpty(phoneInput));
+            if (string.IsNullOrEmpty(phoneInput))
+            {
+                throw new Exception("The Phone number is empty.");
+            }
             return new string(phoneInput.Where(char.IsDigit).ToArray());
         }
 
         public static bool IsValidFormat(string sanitizedPhone)
         {
             return !string.IsNullOrWhiteSpace(sanitizedPhone) &&
-                   sanitizedPhone.Length == 14 &&
+                   sanitizedPhone.Length == 11 &&
                    sanitizedPhone.All(char.IsDigit);
         }
     }

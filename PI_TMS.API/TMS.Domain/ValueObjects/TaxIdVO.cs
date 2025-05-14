@@ -18,7 +18,10 @@ public class TaxIdVO
     
     public static string Sanitize(string taxIdInput)
     {
-        if (string.IsNullOrEmpty(taxIdInput));
+        if (string.IsNullOrEmpty(taxIdInput))
+        {
+            throw new Exception("The tax id is empty.");
+        }
         return new string(taxIdInput.Where(char.IsDigit).ToArray());
     }
 
