@@ -1,5 +1,38 @@
 <app-sidebar></app-sidebar>
 
 <div class="main-content">
-    <h1>Caminhões</h1>
+    <h1>Clientes</h1>
+
+    <div class="spacer"></div>
+    
+    <div class="table-controls">
+        <input type="text" class="search-input" placeholder="Pesquisar">
+        <button class="add-button">Adicionar</button>
+    </div>
+
+    <table class="truck-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF/CNPJ</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th class="actions-header">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Felipe Barbisan</td>
+                <td>111.222.333-00</td>
+                <td>(16)98723-1234</td>
+                <td>barbisan$email.com</td>
+                <td class="actions">
+                    <button class="edit-button">Editar</button>
+                    <button class="delete-button">Excluir</button>
+                </td>
+            </tr>
+
+            </tbody>
+    </table>
+
 </div>

@@ -14,18 +14,16 @@
         <thead>
             <tr>
                 <th>Placa</th>
-                <th>Modelo</th>
-                <th>Ano</th>
-                <th>Cor</th>
+                <th>Tipo</th>
+                <th>Nome</th>
                 <th class="actions-header">Ações</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let truck of trucks">
-                <td>{{ truck.licensePlate}}</td>
+                <td>{{ truck.licensePlate }}</td>
                 <td>{{ truck.type }}</td>
-                <td>2000</td>
-                <td>Preto</td>
+                <td>{{ truck.name }}</td>
                 <td class="actions">
                     <button class="edit-button">Editar</button>
                     <button class="delete-button">Excluir</button>
