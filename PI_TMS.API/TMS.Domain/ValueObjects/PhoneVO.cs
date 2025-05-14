@@ -11,27 +11,36 @@ namespace TMS.Domain.ValueObjects
     {
         public PhoneVO(string phone)
         {
-            if (!IsValidFormat(Phone))
+            var sanitized = Sanitize(phone);
+
+            if (!IsValidFormat(sanitized))
             {
                 throw new InvalidExpressionException("The phone number is invalid.");
             }
-            Phone = phone;
+
+            Phone = sanitized;
         }
-        
-        public string Value =>  Phone;
+
+        public string Value => Phone;
         public string Phone { get; }
-        
+
         public static string Sanitize(string phoneInput)
         {
-            if (string.IsNullOrEmpty(phoneInput));
+            if (string.IsNullOrEmpty(phoneInput))
+            {
+
+                return string.Empty;
+            }
+
             return new string(phoneInput.Where(char.IsDigit).ToArray());
         }
 
         public static bool IsValidFormat(string sanitizedPhone)
         {
             return !string.IsNullOrWhiteSpace(sanitizedPhone) &&
-                   sanitizedPhone.Length == 14 &&
+                   sanitizedPhone.Length == 11 &&
                    sanitizedPhone.All(char.IsDigit);
         }
+
     }
 }

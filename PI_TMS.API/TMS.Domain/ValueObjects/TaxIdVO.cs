@@ -18,14 +18,18 @@ public class TaxIdVO
     
     public static string Sanitize(string taxIdInput)
     {
-        if (string.IsNullOrEmpty(taxIdInput));
+        if (string.IsNullOrEmpty(taxIdInput))
+        {
+            return string.Empty;
+        }
+
         return new string(taxIdInput.Where(char.IsDigit).ToArray());
     }
 
     public static bool IsValidFormat(string sanitizedTaxId)
     {
         return !string.IsNullOrWhiteSpace(sanitizedTaxId) &&
-               sanitizedTaxId.Length == 8 &&
+               sanitizedTaxId.Length == 11 &&
                sanitizedTaxId.All(char.IsDigit);
     }
-}
+}  

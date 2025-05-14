@@ -9,7 +9,7 @@ public class ApplicationDataContextFactory : IDesignTimeDbContextFactory<Applica
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDataContext>();
 
-        optionsBuilder.UseSqlServer("Data Source=PCEDUARDO\\SQLEXPRESS;Initial Catalog=PI-TMS;User ID=sa;Password=edu;TrustServerCertificate=True;");
+        optionsBuilder.UseSqlServer("Server=NOTE-FELIPE76;Database=PI-TMS;User ID=sa;Password=22072006;TrustServerCertificate=True;");
         
         return new ApplicationDataContext(optionsBuilder.Options);
     }
