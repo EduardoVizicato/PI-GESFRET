@@ -19,4 +19,18 @@
     height: 100vh;
     overflow-y: auto;
 }
-  
+
+.add-button {
+    padding: 8px;
+    background-color: #1c1c1c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #353535;
+}
