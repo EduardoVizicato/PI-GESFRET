@@ -5,4 +5,4 @@ export interface Truck {
     licensePlate: string;
     driverId: string;
     status: 'available' | 'in-use' | 'maintenance';
-    }
+}
