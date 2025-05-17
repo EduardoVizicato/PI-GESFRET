@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {}
+    "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {}
   },
   "projects": {
-    "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
+    "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
+        "projectUniqueName": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
         "projectName": "TMS.Domain",
-        "projectPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
-        "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
-        "outputPath": "C:\\FATEC\\PI-TMS\\PI_TMS.API\\TMS.Domain\\obj\\",
+        "projectPath": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
+        "packagesPath": "C:\\Users\\peido\\.nuget\\packages\\",
+        "outputPath": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\eduar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\peido\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -84,6 +84,10 @@
               "target": "Package",
               "version": "[9.0.3, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.10.0, )"
+            },
             "System.Text.Json": {
               "target": "Package",
               "version": "[9.0.3, )"
@@ -105,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

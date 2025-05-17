@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "../../../shared/sidebar/sidebar.component";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -12,13 +12,14 @@ import { Truck } from './models/truck.model';
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
 })
-export class TrucksComponent {
+export class TrucksComponent implements OnInit{
 
   trucks: Truck[] = [];
 
   constructor(private truckService: TruckService) {
 
    }
+
    getAllTrucks() {
     this.truckService.getAllTrucks().subscribe(
       (response) => {
@@ -29,4 +30,8 @@ export class TrucksComponent {
       }
     );
   }
+
+     ngOnInit(){
+    this.getAllTrucks();
+   }
 }

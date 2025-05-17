@@ -9,106 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Microsoft.AspNetCore.Identity.Data.LoginRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PI_TMS.API.Controllers.DriverController",
-    "Method": "AddDriver",
-    "RelativePath": "api/driver/addDriver",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "driver",
-        "Type": "TMS.Domain.Entites.Requests.Driver.RegisterDriverRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PI_TMS.API.Controllers.DriverController",
-    "Method": "DesactiveDriver",
-    "RelativePath": "api/driver/desactiveDriver",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PI_TMS.API.Controllers.DriverController",
-    "Method": "GetAllActived",
-    "RelativePath": "api/driver/getAllActivedDrivers",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PI_TMS.API.Controllers.DriverController",
-    "Method": "GetAllDesactived",
-    "RelativePath": "api/driver/getAllDesactivedVehicles",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PI_TMS.API.Controllers.DriverController",
-    "Method": "GetAllDrivers",
-    "RelativePath": "api/driver/getAllDrivers",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PI_TMS.API.Controllers.DriverController",
-    "Method": "GetDriverById",
-    "RelativePath": "api/driver/getDriverById",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PI_TMS.API.Controllers.DriverController",
-    "Method": "UpdateDriver",
-    "RelativePath": "api/driver/updateDriver",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "driver",
-        "Type": "TMS.Domain.Entites.Responses.Drivers.DriverResponse",
+        "Type": "TMS.Domain.Entites.Requests.User.LoginUserRequest",
         "IsRequired": true
       }
     ],
@@ -206,8 +107,8 @@
     "Parameters": [
       {
         "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
+        "Type": "TMS.Domain.ValueObjects.EmailVO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
