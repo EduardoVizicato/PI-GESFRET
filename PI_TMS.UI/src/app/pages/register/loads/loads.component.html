@@ -7,21 +7,21 @@
     
     <div class="table-controls">
         <input type="text" class="search-input" placeholder="Pesquisar">
-        <button class="add-button">Adicionar</button>
+        <button class="add-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Adicionar</button>
     </div>
 
     <table class="truck-table">
         <thead>
             <tr>
-                <th>Código</th>
                 <th>Nome</th>
+                <th>Tipo</th>
                 <th class="actions-header">Ações</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>1</td>
                 <td>Tomate</td>
+                <td>Granel</td>
                 <td class="actions">
                     <button class="edit-button">Editar</button>
                     <button class="delete-button">Excluir</button>
@@ -31,4 +31,31 @@
             </tbody>
     </table>
 
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Carga</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+            <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control">
+            </div>
+            <label for="tipo" class="form-label">Tipo</label>
+            <input type="text" class="form-control">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-dark">Salvar</button>
+      </div>
+    </div>
+  </div>
 </div>
