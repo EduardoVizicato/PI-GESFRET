@@ -20,10 +20,15 @@ export class TrucksComponent implements OnInit{
 
    }
 
+  ngOnInit(): void {
+    this.getAllTrucks();
+  }
+
    getAllTrucks() {
     this.truckService.getAllTrucks().subscribe(
       (response) => {
         console.log(response);
+        this.trucks = response;
       },
       (error) => {
         console.error('Error fetching trucks:', error);
@@ -31,7 +36,4 @@ export class TrucksComponent implements OnInit{
     );
   }
 
-     ngOnInit(){
-    this.getAllTrucks();
-   }
 }
