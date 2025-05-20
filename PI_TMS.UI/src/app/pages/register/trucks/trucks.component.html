@@ -21,8 +21,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let truck of trucks">
-                <td>{{ truck.licensePlate }}</td>
-                <td>{{ truck.type }}</td>
+                <td>{{ truck.vehicleRegistrationPlate.value }}</td>
+                <td>{{ truck.vehicleType }}</td>
                 <td>{{ truck.name }}</td>
                 <td class="actions">
                     <button class="edit-button">Editar</button>

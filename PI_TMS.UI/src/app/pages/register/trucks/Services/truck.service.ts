@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { Truck } from '../models/truck.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +10,11 @@ import { Truck } from '../models/truck.model';
 export class TruckService {
 
    
-    private apiUrl = `${environment.api}/api//`;
+  private apiUrl = `${environment.api}/api/vehicle/`;
 
-  constructor(private HttpClients: HttpClient) {}
+  constructor(private HttpClient: HttpClient) {}
 
-  getAllTrucks() {
-    return this.HttpClients.get<Truck[]>(`${this.apiUrl}trucks`);
+  getAllTrucks(): Observable<Truck[]> {
+    return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllVehicles`);
   }
 }

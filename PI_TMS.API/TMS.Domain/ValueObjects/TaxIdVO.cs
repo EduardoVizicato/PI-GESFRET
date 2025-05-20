@@ -20,9 +20,14 @@ public class TaxIdVO
     {
         if (string.IsNullOrEmpty(taxIdInput))
         {
+<<<<<<< HEAD
             return string.Empty;
         }
 
+=======
+            throw new Exception("The tax id is empty.");
+        }
+>>>>>>> main
         return new string(taxIdInput.Where(char.IsDigit).ToArray());
     }
 

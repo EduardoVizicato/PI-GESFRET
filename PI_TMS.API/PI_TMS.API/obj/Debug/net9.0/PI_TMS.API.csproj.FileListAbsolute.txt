@@ -1,4 +1,3 @@
-C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\appsettings.Development.json
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\appsettings.json
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\PI_TMS.API.staticwebassets.endpoints.json
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\PI_TMS.API.exe
@@ -941,6 +940,7 @@ C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\runtimes\win-arm64\native
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\FATEC\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+<<<<<<< HEAD
 C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Azure.Core.dll
 C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Azure.Identity.dll
 C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
@@ -958,3 +958,6 @@ C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\runtimes\win-arm64\nat
 C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+=======
+C:\Fatec\PI-TMS\PI_TMS.API\PI_TMS.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+>>>>>>> main

@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj": {}
   },
   "projects": {
@@ -12,12 +13,29 @@
         "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj",
         "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
         "outputPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\obj\\",
+=======
+    "C:\\Fatec\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj": {}
+  },
+  "projects": {
+    "C:\\Fatec\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj",
+        "projectName": "PI_TMS.DomainTests",
+        "projectPath": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj",
+        "packagesPath": "C:\\Users\\peido\\.nuget\\packages\\",
+        "outputPath": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\obj\\",
+>>>>>>> main
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\peido\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> main
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -54,6 +72,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[9.0.3, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.10.0, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",

@@ -17,13 +17,21 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PI_TMS.API
 build_property.RootNamespace = PI_TMS.API
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API\
+=======
+build_property.ProjectDir = C:\Fatec\PI-TMS\PI_TMS.API\PI_TMS.API\
+>>>>>>> main
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< HEAD
 build_property.MSBuildProjectDirectory = C:\Projects\PI-TMS\PI_TMS.API\PI_TMS.API
+=======
+build_property.MSBuildProjectDirectory = C:\Fatec\PI-TMS\PI_TMS.API\PI_TMS.API
+>>>>>>> main
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
