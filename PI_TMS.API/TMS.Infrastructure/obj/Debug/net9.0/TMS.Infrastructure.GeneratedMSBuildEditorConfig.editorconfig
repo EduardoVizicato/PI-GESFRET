@@ -16,11 +16,7 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TMS.Infrastructure
-<<<<<<< HEAD
 build_property.ProjectDir = C:\Projects\PI-TMS\PI_TMS.API\TMS.Infrastructure\
-=======
-build_property.ProjectDir = C:\Fatec\PI-TMS\PI_TMS.API\TMS.Infrastructure\
->>>>>>> main
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 9.0

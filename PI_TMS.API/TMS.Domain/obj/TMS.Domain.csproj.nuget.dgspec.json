@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {}
   },
   "projects": {
@@ -13,29 +12,12 @@
         "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
         "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
         "outputPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\TMS.Domain\\obj\\",
-=======
-    "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {}
-  },
-  "projects": {
-    "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
-        "projectName": "TMS.Domain",
-        "projectPath": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\TMS.Domain.csproj",
-        "packagesPath": "C:\\Users\\peido\\.nuget\\packages\\",
-        "outputPath": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\TMS.Domain\\obj\\",
->>>>>>> main
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-<<<<<<< HEAD
           "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "C:\\Users\\peido\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> main
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

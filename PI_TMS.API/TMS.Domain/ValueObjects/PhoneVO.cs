@@ -28,15 +28,9 @@ namespace TMS.Domain.ValueObjects
         {
             if (string.IsNullOrEmpty(phoneInput))
             {
-<<<<<<< HEAD
-
-                return string.Empty;
-            }
-
-=======
                 throw new Exception("The Phone number is empty.");
             }
->>>>>>> main
+
             return new string(phoneInput.Where(char.IsDigit).ToArray());
         }
 

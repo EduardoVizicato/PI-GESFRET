@@ -3681,39 +3681,23 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\Felipe\\.nuget\\packages\\": {},
-=======
-    "C:\\Users\\peido\\.nuget\\packages\\": {},
->>>>>>> main
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj",
       "projectName": "PI_TMS.DomainTests",
       "projectPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj",
       "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
       "outputPath": "C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\obj\\",
-=======
-      "projectUniqueName": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj",
-      "projectName": "PI_TMS.DomainTests",
-      "projectPath": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\PI_TMS.DomainTests.csproj",
-      "packagesPath": "C:\\Users\\peido\\.nuget\\packages\\",
-      "outputPath": "C:\\Fatec\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\obj\\",
->>>>>>> main
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\peido\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> main
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3795,5 +3779,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Projects\\PI-TMS\\PI_TMS.API\\PI_TMS.DomainTests\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
