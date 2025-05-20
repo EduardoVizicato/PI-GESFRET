@@ -8,6 +8,7 @@ import { LoadsComponent } from './pages/register/loads/loads.component';
 import { ClientsComponent } from './pages/register/clients/clients.component';
 
 export const routes: Routes = [
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'travels', component: TravelsComponent},
