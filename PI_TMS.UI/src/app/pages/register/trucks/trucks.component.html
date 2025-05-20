@@ -7,7 +7,7 @@
     
     <div class="table-controls">
         <input type="text" class="search-input" placeholder="Pesquisar">
-        <button class="add-button">Adicionar</button>
+        <button class="add-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Adicionar</button>
     </div>
 
     <table class="truck-table">
@@ -21,7 +21,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let truck of trucks">
-                <td>{{ truck.vehicleRegistrationPlate.value }}</td>
+                <td>{{ truck.vehicleRegistrationPlate.registrationPlate }}</td>
                 <td>{{ truck.vehicleType }}</td>
                 <td>{{ truck.name }}</td>
                 <td class="actions">
@@ -33,4 +33,39 @@
             </tbody>
     </table>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Carga</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="truckForm" (ngSubmit)="addTruck()">
+            <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="mb-3" formGroupName="vehicleRegistrationPlate">
+            <label for="nome" class="form-label">Placa</label>
+            <input type="text" class="form-control" formControlName="registrationPlate">
+            </div>
+            <label for="tipo" class="form-label">Tipo</label>
+              <select class="form-select" id="vehicleType" formControlName="vehicleType">
+                <option [ngValue]="null" disabled>Selecione um tipo de veículo</option>
+                <option *ngFor="let typeOption of availableVehicleTypes" [ngValue]="typeOption.id">
+                    {{ typeOption.name }}
+                </option>
+              </select>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-dark">Adicionar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

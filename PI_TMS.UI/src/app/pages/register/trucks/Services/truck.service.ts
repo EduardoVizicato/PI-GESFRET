@@ -16,5 +16,9 @@ export class TruckService {
 
   getAllTrucks(): Observable<Truck[]> {
     return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllVehicles`);
+  } 
+
+  addTruck(truck: Truck): Observable<Truck[]> {
+    return this.HttpClient.post<Truck[]>(`${this.apiUrl}addVehicle`,truck);
   }
 }
