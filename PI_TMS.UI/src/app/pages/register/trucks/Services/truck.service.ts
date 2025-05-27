@@ -15,10 +15,14 @@ export class TruckService {
   constructor(private HttpClient: HttpClient) {}
 
   getAllTrucks(): Observable<Truck[]> {
-    return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllVehicles`);
+    return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllActivedVehicles`);
   } 
 
   addTruck(truck: Truck): Observable<Truck[]> {
     return this.HttpClient.post<Truck[]>(`${this.apiUrl}addVehicle`,truck);
+  }
+
+  deleteTruck(id: string): Observable<void> {
+    return this.HttpClient.delete<void>(`${this.apiUrl}desactiveVehicle?id=${id}`);
   }
 }

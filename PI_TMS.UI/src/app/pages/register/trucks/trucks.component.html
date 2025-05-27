@@ -26,7 +26,7 @@
                 <td>{{ truck.name }}</td>
                 <td class="actions">
                     <button class="edit-button">Editar</button>
-                    <button class="delete-button">Excluir</button>
+                    <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
                 </td>
             </tr>
 
