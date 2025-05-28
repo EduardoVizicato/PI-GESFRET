@@ -82,6 +82,15 @@ export class TrucksComponent implements OnInit{
     })
   }
 
+  truckDelete(id: string): void {
+    this.truckService.deleteTruck(id).subscribe({
+      next: (response) => {
+        console.log('deletou');
+        this.trucks = this.trucks.filter(truck => truck.id !== id);
+      }
+    })
+  }
+
 }
 
 
