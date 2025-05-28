@@ -8,22 +8,12 @@ export class AuthGuardService {
 
   constructor(private loginService: LoginService) { }
 
-  allowAccess(){
-    (response) => {
-      localStorage.setItem('isLoggedIn', 'true');
-      console.log('Login successful');
-    },
-    (error) => {
-      console.error('Login failed', error);
-    }
-  );
-  }
   logOff(){
     localStorage.clear();
   }
 
   getLoginStatus(){
-
+    !!localStorage.getItem('loginStatus');
   }
 
 }

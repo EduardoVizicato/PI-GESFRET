@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LoginService } from './services/login.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { AuthGuardService } from '../../service/auth-guard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +17,22 @@ import { AuthGuardService } from '../../service/auth-guard.service';
 export class LoginComponent {
   email = '';
   password = '';
-  constructor(private loginService: LoginService, private authguardService : AuthGuardService) {}
+  constructor(
+    private loginService: LoginService,
+    private authguardService: AuthGuardService,
+    private routerService: Router
+  ) {}
+
  SendLogin() {
-  this.loginService.registerLogin(this.email, this.password).subscribe({
-    next: (response) => {
-      this.authguardService.allowAccess();
-      console.log('Login successful');
-    }
-  });
+  this.loginService.registerLogin(this.email, this.password).subscribe(
+      (response) => {
+        localStorage.setItem('loginStatus', 'true');
+        console.log('Login successful');
+        this.routerService.navigate(['/dashboard']); // Redirect to dashboard after successful login
+      },
+      (error) => {
+        window.alert('Login failed');
+      }
+    );
   }
 }

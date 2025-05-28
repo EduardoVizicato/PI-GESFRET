@@ -5,12 +5,12 @@ import { TravelsComponent } from './pages/travels/travels.component';
 import { TrucksComponent } from './pages/register/trucks/trucks.component';
 import { LoadsComponent } from './pages/register/loads/loads.component';
 import { ClientsComponent } from './pages/register/clients/clients.component';
-import { authGuardGuard } from './_guard/auth-guard.guard';
+
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
-    {path: 'dashboard', component: DashboardComponent, canActivate: [authGuardGuard]},
+    {path: 'dashboard', component: DashboardComponent, canActivate: []},
     {path: 'travels', component: TravelsComponent},
     {path: 'register/trucks', component: TrucksComponent},
     {path: 'register/loads', component: LoadsComponent},
