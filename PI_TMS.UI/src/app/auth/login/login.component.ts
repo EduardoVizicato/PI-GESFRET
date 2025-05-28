@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginService } from './services/login.service';
 import { CommonModule, NgIf } from '@angular/common';
+import { AuthGuardService } from '../../service/auth-guard.service';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +16,13 @@ import { CommonModule, NgIf } from '@angular/common';
 export class LoginComponent {
   email = '';
   password = '';
-  constructor(private loginService: LoginService) {}
-  SendLogin() {
-    this.loginService.registerLogin(this.email, this.password).subscribe(
-      (response) => {
-        console.log('Login successful');
-      },
-      (error) => {
-        console.error('Login failed', error);
-      }
-    );
+  constructor(private loginService: LoginService, private authguardService : AuthGuardService) {}
+ SendLogin() {
+  this.loginService.registerLogin(this.email, this.password).subscribe({
+    next: (response) => {
+      this.authguardService.allowAccess();
+      console.log('Login successful');
+    }
+  });
   }
 }
