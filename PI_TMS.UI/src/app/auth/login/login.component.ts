@@ -28,11 +28,11 @@ export class LoginComponent {
       (response) => {
         localStorage.setItem('loginStatus', 'true');
         console.log('Login successful');
-        this.routerService.navigate(['/dashboard']); // Redirect to dashboard after successful login
       },
       (error) => {
         window.alert('Login failed');
       }
     );
+    this.routerService.navigate(['/dashboard']); // mudar de lugar 
   }
 }
