@@ -1,5 +1,5 @@
 export interface load{
     Description: string;
-    Quantity: Float32Array;
+    Quantity: number;
     type: string;
 }
