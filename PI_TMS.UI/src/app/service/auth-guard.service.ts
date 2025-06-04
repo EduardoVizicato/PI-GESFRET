@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
-import { LoginService } from '../auth/login/services/login.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService {
 
-  constructor(private loginService: LoginService) { }
+  constructor() { }
 
-  logOff(){
-    localStorage.clear();
+  logOff() {
+    localStorage.removeItem('authStatus');
+    
   }
-
+  
   getLoginStatus(){
     !!localStorage.getItem('loginStatus');
   }
-
+  
 }
+
+

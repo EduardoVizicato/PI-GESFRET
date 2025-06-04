@@ -3,7 +3,11 @@ import { inject } from '@angular/core';
 import { sessionTest } from '../utils/sessionTest';
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  const router:Router = inject(Router);
-  const protectedRoutes: string[] = ['dashboard', 'travels', 'register/trucks', 'register/loads', 'register/clients'];
-  return protectedRoutes.includes(state.url) && !sessionTest ? router.navigate(['/login']) : false;
+  if(localStorage.getItem('authStatus') == 'true'){
+    return true ;
+  }
+  const router = inject(Router);
+  router.navigate(['/login']);
+  return false ;
 };
+
