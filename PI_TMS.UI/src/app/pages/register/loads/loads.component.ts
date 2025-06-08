@@ -5,11 +5,11 @@ import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder } from '@angul
 import { CommonModule } from '@angular/common';
 import { LoadService } from './Services/load.service';
 import { load } from './models/load.model';
+import { ActivatedRoute, Router, RouterModule,  } from '@angular/router';
 
 @Component({
   selector: 'app-loads',
-  
-  imports: [SidebarComponent],
+  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './loads.component.html',
   styleUrl: './loads.component.css'
 })
@@ -17,9 +17,10 @@ import { load } from './models/load.model';
 export class LoadsComponent implements OnInit {
 
   load: load[] = [];
+  //loadForm: FormGroup;
 
-  constructor(private loadServive: LoadService){
-
+  constructor(private loadServive: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute){
+    //this.loadForm = this.createForm();
   }
 
   ngOnInit(): void {
@@ -35,10 +36,43 @@ export class LoadsComponent implements OnInit {
       (error) => {
         console.error('Error fetching loads:', error)
       }
-      
-      
-
     );
   }
+
+  // createForm(): FormGroup{
+  //   return this.fb.group({
+  //    Description: [''],
+  //    Quantity: [null as number | null],
+  //    type: ['']
+  //   })
+  // }
+
+  // addLoad() {
+  //   const loadData: load = this.loadForm.value;
+  //   this.loadServive.addLoad(loadData).subscribe({
+  //     next: (response) => {
+  //       console.log('oi')
+  //       this.getAllLoad();
+
+  //       const modalElement = document.getElementById('staticBackdrop');
+  //       if(modalElement) {
+  //         const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
+  //         if(modalInstance) {
+  //           modalInstance.hide();
+  //         // }else {
+  //         //   se getInstance retornar null
+  //         //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
+  //         //   bsModal.hide();
+  //         // }
+
+  //       }
+
+  //     }
+  //   })
+  // }
+
+
+
+
 
 }
