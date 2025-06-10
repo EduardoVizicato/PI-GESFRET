@@ -7,7 +7,7 @@
     
     <div class="table-controls">
         <input type="text" class="search-input" placeholder="Pesquisar">
-        <button class="add-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Adicionar</button>
+        <button class="add-button" data-bs-toggle="modal" data-bs-target="#addTruckModal">Adicionar</button>
     </div>
 
     <table class="truck-table">
@@ -25,7 +25,7 @@
                 <td>{{ truck.vehicleType }}</td>
                 <td>{{ truck.name }}</td>
                 <td class="actions">
-                    <button class="edit-button">Editar</button>
+                    <button class="edit-button" (click)="openEditModal(truck)" data-bs-toggle="modal" data-bs-target="#editTruckModal">Editar</button>
                     <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
                 </td>
             </tr>
@@ -36,7 +36,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="addTruckModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -69,3 +69,36 @@
     </div>
   </div>
 </div>
+
+<!-- modal add -->
+ <div class="modal fade" id="editTruckModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editTruckModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editTruckModalLabel">Editar Caminhão</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="truckForm" (ngSubmit)="onUpdate()">
+              <div class="mb-3">
+                <label for="edit-name" class="form-label">Nome</label>
+                <input type="text" id="edit-name" class="form-control" formControlName="name">
+              </div>
+              <div class="mb-3" formGroupName="vehicleRegistrationPlate">
+                <label for="edit-registrationPlate" class="form-label">Placa</label>
+                <input type="text" id="edit-registrationPlate" class="form-control" formControlName="registrationPlate">
+              </div>
+              <label for="edit-vehicleType" class="form-label">Tipo</label>
+              <select class="form-select" id="edit-vehicleType" formControlName="vehicleType">
+                <option [ngValue]="null" disabled>Selecione um tipo de veículo</option>
+                <option *ngFor="let typeOption of availableVehicleTypes" [ngValue]="typeOption.id">{{ typeOption.name }}</option>
+              </select>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-dark">Salvar Alterações</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

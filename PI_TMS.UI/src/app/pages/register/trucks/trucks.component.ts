@@ -22,6 +22,7 @@ export class TrucksComponent implements OnInit{
 
   trucks: Truck[] = [];
   truckForm: FormGroup;
+  editingTruckId: string | null = null; 
 
   availableVehicleTypes: VehicleTypeOption[] = [
     { id: 0, name: 'Carro' },
@@ -63,10 +64,10 @@ export class TrucksComponent implements OnInit{
     const truckData: Truck = this.truckForm.value;
     this.truckService.addTruck(truckData).subscribe({
       next: (response) => {
-        console.log('oi')
+        console.log(response)
         this.getAllTrucks();
 
-        const modalElement = document.getElementById('staticBackdrop');
+      const modalElement = document.getElementById('addTruckModal');
       if (modalElement) {
         const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
         if (modalInstance) {
@@ -77,9 +78,40 @@ export class TrucksComponent implements OnInit{
         //   bsModal.hide();
         // }
       }
-    
+      this.truckForm.reset();
+
       }
     })
+  }
+
+   openEditModal(truck: Truck): void {
+    this.editingTruckId = truck.id; 
+    this.truckForm.patchValue(truck);
+  }
+
+  onUpdate(): void {
+    if (this.truckForm.invalid || !this.editingTruckId) return;
+
+    const updatedTruckData = this.truckForm.value;
+    this.truckService.updateTruck(this.editingTruckId, updatedTruckData).subscribe({
+      next: () => {
+        this.getAllTrucks();
+        const modalElement = document.getElementById('editTruckModal');
+        if (modalElement) {
+        const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
+        if (modalInstance) {
+          modalInstance.hide();
+        } //else {
+        //   se getInstance retornar null
+        //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
+        //   bsModal.hide();
+        // }
+      }
+        this.truckForm.reset();
+        this.editingTruckId = null; 
+      },
+      error: (err) => console.error('Erro ao atualizar caminhão:', err)
+    });
   }
 
   truckDelete(id: string): void {

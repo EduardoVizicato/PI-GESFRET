@@ -22,7 +22,13 @@ export class TruckService {
     return this.HttpClient.post<Truck[]>(`${this.apiUrl}addVehicle`,truck);
   }
 
+  updateTruck(id: string, truck: Truck): Observable<Truck>{
+    return this.HttpClient.put<Truck>(`${this.apiUrl}updateVehicle?ID=${id}`, truck);
+  }
+
   deleteTruck(id: string): Observable<void> {
     return this.HttpClient.delete<void>(`${this.apiUrl}desactiveVehicle?id=${id}`);
   }
+
+  
 }
