@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { LoadService } from './Services/load.service';
 import { load } from './models/load.model';
 import { ActivatedRoute, Router, RouterModule,  } from '@angular/router';
+import { errorContext } from 'rxjs/internal/util/errorContext';
 
 @Component({
   selector: 'app-loads',
@@ -17,10 +18,11 @@ import { ActivatedRoute, Router, RouterModule,  } from '@angular/router';
 export class LoadsComponent implements OnInit {
 
   load: load[] = [];
-  //loadForm: FormGroup;
+  loadForm: FormGroup;
+  editingLoadId: string | null = null;
 
   constructor(private loadServive: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute){
-    //this.loadForm = this.createForm();
+    this.loadForm = this.createForm();
   }
 
   ngOnInit(): void {
@@ -39,40 +41,78 @@ export class LoadsComponent implements OnInit {
     );
   }
 
-  // createForm(): FormGroup{
-  //   return this.fb.group({
-  //    Description: [''],
-  //    Quantity: [null as number | null],
-  //    type: ['']
-  //   })
-  // }
+  createForm(): FormGroup{
+    return this.fb.group({
+     Description: [''],
+     Quantity: [null as number | null],
+     type: ['']
+    })
+  }
 
-  // addLoad() {
-  //   const loadData: load = this.loadForm.value;
-  //   this.loadServive.addLoad(loadData).subscribe({
-  //     next: (response) => {
-  //       console.log('oi')
-  //       this.getAllLoad();
+  addLoad() {
+    const loadData: load = this.loadForm.value;
+    this.loadServive.addLoad(loadData).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.getAllLoad();
 
-  //       const modalElement = document.getElementById('staticBackdrop');
-  //       if(modalElement) {
-  //         const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
-  //         if(modalInstance) {
-  //           modalInstance.hide();
-  //         // }else {
-  //         //   se getInstance retornar null
-  //         //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
-  //         //   bsModal.hide();
-  //         // }
+        const modalElement = document.getElementById('addLoadModal');
+        if(modalElement) {
+          const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
+          if(modalInstance) {
+            modalInstance.hide();
+          // }else {
+          //   se getInstance retornar null
+          //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
+          //   bsModal.hide();
+          // }
+        }
+      }
+      this.loadForm.reset();
+    }
+   })
+  }
+    
+  openEditModal(load: load): void {
+    this.editingLoadId = load.id;
+    this.loadForm.patchValue(load);
+  }
 
-  //       }
+  onUpdate(): void {
+    if (this.loadForm.invalid || !this.editingLoadId) return
+    
+    const updateLoadData = this.loadForm.value
+    this.loadServive.updateLoad(this.editingLoadId, updateLoadData).subscribe({
+      next: () => {
+        this.getAllLoad();
+        const modalElement = document.getElementById('editLoadModal');
+        if (modalElement) {
+          const modalInstance = (window as any).bootstrap.Modal(modalElement);
+          if (modalInstance) {
+            modalInstance.hide();
+          // } else{
+          //   // se getInstance retornar null
+          //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
+          //   bsModal.hide();
+          // }
+          }
+        }
+        this.loadForm.reset();
+        this.editingLoadId = null;
+      },
+      error: (err) => console.error('Erro ao autualizar carga:', err)
+    });
 
-  //     }
-  //   })
-  // }
+  }
 
-
-
+  loadDelete(id: string): void {
+    this.loadServive.deleteLoad(id).subscribe({
+      next: (response) => {
+        console.log('deletou');
+        this.load = this.load.filter(load => load.id !== id);
+      }
+    })
+  }
 
 
 }
