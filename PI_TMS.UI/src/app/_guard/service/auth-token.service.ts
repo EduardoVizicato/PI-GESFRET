@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment.development';
 })
 export class AuthTokenService {
   public getToken(): string | null {
+    localStorage.setItem('token', environment.token);
     return localStorage.getItem('token');
   }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { AuthGuardService } from '../../service/auth-guard.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,7 +18,7 @@ export class SidebarComponent implements OnInit {
   isRegisterParentActive: boolean = false;
 
 
-  constructor(private router: Router, private authService: AuthGuardService) {}
+  constructor(private router: Router) {}
   
   ngOnInit(): void {
     // Atualiza o estado ativo sempre que a navegação termina
@@ -98,7 +97,7 @@ export class SidebarComponent implements OnInit {
 
   // gambiarra pra fingir deslogar, tem q fazer certo depois
   goToLogin(): void {
-    this.authService.logOff();
+    // this.authService.logOff();
     this.router.navigate(['/login']);
   }
 }
