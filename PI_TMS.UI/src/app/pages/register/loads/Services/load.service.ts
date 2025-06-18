@@ -14,7 +14,7 @@ export class LoadService {
   constructor(private HttpClient: HttpClient) {}
 
   getAllLoad(): Observable<load[]> {
-    return this.HttpClient.get<load[]>(`${this.apiUrl}`)
+    return this.HttpClient.get<load[]>(`${this.apiUrl}getAllLoads`)
   }
 
   addLoad(load: load): Observable<load[]> {

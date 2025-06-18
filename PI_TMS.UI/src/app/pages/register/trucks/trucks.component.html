@@ -14,7 +14,7 @@
         <thead>
             <tr>
                 <th>Placa</th>
-                <th>Tipo</th>
+                <!-- <th>Tipo</th> -->
                 <th>Nome</th>
                 <th class="actions-header">Ações</th>
             </tr>
@@ -22,7 +22,7 @@
         <tbody>
             <tr *ngFor="let truck of trucks">
                 <td>{{ truck.vehicleRegistrationPlate.registrationPlate }}</td>
-                <td>{{ truck.vehicleType }}</td>
+                <!-- <td>{{ truck.vehicleType }}</td> -->
                 <td>{{ truck.name }}</td>
                 <td class="actions">
                     <button class="edit-button" (click)="openEditModal(truck)" data-bs-toggle="modal" data-bs-target="#editTruckModal">Editar</button>

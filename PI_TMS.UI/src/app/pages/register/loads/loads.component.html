@@ -14,14 +14,18 @@
         <thead>
             <tr>
                 <th>Nome</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
                 <th>Tipo</th>
                 <th class="actions-header">Ações</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Tomate</td>
-                <td>Granel</td>
+            <tr *ngFor="let Load of load">
+                <td>{{ Load.id }}</td>
+                <td>{{ Load.Description }}</td>
+                <td>{{ Load.Quantity }}</td>
+                <td>{{ Load.type }}</td>
                 <td class="actions">
                     <button class="edit-button">Editar</button>
                     <button class="delete-button">Excluir</button>

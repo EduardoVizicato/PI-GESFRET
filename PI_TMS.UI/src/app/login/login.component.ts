@@ -22,21 +22,21 @@ export class LoginComponent {
   ) { }
 
   SendLogin() {
-    localStorage.setItem('authStatus', 'true');
-    console.log('Login successful');
-    this.routerService.navigate(['/dashboard']); // mudar de lugar 
+    // localStorage.setItem('authStatus', 'true');
+    // console.log('Login successful');
+    // this.routerService.navigate(['/dashboard']); // mudar de lugar 
 
 
-    // this.loginService.registerLogin(this.email, this.password).subscribe(
-    //     (response) => {
-    //       localStorage.setItem('authStatus', 'true');
-    //       console.log('Login successful');
-    //       this.routerService.navigate(['/dashboard']); // mudar de lugar 
-    //     },
-    //     (error) => {
-    //       window.alert('Login failed');
-    //     }
-    //   );
+    this.loginService.registerLogin(this.email, this.password).subscribe(
+        (response) => {
+          localStorage.setItem('authStatus', 'true');
+          console.log('Login successful');
+          this.routerService.navigate(['/dashboard']); // mudar de lugar 
+        },
+        (error) => {
+          window.alert('Login failed');
+        }
+      );
     
   }
 }

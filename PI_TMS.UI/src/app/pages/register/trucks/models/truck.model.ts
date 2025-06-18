@@ -1,7 +1,7 @@
 export interface Truck {
     id: string;
     name: string;
-    vehicleType: number;
+    // vehicleType: number;
     vehicleRegistrationPlate: {
         registrationPlate: string;
     };
