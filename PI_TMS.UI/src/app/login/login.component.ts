@@ -28,15 +28,22 @@ export class LoginComponent {
 
 
     this.loginService.registerLogin(this.email, this.password).subscribe(
-        (response) => {
-          localStorage.setItem('authStatus', 'true');
+      (response: any) => {
+        const token = response.token;
+
+        if (token) {
+          localStorage.setItem('token', token);
           console.log('Login successful');
-          this.routerService.navigate(['/dashboard']); // mudar de lugar 
-        },
-        (error) => {
-          window.alert('Login failed');
+          console.log(response);
+          this.routerService.navigate(['/dashboard']); 
+        } else {
+          console.error('Token failed.');
         }
-      );
-    
+      },
+      (error) => {
+        window.alert('Login failed');
+      }
+    );
+
   }
 }

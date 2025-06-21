@@ -8,7 +8,6 @@ import { environment } from '../../../environments/environment.development';
 })
 export class AuthTokenService {
   public getToken(): string | null {
-    localStorage.setItem('token', environment.token);
     return localStorage.getItem('token');
   }
 
@@ -23,6 +22,10 @@ export class AuthTokenService {
       return null;
     }
   }
+  public LogOff(): void {
+    localStorage.removeItem('token');
+  }
+  
 }
 
 // https://medium.com/xp-inc/angular-decode-payload-jwt-6d2618ec444d
