@@ -21,7 +21,7 @@ export class LoadsComponent implements OnInit {
   loadForm: FormGroup;
   editingLoadId: string | null = null;
 
-  constructor(private loadServive: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute){
+  constructor(private loadService: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute){
     this.loadForm = this.createForm();
   }
 
@@ -30,7 +30,7 @@ export class LoadsComponent implements OnInit {
   }
 
   getAllLoad(){
-    this.loadServive.getAllLoad().subscribe(
+    this.loadService.getAllLoad().subscribe(
       (response) => {
         console.log(response);
         this.load = response;
@@ -51,7 +51,7 @@ export class LoadsComponent implements OnInit {
 
   addLoad() {
     const loadData: load = this.loadForm.value;
-    this.loadServive.addLoad(loadData).subscribe({
+    this.loadService.addLoad(loadData).subscribe({
       next: (response) => {
         console.log(response)
         this.getAllLoad();
@@ -82,7 +82,7 @@ export class LoadsComponent implements OnInit {
     if (this.loadForm.invalid || !this.editingLoadId) return
     
     const updateLoadData = this.loadForm.value
-    this.loadServive.updateLoad(this.editingLoadId, updateLoadData).subscribe({
+    this.loadService.updateLoad(this.editingLoadId, updateLoadData).subscribe({
       next: () => {
         this.getAllLoad();
         const modalElement = document.getElementById('editLoadModal');
@@ -106,7 +106,7 @@ export class LoadsComponent implements OnInit {
   }
 
   loadDelete(id: string): void {
-    this.loadServive.deleteLoad(id).subscribe({
+    this.loadService.deleteLoad(id).subscribe({
       next: (response) => {
         console.log('deletou');
         this.load = this.load.filter(load => load.id !== id);
