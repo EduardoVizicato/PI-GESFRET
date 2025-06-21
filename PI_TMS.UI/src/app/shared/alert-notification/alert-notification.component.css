@@ -1,0 +1,13 @@
+.alert-container {
+  position: fixed;
+  top: 20px;
+  right: 35%;
+  left: 35%;
+  z-index: 9999;
+  /* background-color: #ffdddd;
+  border: 1px solid #f44336; */
+  /* color: #a94442; */
+  /* padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
+}

@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LoginService } from './services/login.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import { EventService } from '../shared/service/event.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent {
   email = '';
   password = '';
   constructor(
+    private eventService: EventService,
     private loginService: LoginService,
     private routerService: Router
   ) { }
@@ -35,13 +37,17 @@ export class LoginComponent {
           localStorage.setItem('token', token);
           console.log('Login successful');
           console.log(response);
-          this.routerService.navigate(['/dashboard']); 
+          this.routerService.navigate(['/dashboard']);
         } else {
           console.error('Token failed.');
         }
       },
       (error) => {
-        window.alert('Login failed');
+        if (error.status === 401) {
+          this.eventService.showError('Email ou senha inválidos!');
+        } else {
+          this.eventService.showError('Erro inesperado.');
+        }
       }
     );
 
