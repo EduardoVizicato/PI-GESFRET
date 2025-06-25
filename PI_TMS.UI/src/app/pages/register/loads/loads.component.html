@@ -1,45 +1,45 @@
 <app-sidebar></app-sidebar>
 
 <div class="main-content">
-    <h1>Cargas</h1>
+  <h1>Cargas</h1>
 
-    <div class="spacer"></div>
-    
-    <div class="table-controls">
-        <input type="text" class="search-input" placeholder="Pesquisar">
-        <button class="add-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Adicionar</button>
-    </div>
+  <div class="spacer"></div>
 
-    <table class="truck-table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Descrição</th>
-                <th>Quantidade</th>
-                <th>Tipo</th>
-                <th class="actions-header">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let Load of load">
-                <td>{{ Load.id }}</td>
-                <td>{{ Load.Description }}</td>
-                <td>{{ Load.Quantity }}</td>
-                <td>{{ Load.type }}</td>
-                <td class="actions">
-                    <button class="edit-button">Editar</button>
-                    <button class="delete-button">Excluir</button>
-                </td>
-            </tr>
+  <div class="table-controls">
+    <input type="text" class="search-input" placeholder="Pesquisar">
+    <button class="add-button" data-bs-toggle="modal" data-bs-target="#addLoadModal">Adicionar</button>
+  </div>
 
-            </tbody>
-    </table>
+  <table class="Load-table">
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Quantidade</th>
+        <th>Tipo</th>
+        <th class="actions-header">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let load of load">
+        <td>{{ load.description.description }}</td>
+        <td>{{ load.quantity }}</td>
+        <td>{{ load.type.type }}</td>
+        <td class="actions">
+          <button class="edit-button" (click)="openEditModal(load)" data-bs-toggle="modal"
+            data-bs-target="#editLoadModal">Editar</button>
+          <button class="delete-button" (click)="loadDelete(load.id)">Excluir</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
 
 </div>
 
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="addLoadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -47,18 +47,54 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="">
-            <div class="mb-3">
-            <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control">
-            </div>
+        <form [formGroup]="loadForm" (ngSubmit)="addLoad()">
+          <div class="mb-3" formGroupName="description">
+            <label for="nome" class="form-label">Descrição</label>
+            <input type="text" class="form-control" formControlName="description" required>
+          </div>
+          <div class="mb-3">
+            <label for="nome" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" formControlName="quantity" required>
+          </div>
+          <div class="mb-3" formGroupName="type">
             <label for="tipo" class="form-label">Tipo</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="type" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-dark">Adicionar</button>
+          </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-dark">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editLoadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="editLoadModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editLoadModalLabel">Editar Carga</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="loadForm" (ngSubmit)="onUpdate()">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="edit-name" formControlName="description" required>
+          </div>
+          <div class="mb-3">
+            <label for="nome" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" formControlName="quantity" required>
+          </div>
+          <label for="tipo" class="form-label">Tipo</label>
+          <input type="text" class="form-control" id="edit-type" formControlName="type" required>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-dark">Salvar Alterações</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -5,9 +5,11 @@ import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder } from '@angul
 import { CommonModule } from '@angular/common';
 import { LoadService } from './Services/load.service';
 import { load } from './models/load.model';
-import { ActivatedRoute, Router, RouterModule,  } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, } from '@angular/router';
 import { errorContext } from 'rxjs/internal/util/errorContext';
 
+//  const userId = this.authService.getUserId();
+const userId = '5597035b-4a33-4921-8bce-08ddb05faf23';
 @Component({
   selector: 'app-loads',
   imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule],
@@ -21,7 +23,7 @@ export class LoadsComponent implements OnInit {
   loadForm: FormGroup;
   editingLoadId: string | null = null;
 
-  constructor(private loadService: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute){
+  constructor(private loadService: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
     this.loadForm = this.createForm();
   }
 
@@ -29,7 +31,7 @@ export class LoadsComponent implements OnInit {
     this.getAllLoad()
   }
 
-  getAllLoad(){
+  getAllLoad() {
     this.loadService.getAllLoad().subscribe(
       (response) => {
         console.log(response);
@@ -41,11 +43,17 @@ export class LoadsComponent implements OnInit {
     );
   }
 
-  createForm(): FormGroup{
+
+  createForm(): FormGroup {
     return this.fb.group({
-     Description: [''],
-     Quantity: [null as number | null],
-     type: ['']
+      description: this.fb.group({
+        description: [''],
+      }),
+      quantity: [''],
+      type: this.fb.group({
+        type: [''],
+      }),
+      userId: [userId],
     })
   }
 
@@ -57,22 +65,23 @@ export class LoadsComponent implements OnInit {
         this.getAllLoad();
 
         const modalElement = document.getElementById('addLoadModal');
-        if(modalElement) {
+        if (modalElement) {
           const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
-          if(modalInstance) {
+          if (modalInstance) {
             modalInstance.hide();
-          // }else {
-          //   se getInstance retornar null
-          //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
-          //   bsModal.hide();
-          // }
+            // }else {
+            //   se getInstance retornar null
+            //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
+            //   bsModal.hide();
+            // }
+          }
         }
-      }
-      this.loadForm.reset();
-    }
-   })
+        this.loadForm.reset();
+      },
+      error: (err) => console.error('Erro:', err)
+    })
   }
-    
+
   openEditModal(load: load): void {
     this.editingLoadId = load.id;
     this.loadForm.patchValue(load);
@@ -80,9 +89,9 @@ export class LoadsComponent implements OnInit {
 
   onUpdate(): void {
     if (this.loadForm.invalid || !this.editingLoadId) return
-    
-    const updateLoadData = this.loadForm.value
-    this.loadService.updateLoad(this.editingLoadId, updateLoadData).subscribe({
+
+    const updatedLoadData = this.loadForm.value;
+    this.loadService.updateLoad(this.editingLoadId, updatedLoadData).subscribe({
       next: () => {
         this.getAllLoad();
         const modalElement = document.getElementById('editLoadModal');
@@ -90,11 +99,11 @@ export class LoadsComponent implements OnInit {
           const modalInstance = (window as any).bootstrap.Modal(modalElement);
           if (modalInstance) {
             modalInstance.hide();
-          // } else{
-          //   // se getInstance retornar null
-          //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
-          //   bsModal.hide();
-          // }
+            // } else{
+            //   // se getInstance retornar null
+            //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
+            //   bsModal.hide();
+            // }
           }
         }
         this.loadForm.reset();
