@@ -8,6 +8,7 @@ import { load } from './models/load.model';
 import { ActivatedRoute, Router, RouterModule, } from '@angular/router';
 import { errorContext } from 'rxjs/internal/util/errorContext';
 import { AuthTokenService } from '../../../_guard/service/auth-token.service';
+import { EventService } from '../../../shared/service/event.service';
 
 //  const userId = this.authService.getUserId();
 @Component({
@@ -23,7 +24,7 @@ export class LoadsComponent implements OnInit {
   loadForm: FormGroup;
   editingLoadId: string | null = null;
 
-  constructor(private loadService: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authTokenService: AuthTokenService) {
+  constructor(private loadService: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authTokenService: AuthTokenService, private eventService: EventService,) {
     this.loadForm = this.createForm();
   }
 
@@ -38,7 +39,7 @@ export class LoadsComponent implements OnInit {
         this.load = response;
       },
       (error) => {
-        console.error('Error fetching loads:', error)
+        this.eventService.showError('Erro inesperado.')
       }
     );
   }
@@ -70,16 +71,11 @@ export class LoadsComponent implements OnInit {
           const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
           if (modalInstance) {
             modalInstance.hide();
-            // }else {
-            //   se getInstance retornar null
-            //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
-            //   bsModal.hide();
-            // }
           }
         }
         this.loadForm.reset();
       },
-      error: (err) => console.error('Erro:', err)
+      error: (err) => this.eventService.showError('Erro inesperado.')
     })
   }
 
@@ -105,7 +101,7 @@ export class LoadsComponent implements OnInit {
         this.loadForm.reset();
         this.editingLoadId = null;
       },
-      error: (err) => console.error('Erro ao autualizar carga:', err)
+      error: (err) => this.eventService.showError('Erro inesperado.')
     });
 
   }
@@ -115,7 +111,8 @@ export class LoadsComponent implements OnInit {
       next: (response) => {
         console.log('deletou');
         this.load = this.load.filter(load => load.id !== id);
-      }
+      },
+      error: (err) => this.eventService.showError('Erro inesperado.')
     })
   }
 

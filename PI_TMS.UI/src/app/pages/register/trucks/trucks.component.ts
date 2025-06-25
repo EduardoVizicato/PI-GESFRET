@@ -8,6 +8,7 @@ import { Truck } from './models/truck.model';
 import { ActivatedRoute, Router, RouterModule,  } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { PlateFormatPipe } from "./utils/plate-format.pipe";
+import { EventService } from '../../../shared/service/event.service';
 
 interface VehicleTypeOption {
   id: number;
@@ -36,7 +37,7 @@ export class TrucksComponent implements OnInit{
     { id: 2, name: 'Carreta' },
   ];
 
-  constructor(private truckService: TruckService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
+  constructor(private truckService: TruckService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute,private eventService: EventService,) {
     this.truckForm = this.createForm();
    }
 
@@ -51,7 +52,7 @@ export class TrucksComponent implements OnInit{
         this.trucks = response;
       },
       (error) => {
-        console.error('Error fetching trucks:', error);
+        this.eventService.showError('Erro inesperado.')
       }
     );
   }
@@ -87,7 +88,7 @@ export class TrucksComponent implements OnInit{
       this.truckForm.reset();
 
       },
-      error: (err) => console.error('Erro:', err)
+      error: (err) => this.eventService.showError('Erro inesperado.')
     })
   }
 
@@ -117,7 +118,7 @@ export class TrucksComponent implements OnInit{
         this.truckForm.reset();
         this.editingTruckId = null; 
       },
-      error: (err) => console.error('Erro ao atualizar caminhão:', err)
+      error: (err) => this.eventService.showError('Erro inesperado.')
     });
   }
 
@@ -126,7 +127,8 @@ export class TrucksComponent implements OnInit{
       next: (response) => {
         console.log('deletou');
         this.trucks = this.trucks.filter(truck => truck.id !== id);
-      }
+      },
+      error: (err) => this.eventService.showError('Erro inesperado.')
     })
   }
 
