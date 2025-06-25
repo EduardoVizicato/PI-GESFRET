@@ -36,8 +36,7 @@
 
 </div>
 
-
-<!-- Modal -->
+<!-- Modal de Adicionar Carga -->
 <div class="modal fade" id="addLoadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -48,18 +47,25 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="loadForm" (ngSubmit)="addLoad()">
+          <!-- Grupo: description -->
           <div class="mb-3" formGroupName="description">
-            <label for="nome" class="form-label">Descrição</label>
-            <input type="text" class="form-control" formControlName="description" required>
+            <label for="add-description" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="add-description" formControlName="description" required>
           </div>
+
+          <!-- Campo: quantity -->
           <div class="mb-3">
-            <label for="nome" class="form-label">Quantidade</label>
-            <input type="number" class="form-control" formControlName="quantity" required>
+            <label for="add-quantity" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" id="add-quantity" formControlName="quantity" required>
           </div>
+
+          <!-- Grupo: type -->
           <div class="mb-3" formGroupName="type">
-            <label for="tipo" class="form-label">Tipo</label>
-            <input type="text" class="form-control" formControlName="type" required>
+            <label for="add-type" class="form-label">Tipo</label>
+            <input type="text" class="form-control" id="add-type" formControlName="type" required>
           </div>
+
+          <!-- Botões -->
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-dark">Adicionar</button>
@@ -70,6 +76,7 @@
   </div>
 </div>
 
+<!-- Modal de Editar Carga -->
 <div class="modal fade" id="editLoadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="editLoadModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -80,16 +87,25 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="loadForm" (ngSubmit)="onUpdate()">
-          <div class="mb-3">
-            <label for="nome" class="form-label">Descrição</label>
-            <input type="text" class="form-control" id="edit-name" formControlName="description" required>
+          <!-- Grupo: description -->
+          <div class="mb-3" formGroupName="description">
+            <label for="edit-description" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="edit-description" formControlName="description" required>
           </div>
+
+          <!-- Campo: quantity -->
           <div class="mb-3">
-            <label for="nome" class="form-label">Quantidade</label>
-            <input type="number" class="form-control" formControlName="quantity" required>
+            <label for="edit-quantity" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" id="edit-quantity" formControlName="quantity" required>
           </div>
-          <label for="tipo" class="form-label">Tipo</label>
-          <input type="text" class="form-control" id="edit-type" formControlName="type" required>
+
+          <!-- Grupo: type -->
+          <div class="mb-3" formGroupName="type">
+            <label for="edit-type" class="form-label">Tipo</label>
+            <input type="text" class="form-control" id="edit-type" formControlName="type" required>
+          </div>
+
+          <!-- Botões -->
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-dark">Salvar Alterações</button>

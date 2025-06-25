@@ -7,9 +7,9 @@ import { LoadService } from './Services/load.service';
 import { load } from './models/load.model';
 import { ActivatedRoute, Router, RouterModule, } from '@angular/router';
 import { errorContext } from 'rxjs/internal/util/errorContext';
+import { AuthTokenService } from '../../../_guard/service/auth-token.service';
 
 //  const userId = this.authService.getUserId();
-const userId = '5597035b-4a33-4921-8bce-08ddb05faf23';
 @Component({
   selector: 'app-loads',
   imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule],
@@ -23,7 +23,7 @@ export class LoadsComponent implements OnInit {
   loadForm: FormGroup;
   editingLoadId: string | null = null;
 
-  constructor(private loadService: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
+  constructor(private loadService: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authTokenService: AuthTokenService) {
     this.loadForm = this.createForm();
   }
 
@@ -45,6 +45,7 @@ export class LoadsComponent implements OnInit {
 
 
   createForm(): FormGroup {
+    const userId = this.authTokenService.getUserId();
     return this.fb.group({
       description: this.fb.group({
         description: [''],
@@ -96,14 +97,9 @@ export class LoadsComponent implements OnInit {
         this.getAllLoad();
         const modalElement = document.getElementById('editLoadModal');
         if (modalElement) {
-          const modalInstance = (window as any).bootstrap.Modal(modalElement);
+          const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
           if (modalInstance) {
             modalInstance.hide();
-            // } else{
-            //   // se getInstance retornar null
-            //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
-            //   bsModal.hide();
-            // }
           }
         }
         this.loadForm.reset();
