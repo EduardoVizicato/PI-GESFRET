@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { TruckService } from './Services/truck.service';
 import { Truck } from './models/truck.model';
 import { ActivatedRoute, Router, RouterModule,  } from '@angular/router';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { PlateFormatPipe } from "./utils/plate-format.pipe";
 
 interface VehicleTypeOption {
   id: number;
@@ -14,13 +16,17 @@ interface VehicleTypeOption {
 
 @Component({
   selector: 'app-trucks',
-  imports: [SidebarComponent,HttpClientModule,FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe],
+  providers: [provideNgxMask()],
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
 })
 export class TrucksComponent implements OnInit{
 
   trucks: Truck[] = [];
+  /* `this.truckForm.patchValue(truck);` is a method call in the `TrucksComponent` class of an
+  Angular application. This method is used to update the form controls in the `truckForm`
+  FormGroup with the values from the `truck` object passed as an argument. */
   truckForm: FormGroup;
   editingTruckId: string | null = null; 
 
@@ -80,7 +86,8 @@ export class TrucksComponent implements OnInit{
       }
       this.truckForm.reset();
 
-      }
+      },
+      error: (err) => console.error('Erro:', err)
     })
   }
 

@@ -1,7 +1,11 @@
-export interface load{
-    id: string; 
+export interface load {
+    id: string;
     name: string;
-    Description: string;
-    Quantity: number;
-    type: string;
+    description: {
+        description: string;
+    };
+    quantity: number;
+    type: {
+        type: string;
+    };
 }
