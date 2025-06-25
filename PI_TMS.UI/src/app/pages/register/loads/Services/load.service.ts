@@ -14,19 +14,19 @@ export class LoadService {
   constructor(private HttpClient: HttpClient) {}
 
   getAllLoad(): Observable<load[]> {
-    return this.HttpClient.get<load[]>(`${this.apiUrl}getAllLoads`)
+    return this.HttpClient.get<load[]>(`${this.apiUrl}getAllActivedLoads`)
   }
 
   addLoad(load: load): Observable<load[]> {
-    return this.HttpClient.post<load[]>(`${this.apiUrl}`, load)
+    return this.HttpClient.post<load[]>(`${this.apiUrl}addLoad`, load)
   }
 
   updateLoad(id: string, Load: load): Observable<load> {
-    return this.HttpClient.put<load>(`${this.apiUrl}updateLoad?ID=${id}`, Load);
+    return this.HttpClient.put<load>(`${this.apiUrl}?id=${id}`, Load);
   }
 
   deleteLoad(id: string): Observable<void> {
-    return this.HttpClient.delete<void>(`${this.apiUrl}deleteLoad?id=${id}`);
+    return this.HttpClient.delete<void>(`${this.apiUrl}desactiveLoad?id=${id}`);
   }
   
 
