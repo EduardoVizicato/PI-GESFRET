@@ -1,0 +1,163 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  align-items: center;
+}
+
+.form-container {
+  background-color: #FFFFFF;
+  width: 40%;
+  height: 100vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #262626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.login-form {
+    margin-top: auto;
+    margin-bottom: auto;
+    max-width: 75%;
+    width: 100%;
+}
+
+.icon{
+    margin-right: 0.2rem;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+}
+
+.teste{
+    color: #8ACE00;
+}
+
+
+.inputs {
+  display: flex;
+  align-items: stretch;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.input-icon {
+  background: #FFFFFF;
+  color: #6B7280;
+  min-width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px 0px 0px 8px;
+  border: 1px solid #D1D5DB;
+  border-right: none;
+  font-size: 1.2rem; 
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border-radius: 0px 8px 8px 0px;
+    background-color: #E5E7EB; 
+    border: 1px solid #D1D5DB;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.input-field:focus {
+    border-color: #8ACE00;
+    background-color: white;
+    outline: none;
+}
+
+.submit-button {
+    width: 100%;
+    background-color: #1c1c1c;
+    color: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 24px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #353535;
+}
+
+.art-side {
+    background-color: #262626;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+    
+}
+
+.art-title{
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  color: #FFFFFF;
+  word-break: normal;
+  margin-left: 50px;
+  text-align: left;
+  align-self: flex-start;
+  z-index: 2;
+  
+}
+
+.art-title-green{
+  color: #8ACE00;
+}
+
+.truck{
+  z-index: 2; 
+  margin-bottom: 20%;
+}
+
+.truck img {
+  max-width: 90%;
+  height: auto;
+  display: block;
+}
+
+.blobs{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+.blob-left{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.blob-right{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

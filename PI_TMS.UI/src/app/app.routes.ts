@@ -6,11 +6,13 @@ import { TrucksComponent } from './pages/register/trucks/trucks.component';
 import { LoadsComponent } from './pages/register/loads/loads.component';
 import { ClientsComponent } from './pages/register/clients/clients.component';
 import { authGuard } from './_guard/auth.guard';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
+    {path: 'signUp', component: SignUpComponent},
     {path: 'dashboard', component: DashboardComponent, canActivate:[authGuard]},
     {path: 'travels', component: TravelsComponent,canActivate:[authGuard]},
     {path: 'register/trucks', component: TrucksComponent,canActivate:[authGuard]},
