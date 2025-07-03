@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginService } from './services/login.service';
 import { CommonModule, NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { EventService } from '../shared/service/event.service';
 
 @Component({
   selector: 'app-login',
-  imports: [HttpClientModule, FormsModule, CommonModule,],
+  imports: [HttpClientModule, FormsModule, CommonModule, RouterModule],
   providers: [LoginService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
