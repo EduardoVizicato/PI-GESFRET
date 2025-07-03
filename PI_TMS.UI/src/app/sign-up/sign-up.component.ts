@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
+ import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,4 +11,12 @@ import { NgxMaskDirective } from 'ngx-mask';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent {}
+export class SignUpComponent {
+ 
+
+constructor(private renderer: Renderer2) {}
+ onSubmit(mainContainer: HTMLElement): void {
+  this.renderer.addClass(mainContainer, 'active');
+  
+}
+}
