@@ -8,6 +8,7 @@ import { ClientsComponent } from './pages/register/clients/clients.component';
 import { authGuard } from './_guard/auth.guard';
 import { UserComponent } from './sign-up/user/user.component';
 import { EnterpriseComponent } from './sign-up/enterprise/enterprise.component';
+import { FreightCalculationComponent } from './pages/freight-calculation/freight-calculation.component';
 
 
 export const routes: Routes = [
@@ -20,4 +21,5 @@ export const routes: Routes = [
     {path: 'register/trucks', component: TrucksComponent,canActivate:[authGuard]},
     {path: 'register/loads', component: LoadsComponent,canActivate:[authGuard]},
     {path: 'register/clients', component: ClientsComponent,canActivate:[authGuard]},
+    {path: 'freight-calculation', component: FreightCalculationComponent,canActivate:[authGuard]},
 ];
