@@ -1,48 +1,97 @@
 <app-sidebar></app-sidebar>
 <div class="main-content">
-  <p>freight-calculation works!</p>
+  <h1>freight-calculation works!</h1>
   <form class="row g-3">
     <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Email</label>
-      <input type="email" class="form-control" id="inputEmail4">
+      <label for="type" class="form-label">Tipo de Carga</label>
+      <select class="form-select" id="type">
+        <option disabled selected>- Selecione o tipo de carga -</option>
+        <option value="1">Carga de Granel Sólido</option>
+        <option value="2">Carga de Granel Líquido</option>
+        <option value="3">Carga Frigorificada ou Aquecida</option>
+        <option value="4">Carga Conteineizada</option>
+        <option value="5">Carga Geral</option>
+        <option value="6">Carga Neogranel</option>
+        <option value="7">Carga Perigosa (granel sólido)</option>
+        <option value="8">Carga Perigosa (granel líquido)</option>
+        <option value="9">Carga Perigosa (carga frigorificada ou aquecida)</option>
+        <option value="10">Carga Perigosa (conteinerizada)</option>
+        <option value="11">Carga Perigosa (carga geral)</option>
+        <option value="12">Carga Granel Pressurizada</option>
+      </select>
     </div>
     <div class="col-md-6">
-      <label for="inputPassword4" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword4">
+      <label for="axis" class="form-label">Numero de Eixos</label>
+      <input type="number" class="form-control" id="axis">
     </div>
-    <div class="col-12">
+    <!-- <div class="col-12">
       <label for="inputAddress" class="form-label">Address</label>
       <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
     </div>
     <div class="col-12">
       <label for="inputAddress2" class="form-label">Address 2</label>
       <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div> -->
+    <div class="col-md-6">
+      <label for="distance" class="form-label">Distancia (km) </label>
+      <input type="number" class="form-control" id="distance">
     </div>
     <div class="col-md-6">
-      <label for="inputCity" class="form-label">City</label>
-      <input type="text" class="form-control" id="inputCity">
+      <label for="distance" class="form-label">Não sabe a distancia da viagem ? </label><br>
+      <button type="button" class="btn btn-secondary" id="calculateFreight">Calcular Distancia</button>
     </div>
-    <div class="col-md-4">
-      <label for="inputState" class="form-label">State</label>
-      <select id="inputState" class="form-select">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="col-md-2">
+    <!-- <div class="col-md-2">
       <label for="inputZip" class="form-label">Zip</label>
       <input type="text" class="form-control" id="inputZip">
-    </div>
-    <div class="col-12">
+    </div> -->
+    <div class="col-md-3">
+      <label for="quest1" class="form-label">É alto desempenho ?</label>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
+        <input class="form-check-input" type="radio" name="quest1" id="radioDefault1">
+        <label class="form-check-label" for="radioDefault1">
+          Sim
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="quest1" id="radioDefault2" checked>
+        <label class="form-check-label" for="radioDefault2">
+          Não
         </label>
       </div>
     </div>
+    <div class="col-md-3">
+      <label for="quest2" class="form-label">Retornará vazio ?</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="quest2" id="radioDefault1">
+        <label class="form-check-label" for="radioDefault1">
+          Sim
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="quest2" id="radioDefault2" checked>
+        <label class="form-check-label" for="radioDefault2">
+          Não
+        </label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="quest3" class="form-label">É carga lotação ?</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="quest3" id="radioDefault1">
+        <label class="form-check-label" for="radioDefault1">
+          Sim
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="quest3" id="radioDefault2" checked>
+        <label class="form-check-label" for="radioDefault2">
+          Não
+        </label>
+      </div>
+    </div>
+    
     <div class="col-12">
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button type="submit" class="btn btn-primary">Calcular</button>
     </div>
   </form>
 </div>
