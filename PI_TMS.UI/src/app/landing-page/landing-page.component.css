@@ -1,4 +1,3 @@
-/* --- Reset e Configurações Globais --- */
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +21,6 @@ body {
     padding: 0 20px;
 }
 
-/* --- 1. Navbar --- */
 .navbar {
     position: fixed;
     top: 0;
@@ -45,7 +43,7 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #00A86B; /* Darker green from the gradient */
+    color: #00A86B;
     text-decoration: none;
 }
 
@@ -64,10 +62,9 @@ body {
 }
 
 .nav-button.highlighted {
-    /* Gradient for the highlighted button */
     background: linear-gradient(90deg, #00A86B, #8ace00);
     color: #ffffff;
-    border: none; /* Remove border when using gradient background */
+    border: none;
 }
 
 .nav-button:not(.highlighted) {
@@ -76,25 +73,22 @@ body {
 }
 
 .nav-button:not(.highlighted):hover {
-    background-color: #f4f7f6; /* light-grey */
-    color: #00A86B; /* Darker green */
+    background-color: #f4f7f6;
+    color: #00A86B;
 }
 
 .nav-button.highlighted:hover {
-    /* Slightly adjust gradient or add a subtle effect on hover */
-    background: linear-gradient(90deg, #8ace00, #00A86B); /* Reverse or change gradient direction */
+    background: linear-gradient(90deg, #8ace00, #00A86B);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* --- 2. Seção Hero --- */
 .hero {
     position: relative;
     padding: 12rem 0 8rem 0;
     color: #ffffff;
     text-align: center;
     overflow: hidden;
-    /* Gradient using the specified colors */
     background: linear-gradient(135deg, #00A86B, #8ace00);
 }
 
@@ -120,7 +114,7 @@ body {
 .cta-button {
     display: inline-block;
     background-color: #ffffff;
-    color: #8ace00; /* Primary green */
+    color: #8ace00;
     padding: 1rem 2.5rem;
     border-radius: 50px;
     font-size: 1.1rem;
@@ -135,7 +129,6 @@ body {
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Forma orgânica no fundo (opcional) */
 .hero-background-shape {
     position: absolute;
     bottom: -50px;
@@ -148,7 +141,6 @@ body {
     z-index: 1;
 }
 
-/* --- 3. Seção de Features --- */
 .features {
     padding: 6rem 0;
     background-color: #ffffff;
@@ -167,7 +159,7 @@ body {
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #f4f7f6; /* light-grey */
+    border: 1px solid #f4f7f6;
 }
 
 .card:hover {
@@ -177,14 +169,14 @@ body {
 
 .card-icon {
     margin-bottom: 1.5rem;
-    color: #8ace00; /* Primary green */
+    color: #8ace00;
 }
 
 .card-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
-    color: #00A86B; /* Darker green from the gradient */
+    color: #00A86B;
 }
 
 .card-description {
@@ -192,10 +184,9 @@ body {
     color: #666;
 }
 
-/* --- 4. Rodapé --- */
 .footer {
     background-color: #222;
-    color: #f4f7f6; /* light-grey */
+    color: #f4f7f6;
     padding: 3rem 0;
 }
 
@@ -219,17 +210,16 @@ body {
 }
 
 .footer-links a {
-    color: #f4f7f6; /* light-grey */
+    color: #f4f7f6;
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #8ace00; /* Primary green */
+    color: #8ace00;
 }
 
-/* --- Responsividade --- */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.8rem;
