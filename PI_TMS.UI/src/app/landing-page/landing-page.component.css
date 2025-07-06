@@ -40,10 +40,22 @@ body {
     align-items: center;
 }
 
+.navlogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #00A86B;
+    color: #222;
+    text-decoration: none;
+    display: inline;
+}
+
+.logo-2{
+    color: #8ace00;
     text-decoration: none;
 }
 
@@ -74,7 +86,7 @@ body {
 
 .nav-button:not(.highlighted):hover {
     background-color: #f4f7f6;
-    color: #00A86B;
+    color: #8ace00;
 }
 
 .nav-button.highlighted:hover {
@@ -117,6 +129,7 @@ body {
     color: #8ace00;
     padding: 1rem 2.5rem;
     border-radius: 50px;
+    border: none;
     font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
@@ -131,7 +144,7 @@ body {
 
 .hero-background-shape {
     position: absolute;
-    bottom: -50px;
+    bottom: -150px;
     left: 50%;
     width: 150%;
     height: 200px;
@@ -142,7 +155,7 @@ body {
 }
 
 .features {
-    padding: 6rem 0;
+    padding: 7rem 0;
     background-color: #ffffff;
 }
 
@@ -176,7 +189,7 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
-    color: #00A86B;
+    color: #222;
 }
 
 .card-description {
@@ -187,7 +200,7 @@ body {
 .footer {
     background-color: #222;
     color: #f4f7f6;
-    padding: 3rem 0;
+    padding: 1rem 0;
 }
 
 .footer-content {

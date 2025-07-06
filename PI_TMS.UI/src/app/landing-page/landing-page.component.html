@@ -1,10 +1,20 @@
 <body>
     <header class="navbar">
         <div class="container">
-            <a href="#" class="logo">Gesfret</a>
+            <div class="navlogo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-truck">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                    <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                    <path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
+                </svg>
+                <span class="logo">Ges<span class="logo-2">fret</span></span>
+            </div>
             <nav class="nav-links">
-                <a href="#" class="nav-button">Entrar</a>
-                <a href="#" class="nav-button highlighted">Cadastrar-se</a>
+                <button (click)="goToLogin()" class="nav-button">Entrar</button>
+                <button (click)="goToSignUp()" class="nav-button highlighted">Cadastrar-se</button>
             </nav>
         </div>
     </header>
@@ -14,7 +24,7 @@
             <div class="container hero-content">
                 <h1 class="hero-title">Bem-vindo ao Gesfret</h1>
                 <p class="hero-subtitle">Sua plataforma gratuita para controle de viagens e gestão de documentos fiscais.</p>
-                <a href="#" class="cta-button">Cadastre-se agora</a>
+                <button (click)="goToSignUp()" class="cta-button">Cadastre-se agora</button>
             </div>
             <div class="hero-background-shape"></div>
         </section>
@@ -24,7 +34,7 @@
                 <div class="cards-grid">
                     <div class="card">
                         <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 18h-2a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2Z"/><path d="M5 18h2a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2Z"/><path d="M12 18V6"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"></path><path d="M9 14l2 2l4-4"></path></svg>
                         </div>
                         <h3 class="card-title">Registro de Viagens</h3>
                         <p class="card-description">Organize e registre todas as suas viagens de forma simples e prática.</p>
@@ -40,7 +50,7 @@
 
                     <div class="card">
                         <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><polyline points="20 6 -8.5 19.5 7 14"></polyline></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                         </div>
                         <h3 class="card-title">100% Gratuito</h3>
                         <p class="card-description">Utilize todas as funcionalidades essenciais sem pagar absolutamente nada.</p>
@@ -52,9 +62,9 @@
 
     <footer class="footer">
         <div class="container footer-content">
-            <p class="footer-logo">Gesfret &copy; 2025</p>
+            <p class="footer-logo">FGA Technology &copy; 2025</p>
             <div class="footer-links">
-                <a href="#">contato.com</a>
+                <a href="#">Contato</a>
                 <a href="#">Termos de Uso</a>
                 <a href="#">Política de Privacidade</a>
             </div>
