@@ -14,25 +14,22 @@ import { user } from './model/user.model';
 })
 export class UserComponent {
 
-  userForm: FormGroup = this.createForm();
+  userForm: FormGroup;
   user: user[] = [];
   constructor(private userService: UserService, private fb: FormBuilder, private router: Router) {
-
+    this.userForm = this.createForm();
   }
 
   createForm(): FormGroup {
     return this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      email: [''],
-      password: ['', [
-        Validators.required,
-        Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{6,}$/)
-      ]],
-      phoneNumber: [''],
+      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{6,}$/)]], // Senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um número]],
       taxId: this.fb.group({
-        typeId:[''],
-      })
+        taxId: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]]
+      }),
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
     });
   }
 
