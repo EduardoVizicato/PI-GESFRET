@@ -7,11 +7,13 @@ import { LoadsComponent } from './pages/register/loads/loads.component';
 import { ClientsComponent } from './pages/register/clients/clients.component';
 import { authGuard } from './_guard/auth.guard';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 export const routes: Routes = [
-    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
+    {path: 'home', component: LandingPageComponent},
     {path: 'signUp', component: SignUpComponent},
     {path: 'dashboard', component: DashboardComponent, canActivate:[authGuard]},
     {path: 'travels', component: TravelsComponent,canActivate:[authGuard]},
