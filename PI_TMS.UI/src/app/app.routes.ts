@@ -9,10 +9,12 @@ import { authGuard } from './_guard/auth.guard';
 import { UserComponent } from './sign-up/user/user.component';
 import { EnterpriseComponent } from './sign-up/enterprise/enterprise.component';
 import { FreightCalculationComponent } from './pages/freight-calculation/freight-calculation.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 export const routes: Routes = [
-    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {path: 'home', component: LandingPageComponent},
     {path: 'login', component: LoginComponent},
     {path: 'signUp-user', component: UserComponent},
     {path: 'signUp-enterprise', component: EnterpriseComponent},
