@@ -16,6 +16,7 @@ export class SidebarComponent implements OnInit {
   // Flags para os links de nível superior ativos (Renomeados)
   isDashboardActive: boolean = false;
   isTravelsActive: boolean = false;
+  isFreightActive: boolean = false;
   isRegisterParentActive: boolean = false;
 
 
@@ -82,6 +83,9 @@ export class SidebarComponent implements OnInit {
 
   goToTravels(): void { 
       this.router.navigate(['/travels']); 
+  }
+  goToFreight(): void { 
+      this.router.navigate(['/freight-calculation']); 
   }
 
   goToCaminhoes(): void {

@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { EventService } from './shared/service/event.service';
 import { AlertNotificationComponent } from "./shared/alert-notification/alert-notification.component";
 import { NgIf } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AlertNotificationComponent,NgIf],
+  imports: [RouterOutlet, AlertNotificationComponent,NgIf, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

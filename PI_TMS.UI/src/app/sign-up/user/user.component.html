@@ -1,5 +1,3 @@
-
-
 <div class="main-container" #mainContainer>
   <div class="form-container">
     <h1 class="form-title">
@@ -14,10 +12,10 @@
       GES<span class="teste">FRET</span>
     </h1>
     <div class="spacer"></div>
-    <form class="login-form" (ngSubmit)="onSubmit(mainContainer)">
+    <form class="login-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <h2 class="">
-       Criar Conta
-     </h2>
+        Criar Conta
+      </h2>
       <div class="inputs">
         <i class="input-icon">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,8 +24,22 @@
               stroke="#757575" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </i>
-        <input type="text" name="firstName" id="firstName" placeholder="Primeiro Nome" class="input-field" required>
+        <input type="text" name="firstName" id="firstName" placeholder="Primeiro Nome" class="input-field"
+          formControlName="firstName">
       </div>
+      <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched"
+        class="alert alert-danger d-flex align-items-center" role="alert">
+        <div *ngIf="userForm.get('firstName')?.errors?.['required']">
+          Nome obrigatório.
+        </div>
+        <div *ngIf="userForm.get('firstName')?.errors?.['minlength']">
+          O nome deve ter pelo menos 2 caracteres.
+        </div>
+        <div *ngIf="userForm.get('firstName')?.errors?.['maxlength']">
+          O nome deve ter no máximo 50 caracteres.
+        </div>
+      </div>
+      <!-- ----------------------------------------------------------------------------------------------- -->
       <div class="inputs">
         <i class="input-icon">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,9 +48,23 @@
               stroke="#757575" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </i>
-        <input type="text" name="lastName" id="lastName" placeholder="Último Nome" class="input-field" required>
+        <input type="text" name="lastName" id="lastName" placeholder="Último Nome" class="input-field"
+          formControlName="lastName">
       </div>
-      <div class="inputs">
+      <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched"
+        class="alert alert-danger d-flex align-items-center" role="alert">
+        <div *ngIf="userForm.get('lastName')?.errors?.['required']">
+          Sobre Nome obrigatório.
+        </div>
+        <div *ngIf="userForm.get('lastName')?.errors?.['minlength']">
+          O nome deve ter pelo menos 2 caracteres.
+        </div>
+        <div *ngIf="userForm.get('lastName')?.errors?.['maxlength']">
+          O nome deve ter no máximo 50 caracteres.
+        </div>
+      </div>
+      <!-- ----------------------------------------------------------------------------------------------- -->
+      <div class="inputs" formGroupName="taxId">
         <i class="input-icon">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -46,8 +72,21 @@
               stroke="#757575" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </i>
-        <input type="text" name="taxId" id="taxId" placeholder="CPF" class="input-field" mask="000.000.000-00" required>
+        <input type="text" name="taxId" id="taxId" placeholder="CPF" class="input-field" mask="000.000.000-00"
+          formControlName="taxId">
       </div>
+      <div
+        *ngIf="userForm.get('taxId.taxId')?.invalid && (userForm.get('taxId.taxId')?.touched || userForm.get('taxId.taxId')?.dirty)"
+        class="alert alert-danger d-flex align-items-center" role="alert">
+        <div *ngIf="userForm.get('taxId.taxId')?.errors?.['required']">
+          CPF obrigatório.
+        </div>
+        <div *ngIf="userForm.get('taxId.taxId')?.errors?.['pattern']">
+          O CPF deve ser um CPF válido.
+        </div>
+      </div>
+
+      <!-- ----------------------------------------------------------------------------------------------- -->
       <div class="inputs">
         <i class="input-icon">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,8 +96,18 @@
           </svg>
         </i>
         <input type="text" name="phone" id="phone" placeholder="Telefone" class="input-field" mask="(00) 00000-0000"
-          required>
+          formControlName="phoneNumber">
       </div>
+      <div *ngIf="userForm.get('phoneNumber')?.invalid && userForm.get('phoneNumber')?.touched"
+        class="alert alert-danger d-flex align-items-center" role="alert">
+        <div *ngIf="userForm.get('phoneNumber')?.errors?.['required']">
+          Telefone obrigatório.
+        </div>
+        <div *ngIf="userForm.get('phoneNumber')?.errors?.['pattern']">
+          O telefone deve ser um número válido.
+        </div>
+      </div>
+      <!-- ----------------------------------------------------------------------------------------------- -->
       <div class="inputs">
         <i class="input-icon">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,9 +116,18 @@
               stroke="#757575" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </i>
-        <input type="text" name="email" id="email" placeholder="Email" class="input-field" required>
+        <input type="text" name="email" id="email" placeholder="Email" class="input-field" formControlName="email">
       </div>
-
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+        class="alert alert-danger d-flex align-items-center" role="alert">
+        <div *ngIf="userForm.get('email')?.errors?.['required']">
+          Email obrigatório.
+        </div>
+        <div *ngIf="userForm.get('email')?.errors?.['email']">
+          O email deve ser um endereço de email válido.
+        </div>
+      </div>
+      <!-- ----------------------------------------------------------------------------------------------- -->
       <div class="inputs">
         <i class="input-icon">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,8 +136,18 @@
               stroke="#757575" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </i>
-        <input type="password" name="senha" id="password" placeholder="Senha" class="input-field" required>
+        <input type="password" id="password" placeholder="Senha" class="input-field" formControlName="password">
       </div>
+      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched"
+        class="alert alert-danger d-flex align-items-center" role="alert">
+        <div *ngIf="userForm.get('password')?.errors?.['required']">
+          Senha obrigatória.
+        </div>
+        <div *ngIf="userForm.get('password')?.errors?.['pattern']">
+          A senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um número.
+        </div>
+      </div>
+      <!-- ----------------------------------------------------------------------------------------------- -->
       <input class="submit-button" type="submit" value="Entrar">
     </form>
   </div>
