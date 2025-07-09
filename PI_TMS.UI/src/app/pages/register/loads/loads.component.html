@@ -7,7 +7,7 @@
 
   <div class="table-controls">
     <input type="text" class="search-input" placeholder="Pesquisar">
-    <button class="add-button" data-bs-toggle="modal" data-bs-target="#addLoadModal">Adicionar</button>
+    <!-- <button class="add-button" data-bs-toggle="modal" data-bs-target="#addLoadModal">Adicionar</button> -->
   </div>
 
   <table class="Load-table">
@@ -25,9 +25,10 @@
         <td>{{ load.quantity }}</td>
         <td>{{ load.type.type }}</td>
         <td class="actions">
-          <button class="edit-button" (click)="openEditModal(load)" data-bs-toggle="modal"
+          <!-- <button class="edit-button" (click)="openEditModal(load)" data-bs-toggle="modal"
             data-bs-target="#editLoadModal">Editar</button>
-          <button class="delete-button" (click)="loadDelete(load.id)">Excluir</button>
+          <button class="delete-button" (click)="loadDelete(load.id)">Excluir</button> -->
+          <button class="add-button">Visualizar Viagem</button>
         </td>
       </tr>
 
