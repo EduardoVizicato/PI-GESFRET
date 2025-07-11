@@ -1,9 +1,7 @@
-/* Transição suave */
 .form-container,
 .art-side {
   transition: transform 0.7s ease-in-out;
 }
-/* Estado animado */
 .main-container.active .form-container {
   transform: translateX(-150%);
 }
