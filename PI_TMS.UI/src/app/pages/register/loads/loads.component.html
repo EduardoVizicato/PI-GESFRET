@@ -20,7 +20,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let load of load">
+      @for (load of loads | slice: (page-1) * pageSize : page * pageSize; track loads) {
+      <!-- <tr *ngFor="let load of load"> -->
+      <tr>
         <td>{{ load.description.description }}</td>
         <td>{{ load.quantity }}</td>
         <td>{{ load.type.type }}</td>
@@ -31,10 +33,24 @@
           <button class="add-button">Visualizar Viagem</button>
         </td>
       </tr>
-
+      }
     </tbody>
   </table>
-
+  <footer class="footer">
+    <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
+    <ngb-pagination [collectionSize]="loads.length" [(page)]="page" [boundaryLinks]="true">
+	<ng-template ngbPaginationPages let-page let-pages="pages">
+		@if (pages.length > 0) {
+			<li class="ngb-custom-pages-item">
+				<div class="mb-3 d-flex flex-nowrap px-2">
+					<label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+					<span id="paginationDescription" class="col-form-label text-nowrap px-2">{{ page }} of {{ pages.length }}</span>
+				</div>
+			</li>
+		}
+	</ng-template>
+</ngb-pagination>
+  </footer>
 </div>
 
 <!-- Modal de Adicionar Carga -->
