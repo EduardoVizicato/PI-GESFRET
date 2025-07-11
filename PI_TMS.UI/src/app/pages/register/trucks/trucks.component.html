@@ -20,7 +20,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let truck of trucks">
+      @for (truck of trucks | slice: (page-1) * pageSize : page * pageSize; track trucks) {
+      <!-- <tr *ngFor="let truck of trucks"> -->
+      <tr>
         <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
         <!-- <td>{{ truck.vehicleType }}</td> -->
         <td>{{ truck.name }}</td>
@@ -30,10 +32,15 @@
           <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
         </td>
       </tr>
+      }
 
     </tbody>
   </table>
-
+  <footer class="footer">
+    <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize"
+      [collectionSize]="trucks.length" (pageChange)="setPage($event)" />
+  </footer>
 </div>
 
 <!-- Modal -->

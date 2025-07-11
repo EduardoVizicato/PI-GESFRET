@@ -9,6 +9,7 @@ import { ActivatedRoute, Router, RouterModule,  } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { PlateFormatPipe } from "./utils/plate-format.pipe";
 import { EventService } from '../../../shared/service/event.service';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 interface VehicleTypeOption {
   id: number;
@@ -17,17 +18,20 @@ interface VehicleTypeOption {
 
 @Component({
   selector: 'app-trucks',
-  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe],
+  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe,NgbPaginationModule],
   providers: [provideNgxMask()],
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
 })
 export class TrucksComponent implements OnInit{
+setPage(page: number) {
+  this.page = page;
+}
 
+  items: any[] = [];
+  page: number = 1 ;
+  pageSize: number = 10;
   trucks: Truck[] = [];
-  /* `this.truckForm.patchValue(truck);` is a method call in the `TrucksComponent` class of an
-  Angular application. This method is used to update the form controls in the `truckForm`
-  FormGroup with the values from the `truck` object passed as an argument. */
   truckForm: FormGroup;
   editingTruckId: string | null = null; 
 
