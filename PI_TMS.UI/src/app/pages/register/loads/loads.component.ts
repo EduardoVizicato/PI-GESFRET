@@ -9,34 +9,40 @@ import { ActivatedRoute, Router, RouterModule, } from '@angular/router';
 import { errorContext } from 'rxjs/internal/util/errorContext';
 import { AuthTokenService } from '../../../_guard/service/auth-token.service';
 import { EventService } from '../../../shared/service/event.service';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 //  const userId = this.authService.getUserId();
 @Component({
   selector: 'app-loads',
-  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule,NgbPaginationModule],
   templateUrl: './loads.component.html',
   styleUrl: './loads.component.css'
 })
 
 export class LoadsComponent implements OnInit {
-
-  load: load[] = [];
+  
+  page: number = 1 ;
+  pageSize: number = 10;
+  loads: load[] = [];
   loadForm: FormGroup;
   editingLoadId: string | null = null;
-
+  
   constructor(private loadService: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authTokenService: AuthTokenService, private eventService: EventService,) {
     this.loadForm = this.createForm();
   }
-
+  
+  setPage(page: number) {
+    this.page = page;
+  }
   ngOnInit(): void {
     this.getAllLoad()
   }
-
+  
   getAllLoad() {
     this.loadService.getAllLoad().subscribe(
       (response) => {
         console.log(response);
-        this.load = response;
+        this.loads = response;
       },
       (error) => {
         this.eventService.showError('Erro inesperado.')
@@ -110,7 +116,7 @@ export class LoadsComponent implements OnInit {
     this.loadService.deleteLoad(id).subscribe({
       next: (response) => {
         console.log('deletou');
-        this.load = this.load.filter(load => load.id !== id);
+        this.loads = this.loads.filter(load => load.id !== id);
       },
       error: (err) => this.eventService.showError('Erro inesperado.')
     })
