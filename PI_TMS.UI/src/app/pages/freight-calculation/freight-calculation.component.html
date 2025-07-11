@@ -1,97 +1,79 @@
 <app-sidebar></app-sidebar>
 <div class="main-content">
-  <h1>freight-calculation works!</h1>
-  <form class="row g-3">
-    <div class="col-md-6">
-      <label for="type" class="form-label">Tipo de Carga</label>
-      <select class="form-select" id="type">
-        <option disabled selected>- Selecione o tipo de carga -</option>
-        <option value="1">Carga de Granel Sólido</option>
-        <option value="2">Carga de Granel Líquido</option>
-        <option value="3">Carga Frigorificada ou Aquecida</option>
-        <option value="4">Carga Conteineizada</option>
-        <option value="5">Carga Geral</option>
-        <option value="6">Carga Neogranel</option>
-        <option value="7">Carga Perigosa (granel sólido)</option>
-        <option value="8">Carga Perigosa (granel líquido)</option>
-        <option value="9">Carga Perigosa (carga frigorificada ou aquecida)</option>
-        <option value="10">Carga Perigosa (conteinerizada)</option>
-        <option value="11">Carga Perigosa (carga geral)</option>
-        <option value="12">Carga Granel Pressurizada</option>
-      </select>
+  <div>
+        <h1>Calculadora de Frete</h1>
+        <p class="description">Utilize esta ferramenta para calcular o piso mínimo de frete de acordo com a tabela ANTT.</p>
+        <form id="freight-form">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="tipo-carga">Tipo de carga</label>
+                    <select id="tipo-carga" name="tipo-carga" required>
+                        <option disabled selected value="">- Selecione o tipo de carga -</option>
+                        <option value="1">Carga de Granel Sólido</option>
+                        <option value="2">Carga de Granel Líquido</option>
+                        <option value="3">Carga Frigorificada ou Aquecida</option>
+                        <option value="4">Carga Conteineizada</option>
+                        <option value="5">Carga Geral</option>
+                        <option value="6">Carga Neogranel</option>
+                        <option value="7">Carga Perigosa (granel sólido)</option>
+                        <option value="8">Carga Perigosa (granel líquido)</option>
+                        <option value="9">Carga Perigosa (carga frigorificada ou aquecida)</option>
+                        <option value="10">Carga Perigosa (conteinerizada)</option>
+                        <option value="11">Carga Perigosa (carga geral)</option>
+                        <option value="12">Carga Granel Pressurizada</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="numero-eixos">Número de eixos</label>
+                    <select id="numero-eixos" name="numero-eixos" required>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="9">9</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="distancia">Distância (em km)</label>
+                    <input type="number" id="distancia" name="distancia" placeholder="Digite a distância" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="distancia">Não sabe a distância?</label>
+                    <button type="button" id="btn-calcular-distancia">Calcular Distância</button>
+                </div>
+
+                <div class="form-group radio-group">
+                    <p>É Carga Lotação?</p>
+                    <label><input type="radio" name="carga-lotacao" value="sim"> Sim</label>
+                    <label><input type="radio" name="carga-lotacao" value="nao" checked> Não</label>
+                </div>
+
+                <div class="form-group radio-group">
+                    <p>É Alto Desempenho?</p>
+                    <label><input type="radio" name="alto-desempenho" value="sim"> Sim</label>
+                    <label><input type="radio" name="alto-desempenho" value="nao" checked> Não</label>
+                </div>
+
+                <div class="form-group radio-group span-2">
+                    <p>Retorno vazio?</p>
+                    <label><input type="radio" name="retorno-vazio" value="sim"> Sim</label>
+                    <label><input type="radio" name="retorno-vazio" value="nao" checked> Não</label>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <button type="submit" id="btn-calcular-frete">Calcular Frete</button>
+            </div>
+        </form>
+        <div id="resultado">
+            <p>Valor Calculado: R$<span id="valor-resultado">0</span></p>
+        </div>
     </div>
-    <div class="col-md-6">
-      <label for="axis" class="form-label">Numero de Eixos</label>
-      <input type="number" class="form-control" id="axis">
-    </div>
-    <!-- <div class="col-12">
-      <label for="inputAddress" class="form-label">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-    </div>
-    <div class="col-12">
-      <label for="inputAddress2" class="form-label">Address 2</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-    </div> -->
-    <div class="col-md-6">
-      <label for="distance" class="form-label">Distancia (km) </label>
-      <input type="number" class="form-control" id="distance">
-    </div>
-    <div class="col-md-6">
-      <label for="distance" class="form-label">Não sabe a distancia da viagem ? </label><br>
-      <button type="button" class="btn btn-secondary" id="calculateFreight">Calcular Distancia</button>
-    </div>
-    <!-- <div class="col-md-2">
-      <label for="inputZip" class="form-label">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div> -->
-    <div class="col-md-3">
-      <label for="quest1" class="form-label">É alto desempenho ?</label>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="quest1" id="radioDefault1">
-        <label class="form-check-label" for="radioDefault1">
-          Sim
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="quest1" id="radioDefault2" checked>
-        <label class="form-check-label" for="radioDefault2">
-          Não
-        </label>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label for="quest2" class="form-label">Retornará vazio ?</label>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="quest2" id="radioDefault1">
-        <label class="form-check-label" for="radioDefault1">
-          Sim
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="quest2" id="radioDefault2" checked>
-        <label class="form-check-label" for="radioDefault2">
-          Não
-        </label>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label for="quest3" class="form-label">É carga lotação ?</label>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="quest3" id="radioDefault1">
-        <label class="form-check-label" for="radioDefault1">
-          Sim
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="quest3" id="radioDefault2" checked>
-        <label class="form-check-label" for="radioDefault2">
-          Não
-        </label>
-      </div>
-    </div>
-    
-    <div class="col-12">
-      <button type="submit" class="btn btn-primary">Calcular</button>
-    </div>
-  </form>
 </div>
