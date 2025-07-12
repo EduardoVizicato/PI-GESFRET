@@ -6,6 +6,7 @@ import { LoginService } from './services/login.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { EventService } from '../shared/service/event.service';
+import { TokenService } from '../token/token.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
   constructor(
     private eventService: EventService,
     private loginService: LoginService,
-    private routerService: Router
+    private routerService: Router,
+    private tokenService: TokenService 
   ) { }
 
   SendLogin() {
@@ -34,7 +36,7 @@ export class LoginComponent {
         const token = response.token;
 
         if (token) {
-          localStorage.setItem('token', token);
+          this.tokenService.setToken(token);
           console.log('Login successful');
           console.log(response);
           this.routerService.navigate(['/dashboard']);
