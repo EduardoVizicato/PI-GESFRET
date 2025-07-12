@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
-import { environment } from '../../../environments/environment.development';
-
+import { TokenService } from '../../token/token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthTokenService {
-  getToken(): string | null {
-    return localStorage.getItem('token');
-  }
+  constructor(private tokenService: TokenService) { }  
 
   decodePayloadJWT(): any {
-    const token = this.getToken();
+    const token = this.tokenService.getToken();
     if (!token) {
       return null;
     }
@@ -26,13 +23,16 @@ export class AuthTokenService {
   }
 
   LogOff(): void {
-    localStorage.removeItem('token');
+    this.tokenService.removeToken();
+    console.log('Usuário deslogado');
   }
+
   getUserId(): string | null {
     const payload = this.decodePayloadJWT();
     console.log('Payload:', payload);
     return payload?.nameid ?? null;
   }
+
 }
 
 // https://medium.com/xp-inc/angular-decode-payload-jwt-6d2618ec444d
