@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { TokenService } from '../../token/token.service';
 
+// https://blog.angular-university.io/angular-jwt-authentication/  study later
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthTokenService {
-  constructor(private tokenService: TokenService) { }  
+  constructor(private tokenService: TokenService) { }
 
   decodePayloadJWT(): any {
     const token = this.tokenService.getToken();
@@ -21,7 +23,14 @@ export class AuthTokenService {
       return null;
     }
   }
-
+  isTokenExpired(): boolean {
+    const payload = this.decodePayloadJWT();
+    if (!payload || !payload.exp) return true;
+    console.log('Expiração do token:', payload.exp);
+    const currentTime = Math.floor(Date.now() / 1000); // tempo atual em segundos
+    console.log('Tempo atual:', currentTime);
+    return payload.exp < currentTime;
+  }
   LogOff(): void {
     this.tokenService.removeToken();
     console.log('Usuário deslogado');
