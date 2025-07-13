@@ -1,15 +1,12 @@
 <app-sidebar></app-sidebar>
 
 <div class="main-content">
-  <h1>Cargas</h1>
-
   <div class="spacer"></div>
-
+  <h1>Cargas</h1>
   <div class="table-controls">
     <input type="text" class="search-input" placeholder="Pesquisar">
     <!-- <button class="add-button" data-bs-toggle="modal" data-bs-target="#addLoadModal">Adicionar</button> -->
   </div>
-
   <table class="Load-table">
     <thead>
       <tr>
@@ -28,30 +25,32 @@
         <td>{{ load.type.type }}</td>
         <td class="actions">
           <!-- <button class="edit-button" (click)="openEditModal(load)" data-bs-toggle="modal"
-            data-bs-target="#editLoadModal">Editar</button>
-          <button class="delete-button" (click)="loadDelete(load.id)">Excluir</button> -->
+                    data-bs-target="#editLoadModal">Editar</button>
+                    <button class="delete-button" (click)="loadDelete(load.id)">Excluir</button> -->
           <button class="add-button">Visualizar Viagem</button>
         </td>
       </tr>
       }
     </tbody>
   </table>
-  <footer class="footer">
+  <footer class="footer text-center py-5">
     <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
     <ngb-pagination [collectionSize]="loads.length" [(page)]="page" [boundaryLinks]="true">
-	<ng-template ngbPaginationPages let-page let-pages="pages">
-		@if (pages.length > 0) {
-			<li class="ngb-custom-pages-item">
-				<div class="mb-3 d-flex flex-nowrap px-2">
-					<label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
-					<span id="paginationDescription" class="col-form-label text-nowrap px-2">{{ page }} of {{ pages.length }}</span>
-				</div>
-			</li>
-		}
-	</ng-template>
-</ngb-pagination>
+      <ng-template ngbPaginationPages let-page let-pages="pages">
+        @if (pages.length > 0) {
+        <li class="ngb-custom-pages-item">
+          <div class="mb-3 d-flex flex-nowrap px-2">
+            <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+            <span id="paginationDescription" class="col-form-label text-nowrap px-2">{{ page }} of
+              {{ pages.length }}</span>
+          </div>
+        </li>
+        }
+      </ng-template>
+    </ngb-pagination>
   </footer>
 </div>
+
 
 <!-- Modal de Adicionar Carga -->
 <div class="modal fade" id="addLoadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
