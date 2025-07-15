@@ -52,7 +52,7 @@
               stroke="#757575" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </i>
-        <input type="text" name="companyName" id="companyName" placeholder="Nome da Empresa" class="input-field"
+        <input type="text" name="companyName" id="companyName" formControlName="name" placeholder="Nome da Empresa" class="input-field"
           required>
       </div>
       <div *ngIf="enterpriseForm.get('name')?.invalid && enterpriseForm.get('name')?.touched"
@@ -76,7 +76,7 @@
               stroke="#757575" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </i>
-        <input type="text" name="taxId" id="taxId" placeholder="CNPJ" class="input-field" mask="00.000.000/0000-00"
+        <input type="text" name="taxId" id="taxId" formControlName="taxId" placeholder="CNPJ" class="input-field" mask="00.000.000/0000-00"
           required>
       </div>
       <div *ngIf="enterpriseForm.get('taxId')?.invalid && enterpriseForm.get('taxId')?.touched"
@@ -96,7 +96,7 @@
               stroke="#757575" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </i>
-        <input type="text" name="email" id="email" placeholder="Email" class="input-field" required>
+        <input type="text" name="email" id="email" formControlName="email" placeholder="Email" class="input-field" required>
       </div>
       <div *ngIf="enterpriseForm.get('email')?.invalid && enterpriseForm.get('email')?.touched"
         class="alert alert-danger d-flex align-items-center" role="alert">
