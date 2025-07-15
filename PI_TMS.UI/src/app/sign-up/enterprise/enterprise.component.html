@@ -1,4 +1,4 @@
-<div class="main-container"  #mainContainer>
+<div class="main-container" #mainContainer>
   <div class="art-side">
     <h1 class="art-title">
       Gestão
@@ -55,6 +55,18 @@
         <input type="text" name="companyName" id="companyName" placeholder="Nome da Empresa" class="input-field"
           required>
       </div>
+      <div *ngIf="enterpriseForm.get('name')?.invalid && enterpriseForm.get('name')?.touched"
+        class="alert alert-danger d-flex align-items-center" role="alert">
+        <div *ngIf="enterpriseForm.get('name')?.errors?.['required']">
+          Nome obrigatório.
+        </div>
+        <div *ngIf="enterpriseForm.get('name')?.errors?.['minlength']">
+          O nome deve ter pelo menos 2 caracteres.
+        </div>
+        <div *ngIf="enterpriseForm.get('name')?.errors?.['maxlength']">
+          O nome deve ter no máximo 50 caracteres.
+        </div>
+      </div>
 
       <div class="inputs">
         <i class="input-icon">
@@ -67,7 +79,15 @@
         <input type="text" name="taxId" id="taxId" placeholder="CNPJ" class="input-field" mask="00.000.000/0000-00"
           required>
       </div>
-
+      <div *ngIf="enterpriseForm.get('taxId')?.invalid && enterpriseForm.get('taxId')?.touched"
+        class="alert alert-danger d-flex align-items-center" role="alert">
+        <div *ngIf="enterpriseForm.get('taxId')?.errors?.['required']">
+          CNPJ obrigatório.
+        </div>
+        <div *ngIf="enterpriseForm.get('taxId')?.errors?.['pattern']">
+          CNPJ inválido.
+        </div>
+      </div>
       <div class="inputs">
         <i class="input-icon">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +98,15 @@
         </i>
         <input type="text" name="email" id="email" placeholder="Email" class="input-field" required>
       </div>
-
+      <div *ngIf="enterpriseForm.get('email')?.invalid && enterpriseForm.get('email')?.touched"
+        class="alert alert-danger d-flex align-items-center" role="alert">
+        <div *ngIf="enterpriseForm.get('email')?.errors?.['required']">
+          Email obrigatório.
+        </div>
+        <div *ngIf="enterpriseForm.get('email')?.errors?.['email']">
+          Email inválido.
+        </div>
+      </div>
       <input class="submit-button" type="submit" value="Continuar">
     </form>
   </div>
