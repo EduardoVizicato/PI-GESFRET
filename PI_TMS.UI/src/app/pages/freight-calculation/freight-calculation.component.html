@@ -3,18 +3,16 @@
   <div>
         <h1>Calculadora de Frete</h1>
         <p class="description">Utilize esta ferramenta para calcular o piso mínimo de frete de acordo com a tabela ANTT.</p>
-        <form id="freight-form">
-
+        <form [formGroup]="calcForm" (ngSubmit)="onSubmit()" id="freight-form">
             <div class="form-grid">
-
                 <div class="form-group">
                     <label for="tipo-carga">Tipo de carga</label>
-                    <select id="tipo-carga" name="tipo-carga" required>
-                        <option disabled selected value="">- Selecione o tipo de carga -</option>
+                    <select id="tipo-carga" formControlName="tipoCarga" required>
+                        <option disabled value="">- Selecione o tipo de carga -</option>
                         <option value="1">Carga de Granel Sólido</option>
                         <option value="2">Carga de Granel Líquido</option>
                         <option value="3">Carga Frigorificada ou Aquecida</option>
-                        <option value="4">Carga Conteineizada</option>
+                        <option value="4">Carga Conteinerizada</option>
                         <option value="5">Carga Geral</option>
                         <option value="6">Carga Neogranel</option>
                         <option value="7">Carga Perigosa (granel sólido)</option>
@@ -25,10 +23,11 @@
                         <option value="12">Carga Granel Pressurizada</option>
                     </select>
                 </div>
-
+                
                 <div class="form-group">
                     <label for="numero-eixos">Número de eixos</label>
-                    <select id="numero-eixos" name="numero-eixos" required>
+                    <select id="numero-eixos" formControlName="numeroEixos" required>
+                        <option disabled value="">- Selecione a quantidade de eixos -</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -38,42 +37,43 @@
                         <option value="9">9</option>
                     </select>
                 </div>
-                
+            
                 <div class="form-group">
                     <label for="distancia">Distância (em km)</label>
-                    <input type="number" id="distancia" name="distancia" placeholder="Digite a distância" required>
+                    <input type="number" id="distancia" formControlName="distancia" placeholder="Digite a distância" required>
                 </div>
-                
+            
                 <div class="form-group">
                     <label for="distancia">Não sabe a distância?</label>
-                    <button type="button" id="btn-calcular-distancia">Calcular Distância</button>
+                    <button type="button" id="btn-calcular-distancia" (click)="onCalculateDistance()">Calcular Distância</button>
                 </div>
-
+                
                 <div class="form-group radio-group">
                     <p>É Carga Lotação?</p>
-                    <label><input type="radio" name="carga-lotacao" value="sim"> Sim</label>
-                    <label><input type="radio" name="carga-lotacao" value="nao" checked> Não</label>
+                    <label><input type="radio" formControlName="cargaLotacao" value="sim"> Sim</label>
+                    <label><input type="radio" formControlName="cargaLotacao" value="nao"> Não</label>
                 </div>
-
+                
                 <div class="form-group radio-group">
                     <p>É Alto Desempenho?</p>
-                    <label><input type="radio" name="alto-desempenho" value="sim"> Sim</label>
-                    <label><input type="radio" name="alto-desempenho" value="nao" checked> Não</label>
+                    <label><input type="radio" formControlName="altoDesempenho" value="sim"> Sim</label>
+                    <label><input type="radio" formControlName="altoDesempenho" value="nao"> Não</label>
                 </div>
-
+                
                 <div class="form-group radio-group span-2">
                     <p>Retorno vazio?</p>
-                    <label><input type="radio" name="retorno-vazio" value="sim"> Sim</label>
-                    <label><input type="radio" name="retorno-vazio" value="nao" checked> Não</label>
+                    <label><input type="radio" formControlName="retornoVazio" value="sim"> Sim</label>
+                    <label><input type="radio" formControlName="retornoVazio" value="nao"> Não</label>
                 </div>
-
             </div>
+            
             <div class="form-group">
-                <button type="submit" id="btn-calcular-frete">Calcular Frete</button>
+                <button type="submit" id="btn-calcular-frete" >Calcular Frete</button>
             </div>
         </form>
+
         <div id="resultado">
-            <p>Valor Calculado: R$<span id="valor-resultado">0</span></p>
+            <p>Valor Calculado: <span id="valor-resultado">{{ calculatedValue | currency:'BRL':'symbol':'1.2-2':'pt' }}</span></p>
         </div>
     </div>
 </div>
