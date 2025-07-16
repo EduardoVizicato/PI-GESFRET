@@ -4,6 +4,9 @@
   "newProjectRoot": "projects",
   "projects": {
     "PI_TMS.UI": {
+      "i18n":{
+        "sourceLocale": "pt" 
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
