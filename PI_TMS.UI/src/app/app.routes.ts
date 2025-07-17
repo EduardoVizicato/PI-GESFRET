@@ -10,6 +10,7 @@ import { UserComponent } from './sign-up/user/user.component';
 import { EnterpriseComponent } from './sign-up/enterprise/enterprise.component';
 import { FreightCalculationComponent } from './pages/freight-calculation/freight-calculation.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { NfStorageComponent } from './pages/nf-storage/nf-storage.component';
 
 
 export const routes: Routes = [
@@ -20,6 +21,7 @@ export const routes: Routes = [
     {path: 'signUp-enterprise', component: EnterpriseComponent},
     {path: 'dashboard', component: DashboardComponent, canActivate:[authGuard]},
     {path: 'travels', component: TravelsComponent,canActivate:[authGuard]},
+    {path: 'nf-storage', component: NfStorageComponent, canActivate:[authGuard]},
     {path: 'register/trucks', component: TrucksComponent,canActivate:[authGuard]},
     {path: 'register/loads', component: LoadsComponent,canActivate:[authGuard]},
     {path: 'register/clients', component: ClientsComponent,canActivate:[authGuard]},
