@@ -16,6 +16,7 @@ export class SidebarComponent implements OnInit {
   isDashboardActive: boolean = false;
   isTravelsActive: boolean = false;
   isFreightActive: boolean = false;
+  isNfStorageActive: boolean = false;
   isRegisterParentActive: boolean = false;
 
 
@@ -44,6 +45,7 @@ export class SidebarComponent implements OnInit {
     this.isDashboardActive = false;
     this.isTravelsActive = false;
     this.isFreightActive = false;
+    this.isNfStorageActive = false;
     this.activeSubMenuItem = null;
     
     // Não fechamos o menu Register automaticamente aqui, ele é controlado pelo clique
@@ -56,6 +58,8 @@ export class SidebarComponent implements OnInit {
       this.isTravelsActive = true;
     } else if (currentUrl === '/freight-calculation'){
       this.isFreightActive = true;
+    } else if (currentUrl === '/nf-storage'){
+      this.isNfStorageActive = true;
     } else if (currentUrl.includes('/register')) {
         this.isRegisterMenuOpen = true;
         this.isRegisterParentActive = true;
@@ -86,6 +90,9 @@ export class SidebarComponent implements OnInit {
   }
   goToFreight(): void { 
       this.router.navigate(['/freight-calculation']); 
+  }
+  goToNfStorage(): void { 
+      this.router.navigate(['/nf-storage']); 
   }
 
   goToCaminhoes(): void {

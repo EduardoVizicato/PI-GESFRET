@@ -63,11 +63,25 @@
             </li>
           </ul>
         </li>
-         <li [class.active]="isFreightActive"> <a (click)="goToFreight()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 49 49" fill="none" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M24.5 34.5H27C28.6668 34.5 32 33.5 32 29.5C32 25.5 28.6668 24.5 27 24.5H22C20.3332 24.5 17 23.5 17 19.5C17 15.5 20.3332 14.5 22 14.5H24.5M24.5 34.5H17M24.5 34.5V39.5M24.5 14.5H32M24.5 14.5V9.5M47 24.5C47 36.9265 36.9265 47 24.5 47C12.0736 47 2 36.9265 2 24.5C2 12.0736 12.0736 2 24.5 2C36.9265 2 47 12.0736 47 24.5Z"  stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round"/>
+        <li [class.active]="isFreightActive"> <a (click)="goToFreight()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 49 49" fill="none"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M24.5 34.5H27C28.6668 34.5 32 33.5 32 29.5C32 25.5 28.6668 24.5 27 24.5H22C20.3332 24.5 17 23.5 17 19.5C17 15.5 20.3332 14.5 22 14.5H24.5M24.5 34.5H17M24.5 34.5V39.5M24.5 14.5H32M24.5 14.5V9.5M47 24.5C47 36.9265 36.9265 47 24.5 47C12.0736 47 2 36.9265 2 24.5C2 12.0736 12.0736 2 24.5 2C36.9265 2 47 12.0736 47 24.5Z"
+                stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             Calcular Frete</a>
+        </li>
+        <li [class.active]="isNfStorageActive"> <a (click)="goToNfStorage()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor"
+              class="bi bi-file-earmark-text icon" viewBox="0 0 16 16">
+              <path
+                d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5" />
+              <path
+                d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+            </svg>
+            Armazenagem de NF</a>
         </li>
       </ul>
     </nav>
