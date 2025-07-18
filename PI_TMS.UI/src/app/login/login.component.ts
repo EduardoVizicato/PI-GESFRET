@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginService } from './services/login.service';
@@ -7,6 +7,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { EventService } from '../shared/service/event.service';
 import { TokenService } from '../token/token.service';
+import { AuthTokenService } from '../_guard/service/auth-token.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ import { TokenService } from '../token/token.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  authTokenService = inject(AuthTokenService);
   email = '';
   password = '';
   constructor(
@@ -23,13 +25,13 @@ export class LoginComponent {
     private loginService: LoginService,
     private routerService: Router,
     private tokenService: TokenService 
-  ) { }
+  ) { 
+    if (!this.authTokenService.isTokenExpired()) {
+      this.routerService.navigate(['/dashboard']);
+    }
+  }
 
   SendLogin() {
-    // localStorage.setItem('authStatus', 'true');
-    // console.log('Login successful');
-    // this.routerService.navigate(['/dashboard']); // mudar de lugar 
-
 
     this.loginService.registerLogin(this.email, this.password).subscribe(
       (response: any) => {
