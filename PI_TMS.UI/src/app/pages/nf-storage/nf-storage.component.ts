@@ -8,23 +8,23 @@ import { nfStorage } from './model/nfStorage.model';
 
 @Component({
   selector: 'app-nf-storage',
-  imports: [SidebarComponent, CommonModule,PdfViewerModule],
+  imports: [SidebarComponent, CommonModule, PdfViewerModule],
   templateUrl: './nf-storage.component.html',
   styleUrl: './nf-storage.component.css'
 })
 export class NfStorageComponent {
-  link: [string][] = [
-    [ '/pdf/teste1.pdf'],
-    [ '/pdf/teste2.pdf'],
-    [ '/pdf/teste3.pdf'],
-    [ '/pdf/teste4.pdf']
+  link: [string, string, string][] = [
+    ['name1', 'generic description 1', '/pdf/teste1.pdf'],
+    ['name2', 'generic description 2', '/pdf/teste2.pdf'],
+    ['name3', 'generic description 3', '/pdf/teste3.pdf'],
+    ['name4', 'generic description 4', '/pdf/teste4.pdf']
   ];
   nf: nfStorage[] = [];
 
   constructor() {
-    this.nf = this.link.map((item) => ({ path: item[0] }));
+    this.nf = this.link.map((item) => ({ name: item[0], description: item[1], path: item[2] }));
   }
 
-  
+
 
 }
