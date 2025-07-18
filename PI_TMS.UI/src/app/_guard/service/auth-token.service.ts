@@ -26,9 +26,10 @@ export class AuthTokenService {
   isTokenExpired(): boolean {
     const payload = this.decodePayloadJWT();
     if (!payload || !payload.exp) return true;
-    console.log('Expiração do token:', payload.exp);
+    // console.log('Expiração do token:', payload.exp);
     const currentTime = Math.floor(Date.now() / 1000); // tempo atual em segundos
-    console.log('Tempo atual:', currentTime);
+    // console.log('Tempo atual:', currentTime);
+    console.log('Tempo de expiração do token:', payload.exp - currentTime);
     return payload.exp < currentTime;
   }
   LogOff(): void {
