@@ -11,8 +11,8 @@ Coisas do site para fazer (TMS)
 - modify rules(DDD) √
 
 ------Sprint 3---------|15/07 - 22/07
-- NF storage 
-- search 
+- NF storage √
+- search √
 - user(information) 
 
 ------Sprint 4---------|22/07 - 29/07

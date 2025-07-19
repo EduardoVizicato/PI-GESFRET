@@ -4,7 +4,7 @@
   <div class="spacer"></div>
   <h1>Cargas</h1>
   <div class="table-controls">
-    <input type="text" class="search-input" placeholder="Pesquisar">
+    <input type="text" class="search-input" [(ngModel)]="searchTerm" placeholder="Pesquisar">
     <!-- <button class="add-button" data-bs-toggle="modal" data-bs-target="#addLoadModal">Adicionar</button> -->
   </div>
   <table class="Load-table">
@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (load of loads | slice: (page-1) * pageSize : page * pageSize; track loads) {
+      @for (load of filteredLoads | slice: (page-1) * pageSize : page * pageSize; track filteredLoads) {
       <!-- <tr *ngFor="let load of load"> -->
       <tr>
         <td>{{ load.description.description }}</td>
@@ -35,7 +35,7 @@
   </table>
   <footer class="footer text-center py-5 d-flex justify-content-end">
     <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
-    <ngb-pagination [collectionSize]="loads.length" [(page)]="page" [boundaryLinks]="true">
+    <ngb-pagination [collectionSize]="filteredLoads.length" [(page)]="page" [boundaryLinks]="true">
       <ng-template ngbPaginationPages let-page let-pages="pages">
         @if (pages.length > 0) {
         <li class="ngb-custom-pages-item">

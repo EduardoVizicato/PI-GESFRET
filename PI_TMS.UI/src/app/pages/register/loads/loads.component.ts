@@ -14,30 +14,31 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 //  const userId = this.authService.getUserId();
 @Component({
   selector: 'app-loads',
-  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule,NgbPaginationModule],
+  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgbPaginationModule],
   templateUrl: './loads.component.html',
   styleUrl: './loads.component.css'
 })
 
 export class LoadsComponent implements OnInit {
-  
-  page: number = 1 ;
+
+  searchTerm: string = '';
+  page: number = 1;
   pageSize: number = 10;
   loads: load[] = [];
   loadForm: FormGroup;
   editingLoadId: string | null = null;
-  
+
   constructor(private loadService: LoadService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authTokenService: AuthTokenService, private eventService: EventService,) {
     this.loadForm = this.createForm();
   }
-  
+
   setPage(page: number) {
     this.page = page;
   }
   ngOnInit(): void {
     this.getAllLoad()
   }
-  
+
   getAllLoad() {
     this.loadService.getAllLoad().subscribe(
       (response) => {
@@ -49,7 +50,14 @@ export class LoadsComponent implements OnInit {
       }
     );
   }
-
+  get filteredLoads() {
+    const term = this.searchTerm.toLowerCase();
+    return this.loads.filter(u =>
+      u.description.description.toLowerCase().includes(term) ||
+      u.quantity.toString().includes(term) ||
+      u.type.type.toLowerCase().includes(term)
+    );
+  }
 
   createForm(): FormGroup {
     const userId = this.authTokenService.getUserId();
