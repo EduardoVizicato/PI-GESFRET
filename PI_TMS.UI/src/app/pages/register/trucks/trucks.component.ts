@@ -10,6 +10,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { PlateFormatPipe } from "./utils/plate-format.pipe";
 import { EventService } from '../../../shared/service/event.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { TopbarComponent } from "../../../shared/topbar/topbar.component";
 
 interface VehicleTypeOption {
   id: number;
@@ -18,7 +19,7 @@ interface VehicleTypeOption {
 
 @Component({
   selector: 'app-trucks',
-  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe, NgbPaginationModule],
+  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe, NgbPaginationModule, TopbarComponent],
   providers: [provideNgxMask()],
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
