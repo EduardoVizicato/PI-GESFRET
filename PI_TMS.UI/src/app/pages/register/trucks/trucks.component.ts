@@ -25,6 +25,7 @@ interface VehicleTypeOption {
 })
 export class TrucksComponent implements OnInit {
 
+  searchTerm: string = '';
   page: number = 1;
   pageSize: number = 10;
   trucks: Truck[] = [];
@@ -57,6 +58,13 @@ export class TrucksComponent implements OnInit {
       (error) => {
         this.eventService.showError('Erro inesperado.')
       }
+    );
+  }
+  get filteredTrucks() {
+    const term = this.searchTerm.toLowerCase();
+    return this.trucks.filter(u =>
+      u.name.toLowerCase().includes(term) ||
+      u.vehicleRegistrationPlate.registrationPlate.toLowerCase().includes(term)
     );
   }
 

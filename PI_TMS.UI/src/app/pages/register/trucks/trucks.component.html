@@ -6,7 +6,7 @@
   <div class="spacer"></div>
 
   <div class="table-controls">
-    <input type="text" class="search-input" placeholder="Pesquisar">
+    <input type="text"  [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
     <button class="add-button" data-bs-toggle="modal" data-bs-target="#addTruckModal">Adicionar</button>
   </div>
 
@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (truck of trucks | slice: (page-1) * pageSize : page * pageSize; track trucks) {
+      @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track trucks) {
       <!-- <tr *ngFor="let truck of trucks"> -->
       <tr>
         <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
@@ -38,7 +38,7 @@
   </table>
   <footer class="footer text-center py-5 d-flex justify-content-end">
     <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
-    <ngb-pagination [collectionSize]="trucks.length" [(page)]="page" [boundaryLinks]="true">
+    <ngb-pagination [collectionSize]="filteredTrucks.length" [(page)]="page" [boundaryLinks]="true">
       <ng-template ngbPaginationPages let-page let-pages="pages">
         @if (pages.length > 0) {
         <li class="ngb-custom-pages-item">
