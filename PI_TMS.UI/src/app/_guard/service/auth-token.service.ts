@@ -42,6 +42,10 @@ export class AuthTokenService {
     console.log('Payload:', payload);
     return payload?.nameid ?? null;
   }
+  getUserName(): string | null {
+    const payload = this.decodePayloadJWT();
+    return payload?.given_name ?? null;
+  }
 
 }
 
