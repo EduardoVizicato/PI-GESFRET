@@ -12,12 +12,16 @@ import { RouterModule } from '@angular/router';
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.css'
 })
-export class TopbarComponent implements OnInit {
-  breadcrumbs: Breadcrumb[] = [];
+export class TopbarComponent {
+  name: string = '';
+  
+  // breadcrumbs: Breadcrumb[] = [];
 
-  constructor(private topbarService: TopbarService) {}
-
-  ngOnInit(): void {
-    this.topbarService.breadcrumbs.subscribe((bc) => this.breadcrumbs = bc);
+  constructor(private topbarService: TopbarService) {
+    this.name = this.topbarService.name;
   }
+
+  // ngOnInit(): void {
+  //   this.topbarService.breadcrumbs.subscribe((bc) => this.breadcrumbs = bc);
+  // }
 }

@@ -1,4 +1,4 @@
-
+<!-- 
 <nav *ngIf="breadcrumbs.length" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li
@@ -15,4 +15,35 @@
       </ng-container>
     </li>
   </ol>
-</nav>
+</nav> -->
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-10">
+      1 of 2
+    </div>
+    <div class="col-2 text-end">
+      <a [routerLink]="['/userInfo']" class="navbar-brand">
+        <!-- card -->
+        <div class="card" style="max-width: 200px;max-height: 80px;">
+          <div class="row g-0">
+            <div class="col-md-3 text-center py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
+                class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+              </svg>
+            </div>
+            <div class="col text-center py-1">
+              <div class="card-body">
+                <h5 class="card-title">{{ name }}</h5>
+                <!-- <p class="card-text"></p> -->
+                <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <!-- end card -->
+    </div>
+  </div>
+</div>
