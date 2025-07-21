@@ -4,8 +4,11 @@
      [class.mobile-menu-open]="isMobileMenuOpen">
 
   
-  <app-sidebar [isCollapsed]="isCollapsed && !isMobile"></app-sidebar>
-
+  <app-sidebar 
+    [isCollapsed]="isCollapsed && !isMobile" 
+    (collapseChange)="onSidebarCollapseChange($event)"
+    (registerMenuInteracted)="onRegisterMenuInteracted($event)">
+  </app-sidebar>
   
   <div class="content-overlay" (click)="toggleMobileMenu()"></div>
 

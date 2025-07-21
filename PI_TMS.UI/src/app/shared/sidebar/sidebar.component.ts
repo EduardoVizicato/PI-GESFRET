@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AuthTokenService } from '../../_guard/service/auth-token.service';
@@ -10,6 +10,8 @@ import { AuthTokenService } from '../../_guard/service/auth-token.service';
 })
 export class SidebarComponent implements OnInit {
   @Input() isCollapsed: boolean = false;
+  @Output() collapseChange = new EventEmitter<boolean>();
+  @Output() registerMenuInteracted = new EventEmitter<boolean>();
 
   isRegisterMenuOpen: boolean = false;
   activeSubMenuItem: string | null = null;
@@ -18,7 +20,7 @@ export class SidebarComponent implements OnInit {
   isFreightActive: boolean = false;
   isNfStorageActive: boolean = false;
   isRegisterParentActive: boolean = false;
-
+  
   constructor(private router: Router, private authTokenService: AuthTokenService) {}
   
   ngOnInit(): void {
@@ -26,12 +28,24 @@ export class SidebarComponent implements OnInit {
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       this.updateActiveState();
+      if (!this.router.url.includes('/register')) {
+        this.isRegisterMenuOpen = false;
+      }
     });
     this.updateActiveState();
   }
 
   toggleRegisterMenu(): void {
-    this.isRegisterMenuOpen = !this.isRegisterMenuOpen;
+    if (this.isCollapsed && !this.isRegisterMenuOpen) {
+      this.collapseChange.emit(false);
+      this.isRegisterMenuOpen = true;
+      this.registerMenuInteracted.emit(true);
+    } else if (!this.isCollapsed) {
+      this.isRegisterMenuOpen = !this.isRegisterMenuOpen;
+      if (!this.isRegisterMenuOpen) {
+        this.registerMenuInteracted.emit(false);
+      }
+    }
   }
 
   updateActiveState(): void {
@@ -52,7 +66,7 @@ export class SidebarComponent implements OnInit {
     } else if (currentUrl === '/nf-storage'){
       this.isNfStorageActive = true;
     } else if (currentUrl.includes('/register')) {
-      this.isRegisterMenuOpen = true;
+      this.isRegisterMenuOpen = true; 
       this.isRegisterParentActive = true;
       if (currentUrl.includes('/register/trucks')) {
         this.activeSubMenuItem = 'trucks';
@@ -62,17 +76,45 @@ export class SidebarComponent implements OnInit {
         this.activeSubMenuItem = 'clients';
       }
     }
+    if (!currentUrl.includes('/register') && this.isRegisterMenuOpen) {
+      this.isRegisterMenuOpen = false;
+    }
   }
 
-  goToDashboard(): void { this.router.navigate(['/dashboard']); }
-  goToTravels(): void { this.router.navigate(['/travels']); }
-  goToFreight(): void { this.router.navigate(['/freight-calculation']); }
-  goToNfStorage(): void { this.router.navigate(['/nf-storage']); }
-  goToCaminhoes(): void { this.router.navigate(['/register/trucks']); }
-  goToCargas(): void { this.router.navigate(['/register/loads']); }
-  goToClientes(): void { this.router.navigate(['/register/clients']); }
+  private navigate(path: string[]): void {
+    this.router.navigate(path);
+  }
+
+  goToDashboard(): void { 
+    this.navigate(['/dashboard']); 
+  }
+  
+  goToTravels(): void { 
+    this.navigate(['/travels']); 
+  }
+  
+  goToFreight(): void { 
+    this.navigate(['/freight-calculation']); 
+  }
+  
+  goToNfStorage(): void { 
+    this.navigate(['/nf-storage']); 
+  }
+  
+  goToCaminhoes(): void { 
+    this.navigate(['/register/trucks']); 
+  }
+  
+  goToCargas(): void { 
+    this.navigate(['/register/loads']); 
+  }
+  
+  goToClientes(): void { 
+    this.navigate(['/register/clients']); 
+  }
+  
   LogOff(): void {
     this.authTokenService.LogOff();
-    this.router.navigate(['/login']);
+    this.navigate(['/login']);
   }
 }
