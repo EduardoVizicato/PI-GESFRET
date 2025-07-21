@@ -12,6 +12,8 @@ import { FreightCalculationComponent } from './pages/freight-calculation/freight
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NfStorageComponent } from './pages/nf-storage/nf-storage.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { UserInfoComponent } from './pages/user-info/user-info.component';
+
 
 
 export const routes: Routes = [
@@ -26,6 +28,7 @@ export const routes: Routes = [
         children: [
             {path: 'dashboard', component: DashboardComponent, canActivate:[authGuard],title: 'Dashboard' },
             {path: 'travels', component: TravelsComponent,canActivate:[authGuard], data: { breadcrumb: 'Travels' },title: 'Viagens'},
+            {path: 'userInfo', component: UserInfoComponent,canActivate:[authGuard], data: { breadcrumb: 'User Info' }},
             {path: 'nf-storage', component: NfStorageComponent, canActivate:[authGuard], data: { breadcrumb: 'NF Storage' },title: 'Notas Fiscais'},
             {path: 'register/trucks', component: TrucksComponent,canActivate:[authGuard], data: { breadcrumb: 'Cadastrar/Caminhoes' },title: 'Caminhões'},
             {path: 'register/loads', component: LoadsComponent,canActivate:[authGuard], data: { breadcrumb: 'Loads' },title: 'Cargas'},
