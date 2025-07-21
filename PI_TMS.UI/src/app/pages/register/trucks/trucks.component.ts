@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarComponent } from "../../../shared/sidebar/sidebar.component";
 import { HttpClientModule } from '@angular/common/http';
 import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -19,7 +18,7 @@ interface VehicleTypeOption {
 
 @Component({
   selector: 'app-trucks',
-  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe, NgbPaginationModule, TopbarComponent],
+  imports: [ HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe, NgbPaginationModule, TopbarComponent],
   providers: [provideNgxMask()],
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
