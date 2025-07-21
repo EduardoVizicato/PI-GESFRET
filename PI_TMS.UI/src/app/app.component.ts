@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class AppComponent {
   showError = false;
   errorMessage = '';
+  title = 'PI_TMS.UI';
 
   constructor(private eventService: EventService) {
     this.eventService.onError().subscribe(message => {
