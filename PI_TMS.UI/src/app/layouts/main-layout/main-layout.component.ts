@@ -1,0 +1,85 @@
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { filter, map, mergeMap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { RouterOutlet } from '@angular/router';
+import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
+import { NgIf } from '@angular/common';
+
+@Component({
+  selector: 'app-main-layout',
+  imports: [SidebarComponent,RouterOutlet,NgIf,],
+  templateUrl: './main-layout.component.html',
+  styleUrls: ['./main-layout.component.css']
+})
+export class MainLayoutComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
+
+  isCollapsed = false;
+  isMobile = false;
+  isMobileMenuOpen = false;
+  currentPageTitle = '';
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.checkScreenWidth(window.innerWidth);
+    // this.listenToRouteChanges();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.checkScreenWidth((event.target as Window).innerWidth);
+  }
+
+  // private listenToRouteChanges(): void {
+  //   this.router.events.pipe(
+  //     filter(event => event instanceof NavigationEnd),
+  //     map(() => this.activatedRoute),
+  //     map(route => {
+  //       while (route.firstChild) {
+  //         route = route.firstChild;
+  //       }
+  //       return route;
+  //     }),
+  //     filter(route => route.outlet === 'primary'),
+  //     mergeMap(route => route.data),
+  //     takeUntil(this.destroy$)
+  //   ).subscribe(data => {
+  //     this.currentPageTitle = data['title'] ;
+      
+  //     if (this.isMobile) {
+  //       this.isMobileMenuOpen = false;
+  //     }
+  //   });
+  // }
+
+ 
+  private checkScreenWidth(width: number): void {
+    this.isMobile = width < 992;
+    if (!this.isMobile) {
+      this.isMobileMenuOpen = false;
+    } else {
+      this.isCollapsed = false;
+    }
+  }
+
+ 
+  toggleCollapse(): void {
+    if (!this.isMobile) {
+      this.isCollapsed = !this.isCollapsed;
+    }
+  }
+
+ 
+  toggleMobileMenu(): void {
+    if (this.isMobile) {
+      this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    }
+  }
+}
