@@ -27,6 +27,96 @@
   opacity: 0;
   visibility: hidden;
   width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+:host-context(.collapsed) .sidenav-nav a {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+:host-context(.collapsed) .sidenav-nav .icon {
+  margin-right: 0;
+}
+
+:host-context(.collapsed) .has-submenu > .submenu {
+  max-height: 0 !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+:host-context(.collapsed) .submenu li a {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+:host-context(.collapsed) .btn-sair .nav-text {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+}
+
+:host-context(.collapsed) .btn-sair {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+:host-context(.collapsed) .btn-sair .icon {
+  margin-right: 0;
+}
+
+:host-context(.collapsed.temporarily-expanded) .sidebar {
+  width: var(--sidebar-width-expanded, 260px);
+}
+
+:host-context(.collapsed.temporarily-expanded) .sidebar .title-text,
+:host-context(.collapsed.temporarily-expanded) .sidebar .nav-text {
+  opacity: 1;
+  visibility: visible;
+  width: auto;
+}
+
+:host-context(.collapsed.temporarily-expanded) .sidenav-nav a {
+  justify-content: flex-start;
+  padding: 12px 24px;
+}
+
+:host-context(.collapsed.temporarily-expanded) .sidenav-nav .icon {
+  margin-right: 15px;
+}
+
+:host-context(.collapsed.temporarily-expanded) .has-submenu > .submenu {
+  max-height: 500px !important;
+  opacity: 1;
+  visibility: visible;
+}
+
+:host-context(.collapsed.temporarily-expanded) .submenu li a {
+  opacity: 1;
+  visibility: visible;
+  width: auto;
+  padding: 12px 0 12px 63px;
+  pointer-events: auto;
+}
+
+:host-context(.collapsed.temporarily-expanded) .btn-sair .nav-text {
+  opacity: 1;
+  visibility: visible;
+  width: auto;
+}
+
+:host-context(.collapsed.temporarily-expanded) .btn-sair {
+  justify-content: flex-start;
+  padding: 12px 20px;
+}
+
+:host-context(.collapsed.temporarily-expanded) .btn-sair .icon {
+  margin-right: 8px;
 }
 
 .sidebar-header {
@@ -95,7 +185,6 @@
   font-weight: bold;
 }
 
-
 .submenu {
   list-style: none;
   padding: 0;
@@ -124,28 +213,28 @@
   font-weight: bold;
 }
 
-
 .sidenav-footer {
   padding: 20px 24px;
   border-top: 1px solid #3a3a3a;
 }
+
 .btn-sair {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #E53935;
-    color: #FFFFFF;
-    text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E53935;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
 }
-  
+
 .btn-sair .icon {
-    margin-right: 8px;
+  margin-right: 8px;
 }
-  
+
 .btn-sair:hover {
-    background-color: #D32F2F;
+  background-color: #D32F2F;
 }

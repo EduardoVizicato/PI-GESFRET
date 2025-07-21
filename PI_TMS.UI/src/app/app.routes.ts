@@ -17,23 +17,79 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
 
 
 export const routes: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
-    {path: 'home', component: LandingPageComponent,title: 'GESFRET'},
-    {path: 'login', component: LoginComponent,title: 'Entrar'},
-    {path: 'signUp-user', component: UserComponent,title: 'Registre-se'},
-    {path: 'signUp-enterprise', component: EnterpriseComponent,title: 'Registre-se'},
+    {
+        path: '', 
+        redirectTo: 'home', 
+        pathMatch: 'full',
+    },
+    {
+        path: 'home', 
+        component: LandingPageComponent,
+        title: 'GESFRET',
+    },
+    {
+        path: 'login', 
+        component: LoginComponent,
+        title: 'Entrar',
+    },
+    {
+        path: 'signUp-user', 
+        component: UserComponent,
+        title: 'Registre-se',
+    },
+    {
+        path: 'signUp-enterprise', 
+        component: EnterpriseComponent,
+        title: 'Registre-se',
+    },
     {
         path: '',
         component: MainLayoutComponent,
         children: [
-            {path: 'dashboard', component: DashboardComponent, canActivate:[authGuard],title: 'Dashboard' },
-            {path: 'travels', component: TravelsComponent,canActivate:[authGuard], data: { breadcrumb: 'Travels' },title: 'Viagens'},
-            {path: 'userInfo', component: UserInfoComponent,canActivate:[authGuard], data: { breadcrumb: 'User Info' }},
-            {path: 'nf-storage', component: NfStorageComponent, canActivate:[authGuard], data: { breadcrumb: 'NF Storage' },title: 'Notas Fiscais'},
-            {path: 'register/trucks', component: TrucksComponent,canActivate:[authGuard], data: { breadcrumb: 'Cadastrar/Caminhoes' },title: 'Caminhões'},
-            {path: 'register/loads', component: LoadsComponent,canActivate:[authGuard], data: { breadcrumb: 'Loads' },title: 'Cargas'},
-            {path: 'register/clients', component: ClientsComponent,canActivate:[authGuard], data: { breadcrumb: 'Clients' },title: 'Clientes'},
-            {path: 'freight-calculation', component: FreightCalculationComponent,canActivate:[authGuard], data: { breadcrumb: 'Freight Calculation' },title: 'Calcular Frete'},
+            {
+                path: 'dashboard', 
+                component: DashboardComponent, 
+                canActivate:[authGuard],
+                data: {title: 'Dashboard'}, 
+                title: 'Dashboard',
+            },
+            {
+                path: 'travels', 
+                component: TravelsComponent,
+                canActivate:[authGuard], 
+                data: { breadcrumb: 'Travels', title: 'Lista de Viagens' },
+                title: 'Viagens'},
+            {
+                path: 'userInfo', 
+                component: UserInfoComponent,
+                canActivate:[authGuard], 
+                data: { breadcrumb: 'User Info' }},
+            {
+                path: 'nf-storage', 
+                component: NfStorageComponent, 
+                canActivate:[authGuard], 
+                data: { breadcrumb: 'NF Storage', title: 'Notas Fiscais' },
+                title: 'Notas Fiscais'},
+            {
+                path: 'register/trucks', 
+                component: TrucksComponent,
+                canActivate:[authGuard], data: { breadcrumb: 'Cadastrar/Caminhoes', title: 'Cadastro de Caminhões' },
+                title: 'Caminhões'},
+            {
+                path: 'register/loads', 
+                component: LoadsComponent,
+                canActivate:[authGuard], data: { breadcrumb: 'Loads', title: 'Cadastro de Cargas' },
+                title: 'Cargas'},
+            {
+                path: 'register/clients', 
+                component: ClientsComponent,
+                canActivate:[authGuard], data: { breadcrumb: 'Clients' },
+                title: 'Clientes'},
+            {
+                path: 'freight-calculation', 
+                component: FreightCalculationComponent,
+                canActivate:[authGuard], data: { breadcrumb: 'Freight Calculation', title: 'Calcular Frete' },
+                title: 'Calcular Frete'},
         ]
     }
     

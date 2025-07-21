@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarComponent } from "../../../shared/sidebar/sidebar.component";
 import { HttpClientModule } from '@angular/common/http';
 import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -14,7 +13,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 //  const userId = this.authService.getUserId();
 @Component({
   selector: 'app-loads',
-  imports: [SidebarComponent, HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgbPaginationModule],
+  imports: [ HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgbPaginationModule],
   templateUrl: './loads.component.html',
   styleUrl: './loads.component.css'
 })
