@@ -16,9 +16,10 @@ Coisas do site para fazer (TMS)
 - user(information) 
 
 ------Sprint 4---------|22/07 - 29/07
-- token rule 
 - validation on forms
 - user page
+- dashboard
 
 ------Sprint 5---------
+- token rule 
 - travel page 
