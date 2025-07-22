@@ -1,5 +1,4 @@
 import { CurrencyPipe } from "@angular/common";
-import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -14,7 +13,7 @@ interface FreightTable {
 
 @Component({
   selector: 'app-freight-calculation',
-  imports: [SidebarComponent, CurrencyPipe, ReactiveFormsModule],
+  imports: [ CurrencyPipe, ReactiveFormsModule],
   templateUrl: './freight-calculation.component.html',
   styleUrl: './freight-calculation.component.css',
 })
