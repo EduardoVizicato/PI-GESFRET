@@ -1,7 +1,6 @@
-<app-sidebar></app-sidebar>
 
-<div class="main-content">
-  <h1>Caminhões</h1>
+  <app-topbar></app-topbar>
+  <!-- <h1>Caminhões</h1> -->
 
   <div class="spacer"></div>
 
@@ -20,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track trucks) {
+      @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track filteredTrucks) {
       <!-- <tr *ngFor="let truck of trucks"> -->
       <tr>
         <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
@@ -52,7 +51,7 @@
       </ng-template>
     </ngb-pagination>
   </footer>
-</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="addTruckModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

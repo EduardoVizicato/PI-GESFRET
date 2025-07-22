@@ -1,7 +1,4 @@
-<app-sidebar></app-sidebar>
-<div class="main-content">
   <div>
-        <h1>Calculadora de Frete</h1>
         <p class="description">Utilize esta ferramenta para calcular o piso mínimo de frete de acordo com a tabela ANTT.</p>
         <form [formGroup]="calcForm" (ngSubmit)="onSubmit()" id="freight-form">
             <div class="form-grid">
@@ -76,4 +73,4 @@
             <p>Valor Calculado: <span id="valor-resultado">{{ calculatedValue | currency:'BRL':'symbol':'1.2-2':'pt' }}</span></p>
         </div>
     </div>
-</div>
+
