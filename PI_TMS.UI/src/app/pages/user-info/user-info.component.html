@@ -1,1 +1,13 @@
-<p>user-info works!</p>
+<app-sidebar></app-sidebar>
+<div class="main-content">
+    <div class="row g-3" *ngFor="let info of info">
+      <div class="col" >
+        <label for="" class="form-label">Primeiro Nome</label>
+        <input type="text" class="form-control" aria-label="First name" value="{{info.firstName}}" readonly>
+      </div>
+      <div class="col">
+        <label for="inputEmail4" class="form-label">Último Nome</label>
+        <!-- <input type="text" class="form-control" aria-label="Last name" value="{{info.lastName}}" readonly> -->
+      </div>
+    </div>
+</div>
