@@ -29,6 +29,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.checkScreenWidth(window.innerWidth);
     this.listenToRouteChanges();
+    this.setInitialPageTitle();
     
     if (this.isMobile) {
       this.isCollapsed = false;
@@ -43,6 +44,16 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.checkScreenWidth((event.target as Window).innerWidth);
+  }
+
+  private setInitialPageTitle(): void {
+    let currentRoute = this.activatedRoute;
+    while (currentRoute.firstChild) {
+      currentRoute = currentRoute.firstChild;
+    }
+    if (currentRoute.snapshot.data && currentRoute.snapshot.data['title']) {
+      this.currentPageTitle = currentRoute.snapshot.data['title'];
+    }
   }
 
   private listenToRouteChanges(): void {
