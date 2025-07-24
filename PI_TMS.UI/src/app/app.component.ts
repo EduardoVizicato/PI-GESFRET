@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { EventService } from './shared/service/event.service';
-import { AlertNotificationComponent } from "./shared/alert-notification/alert-notification.component";
+import { AlertNotificationComponent } from './shared/alert-notification/alert-notification.component';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AlertNotificationComponent,NgIf, ReactiveFormsModule],
+  standalone: true, // 👉 Isso é essencial para usar "imports" dentro do componente
+  imports: [
+    RouterOutlet,
+    AlertNotificationComponent,
+    NgIf,
+    ReactiveFormsModule
+],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'] // ← Corrigido: estava errado ("styleUrl")
 })
 export class AppComponent {
   showError = false;
@@ -21,7 +27,7 @@ export class AppComponent {
       this.errorMessage = message;
       this.showError = true;
 
-      // Fechar automaticamente depois de 5s (opcional)
+      // Fecha a notificação após 5 segundos
       setTimeout(() => this.showError = false, 5000);
     });
   }
