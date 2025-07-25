@@ -32,7 +32,7 @@ export class UserComponent {
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
     });
   }
-
+// 
 
   onSubmit() {
     if (this.userForm.invalid) {
