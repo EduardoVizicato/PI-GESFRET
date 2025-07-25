@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
     {
       provide: NGX_ECHARTS_CONFIG,
       useValue: {
-        echarts: () => import('echarts') // 🔥 aqui resolvemos o problema
+        echarts: () => import('echarts') 
       }
     }
   ],
@@ -43,7 +43,7 @@ export class DashboardComponent {
   // Opções iniciais
   options: any;
 
-   atualizarGrafico(periodo: string) {
+   UpdateGraphic(periodo: string) {
     const dados = this.dadosPorPeriodo[periodo];
 
     this.options = {
@@ -96,13 +96,30 @@ export class DashboardComponent {
       ]
     };
   }
-
+  Pie = {
+    title: {
+      text: 'Grafico de Pizza'
+    },
+    tooltip: {},
+    series: [
+      {
+        name: 'Acesso',
+        type: 'pie',
+        radius: '55%',
+        data: [
+          { value: 235, name: 'Google' },
+          { value: 274, name: 'Facebook' },
+          { value: 310, name: 'Twitter' }
+        ]
+      }
+    ]
+  };
 
   ngAfterViewInit(): void {
     // Espera o DOM montar, depois força um resize
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
     });
-    this.atualizarGrafico('2015-2019');
+    this.UpdateGraphic('2015-2019');
   }
 }
