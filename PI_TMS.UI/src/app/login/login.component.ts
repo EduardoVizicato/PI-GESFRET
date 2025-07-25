@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginService } from './services/login.service';
 import { CommonModule, NgIf } from '@angular/common';
@@ -11,7 +11,7 @@ import { AuthTokenService } from '../_guard/service/auth-token.service';
 
 @Component({
   selector: 'app-login',
-  imports: [HttpClientModule, FormsModule, CommonModule, RouterModule],
+  imports: [HttpClientModule, FormsModule, CommonModule, RouterModule, ReactiveFormsModule],
   providers: [LoginService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -20,30 +20,43 @@ export class LoginComponent {
   authTokenService = inject(AuthTokenService);
   email = '';
   password = '';
+  LoginForm: FormGroup;
   constructor(
     private eventService: EventService,
     private loginService: LoginService,
     private routerService: Router,
-    private tokenService: TokenService 
-  ) { 
+    private tokenService: TokenService,
+    private fb: FormBuilder
+  ) {
     if (!this.authTokenService.isTokenExpired()) {
       this.routerService.navigate(['/dashboard']);
     }
+    this.LoginForm = this.createForm();
   }
 
+  createForm(): FormGroup {
+    return this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{6,}$/)]], // Senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um número]],
+    });
+  }
   SendLogin() {
-
-    this.loginService.registerLogin(this.email, this.password).subscribe(
+    if (this.LoginForm.invalid) {
+      // console.log('Formulário inválido');
+      this.LoginForm.markAllAsTouched();
+      return;
+    }
+    this.loginService.registerLogin(this.LoginForm.value.email, this.LoginForm.value.password).subscribe(
       (response: any) => {
         const token = response.token;
 
         if (token) {
           this.tokenService.setToken(token);
-          console.log('Login successful');
-          console.log(response);
+          // console.log('Login successful');
+          // console.log(response);
           this.routerService.navigate(['/dashboard']);
         } else {
-          console.error('Token failed.');
+          this.eventService.showError('Erro inesperado.');
         }
       },
       (error) => {

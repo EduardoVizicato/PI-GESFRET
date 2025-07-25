@@ -1,55 +1,54 @@
+<!-- <h1>Caminhões</h1> -->
 
-  <!-- <h1>Caminhões</h1> -->
+<div class="spacer"></div>
 
-  <div class="spacer"></div>
+<div class="table-controls">
+  <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
+  <button class="add-button" data-bs-toggle="modal" data-bs-target="#addTruckModal">Adicionar</button>
+</div>
 
-  <div class="table-controls">
-    <input type="text"  [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
-    <button class="add-button" data-bs-toggle="modal" data-bs-target="#addTruckModal">Adicionar</button>
-  </div>
+<table class="truck-table">
+  <thead>
+    <tr>
+      <th>Placa</th>
+      <!-- <th>Tipo</th> -->
+      <th>Nome</th>
+      <th class="actions-header">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track filteredTrucks) {
+    <!-- <tr *ngFor="let truck of trucks"> -->
+    <tr>
+      <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
+      <!-- <td>{{ truck.vehicleType }}</td> -->
+      <td>{{ truck.name }}</td>
+      <td class="actions">
+        <button class="edit-button" (click)="openEditModal(truck)" data-bs-toggle="modal"
+          data-bs-target="#editTruckModal">Editar</button>
+        <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
+      </td>
+    </tr>
+    }
 
-  <table class="truck-table">
-    <thead>
-      <tr>
-        <th>Placa</th>
-        <!-- <th>Tipo</th> -->
-        <th>Nome</th>
-        <th class="actions-header">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track filteredTrucks) {
-      <!-- <tr *ngFor="let truck of trucks"> -->
-      <tr>
-        <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
-        <!-- <td>{{ truck.vehicleType }}</td> -->
-        <td>{{ truck.name }}</td>
-        <td class="actions">
-          <button class="edit-button" (click)="openEditModal(truck)" data-bs-toggle="modal"
-            data-bs-target="#editTruckModal">Editar</button>
-          <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
-        </td>
-      </tr>
+  </tbody>
+</table>
+<footer class="footer text-center py-5 d-flex justify-content-end">
+  <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
+  <ngb-pagination [collectionSize]="filteredTrucks.length" [(page)]="page" [boundaryLinks]="true">
+    <ng-template ngbPaginationPages let-page let-pages="pages">
+      @if (pages.length > 0) {
+      <li class="ngb-custom-pages-item">
+        <div class="mb-3 d-flex flex-nowrap px-2">
+          <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+          <span id="paginationDescription" class="col-form-label text-nowrap px-2">{{ page }} of
+            {{ pages.length }}</span>
+        </div>
+      </li>
       }
-
-    </tbody>
-  </table>
-  <footer class="footer text-center py-5 d-flex justify-content-end">
-    <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
-    <ngb-pagination [collectionSize]="filteredTrucks.length" [(page)]="page" [boundaryLinks]="true">
-      <ng-template ngbPaginationPages let-page let-pages="pages">
-        @if (pages.length > 0) {
-        <li class="ngb-custom-pages-item">
-          <div class="mb-3 d-flex flex-nowrap px-2">
-            <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
-            <span id="paginationDescription" class="col-form-label text-nowrap px-2">{{ page }} of
-              {{ pages.length }}</span>
-          </div>
-        </li>
-        }
-      </ng-template>
-    </ngb-pagination>
-  </footer>
+    </ng-template>
+  </ngb-pagination>
+</footer>
 
 
 <!-- Modal -->
@@ -67,10 +66,32 @@
             <label for="nome" class="form-label">Nome</label>
             <input type="text" class="form-control" formControlName="name">
           </div>
+          <div *ngIf="truckForm.get('name')?.invalid && truckForm.get('name')?.touched"
+            class="alert alert-danger d-flex align-items-center" role="alert">
+            <div *ngIf="truckForm.get('name')?.errors?.['required']">
+              Nome obrigatório.
+            </div>
+            <div *ngIf="truckForm.get('name')?.errors?.['minlength']">
+              O nome deve ter pelo menos 2 caracteres.
+            </div>
+            <div *ngIf="truckForm.get('name')?.errors?.['maxlength']">
+              O nome deve ter no máximo 50 caracteres.
+            </div>
+          </div>
           <div class="mb-3" formGroupName="vehicleRegistrationPlate">
             <label for="nome" class="form-label">Placa</label>
             <input type="text" class="form-control" formControlName="registrationPlate" maxlength="8" mask="AAA-0A00"
               [dropSpecialCharacters]="true">
+          </div>
+          <div
+            *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.invalid && (truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched || truckForm.get('taxId.taxId')?.dirty)"
+            class="alert alert-danger d-flex align-items-center" role="alert">
+            <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['required']">
+              Placa obrigatória.
+            </div>
+            <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['pattern']">
+              A placa deve ser uma placa válida.
+            </div>
           </div>
           <!-- <label for="tipo" class="form-label">Tipo</label>
               <select class="form-select" id="vehicleType" formControlName="vehicleType">
@@ -103,10 +124,32 @@
             <label for="edit-name" class="form-label">Nome</label>
             <input type="text" id="edit-name" class="form-control" formControlName="name">
           </div>
+          <div *ngIf="truckForm.get('name')?.invalid && truckForm.get('name')?.touched"
+            class="alert alert-danger d-flex align-items-center" role="alert">
+            <div *ngIf="truckForm.get('name')?.errors?.['required']">
+              Nome obrigatório.
+            </div>
+            <div *ngIf="truckForm.get('name')?.errors?.['minlength']">
+              O nome deve ter pelo menos 2 caracteres.
+            </div>
+            <div *ngIf="truckForm.get('name')?.errors?.['maxlength']">
+              O nome deve ter no máximo 50 caracteres.
+            </div>
+          </div>
           <div class="mb-3" formGroupName="vehicleRegistrationPlate">
             <label for="edit-registrationPlate" class="form-label">Placa</label>
             <input type="text" id="edit-registrationPlate" class="form-control" formControlName="registrationPlate"
               maxlength="8" mask="AAA-0A00" [dropSpecialCharacters]="true">
+          </div>
+          <div
+            *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.invalid && (truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched || truckForm.get('taxId.taxId')?.dirty)"
+            class="alert alert-danger d-flex align-items-center" role="alert">
+            <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['required']">
+              Placa obrigatória.
+            </div>
+            <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['pattern']">
+              A placa deve ser uma placa válida.
+            </div>
           </div>
           <!-- <label for="edit-vehicleType" class="form-label">Tipo</label>
               <select class="form-select" id="edit-vehicleType" formControlName="vehicleType">

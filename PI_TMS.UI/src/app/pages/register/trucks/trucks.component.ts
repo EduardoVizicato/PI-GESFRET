@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TruckService } from './Services/truck.service';
 import { Truck } from './models/truck.model';
@@ -17,7 +17,7 @@ interface VehicleTypeOption {
 
 @Component({
   selector: 'app-trucks',
-  imports: [ HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe, NgbPaginationModule],
+  imports: [HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe, NgbPaginationModule],
   providers: [provideNgxMask()],
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
@@ -69,15 +69,21 @@ export class TrucksComponent implements OnInit {
 
   createForm(): FormGroup {
     return this.fb.group({
-      name: [''],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       vehicleType: [null as number | null],
       vehicleRegistrationPlate: this.fb.group({
-        registrationPlate: [''],
+        registrationPlate: ['', [Validators.required, Validators.pattern(/^[A-Z]{3}[0-9]{4}$|^[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}$/i)
+        ]],
       })
     })
   }
 
   addTruck() {
+    if (this.truckForm.invalid) {
+      console.log('Formulário inválido');
+      this.truckForm.markAllAsTouched(); // mostra erros
+      return;
+    }
     const truckData: Truck = this.truckForm.value;
     this.truckService.addTruck(truckData).subscribe({
       next: (response) => {
@@ -108,6 +114,11 @@ export class TrucksComponent implements OnInit {
   }
 
   onUpdate(): void {
+    if (this.truckForm.invalid) {
+      console.log('Formulário inválido');
+      this.truckForm.markAllAsTouched(); // mostra erros
+      return;
+    }
     if (this.truckForm.invalid || !this.editingTruckId) return;
 
     const updatedTruckData = this.truckForm.value;
