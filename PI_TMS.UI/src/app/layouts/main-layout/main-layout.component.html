@@ -42,9 +42,9 @@
             <img src="assets/user-avatar.png" alt="User Avatar" width="40rem" srcset="">
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Editar Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Configurações</a></li>
-            <li><a class="dropdown-item" href="#">Sair</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/userInfo']" >Editar Perfil</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/settings']" >Configurações</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/logout']" >Sair</a></li>
           </ul>
         </div>
       </div>
