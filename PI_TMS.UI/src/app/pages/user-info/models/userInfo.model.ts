@@ -1,4 +1,5 @@
 export interface UserInfo {
+name: any;
   firstName: string;
   lastName: string;
 //   taxId:{

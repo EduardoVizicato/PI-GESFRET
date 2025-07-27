@@ -5,10 +5,11 @@ import { Subject } from 'rxjs';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { NgIf } from '@angular/common';
-
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-main-layout',
-  imports: [SidebarComponent,RouterOutlet,NgIf],
+  imports: [SidebarComponent, RouterOutlet, NgIf,CommonModule,RouterModule],
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.css']
 })

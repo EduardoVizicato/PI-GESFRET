@@ -17,8 +17,8 @@ export class UserInfoService {
     
   }
 
-  getUserbyId(id: string): Observable<UserInfo[]> {
-    return this.HttpClient.get<UserInfo[]>(`${this.apiUrl}getUserbyId?id=${id}`);
+  getUserbyId(id: string): Observable<UserInfo> {
+    return this.HttpClient.get<UserInfo>(`${this.apiUrl}getUserbyId?id=${id}`);
   } 
 
 }

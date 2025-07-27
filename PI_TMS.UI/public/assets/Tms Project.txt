@@ -13,13 +13,14 @@ Coisas do site para fazer (TMS)
 ------Sprint 3---------|15/07 - 22/07
 - NF storage √
 - search √
-- user(information) 
+- tokenFix √ 
 
 ------Sprint 4---------|22/07 - 29/07
-- validation on forms
-- user page
-- dashboard
+- validation on forms √
+- user(information) 
+- dashboard √
 
 ------Sprint 5---------
+- user page
 - token rule 
 - travel page 

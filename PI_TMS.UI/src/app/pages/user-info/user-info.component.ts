@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 import { AuthTokenService } from '../../_guard/service/auth-token.service';
 import { UserInfoService } from './service/user-info.service';
-import { UserInfo } from './models/userInfo.model';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { UserInfo } from './models/userInfo.model';
 
 @Component({
   selector: 'app-user-info',
-  imports: [SidebarComponent,CommonModule],
+  imports: [SidebarComponent, CommonModule, FormsModule],
   templateUrl: './user-info.component.html',
   styleUrl: './user-info.component.css'
 })
 export class UserInfoComponent {
-  info: UserInfo[] = [];
+   user: UserInfo | null = null;
+
 
   constructor(private authTokenService: AuthTokenService, private userInfoService: UserInfoService) {
 
@@ -24,12 +26,13 @@ export class UserInfoComponent {
     const userId = this.authTokenService.getUserId();
     if (userId) {
       this.userInfoService.getUserbyId(userId).subscribe(
-        (response) => {
+        (response: UserInfo) => {
           console.log(response);
-          this.info = response;
-          console.log(this.info);
+          this.user = response;
         },
-
+        (error) => {
+          console.error("Erro ao buscar o usuário:", error);
+        }
       );
     } 
   }
