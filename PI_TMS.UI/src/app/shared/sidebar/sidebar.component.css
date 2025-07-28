@@ -139,7 +139,7 @@
 }
 
 .sidenav-title .teste {
-  color: #8ACE00;
+  color: var(--primary);
 }
 
 .sidenav-nav {
@@ -180,7 +180,7 @@
 
 .sidenav-nav li.active > a,
 .sidenav-nav li.has-submenu.parent-active > a {
-  background-color: #8ACE00;
+  background-color: var(--primary);
   color: #262626;
   font-weight: bold;
 }
@@ -209,7 +209,7 @@
 }
 
 .submenu li.active-submenu-item a {
-  color: #8ACE00;
+  color: var(--primary);
   font-weight: bold;
 }
 

@@ -41,7 +41,7 @@
 }
 
 .teste{
-    color: #8ACE00;
+    color: var(--primary);
 }
 
 
@@ -75,7 +75,7 @@
 }
 
 .input-field:focus {
-    border-color: #8ACE00;
+    border-color: var(--primary);
     background-color: white;
     outline: none;
 }
@@ -127,7 +127,7 @@
 }
 
 .art-title-green{
-  color: #8ACE00;
+  color: var(--primary);
 }
 
 .truck{
