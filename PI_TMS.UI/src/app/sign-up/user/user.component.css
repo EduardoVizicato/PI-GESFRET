@@ -55,7 +55,7 @@
 }
 
 .teste {
-  color: #8ace00;
+  color: var(--primary);
 }
 
 .inputs {
@@ -88,7 +88,7 @@
 }
 
 .input-field:focus {
-  border-color: #8ace00;
+  border-color: var(--primary);
   background-color: white;
   outline: none;
 }
@@ -138,7 +138,7 @@
 }
 
 .art-title-green {
-  color: #8ace00;
+  color: var(--primary);
 }
 
 .truck {
