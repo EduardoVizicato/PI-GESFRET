@@ -2,32 +2,32 @@
 <div class="main-content">
   <div class="clearfix">
     <img src="assets/user-avatar.png" class="col-md-3 float-md-end mb-3 ms-md-3 px-5 py-5"alt="...">
-    <form class="row g-3 px-5 py-4">
+    <form class="row g-3 px-5 py-4" [formGroup]="userForm">
       <h1>Dados do Usuário</h1>
       <div class="col-md-6">
-        <label for="" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="name" formControlName="name" readonly>
       </div>
       <div class="col-md-6">
-        <label for="" class="form-label">Sobre Nome</label>
-        <input type="text" class="form-control" id="">
+        <label for="surname" class="form-label">Sobre Nome</label>
+        <input type="text" class="form-control" id="surname" formControlName="surname" readonly>
       </div>
       <div class="col-12">
-        <label for="" class="form-label">Email</label>
-        <input type="email" class="form-control" id="">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" readonly>
       </div>
       <!-- <div class="col-2">
         <div class="d-grid py-4">
           <button type="button" class="btn btn-primary">Alterar Email</button>
         </div>
       </div> -->
-      <div class="col-6">
-        <label for="" class="form-label">CPF</label>
-        <input type="text" class="form-control" id="">
+      <div class="col-6" formGroupName="taxId">
+        <label for="taxId" class="form-label">CPF</label>
+        <input type="text" class="form-control" id="taxId" formControlName="taxId" readonly>
       </div>
       <div class="col-md-6">
-        <label for="" class="form-label">Telefone</label>
-        <input type="text" class="form-control" id=""> 
+        <label for="phone" class="form-label">Telefone</label>
+        <input type="text" class="form-control" id="phone" formControlName="phone" readonly> 
       </div>
       
       <div class="col-12 ">
