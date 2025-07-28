@@ -33,7 +33,6 @@ export class UserInfoComponent {
         taxId: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]]
       }),
       phone: ['', [Validators.required, Validators.pattern(/^\(\d{2}\) \d{4,5}-\d{4}$/)]],
-      // Adicione outros campos conforme sua interface UserInfo
     });
   }
   getUser() {
@@ -50,7 +49,6 @@ export class UserInfoComponent {
             },
             phone: user.phoneNumber,
             email: user.email,
-            // outros campos que quiser preencher
           });
         },
         (error) => {
@@ -63,7 +61,6 @@ export class UserInfoComponent {
     if (this.userForm.valid) {
       const updatedUser = this.userForm.value;
       console.log('Usuário atualizado:', updatedUser);
-      // Pode chamar um this.userInfoService.updateUser(updatedUser) aqui, por exemplo
     }
   }
 }
