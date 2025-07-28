@@ -17,7 +17,7 @@ Coisas do site para fazer (TMS)
 
 ------Sprint 4---------|22/07 - 29/07
 - validation on forms √
-- user(information) 
+- user(information) √
 - dashboard √
 
 ------Sprint 5---------
