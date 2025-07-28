@@ -1,20 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
-    color: #333;
-    line-height: 1.6;
-}
-
 .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -55,7 +38,7 @@ body {
 }
 
 .logo-2{
-    color: #8ace00;
+    color: var(--primary);
     text-decoration: none;
 }
 
@@ -74,7 +57,7 @@ body {
 }
 
 .nav-button.highlighted {
-    background: linear-gradient(90deg, #00A86B, #8ace00);
+    background: var(--primary);
     color: #ffffff;
     border: none;
 }
@@ -86,11 +69,11 @@ body {
 
 .nav-button:not(.highlighted):hover {
     background-color: #f4f7f6;
-    color: #8ace00;
+    color: var(--primary);
 }
 
 .nav-button.highlighted:hover {
-    background: linear-gradient(90deg, #8ace00, #00A86B);
+    background: var(--primary);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
@@ -101,7 +84,7 @@ body {
     color: #ffffff;
     text-align: center;
     overflow: hidden;
-    background: linear-gradient(135deg, #00A86B, #8ace00);
+    background: linear-gradient(135deg, #00A86B, var(--primary));
 }
 
 .hero-content {
@@ -126,7 +109,7 @@ body {
 .cta-button {
     display: inline-block;
     background-color: #ffffff;
-    color: #8ace00;
+    color: var(--primary);
     padding: 1rem 2.5rem;
     border-radius: 50px;
     border: none;
@@ -182,7 +165,7 @@ body {
 
 .card-icon {
     margin-bottom: 1.5rem;
-    color: #8ace00;
+    color: var(--primary);
 }
 
 .card-title {
@@ -230,7 +213,7 @@ body {
 }
 
 .footer-links a:hover {
-    color: #8ace00;
+    color: var(--primary);
 }
 
 @media (max-width: 768px) {
