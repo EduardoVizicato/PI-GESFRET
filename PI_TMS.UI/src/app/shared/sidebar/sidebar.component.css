@@ -180,9 +180,21 @@
 
 .sidenav-nav li.active > a,
 .sidenav-nav li.has-submenu.parent-active > a {
-  background-color: var(--primary);
-  color: #262626;
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
   font-weight: bold;
+  position: relative;
+}
+
+.sidenav-nav li.active > a::before,
+.sidenav-nav li.has-submenu.parent-active > a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--primary-light);
 }
 
 .submenu {
@@ -209,7 +221,7 @@
 }
 
 .submenu li.active-submenu-item a {
-  color: var(--primary);
+  color: var(--primary-light);
   font-weight: bold;
 }
 
