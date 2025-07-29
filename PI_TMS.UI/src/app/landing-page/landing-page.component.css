@@ -209,7 +209,7 @@ body {
 
 .about-us {
     padding: 4rem 0;
-    background-color: #222222;
+    background: linear-gradient(108deg,rgb(161, 237, 54) 10%, rgba(116, 192, 9, 1) 70%);
 }
 
 .about-us-content {
@@ -240,15 +240,34 @@ body {
 .about-us-title {
     font-size: 2.2rem;
     font-weight: 700;
-    color: #ffffff;
+    color: #1a1a1a;
     margin-bottom: 1.5rem;
 }
 
 .about-us-description {
     font-size: 1.1rem;
-    color: #bbbbbb;
+    color: #1a1a1a;
     line-height: 1.6;
     margin-bottom: 2rem;
+}
+
+.cta-button-2 {
+    display: inline-block;
+    background-color: #1a1a1a;
+    color: #ffffff; 
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.2);
+}
+
+.cta-button-2:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 25px rgba(255, 140, 0, 0.3);
 }
 
 
