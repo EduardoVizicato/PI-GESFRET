@@ -1,3 +1,8 @@
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
 .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -9,10 +14,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(26, 26, 26, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     padding: 1rem 0;
 }
@@ -32,7 +37,7 @@
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #222;
+    color: #ffffff;
     text-decoration: none;
     display: inline;
 }
@@ -63,19 +68,19 @@
 }
 
 .nav-button:not(.highlighted) {
-    color: #333;
+    color: #e0e0e0;
     background-color: transparent;
 }
 
 .nav-button:not(.highlighted):hover {
-    background-color: #f4f7f6;
+    background-color: #2c2c2c;
     color: var(--primary);
 }
 
 .nav-button.highlighted:hover {
     background: var(--primary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.25);
 }
 
 .hero {
@@ -84,7 +89,10 @@
     color: #ffffff;
     text-align: center;
     overflow: hidden;
-    background: linear-gradient(135deg, #00A86B, var(--primary));
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/trcuks.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
 }
 
 .hero-content {
@@ -108,8 +116,8 @@
 
 .cta-button {
     display: inline-block;
-    background-color: #ffffff;
-    color: var(--primary);
+    background-color: var(--primary);
+    color: #ffffff; 
     padding: 1rem 2.5rem;
     border-radius: 50px;
     border: none;
@@ -117,12 +125,12 @@
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.2);
 }
 
 .cta-button:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 25px rgba(255, 140, 0, 0.3);
 }
 
 .hero-background-shape {
@@ -131,7 +139,7 @@
     left: 50%;
     width: 150%;
     height: 200px;
-    background-color: #ffffff;
+    background-color: #1a1a1a;
     transform: translateX(-50%);
     border-radius: 50% 50% 0 0;
     z-index: 1;
@@ -139,7 +147,7 @@
 
 .features {
     padding: 7rem 0;
-    background-color: #ffffff;
+    background-color: #1a1a1a;
 }
 
 .cards-grid {
@@ -149,18 +157,18 @@
 }
 
 .card {
-    background-color: #ffffff;
+    background-color: #2c2c2c;
     border-radius: 15px;
     padding: 2.5rem 2rem;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #f4f7f6;
+    box-shadow: none;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 1px solid #444444;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
 }
 
 .card-icon {
@@ -172,18 +180,19 @@
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
-    color: #222;
+    color: #ffffff;
 }
 
 .card-description {
     font-size: 1rem;
-    color: #666;
+    color: #bbbbbb;
 }
 
 .footer {
-    background-color: #222;
-    color: #f4f7f6;
+    background-color: #111111; 
+    color: #e0e0e0;
     padding: 1rem 0;
+    border-top: 1px solid #333;
 }
 
 .footer-content {
@@ -206,7 +215,7 @@
 }
 
 .footer-links a {
-    color: #f4f7f6;
+    color: #e0e0e0;
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s ease;
