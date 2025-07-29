@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 body {
     background-color: #1a1a1a;
     color: #e0e0e0;
@@ -89,9 +93,9 @@ body {
     color: #ffffff;
     text-align: center;
     overflow: hidden;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/trcuks.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/frota2.jpg');
     background-size: cover;
-    background-position: top;
+    background-position: center;
     background-repeat: no-repeat;
 }
 
@@ -148,6 +152,21 @@ body {
 .features {
     padding: 7rem 0;
     background-color: #1a1a1a;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #bbbbbb;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
 }
 
 .cards-grid {
@@ -187,6 +206,51 @@ body {
     font-size: 1rem;
     color: #bbbbbb;
 }
+
+.about-us {
+    padding: 4rem 0;
+    background-color: #222222;
+}
+
+.about-us-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.about-us-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-us-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.about-us-text {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.about-us-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.about-us-description {
+    font-size: 1.1rem;
+    color: #bbbbbb;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
 
 .footer {
     background-color: #111111; 
@@ -244,6 +308,15 @@ body {
         align-items: center;
         text-align: center;
     }
+
+    .about-us-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-us-text {
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -265,4 +338,13 @@ body {
     .hero {
         padding: 10rem 0 6rem 0;
     }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .about-us-title {
+        font-size: 1.8rem;
+    }
 }
+
