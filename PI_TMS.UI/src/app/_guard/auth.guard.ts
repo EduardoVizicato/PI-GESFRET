@@ -4,13 +4,20 @@ import { AuthTokenService } from './service/auth-token.service';
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const authTokenService = inject(AuthTokenService);
-  const tokenPayload = authTokenService.decodePayloadJWT();
+  const router = inject(Router);
+  // const tokenPayload = authTokenService.decodePayloadJWT();
+  const allowedRoles = route.data['roles'] as Array<string>;
+  const userRole = authTokenService.getRole();
 
-  if (tokenPayload && !authTokenService.isTokenExpired()) {
+  if (
+    // tokenPayload &&
+    !authTokenService.isTokenExpired() &&
+    userRole !== null &&
+    allowedRoles.includes(userRole)
+  ) {
     return true;
   }
   console.warn('Acesso negado: Token inválido ou expirado');
-  const router = inject(Router);
   router.navigate(['/login']);
   return false;
 

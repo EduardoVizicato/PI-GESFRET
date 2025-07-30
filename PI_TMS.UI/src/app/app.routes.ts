@@ -15,31 +15,34 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { Title } from 'chart.js';
 
-
+export enum Roles {
+    ADM = 'ADM',
+    FUNCIONARIO = 'FUNCIONARIO'
+}
 
 export const routes: Routes = [
     {
-        path: '', 
-        redirectTo: 'home', 
+        path: '',
+        redirectTo: 'home',
         pathMatch: 'full',
     },
     {
-        path: 'home', 
+        path: 'home',
         component: LandingPageComponent,
         title: 'GESFRET',
     },
     {
-        path: 'login', 
+        path: 'login',
         component: LoginComponent,
         title: 'Entrar',
     },
     {
-        path: 'signUp-user', 
+        path: 'signUp-user',
         component: UserComponent,
         title: 'Registre-se',
     },
     {
-        path: 'signUp-enterprise', 
+        path: 'signUp-enterprise',
         component: EnterpriseComponent,
         title: 'Registre-se',
     },
@@ -48,58 +51,59 @@ export const routes: Routes = [
         component: MainLayoutComponent,
         children: [
             {
-                path: 'dashboard', 
-                component: DashboardComponent, 
-                canActivate:[authGuard],
-                data: {title: 'Dashboard'}, 
+                path: 'dashboard',
+                component: DashboardComponent,
+                canActivate: [authGuard],
+                data: { title: 'Dashboard', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Dashboard',
+
             },
             {
-                path: 'travels', 
+                path: 'travels',
                 component: TravelsComponent,
-                canActivate:[authGuard], 
-                data: { breadcrumb: 'Travels', title: 'Lista de Viagens' },
+                canActivate: [authGuard],
+                data: { breadcrumb: 'Travels', title: 'Lista de Viagens', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Viagens'
             },
             {
-                path: 'userInfo', 
+                path: 'userInfo',
                 component: UserInfoComponent,
-                canActivate:[authGuard], 
-                data: { breadcrumb: 'User Info', title: 'Meu Perfil' },
+                canActivate: [authGuard],
+                data: { breadcrumb: 'User Info', title: 'Meu Perfil', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Meu Perfil',
             },
             {
-                path: 'nf-storage', 
-                component: NfStorageComponent, 
-                canActivate:[authGuard], 
-                data: { breadcrumb: 'NF Storage', title: 'Notas Fiscais' },
+                path: 'nf-storage',
+                component: NfStorageComponent,
+                canActivate: [authGuard],
+                data: { breadcrumb: 'NF Storage', title: 'Notas Fiscais', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Notas Fiscais'
             },
             {
-                path: 'register/trucks', 
+                path: 'register/trucks',
                 component: TrucksComponent,
-                canActivate:[authGuard], data: { breadcrumb: 'Cadastrar/Caminhoes', title: 'Cadastro de Caminhões' },
+                canActivate: [authGuard], data: { breadcrumb: 'Cadastrar/Caminhoes', title: 'Cadastro de Caminhões', roles: [Roles.ADM] },
                 title: 'Caminhões'
             },
             {
-                path: 'register/loads', 
+                path: 'register/loads',
                 component: LoadsComponent,
-                canActivate:[authGuard], data: { breadcrumb: 'Loads', title: 'Cadastro de Cargas' },
+                canActivate: [authGuard], data: { breadcrumb: 'Loads', title: 'Cadastro de Cargas', roles: [Roles.ADM] },
                 title: 'Cargas'
             },
             {
-                path: 'register/clients', 
+                path: 'register/clients',
                 component: ClientsComponent,
-                canActivate:[authGuard], data: { breadcrumb: 'Clients' },
+                canActivate: [authGuard], data: { breadcrumb: 'Clients', roles: [Roles.ADM] },
                 title: 'Clientes'
             },
             {
-                path: 'freight-calculation', 
+                path: 'freight-calculation',
                 component: FreightCalculationComponent,
-                canActivate:[authGuard], data: { breadcrumb: 'Freight Calculation', title: 'Calcular Frete' },
+                canActivate: [authGuard], data: { breadcrumb: 'Freight Calculation', title: 'Calcular Frete', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Calcular Frete'
             },
         ]
     }
-    
+
 ];
