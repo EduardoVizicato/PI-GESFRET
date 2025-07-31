@@ -21,9 +21,9 @@ export class EnterpriseComponent {
 
   createForm(): FormGroup {
     return this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       taxId: this.fb.group({
-        taxId: ['', Validators.required, Validators.pattern(/^\d{11}$/)] 
+        taxId: ['', [Validators.required, Validators.pattern(/^\d{14}$/)]]
       }),
       email: ['', [Validators.required, Validators.email]]
     });
@@ -32,13 +32,13 @@ export class EnterpriseComponent {
   onSubmit(mainContainer: HTMLElement): void {
     if (this.enterpriseForm.invalid) {
       console.log('Formulário inválido');
-      this.enterpriseForm.markAllAsTouched(); // mostra erros
+      this.enterpriseForm.markAllAsTouched();
       return;
     }
-    mainContainer.classList.add('active');
-    setTimeout(() => {
-      this.router.navigate(['/signUp-user']);
-    }, 1500);
+    // mainContainer.classList.add('active');
+    // setTimeout(() => {
+    this.router.navigate(['/signUp-user']);
+    // }, 1500);
   }
 
 
