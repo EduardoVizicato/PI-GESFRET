@@ -6,31 +6,47 @@
 }
 
 .form-container {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 40%;
-  height: 100vh;
+  height: 100%;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.form-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  color: #262626;
-  display: flex;
-  align-items: center;
   justify-content: center;
-
+  overflow-y: auto;
 }
 
 .login-form {
-    margin-top: auto;
-    margin-bottom: auto;
-    max-width: 75%;
+    max-width: 400px;
     width: 100%;
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1c1c1c;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: #6B7280;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
 }
 
 .icon{
@@ -40,16 +56,9 @@
     flex-shrink: 0;
 }
 
-.teste{
-    color: var(--primary);
-}
-
-
 .inputs {
   display: flex;
   align-items: stretch;
-  margin-top: 8px;
-  margin-bottom: 8px;
 }
 
 .input-icon {
@@ -69,7 +78,7 @@
     width: 100%;
     padding: 12px;
     border-radius: 0px 8px 8px 0px;
-    background-color: #E5E7EB; 
+    background-color: #F9FAFB;
     border: 1px solid #D1D5DB;
     transition: border-color 0.2s, background-color 0.2s;
 }
@@ -78,6 +87,10 @@
     border-color: var(--primary);
     background-color: white;
     outline: none;
+}
+
+.input-field.is-invalid {
+  border-color: #dc3545;
 }
 
 .submit-button {
@@ -90,74 +103,54 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.2s;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .submit-button:hover {
     background-color: #353535;
 }
 
-.art-side {
-    background-color: #262626;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.form-footer {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.form-footer-text {
+  color: #111;
+}
+
+.form-footer-text a {
+  color: var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.image-side {
     width: 60%;
     height: 100vh;
-    position: relative;
-    overflow: hidden;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    box-sizing: border-box;
-    
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/truckman2.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-.art-title{
-  font-size: 3rem;
-  font-weight: bold;
-  text-align: center;
-  color: #FFFFFF;
-  word-break: normal;
-  margin-left: 50px;
-  text-align: left;
-  align-self: flex-start;
-  z-index: 2;
-  
-}
+@media (max-width: 992px) {
+  .main-container {
+    flex-direction: column;
+  }
 
-.art-title-green{
-  color: var(--primary);
-}
+  .image-side {
+    display: none;
+  }
 
-.truck{
-  z-index: 2; 
-  margin-bottom: 20%;
-}
+  .form-container {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    padding-top: 48px;
+  }
 
-.truck img {
-  max-width: 90%;
-  height: auto;
-  display: block;
-}
-
-.blobs{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: 1;
-}
-
-.blob-left{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.blob-right{
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  .login-form {
+    max-width: 90%;
+  }
 }
