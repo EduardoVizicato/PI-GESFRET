@@ -14,6 +14,7 @@ import { NfStorageComponent } from './pages/nf-storage/nf-storage.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { Title } from 'chart.js';
+import { UsersComponent } from './pages/register/users/users.component';
 
 export enum Roles {
     ADM = 'ADM',
@@ -96,6 +97,12 @@ export const routes: Routes = [
                 component: ClientsComponent,
                 canActivate: [authGuard], data: { breadcrumb: 'Clients', roles: [Roles.ADM] },
                 title: 'Clientes'
+            },
+            {
+                path: 'register/users',
+                component: UsersComponent,
+                canActivate: [authGuard], data: { breadcrumb: 'Users', roles: [Roles.ADM] },
+                title: 'Usuários'
             },
             {
                 path: 'freight-calculation',
