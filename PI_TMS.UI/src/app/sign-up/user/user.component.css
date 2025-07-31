@@ -1,20 +1,5 @@
-/* Transição suave */
-.form-container,
-.art-side {
-  transition: transform 0.7s ease-in-out;
-}
-/* Estado animado */
-.main-container.active .form-container {
-  transform: translateX(-150%);
-}
-.main-container.active .art-side {
-  transform: translateX(-150%);
-}
-
 .main-container {
   display: flex;
-  position: relative;
-  overflow: hidden;
   flex-direction: row;
   height: 100vh;
   align-items: center;
@@ -23,152 +8,166 @@
 .form-container {
   background-color: #ffffff;
   width: 40%;
-  height: 100vh;
-  padding: 24px;
+  height: 100%;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.form-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  color: #262626;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  overflow-y: auto;
 }
 
 .login-form {
-  margin-top: auto;
-  margin-bottom: auto;
-  max-width: 75%;
+  max-width: 650px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1c1c1c;
+  text-align: center;
+  margin-bottom: 3px;
   width: 100%;
 }
 
-.icon {
-  margin-right: 0.2rem;
-  width: 1em;
-  height: 1em;
-  flex-shrink: 0;
+.form-subtitle {
+  font-size: 0.95rem;
+  color: #6B7280;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
-.teste {
-  color: var(--primary);
+.form-group {
+  width: 48.5%;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.icon{
+    margin-right: 0.2rem;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
 }
 
 .inputs {
   display: flex;
   align-items: stretch;
-  margin-top: 8px;
-  margin-bottom: 8px;
 }
 
 .input-icon {
-  background: #ffffff;
-  color: #6b7280;
-  min-width: 50px;
+  background: #FFFFFF;
+  color: #6B7280;
+  min-width: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 8px 0px 0px 8px;
-  border: 1px solid #d1d5db;
+  border: 1px solid #D1D5DB;
   border-right: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .input-field {
-  width: 100%;
-  padding: 12px;
-  border-radius: 0px 8px 8px 0px;
-  background-color: #e5e7eb;
-  border: 1px solid #d1d5db;
-  transition: border-color 0.2s, background-color 0.2s;
+    width: 100%;
+    padding: 10px;
+    border-radius: 0px 8px 8px 0px;
+    background-color: #F9FAFB;
+    border: 1px solid #D1D5DB;
+    transition: border-color 0.2s, background-color 0.2s;
 }
 
 .input-field:focus {
-  border-color: var(--primary);
-  background-color: white;
-  outline: none;
+    border-color: var(--primary);
+    background-color: white;
+    outline: none;
+}
+
+.input-field.is-invalid {
+  border-color: #dc3545;
 }
 
 .submit-button {
-  width: 100%;
-  background-color: #1c1c1c;
-  color: white;
-  border-radius: 8px;
-  padding: 12px;
-  margin-top: 24px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s;
+    width: 100%;
+    background-color: #1c1c1c;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.95rem;
+    font-weight: bold;
 }
 
 .submit-button:hover {
-  background-color: #353535;
+    background-color: #353535;
 }
 
-.art-side {
-  background-color: #262626;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 60%;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  box-sizing: border-box;
-}
-
-.art-title {
-  font-size: 3rem;
-  font-weight: bold;
+.form-footer {
   text-align: center;
-  color: #ffffff;
-  word-break: normal;
-  margin-left: 50px;
-  text-align: left;
-  align-self: flex-start;
-  z-index: 2;
-}
-
-.art-title-green {
-  color: var(--primary);
-}
-
-.truck {
-  z-index: 2;
-  margin-bottom: 20%;
-}
-
-.truck img {
-  max-width: 90%;
-  height: auto;
-  display: block;
-}
-
-.blobs {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  margin-top: 20px;
   width: 100%;
-  height: auto;
-  z-index: 1;
 }
 
-.blob-left {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.form-footer-text {
+  color: #111;
 }
 
-.blob-right {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.form-footer-text a {
+  color: var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.image-side {
+    width: 60%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/motorista3.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 992px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .image-side {
+    display: none;
+  }
+
+  .form-container {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
+  .login-form {
+    max-width: 90%;
+    flex-direction: column;
+  }
+
+  .form-group {
+    width: 100%;
+  }
 }
