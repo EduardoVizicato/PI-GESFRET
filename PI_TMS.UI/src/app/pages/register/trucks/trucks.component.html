@@ -7,8 +7,8 @@
   <button class="add-button" data-bs-toggle="modal" data-bs-target="#addTruckModal">Adicionar</button>
 </div>
 
-<table class="truck-table">
-  <thead>
+<table class="table table-responsive table-sm">
+  <thead class="table-dark">
     <tr>
       <th>Placa</th>
       <!-- <th>Tipo</th> -->
@@ -16,7 +16,7 @@
       <th class="actions-header">Ações</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="table-group-divider">
     @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track filteredTrucks) {
     <!-- <tr *ngFor="let truck of trucks"> -->
     <tr>
@@ -61,48 +61,88 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="truckForm" (ngSubmit)="addTruck()">
+        <form [formGroup]="truckForm" (ngSubmit)="addTruck()" class="needs-validation" novalidate>
           <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" formControlName="name">
+            <input 
+              type="text" 
+              class="form-control" 
+              formControlName="name"
+              [class.is-valid]="truckForm.get('name')?.valid && truckForm.get('name')?.touched"
+              [class.is-invalid]="truckForm.get('name')?.invalid && truckForm.get('name')?.touched"
+              id="nome"
+              placeholder="Digite o nome do caminhão">
+            <div class="valid-feedback">
+              Nome válido!
+            </div>
+            <div class="invalid-feedback" *ngIf="truckForm.get('name')?.invalid && truckForm.get('name')?.touched">
+              <div *ngIf="truckForm.get('name')?.errors?.['required']">
+                Nome obrigatório.
+              </div>
+              <div *ngIf="truckForm.get('name')?.errors?.['minlength']">
+                O nome deve ter pelo menos 2 caracteres.
+              </div>
+              <div *ngIf="truckForm.get('name')?.errors?.['maxlength']">
+                O nome deve ter no máximo 50 caracteres.
+              </div>
+            </div>
           </div>
-          <div *ngIf="truckForm.get('name')?.invalid && truckForm.get('name')?.touched"
-            class="alert alert-danger d-flex align-items-center" role="alert">
-            <div *ngIf="truckForm.get('name')?.errors?.['required']">
-              Nome obrigatório.
-            </div>
-            <div *ngIf="truckForm.get('name')?.errors?.['minlength']">
-              O nome deve ter pelo menos 2 caracteres.
-            </div>
-            <div *ngIf="truckForm.get('name')?.errors?.['maxlength']">
-              O nome deve ter no máximo 50 caracteres.
-            </div>
-          </div>
+          
           <div class="mb-3" formGroupName="vehicleRegistrationPlate">
-            <label for="nome" class="form-label">Placa</label>
-            <input type="text" class="form-control" formControlName="registrationPlate" maxlength="8" mask="AAA-0A00"
-              [dropSpecialCharacters]="true">
-          </div>
-          <div
-            *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.invalid && (truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched || truckForm.get('taxId.taxId')?.dirty)"
-            class="alert alert-danger d-flex align-items-center" role="alert">
-            <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['required']">
-              Placa obrigatória.
+            <label for="placa" class="form-label">Placa</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              formControlName="registrationPlate" 
+              maxlength="8" 
+              mask="AAA-0A00"
+              [dropSpecialCharacters]="true"
+              [class.is-valid]="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.valid && truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched"
+              [class.is-invalid]="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.invalid && (truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched || truckForm.get('vehicleRegistrationPlate.registrationPlate')?.dirty)"
+              id="placa"
+              placeholder="AAA-0000">
+            <div class="valid-feedback">
+              Placa válida!
             </div>
-            <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['pattern']">
-              A placa deve ser uma placa válida.
+            <div class="invalid-feedback" *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.invalid && (truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched || truckForm.get('vehicleRegistrationPlate.registrationPlate')?.dirty)">
+              <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['required']">
+                Placa obrigatória.
+              </div>
+              <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['pattern']">
+                A placa deve ser uma placa válida.
+              </div>
             </div>
           </div>
-          <!-- <label for="tipo" class="form-label">Tipo</label>
-              <select class="form-select" id="vehicleType" formControlName="vehicleType">
-                <option [ngValue]="null" disabled>Selecione um tipo de veículo</option>
-                <option *ngFor="let typeOption of availableVehicleTypes" [ngValue]="typeOption.id">
-                    {{ typeOption.name }}
-                </option>
-              </select> -->
+          
+          <!-- <div class="mb-3">
+            <label for="tipo" class="form-label">Tipo</label>
+            <select 
+              class="form-select" 
+              id="vehicleType" 
+              formControlName="vehicleType"
+              [class.is-valid]="truckForm.get('vehicleType')?.valid && truckForm.get('vehicleType')?.touched"
+              [class.is-invalid]="truckForm.get('vehicleType')?.invalid && truckForm.get('vehicleType')?.touched">
+              <option [ngValue]="null" disabled>Selecione um tipo de veículo</option>
+              <option *ngFor="let typeOption of availableVehicleTypes" [ngValue]="typeOption.id">
+                  {{ typeOption.name }}
+              </option>
+            </select>
+            <div class="valid-feedback">
+              Tipo selecionado!
+            </div>
+            <div class="invalid-feedback" *ngIf="truckForm.get('vehicleType')?.invalid && truckForm.get('vehicleType')?.touched">
+              Por favor, selecione um tipo de veículo.
+            </div>
+          </div> -->
+          
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-dark">Adicionar</button>
+            <button 
+              type="submit" 
+              class="btn btn-dark"
+              [disabled]="truckForm.invalid">
+              Adicionar
+            </button>
           </div>
         </form>
       </div>
@@ -119,46 +159,88 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="truckForm" (ngSubmit)="onUpdate()">
+        <form [formGroup]="truckForm" (ngSubmit)="onUpdate()" class="needs-validation" novalidate>
           <div class="mb-3">
             <label for="edit-name" class="form-label">Nome</label>
-            <input type="text" id="edit-name" class="form-control" formControlName="name">
+            <input 
+              type="text" 
+              id="edit-name" 
+              class="form-control" 
+              formControlName="name"
+              [class.is-valid]="truckForm.get('name')?.valid && truckForm.get('name')?.touched"
+              [class.is-invalid]="truckForm.get('name')?.invalid && truckForm.get('name')?.touched"
+              placeholder="Digite o nome do caminhão">
+            <div class="valid-feedback">
+              Nome válido!
+            </div>
+            <div class="invalid-feedback" *ngIf="truckForm.get('name')?.invalid && truckForm.get('name')?.touched">
+              <div *ngIf="truckForm.get('name')?.errors?.['required']">
+                Nome obrigatório.
+              </div>
+              <div *ngIf="truckForm.get('name')?.errors?.['minlength']">
+                O nome deve ter pelo menos 2 caracteres.
+              </div>
+              <div *ngIf="truckForm.get('name')?.errors?.['maxlength']">
+                O nome deve ter no máximo 50 caracteres.
+              </div>
+            </div>
           </div>
-          <div *ngIf="truckForm.get('name')?.invalid && truckForm.get('name')?.touched"
-            class="alert alert-danger d-flex align-items-center" role="alert">
-            <div *ngIf="truckForm.get('name')?.errors?.['required']">
-              Nome obrigatório.
-            </div>
-            <div *ngIf="truckForm.get('name')?.errors?.['minlength']">
-              O nome deve ter pelo menos 2 caracteres.
-            </div>
-            <div *ngIf="truckForm.get('name')?.errors?.['maxlength']">
-              O nome deve ter no máximo 50 caracteres.
-            </div>
-          </div>
+          
           <div class="mb-3" formGroupName="vehicleRegistrationPlate">
             <label for="edit-registrationPlate" class="form-label">Placa</label>
-            <input type="text" id="edit-registrationPlate" class="form-control" formControlName="registrationPlate"
-              maxlength="8" mask="AAA-0A00" [dropSpecialCharacters]="true">
-          </div>
-          <div
-            *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.invalid && (truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched || truckForm.get('taxId.taxId')?.dirty)"
-            class="alert alert-danger d-flex align-items-center" role="alert">
-            <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['required']">
-              Placa obrigatória.
+            <input 
+              type="text" 
+              id="edit-registrationPlate" 
+              class="form-control" 
+              formControlName="registrationPlate"
+              maxlength="8" 
+              mask="AAA-0A00" 
+              [dropSpecialCharacters]="true"
+              [class.is-valid]="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.valid && truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched"
+              [class.is-invalid]="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.invalid && (truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched || truckForm.get('vehicleRegistrationPlate.registrationPlate')?.dirty)"
+              placeholder="AAA-0000">
+            <div class="valid-feedback">
+              Placa válida!
             </div>
-            <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['pattern']">
-              A placa deve ser uma placa válida.
+            <div class="invalid-feedback" *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.invalid && (truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched || truckForm.get('vehicleRegistrationPlate.registrationPlate')?.dirty)">
+              <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['required']">
+                Placa obrigatória.
+              </div>
+              <div *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors?.['pattern']">
+                A placa deve ser uma placa válida.
+              </div>
             </div>
           </div>
-          <!-- <label for="edit-vehicleType" class="form-label">Tipo</label>
-              <select class="form-select" id="edit-vehicleType" formControlName="vehicleType">
-                <option [ngValue]="null" disabled>Selecione um tipo de veículo</option>
-                <option *ngFor="let typeOption of availableVehicleTypes" [ngValue]="typeOption.id">{{ typeOption.name }}</option>
-              </select> -->
+          
+          <!-- <div class="mb-3">
+            <label for="edit-vehicleType" class="form-label">Tipo</label>
+            <select 
+              class="form-select" 
+              id="edit-vehicleType" 
+              formControlName="vehicleType"
+              [class.is-valid]="truckForm.get('vehicleType')?.valid && truckForm.get('vehicleType')?.touched"
+              [class.is-invalid]="truckForm.get('vehicleType')?.invalid && truckForm.get('vehicleType')?.touched">
+              <option [ngValue]="null" disabled>Selecione um tipo de veículo</option>
+              <option *ngFor="let typeOption of availableVehicleTypes" [ngValue]="typeOption.id">
+                {{ typeOption.name }}
+              </option>
+            </select>
+            <div class="valid-feedback">
+              Tipo selecionado!
+            </div>
+            <div class="invalid-feedback" *ngIf="truckForm.get('vehicleType')?.invalid && truckForm.get('vehicleType')?.touched">
+              Por favor, selecione um tipo de veículo.
+            </div>
+          </div> -->
+          
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-dark">Salvar Alterações</button>
+            <button 
+              type="submit" 
+              class="btn btn-dark"
+              [disabled]="truckForm.invalid">
+              Salvar Alterações
+            </button>
           </div>
         </form>
       </div>
