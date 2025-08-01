@@ -13,10 +13,9 @@ export class PlateFormatPipe implements PipeTransform {
 
   const prefix = clean.slice(0, 3).toUpperCase();
   const fourth = clean.charAt(3);
-  const fifth = clean.charAt(4).toUpperCase(); // <-- Aqui está o truque
-  const rest = clean.slice(5); // pega últimos dois dígitos
+  const fifth = clean.charAt(4).toUpperCase();
+  const rest = clean.slice(5);
 
-  // Verifica se o quinto caractere é letra ou número (só por segurança)
   const isSecondFormat = /[A-Z]/i.test(clean.charAt(4));
 
   if (isSecondFormat) {
