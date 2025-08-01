@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { user } from './models/user.model';
 import { UsersService } from './services/users.service';
 import { CommonModule } from '@angular/common';
+import { TaxFormatPipe } from "./utils/tax-format.pipe";
+import { PhoneFormatPipe } from "./utils/phone-format.pipe";
 
 @Component({
   selector: 'app-users',
-  imports: [CommonModule],
+  imports: [CommonModule, TaxFormatPipe, PhoneFormatPipe],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })

@@ -64,7 +64,7 @@
     text-align: center;
     white-space: nowrap;
 }
-
+.info-button,
 .edit-button,
 .delete-button {
     padding: 5px 10px;
@@ -74,6 +74,15 @@
     font-size: 14px;
     margin: 0 2px;
     transition: background-color 0.3s ease;
+}
+
+.info-button {
+    background-color: #4b4b4bff;
+    color: white;
+}
+
+.info-button:hover {
+    background-color: #838383ff;
 }
 
 .edit-button {

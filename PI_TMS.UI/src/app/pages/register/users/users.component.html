@@ -22,11 +22,12 @@
         <tbody>
             <tr *ngFor="let user of users">
                 <td>{{ user.firstName + ' ' + user.lastName }}</td>
-                <td>{{ user.taxId.taxId }}</td>
-                <td>{{ user.phoneNumber }}</td>
+                <td>{{ user.taxId.taxId | taxFormat }}</td>
+                <td>{{ user.phoneNumber | phoneFormat }}</td>
                 <td>{{ user.email }}</td>
                 <td class="actions">
-                    <button class="btn-secondary">Mais Informações</button>
+                    <button class="info-button">Mais Informações</button>
+                    <span class="separator">|</span>
                     <button class="edit-button">Editar</button>
                     <button class="delete-button">Excluir</button>
                 </td>
