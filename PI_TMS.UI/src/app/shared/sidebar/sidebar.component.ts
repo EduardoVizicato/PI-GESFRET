@@ -84,6 +84,8 @@ export class SidebarComponent implements OnInit {
         this.activeSubMenuItem = 'loads';
       } else if (currentUrl.includes('/register/clients')) {
         this.activeSubMenuItem = 'clients';
+      } else if (currentUrl.includes('/register/users')) {
+        this.activeSubMenuItem = 'users';
       }
     }
     if (!currentUrl.includes('/register') && this.isRegisterMenuOpen) {

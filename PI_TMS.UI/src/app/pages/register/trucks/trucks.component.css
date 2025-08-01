@@ -36,31 +36,29 @@
     background-color: #353535;
 }
 
-.truck-table {
+.table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    background-color: #fff;
+    
 }
 
-.truck-table th,
-.truck-table td {
+.table th,
+.table td {
     text-align: left;
-    padding: 12px 15px;
     border-bottom: 1px solid #ddd;
+    padding-left: 15px;   
 }
 
-.truck-table th {
-    background-color: #e9e9e9;
-    color: #333;
+.table th {
     font-weight: bold;
 }
 
-.truck-table th.actions-header {
+.table th.actions-header {
     text-align: center;
 }
 
-.truck-table td.actions {
+.table td.actions {
     text-align: center;
     white-space: nowrap;
 }
