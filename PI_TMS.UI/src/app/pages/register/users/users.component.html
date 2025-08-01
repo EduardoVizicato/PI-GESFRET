@@ -20,11 +20,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Felipe Barbisan</td>
-                <td>111.222.333-00</td>
-                <td>(16)98723-1234</td>
-                <td>barbisan$email.com</td>
+            <tr *ngFor="let user of users">
+                <td>{{ user.firstName + ' ' + user.lastName }}</td>
+                <td>{{ user.taxId.taxId }}</td>
+                <td>{{ user.phoneNumber }}</td>
+                <td>{{ user.email }}</td>
                 <td class="actions">
                     <button class="btn-secondary">Mais Informações</button>
                     <button class="edit-button">Editar</button>

@@ -1,17 +1,32 @@
 import { Component } from '@angular/core';
-import { user } from '../../../sign-up/user/model/user.model';
+import { user } from './models/user.model';
+import { UsersService } from './services/users.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-users',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
 export class UsersComponent {
   users: user[] = [];
 
-
-  getUserbyEnterprise(){
+  constructor(private usersService: UsersService) { }
+  ngOnInit(): void {
+    this.getUserbyEnterprise();
+  }
+  getUserbyEnterprise() {
+    this.usersService.getUsers().subscribe({
+      next: (response: user[]) => {
+        this.users = response;
+        console.log('Usuários obtidos com sucesso:', this.users);
+      },
+      error: (error: any) => {
+        console.error('Erro ao obter usuários:', error);
+      }
+    });
+  }
 
   }
-}
+
