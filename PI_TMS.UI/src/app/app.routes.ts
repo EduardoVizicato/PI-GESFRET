@@ -15,6 +15,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { Title } from 'chart.js';
 import { UsersComponent } from './pages/register/users/users.component';
+import { NoPageComponent } from './no-page/no-page.component';
 
 export enum Roles {
     ADM = 'ADM',
@@ -24,11 +25,6 @@ export enum Roles {
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-    },
-    {
-        path: 'home',
         component: LandingPageComponent,
         title: 'GESFRET',
     },
@@ -111,6 +107,12 @@ export const routes: Routes = [
                 title: 'Calcular Frete'
             },
         ]
+    },
+    // dxa smp c ultima
+    {
+        path: '**',
+        component: NoPageComponent,
+        title: 'Página Não Encontrada',
     }
 
 ];
