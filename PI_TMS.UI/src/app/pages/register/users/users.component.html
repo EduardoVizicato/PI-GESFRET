@@ -1,39 +1,258 @@
-
 <div class="main-content">
-    <h1>Clientes</h1>
+  <h1>Usuarios</h1>
 
-    <div class="spacer"></div>
-    
-    <div class="table-controls">
-        <input type="text" class="search-input" placeholder="Pesquisar">
-        <button class="add-button">Adicionar</button>
-    </div>
+  <div class="spacer"></div>
 
-    <table class="truck-table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>CPF/CNPJ</th>
-                <th>Telefone</th>
-                <th>Email</th>
-                <th class="actions-header">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <td>{{ user.firstName + ' ' + user.lastName }}</td>
-                <td>{{ user.taxId.taxId | taxFormat }}</td>
-                <td>{{ user.phoneNumber | phoneFormat }}</td>
-                <td>{{ user.email }}</td>
-                <td class="actions">
-                    <button class="info-button">Mais Informações</button>
-                    <span class="separator">|</span>
-                    <button class="edit-button">Editar</button>
-                    <button class="delete-button">Excluir</button>
-                </td>
-            </tr>
+  <div class="table-controls">
+    <input type="text" class="search-input" placeholder="Pesquisar">
+    <button class="add-button" data-bs-toggle="modal" data-bs-target="#addUserModal">Adicionar</button>
+  </div>
 
-            </tbody>
-    </table>
+  <table class="truck-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th class="actions-header">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.firstName + ' ' + user.lastName }}</td>
+        <td>{{ user.taxId.taxId | taxFormat }}</td>
+        <td>{{ user.phoneNumber | phoneFormat }}</td>
+        <td>{{ user.email }}</td>
+        <td class="actions">
+          <button class="info-button">Mais Informações</button>
+          <span class="separator">|</span>
+          <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editUserModal">Editar</button>
+          <button class="delete-button">Excluir</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
 
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="addUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Usuário</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="usersForm" (ngSubmit)="addUser()" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="firstName">Primeiro Nome</label>
+              <div class="inputs">
+                <i class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                    <line x1="9" y1="20" x2="15" y2="20"></line>
+                    <line x1="12" y1="4" x2="12" y2="20"></line>
+                  </svg>
+                </i>
+                <input type="text" name="firstName" id="firstName" placeholder="Primeiro Nome" class="input-field"
+                  formControlName="firstName"
+                  [class.is-invalid]="usersForm.get('firstName')?.invalid && (usersForm.get('firstName')?.dirty || usersForm.get('firstName')?.touched)"
+                  [class.is-valid]="usersForm.get('firstName')?.valid && (usersForm.get('firstName')?.dirty || usersForm.get('firstName')?.touched)">
+              </div>
+              <div
+                *ngIf="usersForm.get('firstName')?.invalid && (usersForm.get('firstName')?.dirty || usersForm.get('firstName')?.touched)"
+                class="invalid-feedback d-block">
+                <div *ngIf="usersForm.get('firstName')?.errors?.['required']">
+                  Nome obrigatório.
+                </div>
+                <div *ngIf="usersForm.get('firstName')?.errors?.['minlength']">
+                  O nome deve ter pelo menos 2 caracteres.
+                </div>
+                <div *ngIf="usersForm.get('firstName')?.errors?.['maxlength']">
+                  O nome deve ter no máximo 50 caracteres.
+                </div>
+              </div>
+              <div
+                *ngIf="usersForm.get('firstName')?.valid && (usersForm.get('firstName')?.dirty || usersForm.get('firstName')?.touched)"
+                class="valid-feedback d-block">
+                Nome válido!
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Último Nome</label>
+              <div class="inputs">
+                <i class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                    <line x1="9" y1="20" x2="15" y2="20"></line>
+                    <line x1="12" y1="4" x2="12" y2="20"></line>
+                  </svg>
+                </i>
+                <input type="text" name="lastName" id="lastName" placeholder="Último Nome" class="input-field"
+                  formControlName="lastName"
+                  [class.is-invalid]="usersForm.get('lastName')?.invalid && (usersForm.get('lastName')?.dirty || usersForm.get('lastName')?.touched)"
+                  [class.is-valid]="usersForm.get('lastName')?.valid && (usersForm.get('lastName')?.dirty || usersForm.get('lastName')?.touched)">
+              </div>
+              <div
+                *ngIf="usersForm.get('lastName')?.invalid && (usersForm.get('lastName')?.dirty || usersForm.get('lastName')?.touched)"
+                class="invalid-feedback d-block">
+                <div *ngIf="usersForm.get('lastName')?.errors?.['required']">
+                  Sobre Nome obrigatório.
+                </div>
+                <div *ngIf="usersForm.get('lastName')?.errors?.['minlength']">
+                  O nome deve ter pelo menos 2 caracteres.
+                </div>
+                <div *ngIf="usersForm.get('lastName')?.errors?.['maxlength']">
+                  O nome deve ter no máximo 50 caracteres.
+                </div>
+              </div>
+              <div
+                *ngIf="usersForm.get('lastName')?.valid && (usersForm.get('lastName')?.dirty || usersForm.get('lastName')?.touched)"
+                class="valid-feedback d-block">
+                Sobrenome válido!
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="taxId">CPF</label>
+              <div class="inputs" formGroupName="taxId">
+                <i class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                  </svg>
+                </i>
+                <input type="text" name="taxId" id="taxId" placeholder="CPF" class="input-field" mask="000.000.000-00"
+                  formControlName="taxId"
+                  [class.is-invalid]="usersForm.get('taxId.taxId')?.invalid && (usersForm.get('taxId.taxId')?.dirty || usersForm.get('taxId.taxId')?.touched)"
+                  [class.is-valid]="usersForm.get('taxId.taxId')?.valid && (usersForm.get('taxId.taxId')?.dirty || usersForm.get('taxId.taxId')?.touched)">
+              </div>
+              <div
+                *ngIf="usersForm.get('taxId.taxId')?.invalid && (usersForm.get('taxId.taxId')?.dirty || usersForm.get('taxId.taxId')?.touched)"
+                class="invalid-feedback d-block">
+                <div *ngIf="usersForm.get('taxId.taxId')?.errors?.['required']">
+                  CPF obrigatório.
+                </div>
+                <div *ngIf="usersForm.get('taxId.taxId')?.errors?.['pattern']">
+                  O CPF deve ser um CPF válido.
+                </div>
+              </div>
+              <div
+                *ngIf="usersForm.get('taxId.taxId')?.valid && (usersForm.get('taxId.taxId')?.dirty || usersForm.get('taxId.taxId')?.touched)"
+                class="valid-feedback d-block">
+                CPF válido!
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefone</label>
+              <div class="inputs">
+                <i class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                </i>
+                <input type="text" name="phone" id="phone" placeholder="Telefone" class="input-field"
+                  mask="(00) 00000-0000" formControlName="phoneNumber"
+                  [class.is-invalid]="usersForm.get('phoneNumber')?.invalid && (usersForm.get('phoneNumber')?.dirty || usersForm.get('phoneNumber')?.touched)"
+                  [class.is-valid]="usersForm.get('phoneNumber')?.valid && (usersForm.get('phoneNumber')?.dirty || usersForm.get('phoneNumber')?.touched)">
+              </div>
+              <div
+                *ngIf="usersForm.get('phoneNumber')?.invalid && (usersForm.get('phoneNumber')?.dirty || usersForm.get('phoneNumber')?.touched)"
+                class="invalid-feedback d-block">
+                <div *ngIf="usersForm.get('phoneNumber')?.errors?.['required']">
+                  Telefone obrigatório.
+                </div>
+                <div *ngIf="usersForm.get('phoneNumber')?.errors?.['pattern']">
+                  O telefone deve ser um número válido.
+                </div>
+              </div>
+              <div
+                *ngIf="usersForm.get('phoneNumber')?.valid && (usersForm.get('phoneNumber')?.dirty || usersForm.get('phoneNumber')?.touched)"
+                class="valid-feedback d-block">
+                Telefone válido!
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="email">Email</label>
+              <div class="inputs">
+                <i class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </i>
+                <input type="text" name="email" id="email" placeholder="Email" class="input-field"
+                  formControlName="email"
+                  [class.is-invalid]="usersForm.get('email')?.invalid && (usersForm.get('email')?.dirty || usersForm.get('email')?.touched)"
+                  [class.is-valid]="usersForm.get('email')?.valid && (usersForm.get('email')?.dirty || usersForm.get('email')?.touched)">
+              </div>
+              <div
+                *ngIf="usersForm.get('email')?.invalid && (usersForm.get('email')?.dirty || usersForm.get('email')?.touched)"
+                class="invalid-feedback d-block">
+                <div *ngIf="usersForm.get('email')?.errors?.['required']">
+                  Email obrigatório.
+                </div>
+                <div *ngIf="usersForm.get('email')?.errors?.['email']">
+                  O email deve ser um endereço de email válido.
+                </div>
+              </div>
+              <div
+                *ngIf="usersForm.get('email')?.valid && (usersForm.get('email')?.dirty || usersForm.get('email')?.touched)"
+                class="valid-feedback d-block">
+                Email válido!
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <label for="password">Senha</label>
+              <div class="inputs">
+                <i class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </i>
+                <input type="password" id="password" placeholder="Senha" class="input-field" formControlName="password"
+                  [class.is-invalid]="usersForm.get('password')?.invalid && (usersForm.get('password')?.dirty || usersForm.get('password')?.touched)"
+                  [class.is-valid]="usersForm.get('password')?.valid && (usersForm.get('password')?.dirty || usersForm.get('password')?.touched)">
+              </div>
+              <div
+                *ngIf="usersForm.get('password')?.invalid && (usersForm.get('password')?.dirty || usersForm.get('password')?.touched)"
+                class="invalid-feedback d-block">
+                <div *ngIf="usersForm.get('password')?.errors?.['required']">
+                  Senha obrigatória.
+                </div>
+                <div *ngIf="usersForm.get('password')?.errors?.['pattern']">
+                  A senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um número.
+                </div>
+              </div>
+              <div
+                *ngIf="usersForm.get('password')?.valid && (usersForm.get('password')?.dirty || usersForm.get('password')?.touched)"
+                class="valid-feedback d-block">
+                Senha válida!
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-dark" [disabled]="usersForm.invalid">
+                Adicionar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

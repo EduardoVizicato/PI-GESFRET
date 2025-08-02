@@ -13,8 +13,24 @@ export class UsersService {
   constructor(private HttpClient: HttpClient,) {
 
   }
-
   getUsers(): Observable<user[]> {
     return this.HttpClient.get<user[]>(`${this.apiUrl}getAllActivedUsers`);
   }
+  getAllUsers(): Observable<user[]> {
+    return this.HttpClient.get<user[]>(`${this.apiUrl}getAllUsers`);
+  }
+  getDesactivedUsers(): Observable<user[]> {
+    return this.HttpClient.get<user[]>(`${this.apiUrl}getAllDesactivedUsers`);
+  }
+  // ---------------------------------------------------------------------
+  addUsers(user: user): Observable<user> {
+    return this.HttpClient.post<user>(`${this.apiUrl}addUser`, user);
+  }
+  updateUsers(id: string, user: user): Observable<user> {
+    return this.HttpClient.put<user>(`${this.apiUrl}updateUser?id=${id}`, user);
+  }
+  desactiveUsers(id: string): Observable<void> {
+    return this.HttpClient.delete<void>(`${this.apiUrl}desactiveUser?id=${id}`);
+  }
+
 }

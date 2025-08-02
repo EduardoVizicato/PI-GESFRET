@@ -102,3 +102,176 @@
 .delete-button:hover {
     background-color: #c82333;
 }
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  align-items: center;
+}
+
+.form-container {
+  background-color: #ffffff;
+  width: 40%;
+  height: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.login-form {
+  max-width: 650px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1c1c1c;
+  text-align: center;
+  margin-bottom: 3px;
+  width: 100%;
+}
+
+.form-subtitle {
+  font-size: 0.95rem;
+  color: #6B7280;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.form-group {
+  width: 48.5%;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.icon{
+    margin-right: 0.2rem;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+}
+
+.inputs {
+  display: flex;
+  align-items: stretch;
+}
+
+.input-icon {
+  background: #FFFFFF;
+  color: #6B7280;
+  min-width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px 0px 0px 8px;
+  border: 1px solid #D1D5DB;
+  border-right: none;
+  font-size: 1.1rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 7px;
+    border-radius: 0px 8px 8px 0px;
+    background-color: #F9FAFB;
+    border: 1px solid #D1D5DB;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.input-field:focus {
+    border-color: var(--primary);
+    background-color: white;
+    outline: none;
+}
+
+.input-field.is-invalid {
+  border-color: #dc3545;
+}
+
+.submit-button {
+    width: 100%;
+    background-color: #1c1c1c;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.submit-button:hover {
+    background-color: #353535;
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.form-footer-text {
+  color: #111;
+}
+
+.form-footer-text a {
+  color: var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.image-side {
+    width: 60%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/motorista3.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 992px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .image-side {
+    display: none;
+  }
+
+  .form-container {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
+  .login-form {
+    max-width: 90%;
+    flex-direction: column;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+}
