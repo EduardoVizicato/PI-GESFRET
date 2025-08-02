@@ -18,11 +18,11 @@ export class TruckService {
     return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllActivedVehicles`);
   } 
 
-  addTruck(truck: Truck): Observable<Truck[]> {
-    return this.HttpClient.post<Truck[]>(`${this.apiUrl}addVehicle`,truck);
+  addTruck(truck: Truck): Observable<Truck> {
+    return this.HttpClient.post<Truck>(`${this.apiUrl}addVehicle`, truck);
   }
 
-  updateTruck(id: string, truck: Truck): Observable<Truck>{
+  updateTruck(id: string, truck: Truck): Observable<Truck> {
     return this.HttpClient.put<Truck>(`${this.apiUrl}updateVehicle?ID=${id}`, truck);
   }
 
