@@ -1,0 +1,149 @@
+<div class="table-controls">
+  <input type="text" class="search-input" placeholder="Pesquisar">
+  <button class="add-button" data-bs-toggle="modal" data-bs-target="#freteModal">Nova Viagem</button>
+</div>
+
+<table class="table">
+  <thead class="table-custom">
+    <tr>
+      <th scope="col">Nº</th>
+      <th scope="col">Data</th>
+      <th scope="col">Origem -> Destino</th>
+      <th scope="col">Placa / Veículo</th>
+      <th scope="col">Produto Predominante</th>
+      <th scope="col">Peso da Carga</th>
+      <th scope="col">Valor do Frete</th>
+      <th scope="col" class="text-center">Ações</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <th scope="row">3</th>
+      <td>31/07/2025</td>
+      <td>Jurupema/SP - Taquaritinga/SP</td>
+      <td>AAA-0000</td>
+      <td>TOMATE</td>
+      <td>14.570,000 Kg</td>
+      <td>R$ 1.234,56</td>
+      <td class="text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>29/07/2025</td>
+      <td>Matão/SP - Taquaritinga/SP</td>
+      <td>XYZ-1278</td>
+      <td>TOMATE</td>
+      <td>18.350,000 Kg</td>
+      <td>R$ 1.787,36</td>
+      <td class="text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>28/07/2025</td>
+      <td>Taquaritinga/SP - São Paulo/SP</td>
+      <td>FGA-9999</td>
+      <td>GOIABA</td>
+      <td>17.690,000 Kg</td>
+      <td>R$ 1.901,94</td>
+      <td class="text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+        </svg>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!--  -->
+
+<div class="modal fade" id="freteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="freteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="freteModalLabel">Registrar Nova Viagem</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formFrete">
+          <div class="mb-3">
+            <label for="data" class="form-label">Data</label>
+            <input type="date" class="form-control" id="data" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cidadeOrigem" class="form-label">Cidade de Origem</label> <!-- Autocomplete ? -->
+              <input type="text" class="form-control" id="cidadeOrigem" placeholder="" required> 
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cidadeDestino" class="form-label">Cidade de Destino</label> <!-- Autocomplete ? -->
+              <input type="text" class="form-control" id="cidadeDestino" placeholder="" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="veiculo" class="form-label">Veículo Utilizado</label>
+            <select class="form-select" id="veiculo" required>
+              <option selected disabled value="">- Selecione um veículo -</option>
+              <option value="idDoCaminhao">AAA-0000 - Mercedes-Benz L1620</option>
+              <option value="idDoCaminhao">XYZ-1278 - Scania 113H</option>
+              <option value="idDoCaminhao">FGA-9999 - Scania P360</option>
+              <option value="idDoCaminhao">ABC-1234 - Volvo FH400</option>
+              <option value="idDoCaminhao">WWW-8888 - Man TGX</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="produto" class="form-label">Produto Predominante</label>
+            <input type="text" class="form-control" id="produto" placeholder="" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="pesoCarga" class="form-label">Peso da Carga (kg)</label>
+              <input type="text" class="form-control" id="pesoCarga" placeholder="" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="valorFrete" class="form-label">Valor do Frete (R$)</label>
+                <div class="d-flex gap-2">
+                  <input type="number" class="form-control flex-grow-1" id="valorFrete" step="0.01" placeholder="" required>
+                  <a class="btn" id="btn-calc">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
+                          <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                          <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" form="formFrete" class="btn btn-primary">Salvar Viagem</button>
+      </div>
+    </div>
+  </div>
+</div>

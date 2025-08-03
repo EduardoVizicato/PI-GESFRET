@@ -7,7 +7,8 @@
 
 .main-container {
   display: flex;
-  background-color: #f4f7f6;
+  background-color: #fcfcfc;
+  
 }
 
 .content-wrapper {
@@ -27,7 +28,7 @@
   justify-content: space-between;
   height: var(--navbar-height);
   padding: 0 24px;
-  background-color: #ffffff;
+  background-color: #fefefe;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: sticky;

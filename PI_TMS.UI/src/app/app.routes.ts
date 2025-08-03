@@ -16,6 +16,7 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { Title } from 'chart.js';
 import { UsersComponent } from './pages/register/users/users.component';
 import { NoPageComponent } from './no-page/no-page.component';
+import { TraveltestComponent } from './traveltest/traveltest.component';
 
 export enum Roles {
     ADM = 'ADM',
@@ -54,6 +55,12 @@ export const routes: Routes = [
                 data: { title: 'Dashboard', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Dashboard',
 
+            },
+            {
+                path: 'traveltest',
+                component: TraveltestComponent,
+                title: 'Viagens',
+                data: { title: 'Lista de Viagens',}
             },
             {
                 path: 'travels',
