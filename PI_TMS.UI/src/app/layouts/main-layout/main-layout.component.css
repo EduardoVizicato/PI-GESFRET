@@ -75,6 +75,10 @@
   transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
 }
 
+.userimg{
+  border-radius: 50%;
+}
+
 @media (max-width: 991.98px) {
   .content-wrapper {
     margin-left: 0 !important;
