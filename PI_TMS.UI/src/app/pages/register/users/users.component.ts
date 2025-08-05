@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { user } from './models/user.model';
 import { UsersService } from './services/users.service';
 import { CommonModule } from '@angular/common';
@@ -13,9 +13,10 @@ import Modal from 'bootstrap/js/dist/modal';
   imports: [CommonModule, TaxFormatPipe, ReactiveFormsModule, PhoneFormatPipe, ModalComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
-
+  
 })
 export class UsersComponent {
+  @ViewChild(ModalComponent) userModalComponent!: ModalComponent;
   users: user[] = [];
   modalMode: 'add' | 'edit' = 'add';
   modalTitle = '';
@@ -32,6 +33,7 @@ export class UsersComponent {
     this.modalTitle = mode === 'add' ? 'Adicionar Usuário' : 'Editar Usuário';
     this.selectedUser = user ?? undefined;
     const modalElement = document.getElementById('userModal');
+
     if (modalElement) {
       const modal = new Modal(modalElement);
       modal.show();
@@ -42,7 +44,7 @@ export class UsersComponent {
 
   handleUserSubmit(user: user) {
     if (this.modalMode === 'add') {
-      this.addUser();
+      this.addUser(user);
     } else {
       this.updateUser(user);
     }
@@ -58,11 +60,31 @@ export class UsersComponent {
       }
     });
   }
-  addUser() {
-
+  addUser(userData: user) {
+    this.usersService.addUsers(userData).subscribe({
+      next: (response: any) => {
+        console.log('Usuário adicionado com sucesso');
+        this.getUserbyEnterprise();
+        const modalElement = document.getElementById('userModal');
+        if (modalElement) {
+          const modalInstance = Modal.getInstance(modalElement) || new Modal(modalElement);
+          modalInstance.hide();
+        }
+      },error: (err) => {
+        console.error('Erro ao adicionar usuário', err);
+      }
+    });
+    this.userModalComponent.resetForm();
   }
   updateUser(user: user) {
-    throw new Error('Method not implemented.');
+    this.usersService.updateUsers(user.id, user).subscribe({
+      next: (response) => {
+        console.log('Usuário atualizado com sucesso', response);
+      },
+      error: (err) => {
+        console.error('Erro ao atualizar usuário', err);
+      }
+    });
   }
 
 }
