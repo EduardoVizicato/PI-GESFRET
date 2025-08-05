@@ -129,6 +129,7 @@ export class TrucksComponent implements OnInit {
         if (modalElement) {
           const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
           if (modalInstance) {
+            console.log('test');
             modalInstance.hide();
           } //else {
           //   se getInstance retornar null
