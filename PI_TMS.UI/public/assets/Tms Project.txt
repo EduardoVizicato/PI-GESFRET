@@ -21,6 +21,6 @@ Coisas do site para fazer (TMS)
 - dashboard √
 
 ------Sprint 5---------
-- user page
-- token rule 
-- travel page 
+- user page √
+- token rule √
+- travel page √
