@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { user } from '../../models/user.model';
 import { CommonModule } from '@angular/common';
@@ -6,19 +6,40 @@ import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-modal',
-  imports: [ReactiveFormsModule,CommonModule,NgxMaskDirective],
+  imports: [ReactiveFormsModule, CommonModule, NgxMaskDirective],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
   @Input() title: string = '';
-  @Input() userData: user | null = null;
+  @Input() userData?: user;
   @Input() mode: 'add' | 'edit' | 'view' = 'add';
   @Output() onSubmit = new EventEmitter<user>();
-  usersForm: FormGroup;
-
-  constructor(private fb: FormBuilder) { this.usersForm = this.createForm(); }
-
+  usersForm!: FormGroup;
+  
+  constructor(private fb: FormBuilder) { }
+  ngOnInit(): void {
+    this.usersForm = this.createForm();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userData'] && this.userData) {
+      this.usersForm = this.createFormWithUser(this.userData);
+    } else if (this.mode === 'add') {
+      this.usersForm = this.createForm();
+    }
+  }
+  createFormWithUser(user: user): FormGroup {
+    return this.fb.group({
+      id: [user.id],
+      firstName: [user.firstName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      lastName: [user.lastName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      email: [user.email, [Validators.required, Validators.email]],
+      taxId: this.fb.group({
+        taxId: [user.taxId?.taxId, [Validators.required, Validators.pattern(/^\d{11}$/)]]
+      }),
+      phoneNumber: [user.phoneNumber, [Validators.required, Validators.pattern(/^\d{11}$/)]],
+    });
+  }
   createForm(): FormGroup {
     return this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -37,6 +58,10 @@ export class ModalComponent {
     }
   }
   resetForm() {
+  if (this.userData) {
+    this.usersForm = this.createFormWithUser(this.userData);
+  } else {
     this.usersForm.reset();
   }
+}
 }

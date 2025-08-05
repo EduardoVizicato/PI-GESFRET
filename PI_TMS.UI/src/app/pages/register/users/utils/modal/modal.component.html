@@ -1,7 +1,7 @@
 <div class="modal fade" id="userModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form [formGroup]="usersForm" (ngSubmit)="submit()" class="needs-validation" novalidate>
+      <form *ngIf="usersForm" [formGroup]="usersForm" (ngSubmit)="submit()" class="needs-validation" novalidate>
         <div class="modal-header">
           <h1 class="modal-title fs-5">{{ title }}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>

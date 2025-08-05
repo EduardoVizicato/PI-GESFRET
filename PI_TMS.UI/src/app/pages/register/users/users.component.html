@@ -27,7 +27,7 @@
         <td class="actions">
           <button class="info-button">Mais Informações</button>
           <span class="separator">|</span>
-          <button class="edit-button" (click)="openModal('edit', user)">Editar</button>
+          <button class="edit-button" (click)="openModal('edit',user)">Editar</button>
           <button class="delete-button">Excluir</button>
         </td>
       </tr>
@@ -36,6 +36,6 @@
   </table>
 
 </div>
-<app-modal [title]="'Adicionar Usuário'" [mode]="modalMode" 
+<app-modal [title]="'Adicionar Usuário'" [mode]="modalMode" [userData]="selectedUser"
   (onSubmit)="handleUserSubmit($event)">
 </app-modal>
