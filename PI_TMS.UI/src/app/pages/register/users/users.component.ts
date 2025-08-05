@@ -86,5 +86,16 @@ export class UsersComponent {
       }
     });
   }
+  deleteUser(user :user){
+     this.usersService.desactiveUsers(user.id).subscribe({
+      next: (response) => {
+        console.log('Usuário desativado com sucesso', response);
+        this.getUserbyEnterprise();
+      },
+      error: (err) => {
+        console.error('Erro ao desativar usuário', err);
+      }
+    });
+  }
 
 }
