@@ -25,7 +25,8 @@
         <td>{{ user.phoneNumber | phoneFormat }}</td>
         <td>{{ user.email }}</td>
         <td class="actions">
-          <button class="info-button">Mais Informações</button>
+          <button class="info-button" (click)="openViewModal(user)" data-bs-toggle="modal"
+            data-bs-target="#viewMoreUser">Mais Informações</button>
           <span class="separator">|</span>
           <button class="edit-button" (click)="openModal('edit',user)">Editar</button>
           <button class="delete-button" (click)="deleteUser(user)">Excluir</button>
@@ -35,6 +36,36 @@
     </tbody>
   </table>
 
+</div>
+
+<div class="modal fade" id="viewMoreUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="viewMoreUser" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="viewMoreUser">Outras Informações</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="truck-table" *ngIf="viewUser">
+          <tbody>
+            <tr>
+              <td>Data de Criação</td>
+              <td>{{ viewUser.createdAt | dateFormat }}</td>
+            </tr>
+            <tr>
+              <td>Ultima Atualização</td>
+              <td>{{ viewUser.updateAt | dateFormat }}</td>
+            </tr>
+
+          </tbody>
+        </table>
+        <div *ngIf="!viewUser">
+          <span>Error 404</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <app-modal [title]="'Adicionar Usuário'" [mode]="modalMode" [userData]="selectedUser"
   (onSubmit)="handleUserSubmit($event)">

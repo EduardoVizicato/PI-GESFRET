@@ -7,4 +7,6 @@ export interface user {
   };
   email: string;
   phoneNumber: string;
+  createdAt : string;
+  updateAt? : string;
 }

@@ -7,13 +7,14 @@ import { PhoneFormatPipe } from "./utils/phonePipe/phone-format.pipe";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from "./utils/modal/modal.component";
 import Modal from 'bootstrap/js/dist/modal';
+import { DateFormatPipe } from "./utils/datePipe/date-format.pipe";
 
 @Component({
   selector: 'app-users',
-  imports: [CommonModule, TaxFormatPipe, ReactiveFormsModule, PhoneFormatPipe, ModalComponent],
+  imports: [CommonModule, TaxFormatPipe, ReactiveFormsModule, PhoneFormatPipe, ModalComponent, DateFormatPipe],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
-  
+
 })
 export class UsersComponent {
   @ViewChild(ModalComponent) userModalComponent!: ModalComponent;
@@ -21,6 +22,7 @@ export class UsersComponent {
   modalMode: 'add' | 'edit' = 'add';
   modalTitle = '';
   selectedUser: user | undefined = undefined;
+  viewUser: user | null = null;
 
   constructor(private usersService: UsersService, private fb: FormBuilder) {
   }
@@ -70,7 +72,7 @@ export class UsersComponent {
           const modalInstance = Modal.getInstance(modalElement) || new Modal(modalElement);
           modalInstance.hide();
         }
-      },error: (err) => {
+      }, error: (err) => {
         console.error('Erro ao adicionar usuário', err);
       }
     });
@@ -86,8 +88,8 @@ export class UsersComponent {
       }
     });
   }
-  deleteUser(user :user){
-     this.usersService.desactiveUsers(user.id).subscribe({
+  deleteUser(user: user) {
+    this.usersService.desactiveUsers(user.id).subscribe({
       next: (response) => {
         console.log('Usuário desativado com sucesso', response);
         this.getUserbyEnterprise();
@@ -96,6 +98,9 @@ export class UsersComponent {
         console.error('Erro ao desativar usuário', err);
       }
     });
+  }
+  openViewModal(user: user) {
+    this.viewUser = user
   }
 
 }
