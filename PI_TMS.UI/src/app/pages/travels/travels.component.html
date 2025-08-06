@@ -1,3 +1,5 @@
+
+
 <div class="table-controls">
   <input type="text" class="search-input" placeholder="Pesquisar">
   <button class="add-button" data-bs-toggle="modal" data-bs-target="#freteModal">Nova Viagem</button>
@@ -63,24 +65,7 @@
 </table>
 
 <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<!--  -->
+  </nav>
 
 <div class="modal fade" id="freteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="freteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -95,16 +80,44 @@
             <label for="data" class="form-label">Data</label>
             <input type="date" class="form-control" id="data" required>
           </div>
+
           <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="cidadeOrigem" class="form-label">Cidade de Origem</label> <!-- Autocomplete ? -->
-              <input type="text" class="form-control" id="cidadeOrigem" placeholder="" required> 
+            <div class="col-md-6 mb-3 position-relative">
+              <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
+              <input type="text" class="form-control" id="cidadeOrigem" required
+                    (input)="search($event, 'origin')"
+                    (blur)="showSuggestionsOrigin = false"
+                    autocomplete="off">
+              <div class="list-group position-absolute w-100" style="z-index: 1000;" 
+                  *ngIf="showSuggestionsOrigin && (citiesOrigin$ | async) as cities">
+                <ng-container *ngIf="cities.length > 0">
+                  <a href="#" class="list-group-item list-group-item-action"
+                    *ngFor="let city of cities"
+                    (mousedown)="selectCity(city, 'origin', $event)">
+                    {{ city.nome }} /{{ city.estado }}
+                  </a>
+                </ng-container>
+              </div>
             </div>
-            <div class="col-md-6 mb-3">
-              <label for="cidadeDestino" class="form-label">Cidade de Destino</label> <!-- Autocomplete ? -->
-              <input type="text" class="form-control" id="cidadeDestino" placeholder="" required>
+            <div class="col-md-6 mb-3 position-relative">
+              <label for="cidadeDestino" class="form-label">Cidade de Destino</label>
+              <input type="text" class="form-control" id="cidadeDestino" required
+                    (input)="search($event, 'destination')"
+                    (blur)="showSuggestionsDestination = false"
+                    autocomplete="off">
+              <div class="list-group position-absolute w-100" style="z-index: 1000;"
+                  *ngIf="showSuggestionsDestination && (citiesDestination$ | async) as cities">
+                  <ng-container *ngIf="cities.length > 0">
+                    <a href="#" class="list-group-item list-group-item-action"
+                      *ngFor="let city of cities"
+                      (mousedown)="selectCity(city, 'destination', $event)">
+                      {{ city.nome }} /{{ city.estado }}
+                    </a>
+                  </ng-container>
+              </div>
             </div>
           </div>
+
           <div class="mb-3">
             <label for="veiculo" class="form-label">Veículo Utilizado</label>
             <select class="form-select" id="veiculo" required>
@@ -132,7 +145,7 @@
             <div class="col-md-6 mb-3">
               <label for="valorFrete" class="form-label">Valor do Frete (R$)</label>
                 <div class="d-flex gap-2">
-                  <input 
+                  <input
                   (focus)="setCursorEnd($event)"
                   currencyMask
                   [options]="valueOptions"
@@ -155,3 +168,4 @@
     </div>
   </div>
 </div>
+
