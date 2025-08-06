@@ -80,37 +80,37 @@ export const routes: Routes = [
                 path: 'nf-storage',
                 component: NfStorageComponent,
                 canActivate: [authGuard],
-                data: { breadcrumb: 'NF Storage', title: 'Notas Fiscais', roles: [Roles.ADM, Roles.FUNCIONARIO] },
+                data: { title: 'Notas Fiscais', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Notas Fiscais'
             },
             {
                 path: 'register/trucks',
                 component: TrucksComponent,
-                canActivate: [authGuard], data: { breadcrumb: 'Cadastrar/Caminhoes', title: 'Cadastro de Caminhões', roles: [Roles.ADM] },
+                canActivate: [authGuard], data: { title: 'Cadastro de Caminhões', roles: [Roles.ADM] },
                 title: 'Caminhões'
             },
             {
                 path: 'register/loads',
                 component: LoadsComponent,
-                canActivate: [authGuard], data: { breadcrumb: 'Loads', title: 'Cadastro de Cargas', roles: [Roles.ADM] },
+                canActivate: [authGuard], data: { title: 'Cadastro de Cargas', roles: [Roles.ADM] },
                 title: 'Cargas'
             },
             {
                 path: 'register/clients',
                 component: ClientsComponent,
-                canActivate: [authGuard], data: { breadcrumb: 'Clients', roles: [Roles.ADM] },
+                canActivate: [authGuard], data: { roles: [Roles.ADM] },
                 title: 'Clientes'
             },
             {
                 path: 'register/users',
                 component: UsersComponent,
-                canActivate: [authGuard], data: { breadcrumb: 'Users', title: 'Usuários', roles: [Roles.ADM] },
+                canActivate: [authGuard], data: { title: 'Usuários', roles: [Roles.ADM] },
                 title: 'Usuários'
             },
             {
                 path: 'freight-calculation',
                 component: FreightCalculationComponent,
-                canActivate: [authGuard], data: { breadcrumb: 'Freight Calculation', title: 'Calcular Frete', roles: [Roles.ADM, Roles.FUNCIONARIO] },
+                canActivate: [authGuard], data: { title: 'Calcular Frete', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Calcular Frete'
             },
         ]

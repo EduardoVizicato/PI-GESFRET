@@ -140,8 +140,9 @@ export class TrucksComponent implements OnInit, AfterViewInit, OnDestroy {
     this.truckService.updateTruck(this.editingTruckId, updatedTruckData).subscribe({
       next: () => {
         this.getAllTrucks();
-        // fecha aq
+
         this.editTruckModal?.hide();
+
         this.truckForm.reset();
         this.editingTruckId = null;
       },
