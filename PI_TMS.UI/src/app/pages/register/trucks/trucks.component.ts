@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+// Importe AfterViewInit e OnDestroy para gerenciar o ciclo de vida do modal
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -9,6 +10,8 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { PlateFormatPipe } from "./utils/plate-format.pipe";
 import { EventService } from '../../../shared/service/event.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
+declare var bootstrap: any;
 
 interface VehicleTypeOption {
   id: number;
@@ -22,7 +25,8 @@ interface VehicleTypeOption {
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
 })
-export class TrucksComponent implements OnInit {
+
+export class TrucksComponent implements OnInit, AfterViewInit, OnDestroy {
 
   searchTerm: string = '';
   page: number = 1;
@@ -30,6 +34,9 @@ export class TrucksComponent implements OnInit {
   trucks: Truck[] = [];
   truckForm: FormGroup;
   editingTruckId: string | null = null;
+
+  private addTruckModal: any;
+  private editTruckModal: any;
 
   availableVehicleTypes: VehicleTypeOption[] = [
     { id: 0, name: 'Carro' },
@@ -41,17 +48,32 @@ export class TrucksComponent implements OnInit {
     this.truckForm = this.createForm();
   }
 
-  setPage(page: number) {
-    this.page = page;
-  }
   ngOnInit(): void {
     this.getAllTrucks();
+  }
+  
+  
+  ngAfterViewInit(): void {
+    
+    const addModalEl = document.getElementById('addTruckModal');
+    if (addModalEl) {
+      this.addTruckModal = new bootstrap.Modal(addModalEl);
+    }
+
+    const editModalEl = document.getElementById('editTruckModal');
+    if (editModalEl) {
+      this.editTruckModal = new bootstrap.Modal(editModalEl);
+    }
+  }
+  
+  ngOnDestroy(): void {
+    this.addTruckModal?.dispose();
+    this.editTruckModal?.dispose();
   }
 
   getAllTrucks() {
     this.truckService.getAllTrucks().subscribe(
       (response) => {
-        console.log(response);
         this.trucks = response;
       },
       (error) => {
@@ -59,6 +81,7 @@ export class TrucksComponent implements OnInit {
       }
     );
   }
+
   get filteredTrucks() {
     const term = this.searchTerm.toLowerCase();
     return this.trucks.filter(u =>
@@ -77,66 +100,49 @@ export class TrucksComponent implements OnInit {
       })
     })
   }
+  
+  showAddModal(): void {
+    this.truckForm.reset();
+    this.addTruckModal?.show();
+  }
 
   addTruck() {
     if (this.truckForm.invalid) {
-      console.log('Formulário inválido');
-      this.truckForm.markAllAsTouched(); // mostra erros
+      this.truckForm.markAllAsTouched();
       return;
     }
     const truckData: Truck = this.truckForm.value;
     this.truckService.addTruck(truckData).subscribe({
       next: (response) => {
-        console.log(response)
         this.getAllTrucks();
-
-        const modalElement = document.getElementById('addTruckModal');
-        if (modalElement) {
-          const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
-          if (modalInstance) {
-            modalInstance.hide();
-          } //else {
-          //   se getInstance retornar null
-          //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
-          //   bsModal.hide();
-          // }
-        }
+        // fecha aq
+        this.addTruckModal?.hide();
         this.truckForm.reset();
-
       },
       error: (err) => this.eventService.showError('Erro inesperado.')
     })
   }
-
+  
   openEditModal(truck: Truck): void {
     this.editingTruckId = truck.id;
     this.truckForm.patchValue(truck);
+    // mostra aq
+    this.editTruckModal?.show();
   }
 
   onUpdate(): void {
-    if (this.truckForm.invalid) {
-      console.log('Formulário inválido');
-      this.truckForm.markAllAsTouched(); // mostra erros
+    if (this.truckForm.invalid || !this.editingTruckId) {
+      this.truckForm.markAllAsTouched();
       return;
     }
-    if (this.truckForm.invalid || !this.editingTruckId) return;
 
     const updatedTruckData = this.truckForm.value;
     this.truckService.updateTruck(this.editingTruckId, updatedTruckData).subscribe({
       next: () => {
         this.getAllTrucks();
-        const modalElement = document.getElementById('editTruckModal');
-        if (modalElement) {
-          const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement);
-          if (modalInstance) {
-            console.log('test');
-            modalInstance.hide();
-          } //else {
-          //   se getInstance retornar null
-          //   const bsModal = new (window as any).bootstrap.Modal(modalElement);
-          //   bsModal.hide();
-          // }
-        }
+
+        this.editTruckModal?.hide();
+
         this.truckForm.reset();
         this.editingTruckId = null;
       },
@@ -147,13 +153,13 @@ export class TrucksComponent implements OnInit {
   truckDelete(id: string): void {
     this.truckService.deleteTruck(id).subscribe({
       next: (response) => {
-        console.log('deletou');
         this.trucks = this.trucks.filter(truck => truck.id !== id);
       },
       error: (err) => this.eventService.showError('Erro inesperado.')
     })
   }
 
+  setPage(page: number) {
+    this.page = page;
+  }
 }
-
-

@@ -4,7 +4,7 @@
 
 <div class="table-controls">
   <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
-  <button class="add-button" data-bs-toggle="modal" data-bs-target="#addTruckModal">Adicionar</button>
+  <button class="add-button" (click)="showAddModal()">Adicionar</button>
 </div>
 
 <table class="table table-responsive table-sm">
@@ -24,8 +24,7 @@
       <!-- <td>{{ truck.vehicleType }}</td> -->
       <td>{{ truck.name }}</td>
       <td class="actions">
-        <button class="edit-button" (click)="openEditModal(truck)" data-bs-toggle="modal"
-          data-bs-target="#editTruckModal">Editar</button>
+        <button class="edit-button" (click)="openEditModal(truck)">Editar</button>
         <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
       </td>
     </tr>
