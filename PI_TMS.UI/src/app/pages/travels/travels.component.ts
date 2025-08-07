@@ -5,6 +5,8 @@ import { NgxCurrencyDirective } from "ngx-currency";
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { City, CityService } from './service/city.service';
+import { TravelService } from './service/travel.service';
+import { Truck } from './model/travel.model';
 
 @Component({
   selector: 'app-traveltest',
@@ -24,6 +26,7 @@ export class TravelsComponent implements OnInit {
  
   weightvalue: number = 0;
   freightvalue: number = 0;
+  trucks : Truck[] = [];
 
   citiesOrigin$!: Observable<City[]>;
   citiesDestination$!: Observable<City[]>;
@@ -49,7 +52,7 @@ export class TravelsComponent implements OnInit {
     allowNegative: false,
   };
 
-  constructor(private cityService: CityService) {}
+  constructor(private cityService: CityService, private travelService : TravelService) {}
 
   ngOnInit(): void {
     this.citiesOrigin$ = this.searchOriginTerms.pipe(
@@ -74,6 +77,14 @@ export class TravelsComponent implements OnInit {
       this.showSuggestionsDestination = term.length > 1;
       this.searchDestinationTerms.next(term);
     }
+  }
+
+  selectTruck(){
+    this.travelService.getAllTrucks().subscribe(
+      (response) => {
+        this.trucks = response;
+      }
+    )
   }
 
   selectCity(city: City, type: 'origin' | 'destination', event: MouseEvent): void {

@@ -120,13 +120,11 @@
 
           <div class="mb-3">
             <label for="veiculo" class="form-label">Veículo Utilizado</label>
-            <select class="form-select" id="veiculo" required>
+            <select class="form-select" id="veiculo" required (click)="selectTruck()">
               <option selected disabled value="">- Selecione um veículo -</option>
-              <option value="idDoCaminhao">AAA-0000 - Mercedes-Benz L1620</option>
-              <option value="idDoCaminhao">XYZ-1278 - Scania 113H</option>
-              <option value="idDoCaminhao">FGA-9999 - Scania P360</option>
-              <option value="idDoCaminhao">ABC-1234 - Volvo FH400</option>
-              <option value="idDoCaminhao">WWW-8888 - Man TGX</option>
+              @for (truck of trucks; track trucks) {
+              <option value="{{truck.id}}">{{truck.vehicleRegistrationPlate.registrationPlate}} - {{truck.name}}</option>
+              }
             </select>
           </div>
           <div class="mb-3">
