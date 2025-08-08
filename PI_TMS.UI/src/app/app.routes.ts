@@ -27,7 +27,7 @@ export const routes: Routes = [
     {
         path: '',
         component: LandingPageComponent,
-        title: 'GESFRET',
+        title: 'Gesfret',
     },
     {
         path: 'login',
@@ -37,12 +37,12 @@ export const routes: Routes = [
     {
         path: 'signUp-user',
         component: UserComponent,
-        title: 'Registre-se',
+        title: 'Criar Usuário',
     },
     {
         path: 'signUp-enterprise',
         component: EnterpriseComponent,
-        title: 'Registre-se',
+        title: 'Criar Empresa',
     },
     {
         path: '',
@@ -53,14 +53,14 @@ export const routes: Routes = [
                 component: DashboardComponent,
                 canActivate: [authGuard],
                 data: { title: 'Dashboard', roles: [Roles.ADM, Roles.FUNCIONARIO] },
-                title: 'Dashboard',
+                title: 'Início',
 
             },
             {
                 path: 'traveltest',
                 component: TraveltestComponent,
+                data: { title: 'Lista de Viagens',},
                 title: 'Viagens',
-                data: { title: 'Lista de Viagens',}
             },
             {
                 path: 'travels',

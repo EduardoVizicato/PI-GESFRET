@@ -6,35 +6,50 @@
   <button class="add-button" (click)="showAddModal()">Adicionar</button>
 </div>
 
-<table class="table table-responsive table-sm">
-  <thead class="table-dark">
-    <tr>
-      <th>Placa</th>
-      <!-- <th>Tipo</th> -->
-      <th>Nome</th>
-      <th class="actions-header">Ações</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track filteredTrucks) {
-    <!-- <tr *ngFor="let truck of trucks"> -->
-    <tr>
-      <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
-      <!-- <td>{{ truck.vehicleType }}</td> -->
-      <td>{{ truck.name }}</td>
-      <td class="actions">
-        <button class="edit-button" (click)="openEditModal(truck)">Editar</button>
-        <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
-      </td>
-    </tr>
-    }
+<div *ngIf="trucks.length > 0; else noTruckCard">
 
-  </tbody>
-</table>
-<footer class="footer text-center py-5 d-flex justify-content-end">
-  <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
-  <ngb-pagination [collectionSize]="filteredTrucks.length" [(page)]="page" [boundaryLinks]="true">
-    <ng-template ngbPaginationPages let-page let-pages="pages">
+  <table class="table table-responsive table-sm">
+    <thead class="table-dark">
+      <tr>
+        <th>Placa</th>
+        <!-- <th>Tipo</th> -->
+        <th>Nome</th>
+        <th class="actions-header">Ações</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track filteredTrucks) {
+        <!-- <tr *ngFor="let truck of trucks"> -->
+          <tr>
+            <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
+            <!-- <td>{{ truck.vehicleType }}</td> -->
+            <td>{{ truck.name }}</td>
+            <td class="actions">
+              <button class="edit-button" (click)="openEditModal(truck)">Editar</button>
+              <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
+            </td>
+          </tr>
+        }
+        
+      </tbody>
+    </table>
+    
+</div>
+
+<ng-template #noTruckCard>
+  <div class="card mt-3">
+    <div class="card-body text-center p-5">
+      <h5 class="card-title">Você não tem nenhum caminhão</h5>
+      <p class="card-text text-muted">Clique em "Adicionar" para começar a registrar.</p>
+    </div>
+  </div>
+</ng-template>
+
+
+    <footer class="footer text-center py-5 d-flex justify-content-end">
+      <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
+      <ngb-pagination [collectionSize]="filteredTrucks.length" [(page)]="page" [boundaryLinks]="true">
+        <ng-template ngbPaginationPages let-page let-pages="pages">
       @if (pages.length > 0) {
       <li class="ngb-custom-pages-item">
         <div class="mb-3 d-flex flex-nowrap px-2">
