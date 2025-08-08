@@ -51,10 +51,10 @@ export class TrucksComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.getAllTrucks();
   }
-  
-  
+
+
   ngAfterViewInit(): void {
-    
+
     const addModalEl = document.getElementById('addTruckModal');
     if (addModalEl) {
       this.addTruckModal = new bootstrap.Modal(addModalEl);
@@ -65,7 +65,7 @@ export class TrucksComponent implements OnInit, AfterViewInit, OnDestroy {
       this.editTruckModal = new bootstrap.Modal(editModalEl);
     }
   }
-  
+
   ngOnDestroy(): void {
     this.addTruckModal?.dispose();
     this.editTruckModal?.dispose();
@@ -100,7 +100,7 @@ export class TrucksComponent implements OnInit, AfterViewInit, OnDestroy {
       })
     })
   }
-  
+
   showAddModal(): void {
     this.truckForm.reset();
     this.addTruckModal?.show();
@@ -122,7 +122,7 @@ export class TrucksComponent implements OnInit, AfterViewInit, OnDestroy {
       error: (err) => this.eventService.showError('Erro inesperado.')
     })
   }
-  
+
   openEditModal(truck: Truck): void {
     this.editingTruckId = truck.id;
     this.truckForm.patchValue(truck);
