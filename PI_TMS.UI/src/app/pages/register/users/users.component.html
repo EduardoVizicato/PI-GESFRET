@@ -1,37 +1,52 @@
-<div class="spacer"></div>
-  <div class="table-controls">
-    <input type="text" class="search-input" placeholder="Pesquisar">
-    <button class="add-button" (click)="openModal('add')">Adicionar</button>
-  </div>
+<div class="table-controls">
+  <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
+  <button class="add-button" (click)="openModal('add')">Adicionar</button>
+</div>
 
-  <table class="truck-table">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>CPF</th>
-        <th>Telefone</th>
-        <th>Email</th>
-        <th class="actions-header">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{ user.firstName + ' ' + user.lastName }}</td>
-        <td>{{ user.taxId.taxId | taxFormat }}</td>
-        <td>{{ user.phoneNumber | phoneFormat }}</td>
-        <td>{{ user.email }}</td>
-        <td class="actions">
-          <button class="info-button" (click)="openViewModal(user)" data-bs-toggle="modal"
-            data-bs-target="#viewMoreUser">Mais Informações</button>
-          <span class="separator">|</span>
-          <button class="edit-button" (click)="openModal('edit',user)">Editar</button>
-          <button class="delete-button" (click)="deleteUser(user)">Excluir</button>
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-
+<table class="truck-table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Telefone</th>
+      <th>Email</th>
+      <th class="actions-header">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of filteredUsers | slice: (page-1) * pageSize : page * pageSize; track filteredUsers) {
+    <tr>
+      <td>{{ user.firstName + ' ' + user.lastName }}</td>
+      <td>{{ user.taxId.taxId | taxFormat }}</td>
+      <td>{{ user.phoneNumber | phoneFormat }}</td>
+      <td>{{ user.email }}</td>
+      <td class="actions">
+        <button class="info-button" (click)="openViewModal(user)" data-bs-toggle="modal"
+          data-bs-target="#viewMoreUser">Mais Informações</button>
+        <span class="separator">|</span>
+        <button class="edit-button" (click)="openModal('edit',user)">Editar</button>
+        <button class="delete-button" (click)="deleteUser(user)">Excluir</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+<footer class="footer text-center py-5 d-flex justify-content-end">
+  <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
+  <ngb-pagination [collectionSize]="filteredUsers.length" [(page)]="page" [boundaryLinks]="true">
+    <ng-template ngbPaginationPages let-page let-pages="pages">
+      @if (pages.length > 0) {
+      <li class="ngb-custom-pages-item">
+        <div class="mb-3 d-flex flex-nowrap px-2">
+          <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+          <span id="paginationDescription" class="col-form-label text-nowrap px-2">{{ page }} of
+            {{ pages.length }}</span>
+        </div>
+      </li>
+      }
+    </ng-template>
+  </ngb-pagination>
+</footer>
 
 <div class="modal fade" id="viewMoreUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="viewMoreUser" aria-hidden="true">

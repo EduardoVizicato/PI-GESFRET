@@ -4,20 +4,24 @@ import { UsersService } from './services/users.service';
 import { CommonModule } from '@angular/common';
 import { TaxFormatPipe } from "./utils/taxPipe/tax-format.pipe";
 import { PhoneFormatPipe } from "./utils/phonePipe/phone-format.pipe";
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from "./utils/modal/modal.component";
 import Modal from 'bootstrap/js/dist/modal';
 import { DateFormatPipe } from "./utils/datePipe/date-format.pipe";
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-users',
-  imports: [CommonModule, TaxFormatPipe, ReactiveFormsModule, PhoneFormatPipe, ModalComponent, DateFormatPipe],
+  imports: [CommonModule,FormsModule, TaxFormatPipe, ReactiveFormsModule, PhoneFormatPipe, ModalComponent, DateFormatPipe, NgbPaginationModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 
 })
 export class UsersComponent {
   @ViewChild(ModalComponent) userModalComponent!: ModalComponent;
+  searchTerm: string = '';
+  page: number = 1;
+  pageSize: number = 10;
   users: user[] = [];
   modalMode: 'add' | 'edit' = 'add';
   modalTitle = '';
@@ -61,6 +65,16 @@ export class UsersComponent {
         console.error('Erro ao obter usuários:', error);
       }
     });
+  }
+  get filteredUsers() {
+    const term = this.searchTerm.toLowerCase();
+    return this.users.filter(u =>
+      u.firstName.toLowerCase().includes(term) ||
+      u.lastName.toLowerCase().includes(term) ||
+      u.taxId.taxId.toLowerCase().includes(term) ||
+      u.phoneNumber.toLowerCase().includes(term) ||
+      u.email.toLowerCase().includes(term)
+    );
   }
   addUser(userData: user) {
     this.usersService.addUsers(userData).subscribe({
