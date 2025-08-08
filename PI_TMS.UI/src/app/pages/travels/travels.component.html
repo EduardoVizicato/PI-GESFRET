@@ -2,7 +2,7 @@
 
 <div class="table-controls">
   <input type="text" class="search-input" placeholder="Pesquisar">
-  <button class="add-button" data-bs-toggle="modal" data-bs-target="#freteModal">Nova Viagem</button>
+  <button class="add-button" data-bs-toggle="modal" data-bs-target="#freteModal" (click)="selectTruck()">Nova Viagem</button>
 </div>
 
 <table class="table">
@@ -120,7 +120,7 @@
 
           <div class="mb-3">
             <label for="veiculo" class="form-label">Veículo Utilizado</label>
-            <select class="form-select" id="veiculo" required (click)="selectTruck()">
+            <select class="form-select" id="veiculo" required >
               <option selected disabled value="">- Selecione um veículo -</option>
               @for (truck of trucks; track trucks) {
               <option value="{{truck.id}}">{{truck.vehicleRegistrationPlate.registrationPlate}} - {{truck.name}}</option>
