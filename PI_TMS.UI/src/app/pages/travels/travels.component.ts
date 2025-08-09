@@ -76,7 +76,6 @@ export class TravelsComponent implements OnInit {
   
   loadTravels(): void {
     
-    
     // ver como que fica
     // const sampleTravels: Travel[] = [
     //   {
@@ -90,7 +89,7 @@ export class TravelsComponent implements OnInit {
     //   },
     // ]
     // this.travels = sampleTravels;
-    // 
+
   }
 
   search(event: Event, type: 'origin' | 'destination'): void {

@@ -43,6 +43,15 @@
     
 }
 
+.table-group-divider{
+    color: #d2d2d2;
+}
+
+.table-custom th{
+    /* background-color: #d4fa9e; */
+    background-color: #e7e7e7;
+}
+
 .table th,
 .table td {
     text-align: left;
