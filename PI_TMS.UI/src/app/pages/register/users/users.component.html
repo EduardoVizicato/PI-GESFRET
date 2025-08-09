@@ -2,35 +2,46 @@
   <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
   <button class="add-button" (click)="openModal('add')">Adicionar</button>
 </div>
+<div *ngIf="users.length > 0; else noUsersCard">
+  <table class="table table-sm">
+    <thead class="table-custom">
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th class="actions-header">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of filteredUsers | slice: (page-1) * pageSize : page * pageSize; track filteredUsers) {
+      <tr>
+        <td>{{ user.firstName + ' ' + user.lastName }}</td>
+        <td>{{ user.taxId.taxId | taxFormat }}</td>
+        <td>{{ user.phoneNumber | phoneFormat }}</td>
+        <td>{{ user.email }}</td>
+        <td class="actions">
+          <button class="info-button" (click)="openViewModal(user)" data-bs-toggle="modal"
+            data-bs-target="#viewMoreUser">Mais Informações</button>
+          <span class="separator">|</span>
+          <button class="edit-button" (click)="openModal('edit',user)">Editar</button>
+          <button class="delete-button" (click)="deleteUser(user)">Excluir</button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
 
-<table class="truck-table">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>CPF</th>
-      <th>Telefone</th>
-      <th>Email</th>
-      <th class="actions-header">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (user of filteredUsers | slice: (page-1) * pageSize : page * pageSize; track filteredUsers) {
-    <tr>
-      <td>{{ user.firstName + ' ' + user.lastName }}</td>
-      <td>{{ user.taxId.taxId | taxFormat }}</td>
-      <td>{{ user.phoneNumber | phoneFormat }}</td>
-      <td>{{ user.email }}</td>
-      <td class="actions">
-        <button class="info-button" (click)="openViewModal(user)" data-bs-toggle="modal"
-          data-bs-target="#viewMoreUser">Mais Informações</button>
-        <span class="separator">|</span>
-        <button class="edit-button" (click)="openModal('edit',user)">Editar</button>
-        <button class="delete-button" (click)="deleteUser(user)">Excluir</button>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+<ng-template #noUsersCard>
+  <div class="card mt-3">
+    <div class="card-body text-center p-5">
+      <h5 class="card-title">Você não tem nenhum usuário</h5>
+      <p class="card-text text-muted">Clique em "Adicionar" para começar a registrar.</p>
+    </div>
+  </div>
+</ng-template>
+
 <footer class="footer text-center py-5 d-flex justify-content-end">
   <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
   <ngb-pagination [collectionSize]="filteredUsers.length" [(page)]="page" [boundaryLinks]="true">
