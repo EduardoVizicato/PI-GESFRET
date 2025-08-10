@@ -1,6 +1,6 @@
 <div class="table-controls">
   <input type="text" class="search-input" placeholder="Pesquisar">
-  <button class="add-button" data-bs-toggle="modal" data-bs-target="#freteModal" (click)="selectTruck()">Nova Viagem</button>
+  <button class="add-button" (click)="selectTruck();showAddModal()">Nova Viagem</button>
 </div>
 
 <div *ngIf="travels.length > 0; else noTravelsCard">
@@ -21,7 +21,7 @@
       <tr *ngFor="let travel of travels; let i = index">
         <th scope="row">{{ travels.length - i }}</th>
         <td>{{ travel.date }}</td>
-        <td>{{ travel.route }}</td>
+        <td>{{ travel.route.origin }} -> {{travel.route.destination}}</td>
         <td>{{ travel.vehiclePlate }}</td>
         <td>{{ travel.product }}</td>
         <td>{{ travel.weight }}</td>
@@ -53,19 +53,20 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="formFrete">
+        <form id="formFrete" [formGroup]="travelForm" (ngSubmit)="addTravel()">
           <div class="mb-3">
             <label for="data" class="form-label">Data</label>
-            <input type="date" class="form-control" id="data" required>
+            <input type="date" class="form-control" id="data" formControlName="date" required>
           </div>
 
-          <div class="row">
-            <div class="col-md-6 mb-3 position-relative">
+          <div class="row" formGroupName="route">
+            <div class="col-md-6 mb-3 position-relative" >
               <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
               <input type="text" class="form-control" id="cidadeOrigem" required
                     (input)="search($event, 'origin')"
                     (blur)="showSuggestionsOrigin = false"
-                    autocomplete="off">
+                    autocomplete="off"
+                    formControlName="origin">
               <div class="list-group position-absolute w-100" style="z-index: 1000;" 
                   *ngIf="showSuggestionsOrigin && (citiesOrigin$ | async) as cities">
                 <ng-container *ngIf="cities.length > 0">
@@ -82,7 +83,8 @@
               <input type="text" class="form-control" id="cidadeDestino" required
                     (input)="search($event, 'destination')"
                     (blur)="showSuggestionsDestination = false"
-                    autocomplete="off">
+                    autocomplete="off"
+                    formControlName="destination">
               <div class="list-group position-absolute w-100" style="z-index: 1000;"
                   *ngIf="showSuggestionsDestination && (citiesDestination$ | async) as cities">
                   <ng-container *ngIf="cities.length > 0">
@@ -98,16 +100,16 @@
 
           <div class="mb-3">
             <label for="veiculo" class="form-label">Veículo Utilizado</label>
-            <select class="form-select" id="veiculo" required >
+            <select class="form-select" id="veiculo" required formControlName="vehiclePlate" >
               <option selected disabled value="">- Selecione um veículo -</option>
               @for (truck of trucks; track trucks) {
-              <option value="{{truck.id}}">{{truck.vehicleRegistrationPlate.registrationPlate}} - {{truck.name}}</option>
+              <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">{{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
               }
             </select>
           </div>
           <div class="mb-3">
             <label for="produto" class="form-label">Produto Predominante</label>
-            <input type="text" class="form-control" id="produto" placeholder="" required>
+            <input type="text" class="form-control" id="produto" placeholder="" formControlName="product" required>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
@@ -116,7 +118,7 @@
               (focus)="setCursorEnd($event)"
               currencyMask
               [options]="weightOptions"
-              type="text" class="form-control text-start" id="pesoCarga" placeholder="" required>
+              type="text" class="form-control text-start" id="pesoCarga" placeholder="" formControlName="weight">
             </div>
             <div class="col-md-6 mb-3">
               <label for="valorFrete" class="form-label">Valor do Frete (R$)</label>
@@ -125,7 +127,7 @@
                   (focus)="setCursorEnd($event)"
                   currencyMask
                   [options]="valueOptions"
-                  type="text" class="form-control flex-grow-1 text-start" id="valorFrete" step="0.01" placeholder="" required>
+                  type="text" class="form-control flex-grow-1 text-start" id="valorFrete" step="0.01" placeholder="" formControlName="freightValue">
                   <a class="btn" id="btn-calc">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
                           <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>

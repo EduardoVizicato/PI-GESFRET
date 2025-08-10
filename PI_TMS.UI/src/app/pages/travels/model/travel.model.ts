@@ -1,7 +1,10 @@
 export interface Travel {
     id: string; 
     date: string;
-    route: string;
+    route: {
+        origin : string;
+        destination : string;
+    }
     vehiclePlate: string;
     product: string;
     weight: string;

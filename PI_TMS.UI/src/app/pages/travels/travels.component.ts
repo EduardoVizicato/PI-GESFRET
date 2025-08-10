@@ -8,6 +8,10 @@ import { City, CityService } from './service/city.service';
 import { TravelService } from './service/travel.service';
 import { Truck } from './model/travel.model';
 import { Travel } from './model/travel.model';
+import { PlateFormatPipe } from "../register/trucks/utils/plate-format.pipe";
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-traveltest',
@@ -15,7 +19,10 @@ import { Travel } from './model/travel.model';
   imports: [
     CommonModule,
     NgxCurrencyDirective,
-    HttpClientModule
+    HttpClientModule,
+    PlateFormatPipe,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     CityService,
@@ -27,19 +34,21 @@ import { Travel } from './model/travel.model';
 export class TravelsComponent implements OnInit {
 
   travels: Travel[] = [];
-  
+  travelForm: FormGroup;
   weightvalue: number = 0;
   freightvalue: number = 0;
-  trucks : Truck[] = [];
+  trucks: Truck[] = [];
 
   citiesOrigin$!: Observable<City[]>;
   citiesDestination$!: Observable<City[]>;
   private searchOriginTerms = new Subject<string>();
   private searchDestinationTerms = new Subject<string>();
 
+  private addTravelModal: any;
+
   showSuggestionsOrigin = false;
   showSuggestionsDestination = false;
-  
+
   weightOptions = {
     prefix: '',
     thousands: '.',
@@ -56,8 +65,23 @@ export class TravelsComponent implements OnInit {
     allowNegative: false,
   };
 
-  constructor(private cityService: CityService, private travelService : TravelService) {}
+  constructor(private cityService: CityService, private travelService: TravelService, private fb: FormBuilder) {
+    this.travelForm = this.createForm();
+  }
+  createForm(): FormGroup {
+    return this.fb.group({
+      date: [''],
+      route:this.fb.group({
+        origin : [''],
+        destination : [''],
+      }),
+      vehiclePlate: [''],
+      product: [''],
+      weight: [''],
+      freightValue: ['']
+    })
 
+  }
   ngOnInit(): void {
     this.loadTravels();
 
@@ -73,9 +97,25 @@ export class TravelsComponent implements OnInit {
       switchMap((term: string) => this.cityService.searchCities(term)),
     );
   }
-  
+  ngAfterViewInit(): void {
+
+    const addModalEl = document.getElementById('freteModal');
+    if (addModalEl) {
+      this.addTravelModal = new bootstrap.Modal(addModalEl);
+    }
+  }
+   showAddModal(): void {
+    this.travelForm.reset();
+    this.addTravelModal?.show();
+  }
+  addTravel() {
+    this.travels = this.travelForm.value;
+    this.addTravelModal?.hide();
+    this.travelForm.reset();
+  }
+
   loadTravels(): void {
-    
+
     // ver como que fica
     // const sampleTravels: Travel[] = [
     //   {
@@ -103,7 +143,7 @@ export class TravelsComponent implements OnInit {
     }
   }
 
-  selectTruck(){
+  selectTruck() {
     this.travelService.getAllTrucks().subscribe(
       (response) => {
         this.trucks = response;
@@ -112,7 +152,7 @@ export class TravelsComponent implements OnInit {
   }
 
   selectCity(city: City, type: 'origin' | 'destination', event: MouseEvent): void {
-    event.preventDefault(); 
+    event.preventDefault();
     const cityName = `${city.nome}/${city.estado}`;
 
     if (type === 'origin') {
