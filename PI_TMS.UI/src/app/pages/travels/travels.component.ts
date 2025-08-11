@@ -10,6 +10,7 @@ import { Truck } from './model/travel.model';
 import { Travel } from './model/travel.model';
 import { PlateFormatPipe } from "../register/trucks/utils/plate-format.pipe";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 declare var bootstrap: any;
 
@@ -22,8 +23,9 @@ declare var bootstrap: any;
     HttpClientModule,
     PlateFormatPipe,
     FormsModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    NgbPaginationModule
+],
   providers: [
     CityService,
     TravelService
@@ -35,9 +37,12 @@ export class TravelsComponent implements OnInit {
 
   travels: Travel[] = [];
   travelForm: FormGroup;
+  page: number = 1;
+  pageSize: number = 10;
   weightvalue: number = 0;
   freightvalue: number = 0;
   trucks: Truck[] = [];
+  searchTerm: string = '';
 
   citiesOrigin$!: Observable<City[]>;
   citiesDestination$!: Observable<City[]>;
@@ -71,9 +76,9 @@ export class TravelsComponent implements OnInit {
   createForm(): FormGroup {
     return this.fb.group({
       date: [''],
-      route:this.fb.group({
-        origin : [''],
-        destination : [''],
+      route: this.fb.group({
+        origin: [''],
+        destination: [''],
       }),
       vehiclePlate: [''],
       product: [''],
@@ -104,7 +109,7 @@ export class TravelsComponent implements OnInit {
       this.addTravelModal = new bootstrap.Modal(addModalEl);
     }
   }
-   showAddModal(): void {
+  showAddModal(): void {
     this.travelForm.reset();
     this.addTravelModal?.show();
   }
@@ -117,21 +122,34 @@ export class TravelsComponent implements OnInit {
   loadTravels(): void {
 
     // ver como que fica
-    // const sampleTravels: Travel[] = [
-    //   {
-    //     id: 'a8b2c4d6-e8f0-1234-5678-9a1b3c5d7e9f',
-    //     date: '31/07/2025',
-    //     route: 'Jurupema/SP - Taquaritinga/SP',
-    //     vehiclePlate: 'AAA-0000',
-    //     product: 'TOMATE',
-    //     weight: '14.570,000 Kg',
-    //     freightValue: 'R$ 1.234,56'
-    //   },
-    // ]
-    // this.travels = sampleTravels;
+    const sampleTravels: Travel[] = [
+      {
+        id: 'a8b2c4d6-e8f0-1234-5678-9a1b3c5d7e9f',
+        date: '31/07/2025',
+        route: ({
+          origin: 'Jurupema/SP ',
+          destination: 'Taquaritinga/SP',
+        }),
+        vehiclePlate: 'AAA-0000',
+        product: 'TOMATE',
+        weight: '14.570,000 Kg',
+        freightValue: 'R$ 1.234,56'
+      },
+    ]
+    this.travels = sampleTravels;
 
   }
-
+  get filteredTravel() {
+    const term = this.searchTerm.toLowerCase();
+    return this.travels.filter(u =>
+      u.route.origin.toLowerCase().includes(term) ||
+      u.route.destination.toLowerCase().includes(term) ||
+      u.vehiclePlate.toLowerCase().includes(term) ||
+      u.product.toLowerCase().includes(term) ||
+      u.weight.toLowerCase().includes(term) ||
+      u.freightValue.toLowerCase().includes(term)
+    );
+  }
   search(event: Event, type: 'origin' | 'destination'): void {
     const term = (event.target as HTMLInputElement).value;
     if (type === 'origin') {
