@@ -57,17 +57,24 @@ export class CityService {
     }
     return this.citiesCache$;
   }
+  
+  private normalizeString(text: string): string {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
 
   searchCities(term: string): Observable<City[]> {
     if (!term || term.trim().length < 1) {
       return of([]);
     }
 
+    const normalizedTerm = this.normalizeString(term.toLowerCase());
+
     return this.getCities().pipe(
       map(cities =>
-        cities.filter(city =>
-          `${city.nome}/${city.estado}`.toLowerCase().includes(term.toLowerCase())
-        ).slice(0, 10)
+        cities.filter(city => {
+          const normalizedCity = this.normalizeString(`${city.nome}/${city.estado}`.toLowerCase());
+          return normalizedCity.includes(normalizedTerm);
+        }).slice(0, 10)
       )
     );
   }
