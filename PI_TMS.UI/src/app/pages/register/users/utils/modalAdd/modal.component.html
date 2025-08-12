@@ -3,7 +3,7 @@
     <div class="modal-content">
       <form *ngIf="usersForm" [formGroup]="usersForm" (ngSubmit)="submit()" class="needs-validation" novalidate>
         <div class="modal-header">
-          <h1 class="modal-title fs-5">{{ title }}</h1>
+          <h1 class="modal-title fs-5">Adicionar Usuário</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
@@ -221,7 +221,7 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-success" [disabled]="usersForm.invalid">
-                {{ mode === 'add' ? 'Adicionar' : 'Salvar' }}
+                Adicionar 
               </button>
             </div>
           </div>

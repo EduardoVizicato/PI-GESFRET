@@ -1,6 +1,6 @@
 <div class="table-controls">
   <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
-  <button class="add-button" (click)="openModal('add')">Adicionar</button>
+  <button class="add-button" (click)="openModalAdd()">Adicionar</button>
 </div>
 <div *ngIf="users.length > 0; else noUsersCard">
   <table class="table table-sm">
@@ -24,7 +24,7 @@
           <button class="info-button" (click)="openViewModal(user)" data-bs-toggle="modal"
             data-bs-target="#viewMoreUser">Mais Informações</button>
           <span class="separator">|</span>
-          <button class="edit-button" (click)="openModal('edit',user)">Editar</button>
+          <button class="edit-button" (click)="openModalUpdate(user)">Editar</button>
           <button class="delete-button" (click)="deleteUser(user)">Excluir</button>
         </td>
       </tr>
@@ -88,6 +88,8 @@
     </div>
   </div>
 </div>
-<app-modal [title]="'Adicionar Usuário'" [mode]="modalMode" [userData]="selectedUser"
+<app-modal
   (onSubmit)="handleUserSubmit($event)">
 </app-modal>
+<app-update-modal (onSubmit)="updateUser($event)">
+</app-update-modal>
