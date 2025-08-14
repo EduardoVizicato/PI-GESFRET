@@ -3,7 +3,7 @@
   <button class="add-button" (click)="selectTruck();showAddModal()">Nova Viagem</button>
 </div>
 
-<div *ngIf="travels.length > 0; else noTravelsCard">
+@if (travels.length > 0) {
   <table class="table table-sm">
     <thead class="table-custom">
       <tr>
@@ -39,7 +39,6 @@
     </tbody>
   </table>
   <footer class="footer text-center py-5 d-flex justify-content-end">
-    <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
     <ngb-pagination [collectionSize]="filteredTravel.length" [(page)]="page" [boundaryLinks]="true">
       <ng-template ngbPaginationPages let-page let-pages="pages">
         @if (pages.length > 0) {
@@ -54,16 +53,14 @@
       </ng-template>
     </ngb-pagination>
   </footer>
-</div>
-
-<ng-template #noTravelsCard>
+} @else {
   <div class="card mt-3">
     <div class="card-body text-center p-5">
       <h5 class="card-title">Você não tem nenhuma viagem</h5>
       <p class="card-text text-muted">Clique em "Nova Viagem" para começar a registrar.</p>
     </div>
   </div>
-</ng-template>
+}
 
 <div class="modal fade" id="freteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="freteModalLabel" aria-hidden="true">
@@ -75,124 +72,151 @@
       </div>
       <div class="modal-body">
         <form id="formFrete" [formGroup]="travelForm" (ngSubmit)="addTravel()">
-          <div class="mb-3">
-            <label for="data" class="form-label">Data</label>
-            <input type="date" class="form-control" id="data" formControlName="date" required>
-          </div>
+          
+          @if (currentStep === 1) {
+          <div>
+            <div class="mb-3">
+              <label for="data" class="form-label">Data</label>
+              <input type="date" class="form-control" id="data" formControlName="date" required>
+            </div>
 
-          <div class="row" formGroupName="route">
-            <div class="col-md-6 mb-3 position-relative">
-              <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
-              <input type="text" class="form-control" id="cidadeOrigem" required (input)="search($event, 'origin')"
-                (blur)="showSuggestionsOrigin = false" autocomplete="off" formControlName="origin">
-              <div class="list-group position-absolute w-100" style="z-index: 1000;"
-                *ngIf="showSuggestionsOrigin && (citiesOrigin$ | async) as cities">
-                <ng-container *ngIf="cities.length > 0">
-                  <a href="#" class="list-group-item list-group-item-action" *ngFor="let city of cities"
-                    (mousedown)="selectCity(city, 'origin', $event)">
-                    {{ city.nome }} /{{ city.estado }}
-                  </a>
-                </ng-container>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3 position-relative">
-              <label for="cidadeDestino" class="form-label">Cidade de Destino</label>
-              <input type="text" class="form-control" id="cidadeDestino" required
-                (input)="search($event, 'destination')" (blur)="showSuggestionsDestination = false" autocomplete="off"
-                formControlName="destination">
-              <div class="list-group position-absolute w-100" style="z-index: 1000;"
-                *ngIf="showSuggestionsDestination && (citiesDestination$ | async) as cities">
-                <ng-container *ngIf="cities.length > 0">
-                  <a href="#" class="list-group-item list-group-item-action" *ngFor="let city of cities"
-                    (mousedown)="selectCity(city, 'destination', $event)">
-                    {{ city.nome }} /{{ city.estado }}
-                  </a>
-                </ng-container>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="veiculo" class="form-label">Veículo Utilizado</label>
-              <select class="form-select" id="veiculo" required formControlName="vehiclePlate">
-                <option selected disabled value="">- Selecione um veículo -</option>
-                @for (truck of trucks; track trucks) {
-                <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
-                  {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
+            <div class="row" formGroupName="route">
+              <div class="col-md-6 mb-3 position-relative">
+                <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
+                <input type="text" class="form-control" id="cidadeOrigem" required (input)="search($event, 'origin')"
+                  (blur)="showSuggestionsOrigin = false" autocomplete="off" formControlName="origin">
+                
+                @if (showSuggestionsOrigin && (citiesOrigin$ | async); as cities) {
+                  <div class="list-group position-absolute w-100" style="z-index: 1000;">
+                    @if (cities.length > 0) {
+                      @for(city of cities; track city) {
+                        <a href="#" class="list-group-item list-group-item-action"
+                          (mousedown)="selectCity(city, 'origin', $event)">
+                          {{ city.nome }} /{{ city.estado }}
+                        </a>
+                      }
+                    }
+                  </div>
                 }
-              </select>
-            </div>
-            <div class="col-md-6 mb-3" *ngIf="isTractor()">
-              <label for="" class="form-label">Reboque Utilizado</label>
-              <select class="form-select" id="">
-                <option selected disabled value="">- Selecione um Reboque -</option>
-                @for (truck of trucks; track trucks) {
-                <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
-                  {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
+              </div>
+              <div class="col-md-6 mb-3 position-relative">
+                <label for="cidadeDestino" class="form-label">Cidade de Destino</label>
+                <input type="text" class="form-control" id="cidadeDestino" required
+                  (input)="search($event, 'destination')" (blur)="showSuggestionsDestination = false" autocomplete="off"
+                  formControlName="destination">
+                
+                @if (showSuggestionsDestination && (citiesDestination$ | async); as cities) {
+                  <div class="list-group position-absolute w-100" style="z-index: 1000;">
+                    @if (cities.length > 0) {
+                      @for(city of cities; track city) {
+                        <a href="#" class="list-group-item list-group-item-action"
+                          (mousedown)="selectCity(city, 'destination', $event)">
+                          {{ city.nome }} /{{ city.estado }}
+                        </a>
+                      }
+                    }
+                  </div>
                 }
-              </select>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="veiculo" class="form-label">Veículo Utilizado</label>
+                <select class="form-select" id="veiculo" required formControlName="vehiclePlate">
+                  <option selected disabled value="">- Selecione um veículo -</option>
+                  @for (truck of trucks; track trucks) {
+                  <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
+                    {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
+                  }
+                </select>
+              </div>
+              @if (isTractor()) {
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label">Reboque Utilizado</label>
+                  <select class="form-select" id="">
+                    <option selected disabled value="">- Selecione um Reboque -</option>
+                    @for (truck of trucks; track trucks) {
+                    <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
+                      {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
+                    }
+                  </select>
+                </div>
+              }
             </div>
           </div>
-          <hr>
-          <div class="mb-3">
-            <label for="produto" class="form-label">Produto Predominante</label>
-            <input type="text" class="form-control" id="produto" placeholder="" formControlName="product" required>
-          </div>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="pesoCarga" class="form-label">Tipo de Produto</label>
-              <select id="tipo-carga" required>
-                <option disabled value="">- Selecione o tipo de carga -</option>
-                <option value="1">Carga de Granel Sólido</option>
-                <option value="2">Carga de Granel Líquido</option>
-                <option value="3">Carga Frigorificada ou Aquecida</option>
-                <option value="4">Carga Conteinerizada</option>
-                <option value="5">Carga Geral</option>
-                <option value="6">Carga Neogranel</option>
-                <option value="7">Carga Perigosa (granel sólido)</option>
-                <option value="8">Carga Perigosa (granel líquido)</option>
-                <option value="9">Carga Perigosa (carga frigorificada ou aquecida)</option>
-                <option value="10">Carga Perigosa (conteinerizada)</option>
-                <option value="11">Carga Perigosa (carga geral)</option>
-                <option value="12">Carga Granel Pressurizada</option>
-              </select>
+          }
+
+          @if (currentStep === 2) {
+          <div>
+            <hr>
+            <div class="mb-3">
+              <label for="produto" class="form-label">Produto Predominante</label>
+              <input type="text" class="form-control" id="produto" placeholder="" formControlName="product" required>
             </div>
-            <div class="col-md-6 mb-3">
-              <label for="pesoCarga" class="form-label">Peso da Carga (kg)</label>
-              <input (focus)="setCursorEnd($event)" currencyMask [options]="weightOptions" type="text"
-                class="form-control text-start" id="pesoCarga" placeholder="" formControlName="weight">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="pesoCarga" class="form-label">Tipo de Produto</label>
+                <select id="tipo-carga" required>
+                  <option disabled value="">- Selecione o tipo de carga -</option>
+                  <option value="1">Carga de Granel Sólido</option>
+                  <option value="2">Carga de Granel Líquido</option>
+                  <option value="3">Carga Frigorificada ou Aquecida</option>
+                  <option value="4">Carga Conteinerizada</option>
+                  <option value="5">Carga Geral</option>
+                  <option value="6">Carga Neogranel</option>
+                  <option value="7">Carga Perigosa (granel sólido)</option>
+                  <option value="8">Carga Perigosa (granel líquido)</option>
+                  <option value="9">Carga Perigosa (carga frigorificada ou aquecida)</option>
+                  <option value="10">Carga Perigosa (conteinerizada)</option>
+                  <option value="11">Carga Perigosa (carga geral)</option>
+                  <option value="12">Carga Granel Pressurizada</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="pesoCarga" class="form-label">Peso da Carga (kg)</label>
+                <input (focus)="setCursorEnd($event)" currencyMask [options]="weightOptions" type="text"
+                  class="form-control text-start" id="pesoCarga" placeholder="" formControlName="weight">
+              </div>
             </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="inputGroupFile02" class="form-label">Salvar CTE</label>
-              <input type="file" class="form-control" id="inputGroupFile02">
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="valorFrete" class="form-label">Valor do Frete (R$)</label>
-              <div class="d-flex gap-2">
-                <input (focus)="setCursorEnd($event)" currencyMask [options]="valueOptions" type="text"
-                  class="form-control flex-grow-1 text-start" id="valorFrete" step="0.01" placeholder=""
-                  formControlName="freightValue">
-                <a class="btn" id="btn-calc">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                    class="bi bi-calculator" viewBox="0 0 16 16">
-                    <path
-                      d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                    <path
-                      d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
-                  </svg>
-                </a>
+            <hr>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="inputGroupFile02" class="form-label">Anexar CTE</label>
+                <input type="file" class="form-control" id="inputGroupFile02">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="valorFrete" class="form-label">Valor do Frete (R$)</label>
+                <div class="d-flex gap-2">
+                  <input (focus)="setCursorEnd($event)" currencyMask [options]="valueOptions" type="text"
+                    class="form-control flex-grow-1 text-start" id="valorFrete" step="0.01" placeholder=""
+                    formControlName="freightValue">
+                  <a class="btn" id="btn-calc">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                      class="bi bi-calculator" viewBox="0 0 16 16">
+                      <path
+                        d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                      <path
+                        d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
+          }
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" form="formFrete" class="btn btn-primary">Salvar Viagem</button>
+        @if (currentStep === 1) {
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-dark" (click)="nextStep()">Próximo</button>
+        }
+        
+        @if (currentStep === 2) {
+          <button type="button" class="btn btn-secondary" (click)="previousStep()">Voltar</button>
+          <button type="submit" form="formFrete" class="btn btn-dark">Salvar Viagem</button>
+        }
       </div>
     </div>
   </div>

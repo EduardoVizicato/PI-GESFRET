@@ -15,7 +15,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 declare var bootstrap: any;
 
 @Component({
-  selector: 'app-traveltest',
+  selector: 'app-travels',
   standalone: true,
   imports: [
     CommonModule,
@@ -43,6 +43,7 @@ export class TravelsComponent implements OnInit {
   freightvalue: number = 0;
   trucks: Truck[] = [];
   searchTerm: string = '';
+  currentStep: number = 1;
 
   citiesOrigin$!: Observable<City[]>;
   citiesDestination$!: Observable<City[]>;
@@ -110,6 +111,7 @@ export class TravelsComponent implements OnInit {
     }
   }
   showAddModal(): void {
+    this.currentStep = 1;
     this.travelForm.reset();
     this.addTravelModal?.show();
   }
@@ -174,12 +176,10 @@ export class TravelsComponent implements OnInit {
     const cityName = `${city.nome}/${city.estado}`;
 
     if (type === 'origin') {
-      const input = document.getElementById('cidadeOrigem') as HTMLInputElement;
-      input.value = cityName;
+      this.travelForm.get('route')?.patchValue({ origin: cityName });
       this.showSuggestionsOrigin = false;
     } else {
-      const input = document.getElementById('cidadeDestino') as HTMLInputElement;
-      input.value = cityName;
+      this.travelForm.get('route')?.patchValue({ destination: cityName });
       this.showSuggestionsDestination = false;
     }
   }
@@ -196,5 +196,13 @@ export class TravelsComponent implements OnInit {
       return true
     }
     return false
+  }
+
+  nextStep() {
+    this.currentStep++;
+  }
+
+  previousStep() {
+    this.currentStep--;
   }
 }
