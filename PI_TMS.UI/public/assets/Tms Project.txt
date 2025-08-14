@@ -20,7 +20,17 @@ Coisas do site para fazer (TMS)
 - user(information) √
 - dashboard √
 
-------Sprint 5---------
+------Sprint 5---------29/07 - 12/07
 - user page √
 - token rule √
 - travel page √
+
+------Sprint 6---------13/07 - 20/07
+- Token activeUser
+- start travelAdd
+- 
+
+------Sprint 7---------20/07 - 27/07
+------Sprint 8---------27/07 - 03/08
+------Sprint 9---------03/08 - 10/08
+------Sprint 10---------10/08 - 17/08
