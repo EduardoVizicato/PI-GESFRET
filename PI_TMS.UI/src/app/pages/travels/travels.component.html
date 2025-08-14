@@ -111,26 +111,64 @@
               </div>
             </div>
           </div>
-
-          <div class="mb-3">
-            <label for="veiculo" class="form-label">Veículo Utilizado</label>
-            <select class="form-select" id="veiculo" required formControlName="vehiclePlate">
-              <option selected disabled value="">- Selecione um veículo -</option>
-              @for (truck of trucks; track trucks) {
-              <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
-                {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
-              }
-            </select>
+          <hr>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="veiculo" class="form-label">Veículo Utilizado</label>
+              <select class="form-select" id="veiculo" required formControlName="vehiclePlate">
+                <option selected disabled value="">- Selecione um veículo -</option>
+                @for (truck of trucks; track trucks) {
+                <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
+                  {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
+                }
+              </select>
+            </div>
+            <div class="col-md-6 mb-3" *ngIf="isTractor()">
+              <label for="" class="form-label">Reboque Utilizado</label>
+              <select class="form-select" id="">
+                <option selected disabled value="">- Selecione um Reboque -</option>
+                @for (truck of trucks; track trucks) {
+                <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
+                  {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
+                }
+              </select>
+            </div>
           </div>
+          <hr>
           <div class="mb-3">
             <label for="produto" class="form-label">Produto Predominante</label>
             <input type="text" class="form-control" id="produto" placeholder="" formControlName="product" required>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
+              <label for="pesoCarga" class="form-label">Tipo de Produto</label>
+              <select id="tipo-carga" required>
+                <option disabled value="">- Selecione o tipo de carga -</option>
+                <option value="1">Carga de Granel Sólido</option>
+                <option value="2">Carga de Granel Líquido</option>
+                <option value="3">Carga Frigorificada ou Aquecida</option>
+                <option value="4">Carga Conteinerizada</option>
+                <option value="5">Carga Geral</option>
+                <option value="6">Carga Neogranel</option>
+                <option value="7">Carga Perigosa (granel sólido)</option>
+                <option value="8">Carga Perigosa (granel líquido)</option>
+                <option value="9">Carga Perigosa (carga frigorificada ou aquecida)</option>
+                <option value="10">Carga Perigosa (conteinerizada)</option>
+                <option value="11">Carga Perigosa (carga geral)</option>
+                <option value="12">Carga Granel Pressurizada</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
               <label for="pesoCarga" class="form-label">Peso da Carga (kg)</label>
               <input (focus)="setCursorEnd($event)" currencyMask [options]="weightOptions" type="text"
                 class="form-control text-start" id="pesoCarga" placeholder="" formControlName="weight">
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="inputGroupFile02" class="form-label">Salvar CTE</label>
+              <input type="file" class="form-control" id="inputGroupFile02">
             </div>
             <div class="col-md-6 mb-3">
               <label for="valorFrete" class="form-label">Valor do Frete (R$)</label>
