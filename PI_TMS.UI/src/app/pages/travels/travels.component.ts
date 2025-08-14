@@ -191,4 +191,10 @@ export class TravelsComponent implements OnInit {
       inputElement.setSelectionRange(valueLength, valueLength);
     }, 0);
   }
+  isTractor(): any{
+    if(this.travelForm.value.vehiclePlate == "cdf-2c33"){
+      return true
+    }
+    return false
+  }
 }
