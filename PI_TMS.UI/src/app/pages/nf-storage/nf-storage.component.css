@@ -1,0 +1,102 @@
+.spacer{
+    margin-top: 4%
+}
+
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-input {
+    padding: 7px ;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    width: 16vw;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #888;
+}
+
+.add-button {
+    padding: 8px;
+    background-color: #1c1c1c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #353535;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    
+}
+
+.table-group-divider{
+    color: #d2d2d2;
+}
+
+.table-custom th{
+    /* background-color: #d4fa9e; */
+    background-color: #e7e7e7;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    padding-left: 15px;   
+}
+
+.table th {
+    font-weight: bold;
+}
+
+.table th.actions-header {
+    text-align: center;
+}
+
+.table td.actions {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.edit-button,
+.delete-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 2px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    background-color: #1c1c1c;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #353535;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
