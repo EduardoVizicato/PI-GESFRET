@@ -10,7 +10,7 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
   const userRole = authTokenService.getRole();
 
   if (
-    // tokenPayload &&
+    // tokenPayload.isActive == true &&
     !authTokenService.isTokenExpired() &&
     userRole !== null &&
     allowedRoles.includes(userRole)
