@@ -33,6 +33,7 @@ export class AuthTokenService {
     console.log('Tempo de expiração do token:', payload.exp - currentTime);
     return payload.exp < currentTime;
   }
+  
   LogOff(): void {
     this.tokenService.removeToken();
     console.log('Usuário deslogado');
@@ -43,12 +44,12 @@ export class AuthTokenService {
     console.log('Payload:', payload);
     return payload?.nameid ?? null;
   }
-  
+
   getUserName(): string | null {
     const payload = this.decodePayloadJWT();
     return payload?.given_name ?? null;
   }
-   getRole(): string | null {
+  getRole(): string | null {
     const payload = this.decodePayloadJWT();
     return 'ADM'; // payload?.role ?? null;
     // return payload?.role ?? null;
