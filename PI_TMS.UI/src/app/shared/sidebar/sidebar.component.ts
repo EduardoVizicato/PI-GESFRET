@@ -22,6 +22,7 @@ export class SidebarComponent implements OnInit {
   isTravelsActive: boolean = false;
   isFreightActive: boolean = false;
   isNfStorageActive: boolean = false;
+  isCteStorageActive: boolean = false;
   isRegisterParentActive: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private authTokenService: AuthTokenService, ) { }
@@ -64,6 +65,7 @@ export class SidebarComponent implements OnInit {
     this.isTravelsActive = false;
     this.isFreightActive = false;
     this.isNfStorageActive = false;
+    this.isCteStorageActive = false;
     this.isRegisterParentActive = false;
     this.activeSubMenuItem = null;
 
@@ -75,6 +77,9 @@ export class SidebarComponent implements OnInit {
       this.isFreightActive = true;
     } else if (currentUrl === '/nf-storage') {
       this.isNfStorageActive = true;
+    } else if (currentUrl.includes('/register')) {
+    } else if (currentUrl === '/cte-storage') {
+      this.isCteStorageActive = true;
     } else if (currentUrl.includes('/register')) {
       this.isRegisterMenuOpen = true;
       this.isRegisterParentActive = true;
@@ -111,6 +116,9 @@ export class SidebarComponent implements OnInit {
 
   goToNfStorage(): void {
     this.navigate(['/nf-storage']);
+  }
+  goToCteStorage(): void {
+    this.navigate(['/cte-storage']);
   }
 
   goToCaminhoes(): void {
