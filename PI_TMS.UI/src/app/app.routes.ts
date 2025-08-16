@@ -17,6 +17,7 @@ import { Title } from 'chart.js';
 import { UsersComponent } from './pages/register/users/users.component';
 import { NoPageComponent } from './no-page/no-page.component';
 import { TraveltestComponent } from './traveltest/traveltest.component';
+import { CteStorageComponent } from './pages/cte-storage/cte-storage.component';
 
 export enum Roles {
     ADM = 'ADM',
@@ -82,6 +83,13 @@ export const routes: Routes = [
                 canActivate: [authGuard],
                 data: { title: 'Notas Fiscais', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Notas Fiscais'
+            },
+            {
+                path: 'cte-storage',
+                component: CteStorageComponent,
+                canActivate: [authGuard],
+                data: { title: 'Conhecimento de Transporte Eletrónico (CT-e)', roles: [Roles.ADM, Roles.FUNCIONARIO] },
+                title: 'Conhecimento de Transporte Eletrónico (CT-e)'
             },
             {
                 path: 'register/trucks',

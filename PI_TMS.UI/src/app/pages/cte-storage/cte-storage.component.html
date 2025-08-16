@@ -1,0 +1,80 @@
+<!-- http://npmjs.com/package/ng2-pdf-viewer -->
+<div class="table-controls">
+  <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
+  <button class="add-button" (click)="showAddModal()">Adicionar</button>
+</div>
+<div class="spacer"></div>
+<div class="row row-cols-1  row-cols-md-4 g-4">
+  @for (cte of cte; track $index) {
+  <div class="col ">
+    <div class="card" style="width: 18rem;">
+      <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
+        style="width: 17.5rem; height: 12rem">
+      </pdf-viewer>
+      <div class="card-body">
+        <h5 class="card-title">{{cte.name}}</h5>
+        <p class="card-text">{{cte.description}} </p>
+        <a href="#" class="btn btn-primary mx-1">Baixar</a>
+        <a href="#" class="btn btn-secondary">Visualizar Viagem</a>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<div class="modal fade" id="addCteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar CT-e</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="cteForm" (ngSubmit)="addCte()" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" formControlName="name"
+              [class.is-valid]="cteForm.get('name')?.valid && cteForm.get('name')?.touched"
+              [class.is-invalid]="cteForm.get('name')?.invalid && cteForm.get('name')?.touched" id="nome"
+              placeholder="Digite o nome do caminhão">
+            <div class="valid-feedback">
+              Nome válido!
+            </div>
+            <div class="invalid-feedback" *ngIf="cteForm.get('name')?.invalid && cteForm.get('name')?.touched">
+              <div *ngIf="cteForm.get('name')?.errors?.['required']">
+                Nome obrigatório.
+              </div>
+              <div *ngIf="cteForm.get('name')?.errors?.['minlength']">
+                O nome deve ter pelo menos 2 caracteres.
+              </div>
+              <div *ngIf="cteForm.get('name')?.errors?.['maxlength']">
+                O nome deve ter no máximo 50 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="cte" class="form-label">Salvar CT-e</label>
+            <input type="file" class="form-control" id="cte" formControlName="file">
+
+            <div class="valid-feedback">
+              Arquivo válido!
+            </div>
+            <div class="invalid-feedback" *ngIf="cteForm.get('name')?.invalid && cteForm.get('name')?.touched">
+              <div *ngIf="cteForm.get('name')?.errors?.['required']">
+                Arquivo obrigatório.
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-dark">
+              Adicionar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
