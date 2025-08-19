@@ -8,14 +8,15 @@
   @for (cte of cte; track $index) {
   <div class="col ">
     <div class="card" style="width: 18rem;">
-      <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
+      <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false" [zoom-scale]="'page-width'"
         style="width: 17.5rem; height: 12rem">
       </pdf-viewer>
       <div class="card-body">
         <h5 class="card-title">{{cte.name}}</h5>
         <p class="card-text">{{cte.description}} </p>
         <a href="#" class="btn btn-primary mx-1">Baixar</a>
-        <a href="#" class="btn btn-secondary">Visualizar Viagem</a>
+        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewDocModal"
+          (click)="openViewDocModal(cte)"> Visualizar Viagem</a>
       </div>
     </div>
   </div>
@@ -74,6 +75,25 @@
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="viewDocModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-fullscreen-md-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pdf-viewer [src]="pdfSrc" [render-text]="true" [render-text-mode]="0" [original-size]="false" 
+          style="width: 70rem; height: 45rem" [zoom-scale]="'page-width'">
+        </pdf-viewer>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
