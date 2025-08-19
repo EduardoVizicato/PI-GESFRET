@@ -99,3 +99,7 @@ select:focus {
 #btn-calc {
   background-color: #e7e7e7;
 }
+
+.modal-footer{
+  justify-content: space-between;
+}
