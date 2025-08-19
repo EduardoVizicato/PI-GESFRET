@@ -22,6 +22,7 @@ export class CteStorageComponent {
   cte: cteStorage[] = [];
   searchTerm: string = '';
   cteForm: FormGroup;
+  pdfSrc: any = null;
 
   private addCteModal: any;
 
@@ -66,5 +67,14 @@ export class CteStorageComponent {
     //   },
     //   error: (err) => this.eventService.showError('Erro inesperado.')
     // })
+  }
+
+  openViewDocModal(cte: cteStorage) {
+    const modalTitle = document.querySelector('#viewDocModal .modal-title');
+    if (modalTitle) {
+      modalTitle.textContent = cte.name;
+    }
+    this.pdfSrc = cte.path;
+
   }
 }
