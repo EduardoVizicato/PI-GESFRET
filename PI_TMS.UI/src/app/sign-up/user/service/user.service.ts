@@ -8,11 +8,16 @@ import { user } from '../model/user.model'; // Adjust the import path as necessa
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = `${environment.api}/api/user/addUser`;
+  private apiUrl = `${environment.api}/api/user`;
 
   constructor(private HttpClients: HttpClient) { }
 
   registerUser(user: user): Observable<user[]> {
-      return this.HttpClients.post<user[]>(`${this.apiUrl}`, user)
-    }
+    return this.HttpClients.post<user[]>(`${this.apiUrl}/addUser`, user)
+  }
+
+  // Change the break point for checkEmail - need return true or false
+  checkEmail(email: string): Observable<{ exists: boolean }> {
+    return this.HttpClients.get<{ exists: boolean }>(`${this.apiUrl}/getByEmail?email=${email}`)
+  }
 }

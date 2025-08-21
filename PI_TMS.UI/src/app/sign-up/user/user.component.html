@@ -1,6 +1,6 @@
   <div class="main-container">
     <div class="image-side">
-      </div>
+    </div>
     <div class="form-container">
       <form class="login-form needs-validation" [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
         <h2 class="form-title">Crie seu Usuário</h2>
@@ -101,6 +101,9 @@
             <div *ngIf="userForm.get('taxId.taxId')?.errors?.['pattern']">
               O CPF deve ser um CPF válido.
             </div>
+            <div *ngIf="userForm.get('taxId.taxId')?.hasError('cpfInvalid')">
+              CPF inválido!
+            </div>
           </div>
           <div
             *ngIf="userForm.get('taxId.taxId')?.valid && (userForm.get('taxId.taxId')?.dirty || userForm.get('taxId.taxId')?.touched)"
@@ -119,8 +122,8 @@
                 </path>
               </svg>
             </i>
-            <input type="text" name="phone" id="phone" placeholder="Telefone" class="input-field"
-              mask="(00) 00000-0000" formControlName="phoneNumber"
+            <input type="text" name="phone" id="phone" placeholder="Telefone" class="input-field" mask="(00) 00000-0000"
+              formControlName="phoneNumber"
               [class.is-invalid]="userForm.get('phoneNumber')?.invalid && (userForm.get('phoneNumber')?.dirty || userForm.get('phoneNumber')?.touched)"
               [class.is-valid]="userForm.get('phoneNumber')?.valid && (userForm.get('phoneNumber')?.dirty || userForm.get('phoneNumber')?.touched)">
           </div>
@@ -164,9 +167,11 @@
             <div *ngIf="userForm.get('email')?.errors?.['email']">
               O email deve ser um endereço de email válido.
             </div>
+            <div *ngIf="userForm.get('email')?.hasError('emailTaken')">
+              Este email já está em uso!
+            </div>
           </div>
-          <div
-            *ngIf="userForm.get('email')?.valid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
+          <div *ngIf="userForm.get('email')?.valid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
             class="valid-feedback d-block">
             Email válido!
           </div>
@@ -203,10 +208,10 @@
         </div>
         <input class="submit-button" type="submit" value="Entrar" [disabled]="userForm.invalid">
         <div class="form-footer">
-      <p class="form-footer-text">
-        Já tem uma conta? <a routerLink="/login">Entrar</a>
-      </p>
-    </div>
+          <p class="form-footer-text">
+            Já tem uma conta? <a routerLink="/login">Entrar</a>
+          </p>
+        </div>
       </form>
     </div>
   </div>

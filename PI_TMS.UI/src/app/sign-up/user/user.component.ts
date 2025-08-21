@@ -5,6 +5,8 @@ import { NgxMaskDirective } from 'ngx-mask';
 import { UserService } from './service/user.service';
 import { Router } from '@angular/router';
 import { user } from './model/user.model';
+import { emailExistsValidator } from './utils/email-exists.validator';
+import { cpfValidator } from './utils/cpf.validator';
 
 @Component({
   selector: 'app-user',
@@ -24,10 +26,17 @@ export class UserComponent {
     return this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{6,}$/)]], // Senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um número]],
+      email: ['',  {
+      validators: [Validators.required, Validators.email],
+      asyncValidators: [emailExistsValidator(this.userService)],
+      updateOn: 'blur' 
+    }],
+      password: ['', { 
+        validators: [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{6,}$/)],
+        updateOn: 'blur'
+      }],
       taxId: this.fb.group({
-        taxId: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]]
+        taxId: ['', [Validators.required, Validators.pattern(/^\d{11}$/), cpfValidator]]
       }),
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
     });

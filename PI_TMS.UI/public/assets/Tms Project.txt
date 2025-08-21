@@ -1,4 +1,4 @@
-Coisas do site para fazer (TMS)
+Felipe Barbisan 
 
 ------Sprint 1---------|01/07 - 08/07
 - sign up  √
@@ -20,17 +20,23 @@ Coisas do site para fazer (TMS)
 - user(information) √
 - dashboard √
 
-------Sprint 5---------29/07 - 12/07
+------Sprint 5---------29/07 - 12/08
 - user page √
 - token rule √
 - travel page √
 
-------Sprint 6---------13/07 - 20/07
-- Token activeUser
-- start travelAdd
-- 
+------Sprint 6---------13/08 - 20/08
+- Token isActiveUser √
+- start travelAdd √
+- Cte Storage √
 
-------Sprint 7---------20/07 - 27/07
-------Sprint 8---------27/07 - 03/08
-------Sprint 9---------03/08 - 10/08
-------Sprint 10---------10/08 - 17/08
+------Sprint 7---------20/08 - 27/08
+- verification on email forms
+- select data of dashboard
+- print dashboard
+- start view Travel page
+
+------Sprint 8---------27/08 - 03/09
+
+------Sprint 9---------03/09 - 10/09
+------Sprint 10---------10/09 - 17/09
