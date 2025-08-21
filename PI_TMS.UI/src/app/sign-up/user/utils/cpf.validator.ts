@@ -4,6 +4,7 @@ export function cpfValidator(control: AbstractControl): ValidationErrors | null 
     const value = control.value;
     
     if (!value) return null;
+    if (value.length < 11) return null;
 
     // Remove caracteres não numéricos
     const cpf = value.replace(/\D/g, '');

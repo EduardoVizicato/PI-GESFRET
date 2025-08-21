@@ -3,14 +3,14 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { UserService } from './service/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { user } from './model/user.model';
 import { emailExistsValidator } from './utils/email-exists.validator';
 import { cpfValidator } from './utils/cpf.validator';
 
 @Component({
   selector: 'app-user',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective, RouterModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
@@ -26,13 +26,14 @@ export class UserComponent {
     return this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      email: ['',  {
-      validators: [Validators.required, Validators.email],
-      asyncValidators: [emailExistsValidator(this.userService)],
-      updateOn: 'blur' 
-    }],
-      password: ['', { 
+      email: ['', {
+        validators: [Validators.required, Validators.email],
+        asyncValidators: [emailExistsValidator(this.userService)],
+        updateOn: 'blur'
+      }],
+      password: ['', {
         validators: [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{6,}$/)],
+        asyncValidators: [cpfValidator],
         updateOn: 'blur'
       }],
       taxId: this.fb.group({
@@ -41,7 +42,7 @@ export class UserComponent {
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
     });
   }
-// 
+  // 
 
   onSubmit() {
     if (this.userForm.invalid) {
