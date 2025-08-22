@@ -3,6 +3,7 @@ import { ChartType } from 'chart.js';
 import { NGX_ECHARTS_CONFIG, NgxEchartsModule } from 'ngx-echarts';
 import { CommonModule } from '@angular/common';
 import html2pdf from 'html2pdf.js';
+import { dashboard } from './models/dashboard.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,8 @@ import html2pdf from 'html2pdf.js';
 })
 export class DashboardComponent {
 
-  // Dados de diferentes períodos
+  dashboard: dashboard = {};
+
   dadosPorPeriodo: any = {
     '2015-2019': {
       anos: ['2015', '2016', '2017', '2018', '2019'],
@@ -39,8 +41,78 @@ export class DashboardComponent {
       valores: [18000, 13000, 14500, 11500, 15000, 15500, 16000, 17000, 21000, 23000]
     }
   };
+  currentDashboard: any;
 
-  // Opções iniciais
+
+
+  dashboardSets = [
+    {
+      title: 'Visão Financeira',
+      cards: [
+        { label: 'Ganhos Mensais', value: 25000 },
+        { label: 'Ganhos Anuais', value: 180000 },
+        { label: 'Viagens', value: 132 }
+      ],
+      chartOptions: {
+        title: { text: 'Ganhos ao Longo do Ano' },
+        tooltip: {},
+        xAxis: { type: 'category', data: ['Jan', 'Fev', 'Mar', 'Abr'] },
+        yAxis: { type: 'value' },
+        series: [
+          {
+            data: [10, 20, 30, 40],
+            type: 'bar'
+          }
+        ]
+      }
+    },
+    {
+      title: 'Visão Operacional',
+      cards: [
+        { label: 'Quantidade de Veículos', value: 14 },
+        { label: 'Pedidos', value: 230 },
+        { label: 'Motoristas Ativos', value: 8 }
+      ],
+      chartOptions: {
+        title: { text: 'Gráfico de Pizza' },
+        tooltip: { trigger: 'item' },
+        legend: { bottom: '0%', left: 'center' },
+        series: [
+          {
+            name: 'Quantidade de Viagem Por Categoria de Caminhão',
+            type: 'pie',
+            radius: '55%',
+            data: [
+              { value: 130, name: 'Caminhão truck (3-4 eixos)' },
+              { value: 2, name: 'Caminhão toco (2 eixos)' },
+              { value: 50, name: 'Cavalo (2-3 eixos)' },
+              { value: 0, name: 'VAN' },
+              { value: 20, name: 'Fechada/Baú' },
+              { value: 30, name: 'Granelera' }
+            ]
+          }
+        ]
+      }
+    }
+  ];
+
+
+
+  ngOnInit() {
+    const saved = localStorage.getItem('dashboardIndex');
+    let index = saved ? parseInt(saved) : Math.floor(Math.random() * this.dashboardSets.length);
+
+    this.currentDashboard = this.dashboardSets[index];
+
+    const nextIndex = (index + 1) % this.dashboardSets.length;
+    localStorage.setItem('dashboardIndex', nextIndex.toString());
+
+    // const index = Math.floor(Math.random() * this.dashboardSets.length);
+    // this.currentDashboard = this.dashboardSets[index];
+  }
+
+
+
   options: any;
 
   UpdateGraphic(periodo: string) {
@@ -96,24 +168,7 @@ export class DashboardComponent {
       ]
     };
   }
-  Pie = {
-    title: {
-      text: 'Grafico de Pizza'
-    },
-    tooltip: {},
-    series: [
-      {
-        name: 'Acesso',
-        type: 'pie',
-        radius: '55%',
-        data: [
-          { value: 235, name: 'Google' },
-          { value: 274, name: 'Facebook' },
-          { value: 310, name: 'Twitter' }
-        ]
-      }
-    ]
-  };
+
 
   ngAfterViewInit(): void {
     // Espera o DOM montar, depois força um resize
