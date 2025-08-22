@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ChartType } from 'chart.js';
 import { NGX_ECHARTS_CONFIG, NgxEchartsModule } from 'ngx-echarts';
 import { CommonModule } from '@angular/common';
-
+import html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
     {
       provide: NGX_ECHARTS_CONFIG,
       useValue: {
-        echarts: () => import('echarts') 
+        echarts: () => import('echarts')
       }
     }
   ],
@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardComponent {
 
- // Dados de diferentes períodos
+  // Dados de diferentes períodos
   dadosPorPeriodo: any = {
     '2015-2019': {
       anos: ['2015', '2016', '2017', '2018', '2019'],
@@ -43,7 +43,7 @@ export class DashboardComponent {
   // Opções iniciais
   options: any;
 
-   UpdateGraphic(periodo: string) {
+  UpdateGraphic(periodo: string) {
     const dados = this.dadosPorPeriodo[periodo];
 
     this.options = {
@@ -121,5 +121,21 @@ export class DashboardComponent {
       window.dispatchEvent(new Event('resize'));
     });
     this.UpdateGraphic('2015-2019');
+  }
+
+  downloadPDF() {
+    const element = document.getElementById('print-section');
+    const options = {
+      margin: 5,
+      filename: 'dashboard.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 3 }, // 3x mais nítido
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+    };
+    if (element) {
+      html2pdf().set(options).from(element).save();
+    } else {
+      console.error('Elemento print-section não encontrado.');
+    }
   }
 }
