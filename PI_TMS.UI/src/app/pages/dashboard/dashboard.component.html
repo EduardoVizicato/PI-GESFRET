@@ -117,7 +117,7 @@
         <div class="col-xl-4 col-lg-5">
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Fontes de Receita</h6>
+              <h6 class="m-0 font-weight-bold text-primary">{{ currentDashboard.chartOptions.title.text }}</h6>
               <div class="dropdown no-arrow">
                 <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
@@ -135,7 +135,7 @@
             </div>
             <div class="card-body">
               <div class="chart-pie pt-4 pb-2">
-                <div echarts [options]="Pie" class="echart" style="height: 20rem;"></div>
+                <div echarts [options]="currentDashboard.chartOptions" class="echart" style="height: 20rem;"></div>
               </div>
               <div class="mt-4 text-center small">
                 <span class="mr-2">
@@ -152,7 +152,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-lg-6 mb-4">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -181,7 +181,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
