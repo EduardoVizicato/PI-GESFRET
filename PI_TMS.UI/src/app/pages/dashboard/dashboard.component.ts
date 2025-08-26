@@ -27,23 +27,7 @@ export class DashboardComponent {
 
   dashboard: dashboard = {};
 
-  dadosPorPeriodo: any = {
-    '2015-2019': {
-      anos: ['2015', '2016', '2017', '2018', '2019'],
-      valores: [18000, 13000, 14500, 11500, 15000]
-    },
-    '2020-2024': {
-      anos: ['2020', '2021', '2022', '2023', '2024'],
-      valores: [15500, 16000, 17000, 21000, 23000]
-    },
-    'todos': {
-      anos: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
-      valores: [18000, 13000, 14500, 11500, 15000, 15500, 16000, 17000, 21000, 23000]
-    }
-  };
   currentDashboard: any;
-
-
 
   dashboardSets = [
     {
@@ -51,17 +35,38 @@ export class DashboardComponent {
       cards: [
         { label: 'Ganhos Mensais', value: 25000 },
         { label: 'Ganhos Anuais', value: 180000 },
+        { label: 'Media de Ganhos', value: 15000 },
         { label: 'Viagens', value: 132 }
       ],
-      chartOptions: {
+      chartOptions1: {
         title: { text: 'Ganhos ao Longo do Ano' },
         tooltip: {},
-        xAxis: { type: 'category', data: ['Jan', 'Fev', 'Mar', 'Abr'] },
+        xAxis: { type: 'category', data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'] },
         yAxis: { type: 'value' },
         series: [
           {
-            data: [10, 20, 30, 40],
+            data: [30000, 4000, 15000, 0, 7000, 8000],
             type: 'bar'
+          }
+        ]
+      },
+      chartOptions2: {
+        title: { text: 'Quantidade de Viagem Por Mês' },
+        tooltip: { trigger: 'item' },
+        legend: { bottom: '0%', left: 'center' },
+        series: [
+          {
+            name: 'Quantidade de Viagem Por Mês',
+            type: 'pie',
+            radius: '55%',
+            data: [
+              { value: 130, name: 'Jan' },
+              { value: 2, name: 'Fev' },
+              { value: 50, name: 'Mar' },
+              { value: 0, name: 'Abr' },
+              { value: 20, name: 'Mai' },
+              { value: 30, name: 'Jun' }
+            ]
           }
         ]
       }
@@ -70,11 +75,24 @@ export class DashboardComponent {
       title: 'Visão Operacional',
       cards: [
         { label: 'Quantidade de Veículos', value: 14 },
-        { label: 'Pedidos', value: 230 },
+        { label: 'Viagens no Ano', value: 230 },
+        { label: 'Viagens no Mês', value: 20 },
         { label: 'Motoristas Ativos', value: 8 }
       ],
-      chartOptions: {
-        title: { text: 'Gráfico de Pizza' },
+      chartOptions1: {
+        title: { text: 'Distâncias Percorridas ao Longo do Ano' },
+        tooltip: {},
+        xAxis: { type: 'category', data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'] },
+        yAxis: { type: 'value' },
+        series: [
+          {
+            data: [400, 600, 1000, 40, 2000, 500],
+            type: 'bar'
+          }
+        ]
+      },
+      chartOptions2: {
+        title: { text: 'Quantidade de Viagem Por Categoria de Caminhão' },
         tooltip: { trigger: 'item' },
         legend: { bottom: '0%', left: 'center' },
         series: [
@@ -95,9 +113,6 @@ export class DashboardComponent {
       }
     }
   ];
-
-
-
   ngOnInit() {
     const saved = localStorage.getItem('dashboardIndex');
     let index = saved ? parseInt(saved) : Math.floor(Math.random() * this.dashboardSets.length);
@@ -111,71 +126,10 @@ export class DashboardComponent {
     // this.currentDashboard = this.dashboardSets[index];
   }
 
-
-
-  options: any;
-
-  UpdateGraphic(periodo: string) {
-    const dados = this.dadosPorPeriodo[periodo];
-
-    this.options = {
-      title: {
-        text: 'Faturamento da empresa',
-        left: 'center',
-        top: 10,
-        textStyle: {
-          fontSize: 18,
-          fontWeight: 'bold'
-        }
-      },
-      tooltip: {
-        trigger: 'axis',
-        formatter: (params: any) => {
-          return `Ano: ${params[0].name}<br/>Faturamento: R$ ${params[0].value.toLocaleString('pt-BR', {
-            minimumFractionDigits: 2
-          })}`;
-        }
-      },
-      xAxis: {
-        type: 'category',
-        data: dados.anos,
-        name: 'Ano'
-      },
-      yAxis: {
-        type: 'value',
-        name: 'Faturamento',
-        axisLabel: {
-          formatter: (value: number) =>
-            `R$ ${value.toLocaleString('pt-BR', {
-              minimumFractionDigits: 2
-            })}`
-        }
-      },
-      series: [
-        {
-          data: dados.valores,
-          type: 'line',
-          smooth: false,
-          itemStyle: {
-            color: 'indigo'
-          },
-          lineStyle: {
-            width: 2
-          },
-          symbolSize: 10,
-          symbol: 'circle'
-        }
-      ]
-    };
-  }
-
-
   ngAfterViewInit(): void {
-    // Espera o DOM montar, depois força um resize
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
     });
-    this.UpdateGraphic('2015-2019');
   }
 
   downloadPDF() {
