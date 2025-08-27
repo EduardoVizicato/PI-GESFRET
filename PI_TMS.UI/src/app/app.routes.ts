@@ -18,6 +18,7 @@ import { UsersComponent } from './pages/register/users/users.component';
 import { NoPageComponent } from './no-page/no-page.component';
 import { TraveltestComponent } from './traveltest/traveltest.component';
 import { CteStorageComponent } from './pages/cte-storage/cte-storage.component';
+import { ViewTravelComponent } from './pages/view-travel/view-travel.component';
 
 export enum Roles {
     ADM = 'ADM',
@@ -68,6 +69,13 @@ export const routes: Routes = [
                 component: TravelsComponent,
                 canActivate: [authGuard],
                 data: { breadcrumb: 'Travels', title: 'Lista de Viagens', roles: [Roles.ADM, Roles.FUNCIONARIO] },
+                title: 'Viagens'
+            },
+            {
+                path: 'viewTravel',
+                component: ViewTravelComponent,
+                canActivate: [authGuard],
+                data: { breadcrumb: 'Travels', title: 'Dados da Viagem', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Viagens'
             },
             {

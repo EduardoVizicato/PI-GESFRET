@@ -31,9 +31,9 @@ Felipe Barbisan
 - Cte Storage √
 
 ------Sprint 7---------20/08 - 27/08
-- verification on email forms
-- select data of dashboard
-- print dashboard
+- verification on email form √
+- select data of dashboard √
+- print dashboard √
 - start view Travel page
 
 ------Sprint 8---------27/08 - 03/09

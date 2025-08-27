@@ -7,15 +7,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserInfo } from './models/userInfo.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-user-info',
-  imports: [SidebarComponent, CommonModule, FormsModule,ReactiveFormsModule],
+  imports: [SidebarComponent, CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './user-info.component.html',
   styleUrl: './user-info.component.css'
 })
 export class UserInfoComponent {
   user: UserInfo | null = null;
   userForm: FormGroup;
+
 
   constructor(private authTokenService: AuthTokenService, private userInfoService: UserInfoService, private fb: FormBuilder,) {
     this.userForm = this.createForm();
