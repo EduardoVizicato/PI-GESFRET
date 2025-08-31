@@ -24,19 +24,19 @@
 
     </div>
     <div class="row g-3 px-5 py-4">
-      <h1>Dados da Viagem de Nº</h1>
+      <h1>Dados da Viagem de Nº {{viewTravel.id}}</h1>
       <hr>
       <div class="col-12">
         <h3>Data da Viagem</h3>
-        <p>2023-05-15</p>
+        <p>{{viewTravel.date}}</p>
       </div>
       <div class="col-md-6">
         <h3>Cidade de Destino</h3>
-        <p>Rio de Janeiro</p>
+        <p>{{viewTravel.route.destination}}</p>
       </div>
       <div class="col-md-6">
         <h3>Cidade de Origem</h3>
-        <p>São Paulo</p>
+        <p>{{viewTravel.route.origin}}</p>
       </div>
     </div>
     <hr class="my-2">
@@ -47,7 +47,7 @@
       </div>
       <div class="col-md-6">
         <h3>Placa do Veiculo</h3>
-        <p>ABC1D23</p>
+        <p>{{viewTravel.vehiclePlate}}</p>
       </div>
       <div class="col-md-6">
         <h3>Tipo do Veiculo</h3>
@@ -62,19 +62,19 @@
     <div class="row g-3 px-5 py-4">
       <div class="col-md-6">
         <h3>Produto Predominante</h3>
-        <p>Eletrônicos</p>
+        <p>{{viewTravel.product}}</p>
       </div>
       <div class="col-md-6">
         <h3>Tipo do Produto</h3>
-        <p>Eletrônicos</p>
+        <p>Carga Geral</p>
       </div>
       <div class="col-md-6">
         <h3>Peso da Carga</h3>
-        <p>1500 Kg</p>
+        <p>{{viewTravel.weight}}</p>
       </div>
       <div class="col-md-6">
         <h3>Valor do Frete</h3>
-        <p>R$ 2500,00</p>
+        <p>{{viewTravel.freightValue}}</p>
       </div>
 
 
