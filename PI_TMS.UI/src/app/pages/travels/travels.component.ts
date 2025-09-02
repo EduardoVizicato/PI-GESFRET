@@ -44,7 +44,8 @@ export class TravelsComponent implements OnInit {
   trucks: Truck[] = [];
   searchTerm: string = '';
   currentStep: number = 1;
-
+  selectedAddressType: any = 'simple';
+  
   citiesOrigin$!: Observable<City[]>;
   citiesDestination$!: Observable<City[]>;
   private searchOriginTerms = new Subject<string>();
@@ -191,7 +192,10 @@ export class TravelsComponent implements OnInit {
       inputElement.setSelectionRange(valueLength, valueLength);
     }, 0);
   }
- 
+  updateTypeAddress(type: string):void{
+    this.selectedAddressType = type;
+    console.log('Tipo de Endereço Selecionado:', this.selectedAddressType);
+  }
 
   nextStep() {
     this.currentStep++;
