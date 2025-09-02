@@ -204,27 +204,34 @@
           }@else if (selectedAddressType === 'complete') {
             <div class="row" formGroupName="route">
               <div class="col-md-12 mb-3 position-relative">
-                  <label for="zipCode" class="form-label">CEP</label>
-                  <input type="text" class="form-control" id="zipCode">
+                <label for="zipCode" class="form-label">CEP</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="zipCode"
+                  formControlName="zipCode"
+                  (input)="searchZipCode($event)"
+                  placeholder="00000-000"
+                >
               </div>
               <div class="col-md-8 mb-3 position-relative">
-                  <label for="zipCode" class="form-label">Rua</label>
-                  <input type="text" class="form-control" id="zipCode">
+                <label for="street" class="form-label">Rua</label>
+                <input type="text" class="form-control" id="street" formControlName="street">
               </div>
               <div class="col-md-4 mb-3 position-relative">
-                  <label for="zipCode" class="form-label">Nº</label>
-                  <input type="text" class="form-control" id="zipCode">
+                <label for="number" class="form-label">Nº</label>
+                <input type="text" class="form-control" id="number" formControlName="number">
               </div>
               <div class="col-md-6 mb-3 position-relative">
-                  <label for="zipCode" class="form-label">Bairro</label>
-                  <input type="text" class="form-control" id="zipCode">
+                <label for="neighborhood" class="form-label">Bairro</label>
+                <input type="text" class="form-control" id="neighborhood" formControlName="neighborhood">
               </div>
               <div class="col-md-6 mb-3 position-relative">
-                  <label for="zipCode" class="form-label">Complemento</label>
-                  <input type="text" class="form-control" id="zipCode">
+                <label for="complement" class="form-label">Complemento</label>
+                <input type="text" class="form-control" id="complement" formControlName="complement">
               </div>
             </div>
-          }@else if (selectedAddressType === 'coordinates') {
+            }@else if (selectedAddressType === 'coordinates') {
              <div class="row" formGroupName="route">
                <div class="col-md-2 mb-3 position-relative">
                    <label for="hemisferio" class="form-label">Hemisfério</label>

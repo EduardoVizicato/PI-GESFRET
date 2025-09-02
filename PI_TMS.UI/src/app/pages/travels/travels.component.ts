@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgxCurrencyDirective } from "ngx-currency";
 import { Observable, Subject, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, sample, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, tap, catchError } from 'rxjs/operators';
 import { City, CityService } from './service/city.service';
 import { TravelService } from './service/travel.service';
 import { Truck } from './model/travel.model';
@@ -11,6 +11,7 @@ import { Travel } from './model/travel.model';
 import { PlateFormatPipe } from "../register/trucks/utils/plate-format.pipe";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { ZipCodeService, ZipCodeData } from './service/zip-code.service';
 
 declare var bootstrap: any;
 
@@ -25,10 +26,11 @@ declare var bootstrap: any;
     FormsModule,
     ReactiveFormsModule,
     NgbPaginationModule
-],
+  ],
   providers: [
     CityService,
-    TravelService
+    TravelService,
+    ZipCodeService
   ],
   templateUrl: './travels.component.html',
   styleUrl: './travels.component.css'
@@ -72,23 +74,41 @@ export class TravelsComponent implements OnInit {
     allowNegative: false,
   };
 
-  constructor(private cityService: CityService, private travelService: TravelService, private fb: FormBuilder) {
+  constructor(
+    private cityService: CityService,
+    private travelService: TravelService,
+    private zipCodeService: ZipCodeService,
+    private fb: FormBuilder,
+    private http: HttpClient
+  ) {
     this.travelForm = this.createForm();
   }
+
   createForm(): FormGroup {
     return this.fb.group({
       date: [''],
       route: this.fb.group({
+        //Simples
         origin: [''],
         destination: [''],
+        //CEP
+        zipCode: [''],
+        street: [''],
+        number: [''],
+        neighborhood: [''],
+        complement: [''],
+        //Coordenadas
+        hemisphere: [''],
+        xCoord: [''],
+        yCoord: ['']
       }),
       vehiclePlate: [''],
       product: [''],
       weight: [''],
       freightValue: ['']
-    })
-
+    });
   }
+
   ngOnInit(): void {
     this.loadTravels();
 
@@ -104,18 +124,20 @@ export class TravelsComponent implements OnInit {
       switchMap((term: string) => this.cityService.searchCities(term)),
     );
   }
-  ngAfterViewInit(): void {
 
+  ngAfterViewInit(): void {
     const addModalEl = document.getElementById('freteModal');
     if (addModalEl) {
       this.addTravelModal = new bootstrap.Modal(addModalEl);
     }
   }
+
   showAddModal(): void {
     this.currentStep = 1;
     this.travelForm.reset();
     this.addTravelModal?.show();
   }
+
   addTravel() {
     this.travels = this.travelForm.value;
     this.addTravelModal?.hide();
@@ -123,8 +145,6 @@ export class TravelsComponent implements OnInit {
   }
 
   loadTravels(): void {
-
-    // ver como que fica
     const sampleTravels: Travel[] = [
       {
         id: 'a8b2c4d6-e8f0-1234-5678-9a1b3c5d7e9f',
@@ -140,8 +160,8 @@ export class TravelsComponent implements OnInit {
       },
     ]
     this.travels = sampleTravels;
-
   }
+
   get filteredTravel() {
     const term = this.searchTerm.toLowerCase();
     return this.travels.filter(u =>
@@ -153,6 +173,7 @@ export class TravelsComponent implements OnInit {
       u.freightValue.toLowerCase().includes(term)
     );
   }
+
   search(event: Event, type: 'origin' | 'destination'): void {
     const term = (event.target as HTMLInputElement).value;
     if (type === 'origin') {
@@ -192,9 +213,30 @@ export class TravelsComponent implements OnInit {
       inputElement.setSelectionRange(valueLength, valueLength);
     }, 0);
   }
-  updateTypeAddress(type: string):void{
+
+  updateTypeAddress(type: string):void {
     this.selectedAddressType = type;
-    console.log('Tipo de Endereço Selecionado:', this.selectedAddressType);
+    this.travelForm.get('route')?.reset();
+  }
+  
+  searchZipCode(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const zipCode = input.value;
+  
+    this.zipCodeService.searchZipCode(zipCode).subscribe((data: ZipCodeData | null) => {
+      const routeGroup = this.travelForm.get('route') as FormGroup;
+      if (data) {
+        routeGroup.patchValue({
+          street: data.logradouro,
+          neighborhood: data.bairro,
+        });
+      } else {
+        routeGroup.patchValue({
+          street: '',
+          neighborhood: '',
+        });
+      }
+    });
   }
 
   nextStep() {
