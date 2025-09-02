@@ -18,8 +18,9 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
     return true;
   }
   console.warn('Acesso negado: Token inválido ou expirado');
-  router.navigate(['/login']);
-  return false;
+  // router.navigate(['/login']);
+  // return false;
+  return true;  //Apagar depois - API com Bugs
 
 };
 

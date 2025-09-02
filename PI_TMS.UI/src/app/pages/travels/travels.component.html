@@ -136,9 +136,34 @@
               <label for="data" class="form-label">Data</label>
               <input type="date" class="form-control" id="data" formControlName="date" required>
             </div>
+            <hr>
+            <div class="px-3">
+              <div class="row">
+                <div class="form-check col-md-4 mb-3 px-4">
+                  <input class="form-check-input" type="radio" value="simple" name="typeAddress" id="typeAddress1" (click)="updateTypeAddress('simple')">
+                  <label class="form-check-label" for="typeAddress1">
+                    Endereço Simples
+                  </label>
+                </div>
+                <div class="form-check col-md-4 mb-3">
+                  <input class="form-check-input" type="radio" value="complete" name="typeAddress" id="typeAddress2" (click)="updateTypeAddress('complete')">
+                  <label class="form-check-label" for="typeAddress2">
+                    Endereço Completo
+                  </label>
+                </div>
+                <div class="form-check col-md-4 mb-3">
+                  <input class="form-check-input" type="radio" value="coordinates" name="typeAddress" id="typeAddress3" (click)="updateTypeAddress('coordinates')">
+                  <label class="form-check-label" for="typeAddress3">
+                    Coordenadas/Maps
+                  </label>
+                </div>
+              </div>
+            </div>
 
+            @if (selectedAddressType === 'simple') {
             <div class="row" formGroupName="route">
               <div class="col-md-6 mb-3 position-relative">
+
                 <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
                 <input type="text" class="form-control" id="cidadeOrigem" required (input)="search($event, 'origin')"
                   (blur)="showSuggestionsOrigin = false" autocomplete="off" formControlName="origin">
@@ -176,6 +201,51 @@
                 }
               </div>
             </div>
+          }@else if (selectedAddressType === 'complete') {
+            <div class="row" formGroupName="route">
+              <div class="col-md-12 mb-3 position-relative">
+                  <label for="zipCode" class="form-label">CEP</label>
+                  <input type="text" class="form-control" id="zipCode">
+              </div>
+              <div class="col-md-8 mb-3 position-relative">
+                  <label for="zipCode" class="form-label">Rua</label>
+                  <input type="text" class="form-control" id="zipCode">
+              </div>
+              <div class="col-md-4 mb-3 position-relative">
+                  <label for="zipCode" class="form-label">Nº</label>
+                  <input type="text" class="form-control" id="zipCode">
+              </div>
+              <div class="col-md-6 mb-3 position-relative">
+                  <label for="zipCode" class="form-label">Bairro</label>
+                  <input type="text" class="form-control" id="zipCode">
+              </div>
+              <div class="col-md-6 mb-3 position-relative">
+                  <label for="zipCode" class="form-label">Complemento</label>
+                  <input type="text" class="form-control" id="zipCode">
+              </div>
+            </div>
+          }@else if (selectedAddressType === 'coordinates') {
+             <div class="row" formGroupName="route">
+               <div class="col-md-2 mb-3 position-relative">
+                   <label for="hemisferio" class="form-label">Hemisfério</label>
+                   <select class="form-select"  id="hemisferio">
+                     <option value="norte">Norte</option>
+                     <option value="sul">Sul</option>
+                   </select>
+               </div>
+              <div class="col-md-5 mb-3 position-relative">
+                  <label for="xCoord" class="form-label">X</label>
+                  <input type="text" class="form-control" id="xCoord">
+              </div>
+              <div class="col-md-5 mb-3 position-relative">
+                <label for="yCoord" class="form-label">Y</label>
+                <input type="text" class="form-control" id="yCoord">
+              </div>
+              <div class="col-md-5 mb-3 position-relative start-end">
+                <button type="button" class="btn btn-primary ">Abrir no Mapa</button>
+              </div>
+            </div>
+          }
             <hr>
             <div class="row">
               <div class="col-md-6 mb-3">
