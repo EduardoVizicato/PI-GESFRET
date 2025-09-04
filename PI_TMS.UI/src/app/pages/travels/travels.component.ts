@@ -88,16 +88,30 @@ export class TravelsComponent implements OnInit {
     return this.fb.group({
       date: [''],
       route: this.fb.group({
-        //Simples
-        origin: [''],
-        destination: [''],
-        //CEP
+        origin: this.fb.group({
+          destination: [''],
+          zipCode: [''],
+          street: [''],
+          number: [''],
+          neighborhood: [''],
+          complement: [''],
+          city: [''],
+          state: [''],
+          contry: [''],
+          hemisphere: [''],
+          xCoord: [''],
+          yCoord: ['']
+        }),
+      }),
+      destination: this.fb.group({
         zipCode: [''],
         street: [''],
         number: [''],
         neighborhood: [''],
         complement: [''],
-        //Coordenadas
+        city: [''],
+        state: [''],
+        contry: [''],
         hemisphere: [''],
         xCoord: [''],
         yCoord: ['']
@@ -229,11 +243,16 @@ export class TravelsComponent implements OnInit {
         routeGroup.patchValue({
           street: data.logradouro,
           neighborhood: data.bairro,
+          city: data.localidade,
+          state: data.uf,
+          
         });
       } else {
         routeGroup.patchValue({
           street: '',
           neighborhood: '',
+          city: '',
+          state: '',
         });
       }
     });

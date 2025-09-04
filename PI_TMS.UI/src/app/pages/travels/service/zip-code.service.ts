@@ -9,6 +9,8 @@ export interface ZipCodeData {
   logradouro: string;
   complemento: string;
   bairro: string;
+  localidade: string;
+  uf: string;
   erro?: boolean;
 }
 

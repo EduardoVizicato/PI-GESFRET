@@ -37,6 +37,13 @@ Felipe Barbisan
 - start view Travel page √
 
 ------Sprint 8---------27/08 - 03/09
+- Travel Origin and destination Upgrad √
+- fix view travel Page √
+- desing expansive icon √
 
 ------Sprint 9---------03/09 - 10/09
+- fix travel origin and destination
+- clone travel working 
+- user-info update 
+
 ------Sprint 10---------10/09 - 17/09
