@@ -140,19 +140,22 @@
             <div class="px-3">
               <div class="row">
                 <div class="form-check col-md-4 mb-3 px-4">
-                  <input class="form-check-input" type="radio" value="simple" checked="checked" name="typeAddress" id="typeAddress1" (click)="updateTypeAddress('simple')">
+                  <input class="form-check-input" type="radio" value="simple" checked="checked" name="typeAddress"
+                    id="typeAddress1" (click)="updateTypeAddress('simple')">
                   <label class="form-check-label" for="typeAddress1">
                     Endereço Simples
                   </label>
                 </div>
                 <div class="form-check col-md-4 mb-3">
-                  <input class="form-check-input" type="radio" value="complete" name="typeAddress" id="typeAddress2" (click)="updateTypeAddress('complete')">
+                  <input class="form-check-input" type="radio" value="complete" name="typeAddress" id="typeAddress2"
+                    (click)="updateTypeAddress('complete')">
                   <label class="form-check-label" for="typeAddress2">
                     Endereço Completo
                   </label>
                 </div>
                 <div class="form-check col-md-4 mb-3">
-                  <input class="form-check-input" type="radio" value="coordinates" name="typeAddress" id="typeAddress3" (click)="updateTypeAddress('coordinates')">
+                  <input class="form-check-input" type="radio" value="coordinates" name="typeAddress" id="typeAddress3"
+                    (click)="updateTypeAddress('coordinates')">
                   <label class="form-check-label" for="typeAddress3">
                     Coordenadas/Maps
                   </label>
@@ -162,7 +165,7 @@
 
             @if (selectedAddressType === 'simple') {
             <div class="row" formGroupName="route">
-              <div class="col-md-6 mb-3 position-relative">
+              <div class="col-md-6 mb-3 position-relative" formControlName="origin">
 
                 <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
                 <input type="text" class="form-control" id="cidadeOrigem" required (input)="search($event, 'origin')"
@@ -181,7 +184,7 @@
                 </div>
                 }
               </div>
-              <div class="col-md-6 mb-3 position-relative">
+              <div class="col-md-6 mb-3 position-relative" formControlName="destination">
                 <label for="cidadeDestino" class="form-label">Cidade de Destino</label>
                 <input type="text" class="form-control" id="cidadeDestino" required
                   (input)="search($event, 'destination')" (blur)="showSuggestionsDestination = false" autocomplete="off"
@@ -201,48 +204,86 @@
                 }
               </div>
             </div>
-          }@else if (selectedAddressType === 'complete') {
+            }@else if (selectedAddressType === 'complete') {
             <div class="row" formGroupName="route">
-              <div class="col-md-12 mb-3 position-relative">
-                <label for="zipCode" class="form-label">CEP</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="zipCode"
-                  formControlName="zipCode"
-                  (input)="searchZipCode($event)"
-                  placeholder="00000-000"
-                >
+              <div class="row" formGroupName="origin">
+                <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
+                <div class="col-md-12 mb-3 position-relative">
+                  <label for="zipCode" class="form-label">CEP</label>
+                  <input type="text" class="form-control" id="zipCode" formControlName="zipCode"
+                    (input)="searchZipCode($event)" placeholder="00000-000">
+                </div>
+                <div class="col-md-8 mb-3 position-relative">
+                  <label for="street" class="form-label">Rua</label>
+                  <input type="text" class="form-control" id="street" formControlName="street">
+                </div>
+                <div class="col-md-4 mb-3 position-relative">
+                  <label for="number" class="form-label">Nº</label>
+                  <input type="text" class="form-control" id="number" formControlName="number">
+                </div>
+                <div class="col-md-6 mb-3 position-relative">
+                  <label for="neighborhood" class="form-label">Bairro</label>
+                  <input type="text" class="form-control" id="neighborhood" formControlName="neighborhood">
+                </div>
+                <div class="col-md-6 mb-3 position-relative">
+                  <label for="complement" class="form-label">Complemento</label>
+                  <input type="text" class="form-control" id="complement" formControlName="complement">
+                </div>
+                <div class="col-md-8 mb-3 position-relative">
+                  <label for="city" class="form-label">Cidade</label>
+                  <input type="text" class="form-control" id="city" formControlName="city">
+                </div>
+                <div class="col-md-4 mb-3 position-relative">
+                  <label for="UF" class="form-label">Estado</label>
+                  <input type="text" class="form-control" id="UF" formControlName="UF">
+                </div>
               </div>
-              <div class="col-md-8 mb-3 position-relative">
-                <label for="street" class="form-label">Rua</label>
-                <input type="text" class="form-control" id="street" formControlName="street">
-              </div>
-              <div class="col-md-4 mb-3 position-relative">
-                <label for="number" class="form-label">Nº</label>
-                <input type="text" class="form-control" id="number" formControlName="number">
-              </div>
-              <div class="col-md-6 mb-3 position-relative">
-                <label for="neighborhood" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="neighborhood" formControlName="neighborhood">
-              </div>
-              <div class="col-md-6 mb-3 position-relative">
-                <label for="complement" class="form-label">Complemento</label>
-                <input type="text" class="form-control" id="complement" formControlName="complement">
+
+              <label for="cidadeOrigem" class="form-label">Cidade de Destino</label>
+              <div class="row" formControlName="destination">
+                <div class="col-md-12 mb-3 position-relative">
+                  <label for="zipCode" class="form-label">CEP</label>
+                  <input type="text" class="form-control" id="zipCode" formControlName="zipCode"
+                    (input)="searchZipCode($event)" placeholder="00000-000">
+                </div>
+                <div class="col-md-8 mb-3 position-relative">
+                  <label for="street" class="form-label">Rua</label>
+                  <input type="text" class="form-control" id="street" formControlName="street">
+                </div>
+                <div class="col-md-4 mb-3 position-relative">
+                  <label for="number" class="form-label">Nº</label>
+                  <input type="text" class="form-control" id="number" formControlName="number">
+                </div>
+                <div class="col-md-6 mb-3 position-relative">
+                  <label for="neighborhood" class="form-label">Bairro</label>
+                  <input type="text" class="form-control" id="neighborhood" formControlName="neighborhood">
+                </div>
+                <div class="col-md-6 mb-3 position-relative">
+                  <label for="complement" class="form-label">Complemento</label>
+                  <input type="text" class="form-control" id="complement" formControlName="complement">
+                </div>
+                <div class="col-md-8 mb-3 position-relative">
+                  <label for="city" class="form-label">Cidade</label>
+                  <input type="text" class="form-control" id="city" formControlName="city">
+                </div>
+                <div class="col-md-4 mb-3 position-relative">
+                  <label for="UF" class="form-label">Estado</label>
+                  <input type="text" class="form-control" id="UF" formControlName="UF">
+                </div>
               </div>
             </div>
             }@else if (selectedAddressType === 'coordinates') {
-             <div class="row" formGroupName="route">
-               <div class="col-md-2 mb-3 position-relative">
-                   <label for="hemisferio" class="form-label">Hemisfério</label>
-                   <select class="form-select"  id="hemisferio">
-                     <option value="norte">Norte</option>
-                     <option value="sul">Sul</option>
-                   </select>
-               </div>
+            <div class="row" formGroupName="route">
+              <div class="col-md-2 mb-3 position-relative">
+                <label for="hemisferio" class="form-label">Hemisfério</label>
+                <select class="form-select" id="hemisferio">
+                  <option value="norte">Norte</option>
+                  <option value="sul">Sul</option>
+                </select>
+              </div>
               <div class="col-md-5 mb-3 position-relative">
-                  <label for="xCoord" class="form-label">X</label>
-                  <input type="text" class="form-control" id="xCoord">
+                <label for="xCoord" class="form-label">X</label>
+                <input type="text" class="form-control" id="xCoord">
               </div>
               <div class="col-md-5 mb-3 position-relative">
                 <label for="yCoord" class="form-label">Y</label>
@@ -252,7 +293,7 @@
                 <button type="button" class="btn btn-primary ">Abrir no Mapa</button>
               </div>
             </div>
-          }
+            }
             <hr>
             <div class="row">
               <div class="col-md-6 mb-3">

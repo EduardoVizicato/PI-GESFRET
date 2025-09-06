@@ -4,14 +4,14 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgxCurrencyDirective } from "ngx-currency";
 import { Observable, Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap, catchError } from 'rxjs/operators';
-import { City, CityService } from './service/city.service';
+import { City, CityService } from './service/city/city.service';
 import { TravelService } from './service/travel.service';
 import { Truck } from './model/travel.model';
 import { Travel } from './model/travel.model';
 import { PlateFormatPipe } from "../register/trucks/utils/plate-format.pipe";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { ZipCodeService, ZipCodeData } from './service/zip-code.service';
+import { ZipCodeService, ZipCodeData } from './service/zip-code/zip-code.service';
 
 declare var bootstrap: any;
 

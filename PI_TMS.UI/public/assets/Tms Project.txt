@@ -42,7 +42,7 @@ Felipe Barbisan
 - desing expansive icon √
 
 ------Sprint 9---------03/09 - 10/09
-- fix travel origin and destination
+- fix travel origin and destination 
 - clone travel working 
 - user-info update 
 
