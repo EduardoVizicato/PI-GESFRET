@@ -1,1 +1,277 @@
-<p>add-modal works!</p>
+
+<div class="modal fade" id="freteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="freteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="freteModalLabel">Registrar Nova Viagem</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formFrete" [formGroup]="travelForm" (ngSubmit)="addTravel()">
+
+          @if (currentStep === 1) {
+          <div>
+            <div class="mb-3">
+              <label for="data" class="form-label">Data</label>
+              <input type="date" class="form-control" id="data" formControlName="date" required>
+            </div>
+            <hr>
+            <div class="px-3">
+              <div class="row">
+                <div class="form-check col-md-4 mb-3 px-4">
+                  <input class="form-check-input" type="radio" value="simple" checked="checked" name="typeAddress"
+                    id="typeAddress1" (click)="updateTypeAddress('simple')">
+                  <label class="form-check-label" for="typeAddress1">
+                    Endereço Simples
+                  </label>
+                </div>
+                <div class="form-check col-md-4 mb-3">
+                  <input class="form-check-input" type="radio" value="complete" name="typeAddress" id="typeAddress2"
+                    (click)="updateTypeAddress('complete')">
+                  <label class="form-check-label" for="typeAddress2">
+                    Endereço Completo
+                  </label>
+                </div>
+                <div class="form-check col-md-4 mb-3">
+                  <input class="form-check-input" type="radio" value="coordinates" name="typeAddress" id="typeAddress3"
+                    (click)="updateTypeAddress('coordinates')">
+                  <label class="form-check-label" for="typeAddress3">
+                    Coordenadas/Maps
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            @if (selectedAddressType === 'simple') {
+            <div class="row" formGroupName="route">
+              <div class="col-md-6 mb-3 position-relative" formControlName="origin">
+
+                <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
+                <input type="text" class="form-control" id="cidadeOrigem" required (input)="search($event, 'origin')"
+                  (blur)="showSuggestionsOrigin = false" autocomplete="off" formControlName="origin">
+
+                @if (showSuggestionsOrigin && (citiesOrigin$ | async); as cities) {
+                <div class="list-group position-absolute w-100" style="z-index: 1000;">
+                  @if (cities.length > 0) {
+                  @for(city of cities; track city) {
+                  <a href="#" class="list-group-item list-group-item-action"
+                    (mousedown)="selectCity(city, 'origin', $event)">
+                    {{ city.nome }} /{{ city.estado }}
+                  </a>
+                  }
+                  }
+                </div>
+                }
+              </div>
+              <div class="col-md-6 mb-3 position-relative" formControlName="destination">
+                <label for="cidadeDestino" class="form-label">Cidade de Destino</label>
+                <input type="text" class="form-control" id="cidadeDestino" required
+                  (input)="search($event, 'destination')" (blur)="showSuggestionsDestination = false" autocomplete="off"
+                  formControlName="destination">
+
+                @if (showSuggestionsDestination && (citiesDestination$ | async); as cities) {
+                <div class="list-group position-absolute w-100" style="z-index: 1000;">
+                  @if (cities.length > 0) {
+                  @for(city of cities; track city) {
+                  <a href="#" class="list-group-item list-group-item-action"
+                    (mousedown)="selectCity(city, 'destination', $event)">
+                    {{ city.nome }} /{{ city.estado }}
+                  </a>
+                  }
+                  }
+                </div>
+                }
+              </div>
+            </div>
+            }@else if (selectedAddressType === 'complete') {
+            <div class="row" formGroupName="route">
+              <div class="row" formGroupName="origin">
+                <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
+                <div class="col-md-12 mb-3 position-relative">
+                  <label for="zipCode" class="form-label">CEP</label>
+                  <input type="text" class="form-control" id="zipCode" formControlName="zipCode"
+                    (input)="searchZipCode($event)" placeholder="00000-000">
+                </div>
+                <div class="col-md-8 mb-3 position-relative">
+                  <label for="street" class="form-label">Rua</label>
+                  <input type="text" class="form-control" id="street" formControlName="street">
+                </div>
+                <div class="col-md-4 mb-3 position-relative">
+                  <label for="number" class="form-label">Nº</label>
+                  <input type="text" class="form-control" id="number" formControlName="number">
+                </div>
+                <div class="col-md-6 mb-3 position-relative">
+                  <label for="neighborhood" class="form-label">Bairro</label>
+                  <input type="text" class="form-control" id="neighborhood" formControlName="neighborhood">
+                </div>
+                <div class="col-md-6 mb-3 position-relative">
+                  <label for="complement" class="form-label">Complemento</label>
+                  <input type="text" class="form-control" id="complement" formControlName="complement">
+                </div>
+                <div class="col-md-8 mb-3 position-relative">
+                  <label for="city" class="form-label">Cidade</label>
+                  <input type="text" class="form-control" id="city" formControlName="city">
+                </div>
+                <div class="col-md-4 mb-3 position-relative">
+                  <label for="UF" class="form-label">Estado</label>
+                  <input type="text" class="form-control" id="UF" formControlName="UF">
+                </div>
+              </div>
+
+              <label for="cidadeOrigem" class="form-label">Cidade de Destino</label>
+              <div class="row" formControlName="destination">
+                <div class="col-md-12 mb-3 position-relative">
+                  <label for="zipCode" class="form-label">CEP</label>
+                  <input type="text" class="form-control" id="zipCode" formControlName="zipCode"
+                    (input)="searchZipCode($event)" placeholder="00000-000">
+                </div>
+                <div class="col-md-8 mb-3 position-relative">
+                  <label for="street" class="form-label">Rua</label>
+                  <input type="text" class="form-control" id="street" formControlName="street">
+                </div>
+                <div class="col-md-4 mb-3 position-relative">
+                  <label for="number" class="form-label">Nº</label>
+                  <input type="text" class="form-control" id="number" formControlName="number">
+                </div>
+                <div class="col-md-6 mb-3 position-relative">
+                  <label for="neighborhood" class="form-label">Bairro</label>
+                  <input type="text" class="form-control" id="neighborhood" formControlName="neighborhood">
+                </div>
+                <div class="col-md-6 mb-3 position-relative">
+                  <label for="complement" class="form-label">Complemento</label>
+                  <input type="text" class="form-control" id="complement" formControlName="complement">
+                </div>
+                <div class="col-md-8 mb-3 position-relative">
+                  <label for="city" class="form-label">Cidade</label>
+                  <input type="text" class="form-control" id="city" formControlName="city">
+                </div>
+                <div class="col-md-4 mb-3 position-relative">
+                  <label for="UF" class="form-label">Estado</label>
+                  <input type="text" class="form-control" id="UF" formControlName="UF">
+                </div>
+              </div>
+            </div>
+            }@else if (selectedAddressType === 'coordinates') {
+            <div class="row" formGroupName="route">
+              <div class="col-md-2 mb-3 position-relative">
+                <label for="hemisferio" class="form-label">Hemisfério</label>
+                <select class="form-select" id="hemisferio">
+                  <option value="norte">Norte</option>
+                  <option value="sul">Sul</option>
+                </select>
+              </div>
+              <div class="col-md-5 mb-3 position-relative">
+                <label for="xCoord" class="form-label">X</label>
+                <input type="text" class="form-control" id="xCoord">
+              </div>
+              <div class="col-md-5 mb-3 position-relative">
+                <label for="yCoord" class="form-label">Y</label>
+                <input type="text" class="form-control" id="yCoord">
+              </div>
+              <div class="col-md-5 mb-3 position-relative start-end">
+                <button type="button" class="btn btn-primary ">Abrir no Mapa</button>
+              </div>
+            </div>
+            }
+            <hr>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="veiculo" class="form-label">Veículo Utilizado</label>
+                <select class="form-select" id="veiculo" required formControlName="vehiclePlate">
+                  <option selected disabled value="">- Selecione um veículo -</option>
+                  @for (truck of trucks; track trucks) {
+                  <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
+                    {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
+                  }
+                </select>
+              </div>
+              @if (travelForm.get('vehiclePlate')?.value === 'cdf2c33') {
+              <div class="col-md-6 mb-3">
+                <label for="" class="form-label">Reboque Utilizado</label>
+                <select class="form-select" id="">
+                  <option selected disabled value="">- Selecione um Reboque -</option>
+                  @for (truck of trucks; track trucks) {
+                  <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
+                    {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
+                  }
+                </select>
+              </div>
+              }
+            </div>
+          </div>
+          }
+
+          @if (currentStep === 2) {
+          <div>
+            <div class="mb-3">
+              <label for="produto" class="form-label">Produto Predominante</label>
+              <input type="text" class="form-control" id="produto" placeholder="" formControlName="product" required>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="pesoCarga" class="form-label">Tipo de Produto</label>
+                <select id="tipo-carga" required>
+                  <option disabled value="">- Selecione o tipo de carga -</option>
+                  <option value="1">Carga de Granel Sólido</option>
+                  <option value="2">Carga de Granel Líquido</option>
+                  <option value="3">Carga Frigorificada ou Aquecida</option>
+                  <option value="4">Carga Conteinerizada</option>
+                  <option value="5">Carga Geral</option>
+                  <option value="6">Carga Neogranel</option>
+                  <option value="7">Carga Perigosa (granel sólido)</option>
+                  <option value="8">Carga Perigosa (granel líquido)</option>
+                  <option value="9">Carga Perigosa (carga frigorificada ou aquecida)</option>
+                  <option value="10">Carga Perigosa (conteinerizada)</option>
+                  <option value="11">Carga Perigosa (carga geral)</option>
+                  <option value="12">Carga Granel Pressurizada</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="pesoCarga" class="form-label">Peso da Carga (kg)</label>
+                <input (focus)="setCursorEnd($event)" currencyMask [options]="weightOptions" type="text"
+                  class="form-control text-start" id="pesoCarga" placeholder="" formControlName="weight">
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="inputGroupFile02" class="form-label">Anexar CTE</label>
+                <input type="file" class="form-control" id="inputGroupFile02">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="valorFrete" class="form-label">Valor do Frete (R$)</label>
+                <div class="d-flex gap-2">
+                  <input (focus)="setCursorEnd($event)" currencyMask [options]="valueOptions" type="text"
+                    class="form-control flex-grow-1 text-start" id="valorFrete" step="0.01" placeholder=""
+                    formControlName="freightValue">
+                  <a class="btn" id="btn-calc">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                      class="bi bi-calculator" viewBox="0 0 16 16">
+                      <path
+                        d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                      <path
+                        d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </form>
+      </div>
+      <div class="modal-footer">
+        @if (currentStep === 1) {
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-dark" (click)="nextStep()">Próximo</button>
+        }
+
+        @if (currentStep === 2) {
+        <button type="button" class="btn btn-secondary" (click)="previousStep()">Voltar</button>
+        <button type="submit" form="formFrete" class="btn btn-dark">Salvar Viagem</button>
+        }
+      </div>
+    </div>
+  </div>
+</div>
