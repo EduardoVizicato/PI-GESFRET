@@ -136,8 +136,5 @@ export class SidebarComponent implements OnInit {
   goToUsers(): void {
     this.navigate(['/register/users']);
   }
-  LogOff(): void {
-    this.authTokenService.LogOff();
-    this.navigate(['/login']);
-  }
+  
 }
