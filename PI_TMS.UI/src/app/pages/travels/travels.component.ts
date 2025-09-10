@@ -12,6 +12,7 @@ import { PlateFormatPipe } from "../register/trucks/utils/plate-format.pipe";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ZipCodeService, ZipCodeData } from './service/zip-code/zip-code.service';
+import { AddModalComponent } from "./utils/add-modal/add-modal.component";
 
 declare var bootstrap: any;
 
@@ -20,13 +21,12 @@ declare var bootstrap: any;
   standalone: true,
   imports: [
     CommonModule,
-    NgxCurrencyDirective,
     HttpClientModule,
-    PlateFormatPipe,
     FormsModule,
     ReactiveFormsModule,
-    NgbPaginationModule
-  ],
+    NgbPaginationModule,
+    // AddModalComponent
+],
   providers: [
     CityService,
     TravelService,
@@ -38,25 +38,14 @@ declare var bootstrap: any;
 export class TravelsComponent implements OnInit {
 
   travels: Travel[] = [];
-  travelForm: FormGroup;
+  searchTerm: string = '';
   page: number = 1;
   pageSize: number = 10;
   weightvalue: number = 0;
   freightvalue: number = 0;
-  trucks: Truck[] = [];
-  searchTerm: string = '';
-  currentStep: number = 1;
-  selectedAddressType: any = 'simple';
+
   
-  citiesOrigin$!: Observable<City[]>;
-  citiesDestination$!: Observable<City[]>;
-  private searchOriginTerms = new Subject<string>();
-  private searchDestinationTerms = new Subject<string>();
-
   private addTravelModal: any;
-
-  showSuggestionsOrigin = false;
-  showSuggestionsDestination = false;
 
   weightOptions = {
     prefix: '',
@@ -75,68 +64,20 @@ export class TravelsComponent implements OnInit {
   };
 
   constructor(
-    private cityService: CityService,
-    private travelService: TravelService,
-    private zipCodeService: ZipCodeService,
-    private fb: FormBuilder,
+    
+    
+    
     private http: HttpClient
   ) {
-    this.travelForm = this.createForm();
+   
   }
 
-  createForm(): FormGroup {
-    return this.fb.group({
-      date: [''],
-      route: this.fb.group({
-        origin: this.fb.group({
-          destination: [''],
-          zipCode: [''],
-          street: [''],
-          number: [''],
-          neighborhood: [''],
-          complement: [''],
-          city: [''],
-          state: [''],
-          contry: [''],
-          hemisphere: [''],
-          xCoord: [''],
-          yCoord: ['']
-        }),
-      }),
-      destination: this.fb.group({
-        zipCode: [''],
-        street: [''],
-        number: [''],
-        neighborhood: [''],
-        complement: [''],
-        city: [''],
-        state: [''],
-        contry: [''],
-        hemisphere: [''],
-        xCoord: [''],
-        yCoord: ['']
-      }),
-      vehiclePlate: [''],
-      product: [''],
-      weight: [''],
-      freightValue: ['']
-    });
-  }
+  
 
   ngOnInit(): void {
     this.loadTravels();
 
-    this.citiesOrigin$ = this.searchOriginTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.cityService.searchCities(term)),
-    );
-
-    this.citiesDestination$ = this.searchDestinationTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.cityService.searchCities(term)),
-    );
+  
   }
 
   ngAfterViewInit(): void {
@@ -147,15 +88,15 @@ export class TravelsComponent implements OnInit {
   }
 
   showAddModal(): void {
-    this.currentStep = 1;
-    this.travelForm.reset();
+    // this.currentStep = 1;
+    // this.travelForm.reset();
     this.addTravelModal?.show();
   }
 
   addTravel() {
-    this.travels = this.travelForm.value;
+    // this.travels = this.travelForm.value;
     this.addTravelModal?.hide();
-    this.travelForm.reset();
+    // this.travelForm.reset();
   }
 
   loadTravels(): void {
@@ -188,83 +129,7 @@ export class TravelsComponent implements OnInit {
     );
   }
 
-  search(event: Event, type: 'origin' | 'destination'): void {
-    const term = (event.target as HTMLInputElement).value;
-    if (type === 'origin') {
-      this.showSuggestionsOrigin = term.length > 1;
-      this.searchOriginTerms.next(term);
-    } else {
-      this.showSuggestionsDestination = term.length > 1;
-      this.searchDestinationTerms.next(term);
-    }
-  }
-
-  selectTruck() {
-    this.travelService.getAllTrucks().subscribe(
-      (response) => {
-        this.trucks = response;
-      }
-    )
-  }
-
-  selectCity(city: City, type: 'origin' | 'destination', event: MouseEvent): void {
-    event.preventDefault();
-    const cityName = `${city.nome}/${city.estado}`;
-
-    if (type === 'origin') {
-      this.travelForm.get('route')?.patchValue({ origin: cityName });
-      this.showSuggestionsOrigin = false;
-    } else {
-      this.travelForm.get('route')?.patchValue({ destination: cityName });
-      this.showSuggestionsDestination = false;
-    }
-  }
-
-  setCursorEnd(event: FocusEvent): void {
-    const inputElement = event.target as HTMLInputElement;
-    const valueLength = inputElement.value.length;
-    setTimeout(() => {
-      inputElement.setSelectionRange(valueLength, valueLength);
-    }, 0);
-  }
-
-  updateTypeAddress(type: string):void {
-    this.selectedAddressType = type;
-    this.travelForm.get('route')?.reset();
-  }
   
-  searchZipCode(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const zipCode = input.value;
-  
-    this.zipCodeService.searchZipCode(zipCode).subscribe((data: ZipCodeData | null) => {
-      const routeGroup = this.travelForm.get('route') as FormGroup;
-      if (data) {
-        routeGroup.patchValue({
-          street: data.logradouro,
-          neighborhood: data.bairro,
-          city: data.localidade,
-          state: data.uf,
-          
-        });
-      } else {
-        routeGroup.patchValue({
-          street: '',
-          neighborhood: '',
-          city: '',
-          state: '',
-        });
-      }
-    });
-  }
-
-  nextStep() {
-    this.currentStep++;
-  }
-
-  previousStep() {
-    this.currentStep--;
-  }
 
   cloneTravel(travel:Travel){
     console.log('esses são os dados para clonar! :', travel)
