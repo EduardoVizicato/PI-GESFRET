@@ -41,27 +41,13 @@ export class TravelsComponent implements OnInit {
   searchTerm: string = '';
   page: number = 1;
   pageSize: number = 10;
-  weightvalue: number = 0;
+  
   freightvalue: number = 0;
 
   
   private addTravelModal: any;
 
-  weightOptions = {
-    prefix: '',
-    thousands: '.',
-    decimal: ',',
-    precision: 3,
-    allowNegative: false,
-  };
-
-  valueOptions = {
-    prefix: 'R$ ',
-    thousands: '.',
-    decimal: ',',
-    precision: 2,
-    allowNegative: false,
-  };
+  
 
   constructor(
     
