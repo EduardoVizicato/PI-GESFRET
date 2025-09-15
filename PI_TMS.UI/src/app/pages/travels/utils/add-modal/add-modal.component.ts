@@ -1,14 +1,28 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ZipCodeData, ZipCodeService } from '../../service/zip-code/zip-code.service';
 import { TravelService } from '../../service/travel.service';
 import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs';
 import { City, CityService } from '../../service/city/city.service';
 import { Truck } from '../../model/travel.model';
+import { PlateFormatPipe } from "../../../register/trucks/utils/plate-format.pipe";
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 @Component({
   selector: 'app-add-modal',
-  imports: [],
+  imports: [
+    PlateFormatPipe,
+    AsyncPipe,
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbPaginationModule,
+    CurrencyMaskModule
+  ],
   templateUrl: './add-modal.component.html',
   styleUrl: './add-modal.component.css'
 })
@@ -18,6 +32,24 @@ export class AddModalComponent {
   currentStep: number = 1;
   selectedAddressType: any = 'simple';
   trucks: Truck[] = [];
+  
+  weightvalue: number = 0;
+
+  weightOptions = {
+    prefix: '',
+    thousands: '.',
+    decimal: ',',
+    precision: 3,
+    allowNegative: false,
+  };
+  
+  valueOptions = {
+    prefix: 'R$ ',
+    thousands: '.',
+    decimal: ',',
+    precision: 2,
+    allowNegative: false,
+  };
 
   citiesOrigin$!: Observable<City[]>;
   citiesDestination$!: Observable<City[]>;
@@ -33,26 +65,28 @@ export class AddModalComponent {
 
   ngOnInit(): void {
 
-
+    
     this.citiesOrigin$ = this.searchOriginTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((term: string) => this.cityService.searchCities(term)),
     );
-
+    
     this.citiesDestination$ = this.searchDestinationTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((term: string) => this.cityService.searchCities(term)),
     );
   }
-
+  
+  onSubmit() {
+  throw new Error('Method not implemented.');
+  }
   createForm(): FormGroup {
     return this.fb.group({
       date: [''],
       route: this.fb.group({
         origin: this.fb.group({
-          destination: [''],
           zipCode: [''],
           street: [''],
           number: [''],
