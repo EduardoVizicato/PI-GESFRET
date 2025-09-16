@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ZipCodeService, ZipCodeData } from './service/zip-code/zip-code.service';
 import { AddModalComponent } from "./utils/add-modal/add-modal.component";
-
+import Modal from 'bootstrap/js/dist/modal';
 declare var bootstrap: any;
 
 @Component({
@@ -25,7 +25,7 @@ declare var bootstrap: any;
     FormsModule,
     ReactiveFormsModule,
     NgbPaginationModule,
-    // AddModalComponent
+    AddModalComponent
 ],
   providers: [
     CityService,
@@ -36,53 +36,41 @@ declare var bootstrap: any;
   styleUrl: './travels.component.css'
 })
 export class TravelsComponent implements OnInit {
-
+  
   travels: Travel[] = [];
   searchTerm: string = '';
   page: number = 1;
   pageSize: number = 10;
-  
+
   freightvalue: number = 0;
 
-  
   private addTravelModal: any;
 
-  
-
   constructor(
-    
-    
-    
     private http: HttpClient
-  ) {
-   
-  }
-
-  
-
+  ) {  }
   ngOnInit(): void {
     this.loadTravels();
-
-  
   }
-
+  
   ngAfterViewInit(): void {
     const addModalEl = document.getElementById('freteModal');
     if (addModalEl) {
       this.addTravelModal = new bootstrap.Modal(addModalEl);
     }
   }
-
-  showAddModal(): void {
-    // this.currentStep = 1;
-    // this.travelForm.reset();
-    this.addTravelModal?.show();
+  openModalAdd() {
+    const modalElement = document.getElementById('addTravelModal');
+    
+    if (modalElement) {
+      const modal = new Modal(modalElement);
+      modal.show();
+    } else {
+      console.warn('Elemento do modal não encontrado.');
+    }
   }
-
-  addTravel() {
-    // this.travels = this.travelForm.value;
-    this.addTravelModal?.hide();
-    // this.travelForm.reset();
+  addTravel($event: Event) {
+  throw new Error('Method not implemented.');
   }
 
   loadTravels(): void {
@@ -102,7 +90,7 @@ export class TravelsComponent implements OnInit {
     ]
     this.travels = sampleTravels;
   }
-
+  
   get filteredTravel() {
     const term = this.searchTerm.toLowerCase();
     return this.travels.filter(u =>
@@ -115,9 +103,7 @@ export class TravelsComponent implements OnInit {
     );
   }
 
-  
-
-  cloneTravel(travel:Travel){
+  cloneTravel(travel: Travel) {
     console.log('esses são os dados para clonar! :', travel)
   }
 }
