@@ -1,6 +1,6 @@
 <div class="table-controls">
   <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
-  <!-- <button class="add-button" (click)="selectTruck();showAddModal()">Nova Viagem</button> -->
+  <button class="add-button" (click)="openModalAdd()">Nova Viagem</button>
 </div>
 
 @if (travels.length > 0) {
@@ -118,4 +118,5 @@
   </div>
 </div>
 }
-<!-- <app-add-modal #addTravelModal (travelAdded)="onTravelAdded($event)"></app-add-modal> -->
+
+<app-add-modal (onSubmit)="addTravel($event)"></app-add-modal>
