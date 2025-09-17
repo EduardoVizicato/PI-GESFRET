@@ -120,7 +120,7 @@ export const routes: Routes = [
             {
                 path: 'register/users',
                 component: UsersComponent,
-                canActivate: [authGuard], data: { title: 'Usuários', roles: [Roles.ADM] },
+                canActivate: [authGuard], data: { title: 'Usuários', roles: [Roles.ADM] }, 
                 title: 'Usuários'
             },
             {

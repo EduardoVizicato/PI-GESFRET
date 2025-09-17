@@ -1,3 +1,5 @@
 <router-outlet></router-outlet>
 <app-alert-notification *ngIf="showError" [message]="errorMessage"></app-alert-notification>
-    
+ <button *ngIf="!isLoginPage && !isRegisterPage && !isTelaInicio" class="theme-toggle" (click)="themeService.toggleTheme()">
+      {{ themeService.isDarkMode() ? '🌞' : '🌙' }}
+ </button>

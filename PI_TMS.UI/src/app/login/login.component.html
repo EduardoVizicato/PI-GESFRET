@@ -57,7 +57,11 @@
         </p>
       </div>
     </form>
+    <button class="theme-toggle" (click)="themeService.toggleTheme()">
+      {{ themeService.isDarkMode() ? '🌞' : '🌙' }}
+    </button>
   </div>
+
   <div class="image-side">
   </div>
 </div>

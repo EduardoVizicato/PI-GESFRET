@@ -8,6 +8,7 @@ import { Router, RouterModule } from '@angular/router';
 import { EventService } from '../shared/service/event.service';
 import { TokenService } from '../token/token.service';
 import { AuthTokenService } from '../_guard/service/auth-token.service';
+import { ThemeService } from '../contrast/theme.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent {
     private loginService: LoginService,
     private routerService: Router,
     private tokenService: TokenService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public themeService: ThemeService
   ) {
     if (!this.authTokenService.isTokenExpired()) {
       this.routerService.navigate(['/dashboard']);
