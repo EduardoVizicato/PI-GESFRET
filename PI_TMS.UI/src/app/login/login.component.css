@@ -1,4 +1,4 @@
-.main-container {
+/* .main-container {
   display: flex;
   flex-direction: row;
   height: 100vh;
@@ -154,3 +154,252 @@
     max-width: 90%;
   }
 }
+
+
+.theme-toggle {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.form-container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.input-field {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.submit-button {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+} 
+
+ */
+
+
+  :root {
+  --bg-color: #1c1c1c;
+  --text-color: #1c1c1c;
+  --text-secondary: #6B7280;
+  --primary: #1d4ed8;
+  --input-bg: #F9FAFB;
+  --input-border: #D1D5DB;
+  --button-bg: ##74c009;
+  --button-text: #ffffff;
+  --button-hover-bg: #353535;
+}
+
+body.dark-mode {
+  --bg-color: #ffffff;
+  --text-color: #ffffff;
+  --text-secondary: #d1d5db;
+  --primary: #3b82f6;
+  --input-bg: #374151;
+  --input-border: #D1D5DB;;
+  --button-bg: #74c009;
+  --button-text: #1c1c1c;
+  --button-hover-bg: #e5e7eb;
+}
+
+ .main-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  align-items: center;
+}
+
+.form-container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  width: 40%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.image-side {
+  width: 60%;
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/truckman2.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 992px) {
+  .main-container {
+    flex-direction: column;
+  }
+  .image-side {
+    display: none;
+  }
+  .form-container {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    padding-top: 48px;
+  }
+  .login-form {
+    max-width: 90%;
+  }
+} 
+
+
+.login-form {
+  max-width: 400px;
+  width: 100%;
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+
+.inputs {
+  display: flex;
+  align-items: stretch;
+}
+
+.input-icon {
+  background: var(--bg-color);
+  color: var(--text-secondary);
+  min-width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px 0 0 8px;
+  border: 1px solid #D1D5DB;
+  border-right: none;
+  font-size: 1.2rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0 8px 8px 0;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid #D1D5DB;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.input-field:focus {
+  border-color: var(--primary);
+  background-color: var(--bg-color);
+  outline: none;
+}
+
+.input-field.is-invalid {
+  border-color: #dc3545;
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #74c009;
+  color: var(--button-text);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 24px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.submit-button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+.form-footer {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.form-footer-text {
+  color: var(--text-color);
+}
+
+.form-footer-text a {
+  color: var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.theme-toggle {
+  margin-top: 1rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--bg-color);
+  color: var(--text-color);
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}   
+
+

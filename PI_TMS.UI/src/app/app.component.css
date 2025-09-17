@@ -1,0 +1,14 @@
+.theme-toggle {
+  margin-top: 1rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--bg-color);
+  color: var(--text-color);
+  position: absolute;
+  top: -0.2rem;
+  right: 7rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
