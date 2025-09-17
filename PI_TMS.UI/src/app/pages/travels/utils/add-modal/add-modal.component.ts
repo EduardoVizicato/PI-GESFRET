@@ -1,4 +1,4 @@
-import { Component, Input, output } from '@angular/core';
+import { Component, Input, OnInit, output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ZipCodeData, ZipCodeService } from '../../service/zip-code/zip-code.service';
 import { TravelService } from '../../service/travel.service';
@@ -28,7 +28,8 @@ import { routes } from '../../../../app.routes';
   templateUrl: './add-modal.component.html',
   styleUrl: './add-modal.component.css'
 })
-export class AddModalComponent {
+
+export class AddModalComponent implements OnInit {
   travelForm: FormGroup;
   currentStep: number = 1;
 
@@ -54,6 +55,11 @@ export class AddModalComponent {
 
   constructor(private fb: FormBuilder, private travelService: TravelService,
   ) { this.travelForm = this.createForm(); }
+
+  ngOnInit(): void {
+    this.selectTruck();
+  }
+
 
   onSubmit() {
     throw new Error('Method not implemented.');
