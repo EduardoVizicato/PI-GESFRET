@@ -26,11 +26,10 @@
 
 @if (selectedAddressType === 'simple') {
 <div class="row" formGroupName="route">
-  <div class="col-md-6 mb-3 position-relative" formControlName="origin">
-
+  <div class="col-md-6 mb-3 position-relative" formGroupName="origin">
     <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
     <input type="text" class="form-control" id="cidadeOrigem" required (input)="search($event, 'origin')"
-      (blur)="showSuggestionsOrigin = false" autocomplete="off" formControlName="origin">
+      (blur)="showSuggestionsOrigin = false" autocomplete="off" formControlName="city">
 
     @if (showSuggestionsOrigin && (citiesOrigin$ | async); as cities) {
     <div class="list-group position-absolute w-100" style="z-index: 1000;">
@@ -44,10 +43,10 @@
     </div>
     }
   </div>
-  <div class="col-md-6 mb-3 position-relative" formControlName="destination">
+  <div class="col-md-6 mb-3 position-relative" formGroupName="destination">
     <label for="cidadeDestino" class="form-label">Cidade de Destino</label>
     <input type="text" class="form-control" id="cidadeDestino" required (input)="search($event, 'destination')"
-      (blur)="showSuggestionsDestination = false" autocomplete="off" formControlName="destination">
+      (blur)="showSuggestionsDestination = false" autocomplete="off" formControlName="city">
 
     @if (showSuggestionsDestination && (citiesDestination$ | async); as cities) {
     <div class="list-group position-absolute w-100" style="z-index: 1000;">

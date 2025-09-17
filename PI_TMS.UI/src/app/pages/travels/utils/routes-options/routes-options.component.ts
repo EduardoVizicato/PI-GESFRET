@@ -50,15 +50,22 @@ export class RoutesOptionsComponent {
     }
   }
 
+  /**
+   * ATUALIZAÇÃO AQUI 👇
+   * O método patchValue foi ajustado para refletir a nova estrutura aninhada, 
+   * onde 'origin' e 'destination' são FormGroups que contêm um FormControl 'city'.
+   */
   selectCity(city: City, type: 'origin' | 'destination', event: MouseEvent): void {
     event.preventDefault();
     const cityName = `${city.nome}/${city.estado}`;
 
     if (type === 'origin') {
-      this.parentForm.get('route')?.patchValue({ origin: cityName });
+      // Modificado para atualizar o controle 'city' dentro do grupo 'origin'
+      this.parentForm.get('route.origin')?.patchValue({ city: cityName });
       this.showSuggestionsOrigin = false;
     } else {
-      this.parentForm.get('route')?.patchValue({ destination: cityName });
+      // Modificado para atualizar o controle 'city' dentro do grupo 'destination'
+      this.parentForm.get('route.destination')?.patchValue({ city: cityName });
       this.showSuggestionsDestination = false;
     }
   }
