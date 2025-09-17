@@ -77,7 +77,6 @@ export class SidebarComponent implements OnInit {
       this.isFreightActive = true;
     } else if (currentUrl === '/nf-storage') {
       this.isNfStorageActive = true;
-    } else if (currentUrl.includes('/register')) {
     } else if (currentUrl === '/cte-storage') {
       this.isCteStorageActive = true;
     } else if (currentUrl.includes('/register')) {
@@ -93,6 +92,7 @@ export class SidebarComponent implements OnInit {
         this.activeSubMenuItem = 'users';
       }
     }
+    
     if (!currentUrl.includes('/register') && this.isRegisterMenuOpen) {
       this.isRegisterMenuOpen = false;
     }
