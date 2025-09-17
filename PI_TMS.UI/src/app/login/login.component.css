@@ -404,3 +404,7 @@ body.dark-mode {
 }   
 
 
+.theme-toggle{
+  border: none;
+  padding: 15px;
+}
