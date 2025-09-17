@@ -13,7 +13,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class RoutesOptionsComponent {
   @Input() parentForm!: FormGroup;
-  travelForm: FormGroup;
+
   selectedAddressType: any = 'simple';
   showSuggestionsOrigin = false;
   showSuggestionsDestination = false;
@@ -23,8 +23,7 @@ export class RoutesOptionsComponent {
   private searchOriginTerms = new Subject<string>();
   private searchDestinationTerms = new Subject<string>();
 
-  constructor(private fb: FormBuilder,
-    private zipCodeService: ZipCodeService, private cityService: CityService) { this.travelForm = this.createForm(); }
+  constructor(private zipCodeService: ZipCodeService, private cityService: CityService) { }
 
   ngOnInit(): void {
     this.citiesOrigin$ = this.searchOriginTerms.pipe(
@@ -56,10 +55,10 @@ export class RoutesOptionsComponent {
     const cityName = `${city.nome}/${city.estado}`;
 
     if (type === 'origin') {
-      this.travelForm.get('route')?.patchValue({ origin: cityName });
+      this.parentForm.get('route')?.patchValue({ origin: cityName });
       this.showSuggestionsOrigin = false;
     } else {
-      this.travelForm.get('route')?.patchValue({ destination: cityName });
+      this.parentForm.get('route')?.patchValue({ destination: cityName });
       this.showSuggestionsDestination = false;
     }
   }
@@ -69,7 +68,7 @@ export class RoutesOptionsComponent {
     const zipCode = input.value;
 
     this.zipCodeService.searchZipCode(zipCode).subscribe((data: ZipCodeData | null) => {
-      const routeGroup = this.travelForm.get('route') as FormGroup;
+      const routeGroup = this.parentForm.get('route') as FormGroup;
       if (data) {
         routeGroup.patchValue({
           street: data.logradouro,
@@ -88,41 +87,8 @@ export class RoutesOptionsComponent {
       }
     });
   }
-
-  createForm(): FormGroup {
-    return this.fb.group({
-      route: this.fb.group({
-        origin: this.fb.group({
-          zipCode: [''],
-          street: [''],
-          number: [''],
-          neighborhood: [''],
-          complement: [''],
-          city: [''],
-          state: [''],
-          contry: [''],
-          hemisphere: [''],
-          xCoord: [''],
-          yCoord: ['']
-        }),
-      }),
-      destination: this.fb.group({
-        zipCode: [''],
-        street: [''],
-        number: [''],
-        neighborhood: [''],
-        complement: [''],
-        city: [''],
-        state: [''],
-        contry: [''],
-        hemisphere: [''],
-        xCoord: [''],
-        yCoord: ['']
-      })
-    });
-  }
   updateTypeAddress(type: string): void {
     this.selectedAddressType = type;
-    this.travelForm.get('route')?.reset();
+    this.parentForm.get('route')?.reset();
   }
 }

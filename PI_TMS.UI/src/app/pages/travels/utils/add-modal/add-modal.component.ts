@@ -24,17 +24,16 @@ import { routes } from '../../../../app.routes';
     NgbPaginationModule,
     CurrencyMaskModule,
     RoutesOptionsComponent
-],
+  ],
   templateUrl: './add-modal.component.html',
   styleUrl: './add-modal.component.css'
 })
 export class AddModalComponent {
-  @Input() parentForm!: FormGroup;
   travelForm: FormGroup;
   currentStep: number = 1;
-  
+
   trucks: Truck[] = [];
-  
+
   weightvalue: number = 0;
 
   weightOptions = {
@@ -44,7 +43,7 @@ export class AddModalComponent {
     precision: 3,
     allowNegative: false,
   };
-  
+
   valueOptions = {
     prefix: 'R$ ',
     thousands: '.',
@@ -52,33 +51,51 @@ export class AddModalComponent {
     precision: 2,
     allowNegative: false,
   };
- 
-
- 
-
-
-  
 
   constructor(private fb: FormBuilder, private travelService: TravelService,
-    ) { this.travelForm = this.createForm(); }
+  ) { this.travelForm = this.createForm(); }
 
-  
-  
   onSubmit() {
-  throw new Error('Method not implemented.');
+    throw new Error('Method not implemented.');
   }
   createForm(): FormGroup {
     return this.fb.group({
       date: [''],
-      // depois ver como vai funcionar a rota, pois ele tem que ser puxada do outro componente. (talvez fazer uma função que puxe os dados do outro componente)
-      routes: this.parentForm,
+      route: this.fb.group({
+        origin: this.fb.group({
+          zipCode: [''],
+          street: [''],
+          number: [''],
+          neighborhood: [''],
+          complement: [''],
+          city: [''],
+          state: [''],
+          contry: [''],
+          hemisphere: [''],
+          xCoord: [''],
+          yCoord: ['']
+        }),
+      }),
+      destination: this.fb.group({
+        zipCode: [''],
+        street: [''],
+        number: [''],
+        neighborhood: [''],
+        complement: [''],
+        city: [''],
+        state: [''],
+        contry: [''],
+        hemisphere: [''],
+        xCoord: [''],
+        yCoord: ['']
+      }),
       vehiclePlate: [''],
       product: [''],
       weight: [''],
       freightValue: ['']
     });
   }
-  
+
 
   selectTruck() {
     this.travelService.getAllTrucks().subscribe(
@@ -88,7 +105,7 @@ export class AddModalComponent {
     )
   }
 
- 
+
 
   setCursorEnd(event: FocusEvent): void {
     const inputElement = event.target as HTMLInputElement;
@@ -98,8 +115,8 @@ export class AddModalComponent {
     }, 0);
   }
 
-  
- 
+
+
 
   nextStep() {
     this.currentStep++;
