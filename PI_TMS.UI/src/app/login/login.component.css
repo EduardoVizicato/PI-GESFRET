@@ -223,9 +223,9 @@ body.dark-mode {
   --primary: #3b82f6;
   --input-bg: #374151;
   --input-border: #D1D5DB;;
-  --button-bg: #74c009;
+  --button-bg: #2ef107;
   --button-text: #1c1c1c;
-  --button-hover-bg: #e5e7eb;
+  --button-hover-bg: #209408;
 }
 
  .main-container {
@@ -363,7 +363,8 @@ body.dark-mode {
 }
 
 .submit-button:hover {
-  background-color: var(--button-hover-bg);
+   /* background-color: var(--button-hover-bg); */
+   background-color: #5c9708f3;
 }
 
 .submit-button:disabled {
