@@ -211,7 +211,7 @@
   --primary: #1d4ed8;
   --input-bg: #F9FAFB;
   --input-border: #D1D5DB;
-  --button-bg: ##74c009;
+  --button-bg: #74c009;
   --button-text: #ffffff;
   --button-hover-bg: #353535;
 }
@@ -253,9 +253,9 @@ body.dark-mode {
 .image-side {
   width: 60%;
   height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/truckman2.jpg');
-  background-size: cover;
-  background-position: center;
+  background-color: hsla(89, 100%, 50%, 1);
+  background-image: radial-gradient(circle at 50% 0%, hsla(164, 0%, 0%, 1) 49.15975941515135%, transparent 102.23193813062571%);
+  background-blend-mode: normal;
 }
 
 @media (max-width: 992px) {
