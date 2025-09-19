@@ -67,8 +67,8 @@
     <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
     <div class="col-md-12 mb-3 position-relative">
       <label for="zipCode" class="form-label">CEP</label>
-      <input type="text" class="form-control" id="zipCode" formControlName="zipCode" (input)="searchZipCode($event)"
-        placeholder="00000-000">
+      <input type="text" class="form-control" id="zipCode" formControlName="zipCode" (input)="searchZipCode($event, 'origin')"
+        placeholder="00000-000" mask="00000-000">
     </div>
     <div class="col-md-8 mb-3 position-relative">
       <label for="street" class="form-label">Rua</label>
@@ -97,11 +97,11 @@
   </div>
 
   <label for="cidadeOrigem" class="form-label">Cidade de Destino</label>
-  <div class="row" formControlName="destination">
+  <div class="row" formGroupName="destination">
     <div class="col-md-12 mb-3 position-relative">
       <label for="zipCode" class="form-label">CEP</label>
-      <input type="text" class="form-control" id="zipCode" formControlName="zipCode" (input)="searchZipCode($event)"
-        placeholder="00000-000">
+      <input type="text" class="form-control" id="zipCode" formControlName="zipCode" (input)="searchZipCode($event, 'destination')"
+        placeholder="00000-000" mask="00000-000">
     </div>
     <div class="col-md-8 mb-3 position-relative">
       <label for="street" class="form-label">Rua</label>
