@@ -70,16 +70,13 @@ export class RoutesOptionsComponent {
     const cityName = `${city.nome}/${city.estado}`;
 
     if (type === 'origin') {
-      this.parentForm.get('route.origin.city')?.patchValue({ city: cityName });
+      this.parentForm.get('route.origin.city')?.setValue(cityName);
       this.showSuggestionsOrigin = false;
-      console.log(this.parentForm.get('route.origin.city')?.value);
     } else {
-
-      this.parentForm.get('route.destination.city')?.patchValue({ city: cityName });
+      this.parentForm.get('route.destination.city')?.setValue(cityName);
       this.showSuggestionsDestination = false;
     }
   }
-
   searchZipCode(event: Event, type: 'origin' | 'destination'): void {
     const input = event.target as HTMLInputElement;
     const zipCode = input.value;
@@ -92,8 +89,8 @@ export class RoutesOptionsComponent {
             neighborhood: data.bairro,
             city: data.localidade,
             state: data.uf,
-
           });
+          console.log(data)
         } else {
           routeGroup.patchValue({
             street: '',

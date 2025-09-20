@@ -60,7 +60,6 @@ export class AddModalComponent implements OnInit {
     this.selectTruck();
   }
 
-
   onSubmit() {
     throw new Error('Method not implemented.');
   }
@@ -81,19 +80,19 @@ export class AddModalComponent implements OnInit {
           xCoord: [''],
           yCoord: ['']
         }),
-      }),
-      destination: this.fb.group({
-        zipCode: [''],
-        street: [''],
-        number: [''],
-        neighborhood: [''],
-        complement: [''],
-        city: [''],
-        state: [''],
-        contry: [''],
-        hemisphere: [''],
-        xCoord: [''],
-        yCoord: ['']
+        destination: this.fb.group({
+          zipCode: [''],
+          street: [''],
+          number: [''],
+          neighborhood: [''],
+          complement: [''],
+          city: [''],
+          state: [''],
+          contry: [''],
+          hemisphere: [''],
+          xCoord: [''],
+          yCoord: ['']
+        }),
       }),
       vehiclePlate: [''],
       product: [''],
@@ -111,8 +110,6 @@ export class AddModalComponent implements OnInit {
     )
   }
 
-
-
   setCursorEnd(event: FocusEvent): void {
     const inputElement = event.target as HTMLInputElement;
     const valueLength = inputElement.value.length;
@@ -120,9 +117,6 @@ export class AddModalComponent implements OnInit {
       inputElement.setSelectionRange(valueLength, valueLength);
     }, 0);
   }
-
-
-
 
   nextStep() {
     this.currentStep++;
