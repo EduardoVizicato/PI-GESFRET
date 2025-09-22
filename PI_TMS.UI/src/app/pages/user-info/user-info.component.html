@@ -1,7 +1,7 @@
 <app-sidebar></app-sidebar>
 <div class="main-content">
   <div class="clearfix">
-    <img src="assets/user-avatar.png" class="col-md-3 float-md-end mb-3 ms-md-3 px-5 py-5"alt="...">
+    <img src="assets/user-avatar.png" class="col-md-3 float-md-end mb-3 ms-md-3 px-5 py-5" alt="...">
     <form class="row g-3 px-5 py-4" [formGroup]="userForm">
       <h1>Dados do Usuário</h1>
       <div class="col-md-6">
@@ -27,12 +27,17 @@
       </div>
       <div class="col-md-6">
         <label for="phone" class="form-label">Telefone</label>
-        <input type="text" class="form-control" id="phone" formControlName="phone" readonly> 
+        <input type="text" class="form-control" id="phone" formControlName="phone" readonly>
       </div>
-      
+      @if (EditUserData() === true){
       <div class="col-12 ">
-        <button type="submit" class="btn btn-primary">Editar Dados</button>
+        <button type="submit" class="btn btn-primary">Salvar Dados</button>
       </div>
+      }@else{
+      <div class="col-12 ">
+        <button type="button" class="btn btn-primary" (click)="EditUserData()">Editar Dados</button>
+      </div>
+      }
     </form>
     <hr class="my-5">
     <form class="row g-2 px-5">
@@ -49,10 +54,10 @@
         <label for="" class="form-label">Email</label>
         <input type="email" class="form-control" id="">
       </div>
-      
-      
+
+
     </form>
 
-    
+
   </div>
 </div>
