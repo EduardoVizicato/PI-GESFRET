@@ -15,6 +15,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './user-info.component.css'
 })
 export class UserInfoComponent {
+
   user: UserInfo | null = null;
   userForm: FormGroup;
 
@@ -58,6 +59,9 @@ export class UserInfoComponent {
         }
       );
     }
+  }
+  EditUserData(): boolean {
+    return true;
   }
   onSubmit() {
     if (this.userForm.valid) {
