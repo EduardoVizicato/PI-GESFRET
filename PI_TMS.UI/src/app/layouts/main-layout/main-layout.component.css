@@ -7,8 +7,8 @@
 
 .main-container {
   display: flex;
-  background-color: #fcfcfc;
-  
+  /* A cor de fundo principal virá do body, então podemos remover isso se quisermos */
+  background-color: var(--bg-color); 
 }
 
 .content-wrapper {
@@ -28,12 +28,13 @@
   justify-content: space-between;
   height: var(--navbar-height);
   padding: 0 24px;
-  background-color: #fefefe;
-  border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background-color: var(--component-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--box-shadow-color);
   position: sticky;
   top: 0;
   z-index: 990;
+  transition: background-color 0.3s ease, border-bottom 0.3s ease;
 }
 
 .toggle-button {
@@ -42,18 +43,19 @@
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
-  color: #333;
-  transition: background-color 0.2s ease;
+  color: var(--text-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
+
 .toggle-button:hover {
-  background-color: #f0f0f0;
+  background-color: var(--toggle-hover-bg);
 }
 
 .page-title {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-color);
 }
 
 .main-content {
@@ -75,14 +77,29 @@
   transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
 }
 
-.userimg{
+.userimg {
   border-radius: 50%;
 }
 
-.navbar-actions{
+.navbar-actions {
   display: flex;
-  
+  align-items: center; /* Alinhamento vertical */
+  gap: 1rem; /* Espaçamento entre os botões */
 }
+
+/* Melhorando o dropdown para o tema escuro */
+.dropdown-menu {
+    background-color: var(--component-bg);
+    border: 1px solid var(--border-color);
+}
+.dropdown-item {
+    color: var(--text-color);
+}
+.dropdown-item:hover {
+    background-color: var(--toggle-hover-bg);
+    color: var(--text-color);
+}
+
 
 @media (max-width: 991.98px) {
   .content-wrapper {

@@ -8,11 +8,11 @@ import { NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthTokenService } from '../../_guard/service/auth-token.service';
-
+import { ThemeService } from '../../contrast/theme.service';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [SidebarComponent, RouterOutlet, NgIf,CommonModule,RouterModule],
+  imports: [SidebarComponent, RouterOutlet, NgIf, CommonModule, RouterModule],
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.css']
 })
@@ -28,7 +28,12 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
   
   private sidebarWasInitiallyCollapsed: boolean = false; 
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authTokenService: AuthTokenService,) {}
+  constructor(
+    private router: Router, 
+    private activatedRoute: ActivatedRoute, 
+    private authTokenService: AuthTokenService,
+    public themeService: ThemeService
+  ) {}
 
   ngOnInit() {
     this.checkScreenWidth(window.innerWidth);
