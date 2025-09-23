@@ -6,15 +6,22 @@
 
 
 .light-theme {
-  --bg-color: #ffffff;
+  --bg-color: #f8f8f8;
   --text-color: #000000;
+  --component-bg: #fefefe;
+  --border-color: #e0e0e0;
+  --toggle-hover-bg: #f0f0f0;
+  --box-shadow-color: rgba(0,0,0,0.05);
 }
 
 .dark-theme {
   --bg-color: #121212;
   --text-color: #ffffff;
-} 
-
+  --component-bg: #1e1e1e;
+  --border-color: #424242;
+  --toggle-hover-bg: #333333;
+  --box-shadow-color: rgba(255,255,255,0.05);
+}
 
 :root {
   --primary: #74c009;
@@ -33,9 +40,25 @@ html {
   padding: 0;
   height: 100%;
   scroll-behavior: smooth;
-  background-color: #f8f8f8;
-
   background-color: var(--bg-color);
   color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle-button {
+  background: none;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.theme-toggle-button:hover {
+  background-color: var(--toggle-hover-bg);
 }
