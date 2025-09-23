@@ -21,4 +21,8 @@ export class UserInfoService {
     return this.HttpClient.get<UserInfo>(`${this.apiUrl}getUserbyId?id=${id}`);
   } 
 
+  putUser(id: string, userInfo: UserInfo): Observable<UserInfo> {
+    return this.HttpClient.put<UserInfo>(`${this.apiUrl}putUser?id=${id}`, userInfo);
+  } 
+
 }

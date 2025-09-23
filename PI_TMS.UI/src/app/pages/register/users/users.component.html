@@ -32,7 +32,6 @@
     </tbody>
   </table>
 </div>
-
 <ng-template #noUsersCard>
   <div class="card mt-3">
     <div class="card-body text-center p-5">
@@ -41,7 +40,6 @@
     </div>
   </div>
 </ng-template>
-
 <footer class="footer text-center py-5 d-flex justify-content-end">
   <!-- https://ng-bootstrap.github.io/releases/18.x/#/home -->
   <ngb-pagination [collectionSize]="filteredUsers.length" [(page)]="page" [boundaryLinks]="true">
@@ -58,7 +56,6 @@
     </ng-template>
   </ngb-pagination>
 </footer>
-
 <div class="modal fade" id="viewMoreUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="viewMoreUser" aria-hidden="true">
   <div class="modal-dialog">
@@ -78,7 +75,6 @@
               <td>Ultima Atualização: </td>
               <td>{{ viewUser.updateAt | dateFormat }}</td>
             </tr>
-
           </tbody>
         </table>
         <div *ngIf="!viewUser">
