@@ -30,6 +30,9 @@
   background-color: var(--component-bg);
   border-bottom: 1px solid var(--border-color);
   box-shadow: 0 2px 4px var(--box-shadow-color);
+  background-color: var(--component-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--box-shadow-color);
   position: sticky;
   top: 0;
   z-index: 990;
@@ -82,20 +85,7 @@
 
 .navbar-actions {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.dropdown-menu {
-    background-color: var(--component-bg);
-    border: 1px solid var(--border-color);
-}
-.dropdown-item {
-    color: var(--text-color);
-}
-.dropdown-item:hover {
-    background-color: var(--toggle-hover-bg);
-    color: var(--text-color);
+  
 }
 
 
