@@ -30,12 +30,9 @@
         </td>
       </tr>
       }
-
     </tbody>
   </table>
-
 </div>
-
 <ng-template #noTruckCard>
   <div class="card mt-3">
     <div class="card-body text-center p-5">
@@ -80,15 +77,15 @@
             <div class="col-md-6 mb-3">
               <label for="nome" class="form-label">Nome</label>
               <input type="text" class="form-control" formControlName="name"
-                [class.is-invalid]="truckForm.get('name')?.invalid && truckForm.get('name')?.touched"
-                id="nome" placeholder="Digite o nome do caminhão">
+                [class.is-invalid]="truckForm.get('name')?.invalid && truckForm.get('name')?.touched" id="nome"
+                placeholder="Digite o nome do caminhão">
               <div class="invalid-feedback" *ngIf="truckForm.get('name')?.errors as errors">
                 <div *ngIf="errors['required']">Nome obrigatório.</div>
                 <div *ngIf="errors['minlength']">O nome deve ter pelo menos 2 caracteres.</div>
                 <div *ngIf="errors['maxlength']">O nome deve ter no máximo 50 caracteres.</div>
               </div>
             </div>
-            
+
             <div class="col-md-6 mb-3" formGroupName="vehicleRegistrationPlate">
               <label for="placa" class="form-label">Placa</label>
               <input type="text" class="form-control" formControlName="registrationPlate" maxlength="8" mask="AAA-0A00"
@@ -96,7 +93,8 @@
                 [class.is-invalid]="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.invalid && truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched"
                 [class.is-valid]="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.valid && truckForm.get('vehicleRegistrationPlate.registrationPlate')?.touched"
                 id="placa" placeholder="ABC-1D23">
-              <div class="invalid-feedback" *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors as errors">
+              <div class="invalid-feedback"
+                *ngIf="truckForm.get('vehicleRegistrationPlate.registrationPlate')?.errors as errors">
                 <div *ngIf="errors['required']">Placa obrigatória.</div>
                 <div *ngIf="errors['pattern']">A placa deve ser uma placa válida.</div>
               </div>

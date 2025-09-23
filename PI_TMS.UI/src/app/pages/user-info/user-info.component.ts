@@ -6,6 +6,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserInfo } from './models/userInfo.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { emailExistsValidator } from '../../sign-up/user/utils/email-exists.validator';
+import { cpfValidator } from '../../sign-up/user/utils/cpf.validator';
+import { UserService } from '../../sign-up/user/service/user.service';
 
 
 @Component({
@@ -18,9 +21,10 @@ export class UserInfoComponent {
 
   user: UserInfo | null = null;
   userForm: FormGroup;
+  isEditing = false;
 
 
-  constructor(private authTokenService: AuthTokenService, private userInfoService: UserInfoService, private fb: FormBuilder,) {
+  constructor(private userService: UserService, private authTokenService: AuthTokenService, private userInfoService: UserInfoService, private fb: FormBuilder,) {
     this.userForm = this.createForm();
   }
   ngOnInit(): void {
@@ -29,15 +33,21 @@ export class UserInfoComponent {
   }
   createForm(): FormGroup {
     return this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      id: [this.authTokenService.getUserId()],
+      firstName: [{ value: '', disabled: true }, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      lastName: [{ value: '', disabled: true }, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      email: [{ value: '', disabled: true }, {
+        validators: [Validators.required, Validators.email],
+        asyncValidators: [emailExistsValidator(this.userService)],
+        updateOn: 'blur'
+      }],
       taxId: this.fb.group({
-        taxId: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]]
+        taxId: [{ value: '', disabled: true }, [Validators.required, Validators.pattern(/^\d{11}$/), cpfValidator]]
       }),
-      phone: ['', [Validators.required, Validators.pattern(/^\(\d{2}\) \d{4,5}-\d{4}$/)]],
+      phoneNumber: [{ value: '', disabled: true }, [Validators.required, Validators.pattern(/^\d{11}$/)]],
     });
   }
+
   getUser() {
     const userId = this.authTokenService.getUserId();
     if (userId) {
@@ -45,12 +55,12 @@ export class UserInfoComponent {
         (user: UserInfo) => {
           console.log("Usuário obtido:", user);
           this.userForm.patchValue({
-            name: user.firstName,
-            surname: user.lastName,
+            firstName: user.firstName,
+            lastName: user.lastName,
             taxId: {
               taxId: user.taxId.taxId
             },
-            phone: user.phoneNumber,
+            phoneNumber: user.phoneNumber,
             email: user.email,
           });
         },
@@ -60,13 +70,31 @@ export class UserInfoComponent {
       );
     }
   }
-  EditUserData(): boolean {
-    return true;
+  enableEdit(): void {
+    this.isEditing = true;
+    this.userForm.enable();
   }
-  onSubmit() {
+  cancelEdit(): void {
+    this.isEditing = false;
+    this.userForm.disable();
+  }
+
+  updateUser() {
     if (this.userForm.valid) {
       const updatedUser = this.userForm.value;
-      console.log('Usuário atualizado:', updatedUser);
+      this.userInfoService.putUser(this.userForm.get('id')?.value, updatedUser).subscribe({
+        next: (response) => {
+          console.log('User put successfully:', response);
+          this.getUser();
+        },
+        error: (error) => {
+          console.error('Error updating user:', error);
+        }
+      });
+      this.isEditing = false;
+      this.userForm.disable();
+    } else {
+      console.error('User is null. Cannot update user.');
     }
   }
 }

@@ -6,38 +6,135 @@
       <h1>Dados do Usuário</h1>
       <div class="col-md-6">
         <label for="name" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="name" formControlName="name" readonly>
+        <input type="text" class="form-control" id="name" formControlName="firstName"
+          [class.is-invalid]="userForm.get('firstName')?.invalid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)"
+          [class.is-valid]="userForm.get('firstName')?.valid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)">
+        <div
+          *ngIf="userForm.get('firstName')?.invalid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)"
+          class="invalid-feedback d-block">
+          <div *ngIf="userForm.get('firstName')?.errors?.['required']">
+            Nome obrigatório.
+          </div>
+          <div *ngIf="userForm.get('firstName')?.errors?.['minlength']">
+            O nome deve ter pelo menos 2 caracteres.
+          </div>
+          <div *ngIf="userForm.get('firstName')?.errors?.['maxlength']">
+            O nome deve ter no máximo 50 caracteres.
+          </div>
+
+        </div>
+        <div
+          *ngIf="userForm.get('firstName')?.valid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)"
+          class="valid-feedback d-block">
+          Nome válido!
+        </div>
       </div>
       <div class="col-md-6">
         <label for="surname" class="form-label">Sobre Nome</label>
-        <input type="text" class="form-control" id="surname" formControlName="surname" readonly>
+        <input type="text" class="form-control" id="surname" formControlName="lastName"
+          [class.is-invalid]="userForm.get('lastName')?.invalid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)"
+          [class.is-valid]="userForm.get('lastName')?.valid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)">
+        <div
+          *ngIf="userForm.get('lastName')?.invalid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)"
+          class="invalid-feedback d-block">
+          <div *ngIf="userForm.get('lastName')?.errors?.['required']">
+            Sobre Nome obrigatório.
+          </div>
+          <div *ngIf="userForm.get('lastName')?.errors?.['minlength']">
+            O nome deve ter pelo menos 2 caracteres.
+          </div>
+          <div *ngIf="userForm.get('lastName')?.errors?.['maxlength']">
+            O nome deve ter no máximo 50 caracteres.
+          </div>
+        </div>
+        <div
+            *ngIf="userForm.get('lastName')?.valid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)"
+            class="valid-feedback d-block">
+            Sobrenome válido!
+          </div>
       </div>
       <div class="col-12">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" formControlName="email" readonly>
-      </div>
-      <!-- <div class="col-2">
-        <div class="d-grid py-4">
-          <button type="button" class="btn btn-primary">Alterar Email</button>
+        <input type="email" class="form-control" id="email" formControlName="email"
+          [class.is-invalid]="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
+          [class.is-valid]="userForm.get('email')?.valid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+        <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
+          class="invalid-feedback d-block">
+          <div *ngIf="userForm.get('email')?.errors?.['required']">
+            Email obrigatório.
+          </div>
+          <div *ngIf="userForm.get('email')?.errors?.['email']">
+            O email deve ser um endereço de email válido.
+          </div>
+          <div *ngIf="userForm.get('email')?.hasError('emailTaken')">
+            Este email já está em uso!
+          </div>
         </div>
-      </div> -->
+        <div *ngIf="userForm.get('email')?.valid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
+          class="valid-feedback d-block">
+          Email válido!
+        </div>
+      </div>
       <div class="col-6" formGroupName="taxId">
         <label for="taxId" class="form-label">CPF</label>
-        <input type="text" class="form-control" id="taxId" formControlName="taxId" readonly>
+        <input type="text" class="form-control" id="taxId" formControlName="taxId"
+          [class.is-invalid]="userForm.get('taxId.taxId')?.invalid && (userForm.get('taxId.taxId')?.dirty || userForm.get('taxId.taxId')?.touched)"
+          [class.is-valid]="userForm.get('taxId.taxId')?.valid && (userForm.get('taxId.taxId')?.dirty || userForm.get('taxId.taxId')?.touched)">
+
+        <div
+          *ngIf="userForm.get('taxId.taxId')?.invalid && (userForm.get('taxId.taxId')?.dirty || userForm.get('taxId.taxId')?.touched)"
+          class="invalid-feedback d-block">
+          <div *ngIf="userForm.get('taxId.taxId')?.errors?.['required']">
+            CPF obrigatório.
+          </div>
+          <div *ngIf="userForm.get('taxId.taxId')?.errors?.['pattern']">
+            O CPF deve ser um CPF válido.
+          </div>
+          <div *ngIf="userForm.get('taxId.taxId')?.hasError('cpfInvalid')">
+            CPF inválido!
+          </div>
+        </div>
+        <div
+          *ngIf="userForm.get('taxId.taxId')?.valid && (userForm.get('taxId.taxId')?.dirty || userForm.get('taxId.taxId')?.touched)"
+          class="valid-feedback d-block">
+          CPF válido!
+        </div>
       </div>
       <div class="col-md-6">
         <label for="phone" class="form-label">Telefone</label>
-        <input type="text" class="form-control" id="phone" formControlName="phone" readonly>
+        <input type="text" class="form-control" id="phone" formControlName="phoneNumber"
+          [class.is-invalid]="userForm.get('phoneNumber')?.invalid && (userForm.get('phoneNumber')?.dirty || userForm.get('phoneNumber')?.touched)"
+          [class.is-valid]="userForm.get('phoneNumber')?.valid && (userForm.get('phoneNumber')?.dirty || userForm.get('phoneNumber')?.touched)">
+
+        <div
+          *ngIf="userForm.get('phoneNumber')?.invalid && (userForm.get('phoneNumber')?.dirty || userForm.get('phoneNumber')?.touched)"
+          class="invalid-feedback d-block">
+          <div *ngIf="userForm.get('phoneNumber')?.errors?.['required']">
+            Telefone obrigatório.
+          </div>
+          <div *ngIf="userForm.get('phoneNumber')?.errors?.['pattern']">
+            O telefone deve ser um número válido.
+          </div>
+        </div>
+        <div
+          *ngIf="userForm.get('phoneNumber')?.valid && (userForm.get('phoneNumber')?.dirty || userForm.get('phoneNumber')?.touched)"
+          class="valid-feedback d-block">
+          Telefone válido!
+        </div>
       </div>
-      @if (EditUserData() === true){
-      <div class="col-12 ">
-        <button type="submit" class="btn btn-primary">Salvar Dados</button>
+      <div class="col-12">
+        <button *ngIf="!isEditing" type="button" class="btn btn-primary" (click)="enableEdit()">
+          Editar Dados
+        </button>
+
+        <button *ngIf="isEditing" type="button" class="btn btn-success me-2" (click)="updateUser()">
+          Salvar
+        </button>
+
+        <button *ngIf="isEditing" type="button" class="btn btn-secondary" (click)="cancelEdit()">
+          Cancelar
+        </button>
       </div>
-      }@else{
-      <div class="col-12 ">
-        <button type="button" class="btn btn-primary" (click)="EditUserData()">Editar Dados</button>
-      </div>
-      }
     </form>
     <hr class="my-5">
     <form class="row g-2 px-5">
@@ -54,10 +151,6 @@
         <label for="" class="form-label">Email</label>
         <input type="email" class="form-control" id="">
       </div>
-
-
     </form>
-
-
   </div>
 </div>

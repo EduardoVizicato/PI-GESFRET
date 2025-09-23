@@ -8,7 +8,6 @@
       </div>
       <div class="modal-body">
         <form id="formFrete" [formGroup]="travelForm" (ngSubmit)="onSubmit()">
-
           @if (currentStep === 1) {
           <div>
             <div class="mb-3">
@@ -44,7 +43,6 @@
             </div>
           </div>
           }
-
           @if (currentStep === 2) {
           <div>
             <div class="mb-3">
@@ -109,7 +107,6 @@
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-dark" (click)="nextStep()">Próximo</button>
         }
-
         @if (currentStep === 2) {
         <button type="button" class="btn btn-secondary" (click)="previousStep()">Voltar</button>
         <button type="submit" form="formFrete" class="btn btn-dark">Salvar Viagem</button>

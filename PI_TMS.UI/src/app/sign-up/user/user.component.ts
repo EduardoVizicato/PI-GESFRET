@@ -26,12 +26,12 @@ export class UserComponent {
     return this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      email: ['',  {
-      validators: [Validators.required, Validators.email],
-      asyncValidators: [emailExistsValidator(this.userService)],
-      updateOn: 'blur' 
-    }],
-      password: ['', { 
+      email: ['', {
+        validators: [Validators.required, Validators.email],
+        asyncValidators: [emailExistsValidator(this.userService)],
+        updateOn: 'blur'
+      }],
+      password: ['', {
         validators: [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{6,}$/)],
         updateOn: 'blur'
       }],
@@ -41,7 +41,7 @@ export class UserComponent {
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
     });
   }
-// 
+  // 
 
   onSubmit() {
     if (this.userForm.invalid) {
