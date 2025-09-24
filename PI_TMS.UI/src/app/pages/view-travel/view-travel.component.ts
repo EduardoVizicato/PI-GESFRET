@@ -19,17 +19,17 @@ export class ViewTravelComponent {
     date: '2023-10-01',
     route: {
       origin: {
-        zipCode: '12345-678',
-        street: 'Street A',
-        number: '123',
-        neighborhood: 'Neighborhood A',
-        complement: 'Apt 1',
-        city: 'City A',
-        state: 'State A',
-        country: 'Country A',
-        hemisphere: 'Northern',
-        xCoord: '123.456',
-        yCoord: '78.910'
+        zipCode: '15902-110',
+        street: 'Rua Prof. Julia Volponi',
+        number: '47',
+        neighborhood: 'Jardim Pagliuso',
+        complement: '',
+        city: 'Taquaritinga',
+        state: 'São Paulo',
+        country: 'Brasil',
+        hemisphere: 'Norte',
+        xCoord: '21.400479080613188',
+        yCoord: '48.49655599841981'
       },
       destination: {
         zipCode: '98765-432',
