@@ -22,7 +22,7 @@ export class UserInfoService {
   } 
 
   putUser(id: string, userInfo: UserInfo): Observable<UserInfo> {
-    return this.HttpClient.put<UserInfo>(`${this.apiUrl}putUser?id=${id}`, userInfo);
+    return this.HttpClient.put<UserInfo>(`${this.apiUrl}updateUser?id=${id}`, userInfo);
   } 
 
 }
