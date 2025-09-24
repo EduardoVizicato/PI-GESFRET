@@ -7,13 +7,14 @@
 
 h1 {
     text-align: center;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 
 .description {
     text-align: center;
-    color: #666;
+    color: var(--text-color);
+    opacity: 0.85;
     margin-bottom: 25px;
     font-size: 0.95em;
 }
@@ -26,59 +27,66 @@ label, p {
     display: block;
     margin-bottom: 8px;
     font-weight: 700;
-    color: #555;
+    color: var(--text-color);
 }
 
 input[type="number"],
 select {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 16px;
-    background-color: #fafafa;
+    background-color: var(--component-bg);
+    color: var(--text-color);
+}
+
+input[type="number"]::placeholder {
+    color: var(--text-color);
+    opacity: 0.6;
 }
 
 input[type="number"]:focus,
 select:focus {
-    border-color: #007bff;
+    border-color: var(--primary);
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 5px rgba(116, 192, 9, 0.35);
 }
 
 button {
     width: 100%;
     padding: 8px;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px var(--box-shadow-color);
 }
 
 #btn-calcular-frete {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--primary);
+    color: #fff;
     padding: 12px;
     font-size: 18px;
 }
 #btn-calcular-frete:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-dark);
 }
 
 #btn-calcular-distancia {
-    background-color: #6c757d;
-    color: white;
+    background-color: var(--component-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
 }
 #btn-calcular-distancia:hover {
-    background-color: #5a6268;
+    background-color: var(--toggle-hover-bg);
 }
 
 .radio-group p {
@@ -97,13 +105,14 @@ button:hover {
 
 #resultado {
     padding: 15px 10px 8px 10px;
-    background-color: #e9ecef;
+    background-color: var(--component-bg);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 1.1em;
-    color: #333;
+    color: var(--text-color);
 }
 #valor-resultado {
-    color: #000;
+    color: var(--text-color);
 }
 
 @media (min-width: 992px) {
