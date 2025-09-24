@@ -58,12 +58,12 @@ export const routes: Routes = [
                 title: 'Início',
 
             },
-            {
-                path: 'traveltest',
-                component: TraveltestComponent,
-                data: { title: 'Lista de Viagens',},
-                title: 'Viagens',
-            },
+            // {
+            //     path: 'traveltest',
+            //     component: TraveltestComponent,
+            //     data: { title: 'Lista de Viagens',},
+            //     title: 'Viagens',
+            // },
             {
                 path: 'travels',
                 component: TravelsComponent,

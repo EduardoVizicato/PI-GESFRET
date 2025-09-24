@@ -27,53 +27,151 @@
       <h1>Dados da Viagem de Nº {{viewTravel.id}}</h1>
       <hr>
       <div class="col-12">
-        <h3>Data da Viagem</h3>
+        <h4>Data da Viagem</h4>
         <p>{{viewTravel.date}}</p>
       </div>
-      <div class="col-md-6">
-        <h3>Cidade de Destino</h3>
-        <p>{{viewTravel.route.destination}}</p>
+      <hr>
+       <!-- origin: this.fb.group({
+          zipCode: [''],
+          street: [''],
+          number: [''],
+          neighborhood: [''],
+          complement: [''],
+          city: [''],
+          state: [''],
+          contry: [''],
+          hemisphere: [''],
+          xCoord: [''],
+          yCoord: ['']
+        }), -->
+        <h2>Origem</h2>
+      <div class="col-md-12">
+        <h4>CEP</h4>
+        <p>{{viewTravel.route.origin.zipCode}}</p>
       </div>
       <div class="col-md-6">
-        <h3>Cidade de Origem</h3>
-        <p>{{viewTravel.route.origin}}</p>
+        <h4>Rua</h4>
+        <p>{{viewTravel.route.origin.street}}</p>
+      </div>
+      <div class="col-md-6">
+        <h4>Numero</h4>
+        <p>{{viewTravel.route.origin.number}}</p>
+      </div>
+      <div class="col-md-6">
+        <h4>Bairro</h4>
+        <p>{{viewTravel.route.origin.neighborhood}}</p>
+      </div>
+      <div class="col-md-6">
+        <h4>Complemento</h4>
+        <p>{{viewTravel.route.origin.complement}}</p>
+      </div>
+      <div class="col-md-6">
+        <h4>Cidade</h4>
+        <p>{{viewTravel.route.origin.city}}</p>
+      </div>
+      <div class="col-md-3">
+        <h4>Estado</h4>
+        <p>{{viewTravel.route.origin.state}}</p>
+      </div>
+      <div class="col-md-3">
+        <h4>País</h4>
+        <p>{{viewTravel.route.origin.country}}</p>
+      </div>
+      <div class="col-md-2">
+        <h4>Hemisfério</h4>
+        <p>{{viewTravel.route.origin.hemisphere}}</p>
+      </div>
+      <div class="col-md-5">
+        <h4>Coordenada X</h4>
+        <p>{{viewTravel.route.origin.xCoord}}</p>
+      </div>
+      <div class="col-md-5">
+        <h4>Coordenada Y</h4>
+        <p>{{viewTravel.route.origin.yCoord}}</p>
+      </div>
+
+      <hr>
+      <h2>Destino</h2>
+      <div class="col-md-12">
+        <h4>CEP</h4>
+        <p>{{viewTravel.route.destination.zipCode}}</p>
+      </div>
+      <div class="col-md-6">
+        <h4>Rua</h4>
+        <p>{{viewTravel.route.destination.street}}</p>
+      </div>
+      <div class="col-md-6">
+        <h4>Numero</h4>
+        <p>{{viewTravel.route.destination.number}}</p>
+      </div>
+      <div class="col-md-6">
+        <h4>Bairro</h4>
+        <p>{{viewTravel.route.destination.neighborhood}}</p>
+      </div>
+      <div class="col-md-6">
+        <h4>Complemento</h4>
+        <p>{{viewTravel.route.destination.complement}}</p>
+      </div>
+      <div class="col-md-6">
+        <h4>Cidade</h4>
+        <p>{{viewTravel.route.destination.city}}</p>
+      </div>
+      <div class="col-md-3">
+        <h4>Estado</h4>
+        <p>{{viewTravel.route.destination.state}}</p>
+      </div>
+      <div class="col-md-3">
+        <h4>País</h4>
+        <p>{{viewTravel.route.destination.country}}</p>
+      </div>
+      <div class="col-md-2">
+        <h4>Hemisfério</h4>
+        <p>{{viewTravel.route.destination.hemisphere}}</p>
+      </div>
+      <div class="col-md-5">
+        <h4>Coordenada X</h4>
+        <p>{{viewTravel.route.destination.xCoord}}</p>
+      </div>
+      <div class="col-md-5">
+        <h4>Coordenada Y</h4>
+        <p>{{viewTravel.route.destination.yCoord}}</p>
       </div>
     </div>
     <hr class="my-2">
     <div class="row g-3 px-5 py-4">
       <div class="col-md-6">
-        <h3>Veiculo Utilizado</h3>
+        <h4>Veiculo Utilizado</h4>
         <p>Scania 120</p>
       </div>
       <div class="col-md-6">
-        <h3>Placa do Veiculo</h3>
+        <h4>Placa do Veiculo</h4>
         <p>{{viewTravel.vehiclePlate}}</p>
       </div>
       <div class="col-md-6">
-        <h3>Tipo do Veiculo</h3>
+        <h4>Tipo do Veiculo</h4>
         <p>Fechada/Baú</p>
       </div>
       <div class="col-md-6">
-        <h3>Reboque Utilizado</h3>
+        <h4>Reboque Utilizado</h4>
         <p>Graneleiro</p>
       </div>
     </div>
     <hr class="my-2">
     <div class="row g-3 px-5 py-4">
       <div class="col-md-6">
-        <h3>Produto Predominante</h3>
+        <h4>Produto Predominante</h4>
         <p>{{viewTravel.product}}</p>
       </div>
       <div class="col-md-6">
-        <h3>Tipo do Produto</h3>
+        <h4>Tipo do Produto</h4>
         <p>Carga Geral</p>
       </div>
       <div class="col-md-6">
-        <h3>Peso da Carga</h3>
+        <h4>Peso da Carga</h4>
         <p>{{viewTravel.weight}}</p>
       </div>
       <div class="col-md-6">
-        <h3>Valor do Frete</h3>
+        <h4>Valor do Frete</h4>
         <p>{{viewTravel.freightValue}}</p>
       </div>
 
