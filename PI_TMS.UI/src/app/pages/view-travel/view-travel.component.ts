@@ -18,8 +18,32 @@ export class ViewTravelComponent {
     id: '1',
     date: '2023-10-01',
     route: {
-      origin: 'City A',
-      destination: 'City B'
+      origin: {
+        zipCode: '12345-678',
+        street: 'Street A',
+        number: '123',
+        neighborhood: 'Neighborhood A',
+        complement: 'Apt 1',
+        city: 'City A',
+        state: 'State A',
+        country: 'Country A',
+        hemisphere: 'Northern',
+        xCoord: '123.456',
+        yCoord: '78.910'
+      },
+      destination: {
+        zipCode: '98765-432',
+        street: 'Street B',
+        number: '456',
+        neighborhood: 'Neighborhood B',
+        complement: 'Apt 2',
+        city: 'City B',
+        state: 'State B',
+        country: 'Country B',
+        hemisphere: 'Southern',
+        xCoord: '654.321',
+        yCoord: '21.098'
+      }
     },
     vehiclePlate: 'ABC1234',
     product: 'Electronics',
