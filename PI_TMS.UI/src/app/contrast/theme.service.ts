@@ -15,6 +15,7 @@ export class ThemeService {
 
   toggleTheme(): void {
     this.isDark = !this.isDark;
+    localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
     this.applyThemeClasses();
   }
 

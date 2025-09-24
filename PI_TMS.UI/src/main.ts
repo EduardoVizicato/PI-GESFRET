@@ -26,6 +26,11 @@ bootstrapApplication(AppComponent, {
   ]
 }).then(appRef => {
   const themeService = appRef.injector.get(ThemeService);
-  themeService.setDarkMode(false); // inicia no modo claro
-}).catch(err => console.error(err));
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    themeService.setDarkMode(savedTheme === 'dark');
+  } else {
+    themeService.setDarkMode(false);
+  }
+  }).catch(err => console.error(err));
 
