@@ -4,21 +4,28 @@ import { Injectable } from '@angular/core';
 export class ThemeService {
   private isDark = false;
 
+  private applyThemeClasses(): void {
+    const themeClass = this.isDark ? 'dark-theme' : 'light-theme';
+    document.body.classList.remove('dark-theme', 'light-theme');
+    document.body.classList.add(themeClass);
+
+    const bsTheme = this.isDark ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-bs-theme', bsTheme);
+  }
+
   toggleTheme(): void {
     this.isDark = !this.isDark;
-    const themeClass = this.isDark ? 'dark-theme' : 'light-theme';
-    document.body.className = themeClass;
+    this.applyThemeClasses();
   }
 
   setDarkMode(dark: boolean): void {
     this.isDark = dark;
-    document.body.className = dark ? 'dark-theme' : 'light-theme';
+    this.applyThemeClasses();
   }
 
   isDarkMode(): boolean {
     return this.isDark;
   }
-
 }
 
 
