@@ -19,7 +19,7 @@
   </thead>
   <tbody class="table-group-divider">
     @for (travel of filteredTravel | slice: (page-1) * pageSize : page * pageSize; track filteredTravel) {
-    <tr>
+    <tr (click)="viewTravel = travel; openModalView()">
       <th scope="row">{{ travels.length }}</th>
       <td>{{ travel.date }}</td>
       <td>{{ travel.route.origin }} -> {{travel.route.destination}}</td>
@@ -120,3 +120,4 @@
 }
 
 <app-add-modal (onSubmit)="addTravel($event)"></app-add-modal>
+<app-view-travel></app-view-travel>

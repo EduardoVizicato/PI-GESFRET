@@ -3,11 +3,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { cteStorage } from './models/cteStorage.model';
+import Modal from 'bootstrap/js/dist/modal';
+import { ViewTravelComponent } from "../view-travel/view-travel.component";
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-cte-storage',
-  imports: [CommonModule, PdfViewerModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, PdfViewerModule, FormsModule, ReactiveFormsModule, ViewTravelComponent],
   templateUrl: './cte-storage.component.html',
   styleUrl: './cte-storage.component.css'
 })
@@ -49,7 +51,16 @@ export class CteStorageComponent {
     this.addCteModal?.show();
   }
 
+  openModalView() {
+    const modalElement = document.getElementById('viewTravelModal');
 
+    if (modalElement) {
+      const modal = new Modal(modalElement);
+      modal.show();
+    } else {
+      console.warn('Elemento do modal não encontrado.');
+    }
+  }
 
   addCte() {
     if (this.cteForm.invalid) {

@@ -1,199 +1,199 @@
-<div class="main-content">
-  <div class="clearfix">
-    <div class="col-md-4 float-md-end mb-3 ms-md-3 px-5 py-5">
-      <h1>CT-e</h1>
-      <div class="card" style="width: 30rem;">
+<div class="modal fade" id="viewTravelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="viewTravelModal" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-fullscreen-md-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="viewTravelModal">Dados da Viagem de Nº {{viewTravel.id}}</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="main-content">
+          <div class="clearfix">
+            <div class="col-md-4 float-md-end mb-3 ms-md-3 px-2 py-5">
+              <h1>CT-e</h1>
+              <div class="card" style="width: 20rem;">
+                <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
+                  [zoom-scale]="'page-width'" style="width: 20rem; height: 25rem">
+                </pdf-viewer>
+                <div class="card-img-overlay">
+                  <a data-bs-toggle="modal" data-bs-target="#viewDocModal" id="icon-expand">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                      class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707" />
+                    </svg>
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{cte.name}}</h5>
+                  <p class="card-text">{{cte.description}} </p>
+                  <a href="#" class="btn btn-primary mx-1">Baixar</a>
+                </div>
+              </div>
+
+            </div>
+            <div class="row g-3 px-5 py-4">
+              <div class="col-12">
+                <p>Data da Viagem</p>
+                <h4>{{viewTravel.date}}</h4>
+              </div>
+              <hr>
+              <h3>Origem</h3>
+              <div class="col-md-12">
+                <p>CEP</p>
+                <h4>{{viewTravel.route.origin.zipCode}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Rua</p>
+                <h4>{{viewTravel.route.origin.street}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Numero</p>
+                <h4>{{viewTravel.route.origin.number}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Bairro</p>
+                <h4>{{viewTravel.route.origin.neighborhood}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Complemento</p>
+                <h4>{{viewTravel.route.origin.complement}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Cidade</p>
+                <h4>{{viewTravel.route.origin.city}}</h4>
+              </div>
+              <div class="col-md-3">
+                <p>Estado</p>
+                <h4>{{viewTravel.route.origin.state}}</h4>
+              </div>
+              <div class="col-md-3">
+                <p>País</p>
+                <h4>{{viewTravel.route.origin.country}}</h4>
+              </div>
+              <div class="col-md-2">
+                <p>Hemisfério</p>
+                <h4>{{viewTravel.route.origin.hemisphere}}</h4>
+              </div>
+              <div class="col-md-5">
+                <p>Coordenada X</p>
+                <h4>{{viewTravel.route.origin.xCoord}}</h4>
+              </div>
+              <div class="col-md-5">
+                <p>Coordenada Y</p>
+                <h4>{{viewTravel.route.origin.yCoord}}</h4>
+              </div>
+                <hr>
+                <h3>Destino</h3>
+                <div class="col-md-12">
+                  <p>CEP</p>
+                  <h4>{{viewTravel.route.destination.zipCode}}</h4>
+                </div>
+                <div class="col-md-6">
+                  <p>Rua</p>
+                  <h4>{{viewTravel.route.destination.street}}</h4>
+                </div>
+                <div class="col-md-6">
+                <p>Numero</p>
+                <h4>{{viewTravel.route.destination.number}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Bairro</p>
+                <h4>{{viewTravel.route.destination.neighborhood}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Complemento</p>
+                <h4>{{viewTravel.route.destination.complement}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Cidade</p>
+                <h4>{{viewTravel.route.destination.city}}</h4>
+              </div>
+              <div class="col-md-3">
+                <p>Estado</p>
+                <h4>{{viewTravel.route.destination.state}}</h4>
+              </div>
+              <div class="col-md-3">
+                <p>País</p>
+                <h4>{{viewTravel.route.destination.country}}</h4>
+              </div>
+              <div class="col-md-2">
+                <p>Hemisfério</p>
+                <h4>{{viewTravel.route.destination.hemisphere}}</h4>
+              </div>
+              <div class="col-md-5">
+                <p>Coordenada X</p>
+                <h4>{{viewTravel.route.destination.xCoord}}</h4>
+              </div>
+              <div class="col-md-5">
+                <p>Coordenada Y</p>
+                <h4>{{viewTravel.route.destination.yCoord}}</h4>
+              </div>
+            </div>
+            <hr class="my-2">
+            <div class="row g-3 px-5 py-4">
+              <div class="col-md-6">
+                <p>Veiculo Utilizado</p>
+                <h4>Scania 120</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Placa do Veiculo</p>
+                <h4>{{viewTravel.vehiclePlate}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Tipo do Veiculo</p>
+                <h4>Fechada/Baú</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Reboque Utilizado</p>
+                <h4>Graneleiro</h4>
+              </div>
+            </div>
+            <hr class="my-2">
+            <div class="row g-3 px-5 py-4">
+              <div class="col-md-6">
+                <p>Produto Predominante</p>
+                <h4>{{viewTravel.product}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Tipo do Produto</p>
+                <h4>Carga Geral</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Peso da Carga</p>
+                <h4>{{viewTravel.weight}}</h4>
+              </div>
+              <div class="col-md-6">
+                <p>Valor do Frete</p>
+                <h4>{{viewTravel.freightValue}}</h4>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="viewDocModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-fullscreen-md-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{cte.name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
         <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
-          [zoom-scale]="'page-width'" style="width: 30rem; height: 35rem">
+          style="width: 70rem; height: 45rem" [zoom-scale]="'page-width'">
         </pdf-viewer>
-        <div class="card-img-overlay">
-          <a data-bs-toggle="modal" data-bs-target="#viewDocModal" id="icon-expand">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-              class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707" />
-            </svg>
-          </a>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{cte.name}}</h5>
-          <p class="card-text">{{cte.description}} </p>
-          <a href="#" class="btn btn-primary mx-1">Baixar</a>
-        </div>
       </div>
-
-    </div>
-    <div class="row g-3 px-5 py-4">
-      <h1>Dados da Viagem de Nº {{viewTravel.id}}</h1>
-      <hr>
-      <div class="col-12">
-        <h4>Data da Viagem</h4>
-        <p>{{viewTravel.date}}</p>
-      </div>
-      <hr>
-       <!-- origin: this.fb.group({
-          zipCode: [''],
-          street: [''],
-          number: [''],
-          neighborhood: [''],
-          complement: [''],
-          city: [''],
-          state: [''],
-          contry: [''],
-          hemisphere: [''],
-          xCoord: [''],
-          yCoord: ['']
-        }), -->
-        <h2>Origem</h2>
-      <div class="col-md-12">
-        <h4>CEP</h4>
-        <p>{{viewTravel.route.origin.zipCode}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Rua</h4>
-        <p>{{viewTravel.route.origin.street}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Numero</h4>
-        <p>{{viewTravel.route.origin.number}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Bairro</h4>
-        <p>{{viewTravel.route.origin.neighborhood}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Complemento</h4>
-        <p>{{viewTravel.route.origin.complement}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Cidade</h4>
-        <p>{{viewTravel.route.origin.city}}</p>
-      </div>
-      <div class="col-md-3">
-        <h4>Estado</h4>
-        <p>{{viewTravel.route.origin.state}}</p>
-      </div>
-      <div class="col-md-3">
-        <h4>País</h4>
-        <p>{{viewTravel.route.origin.country}}</p>
-      </div>
-      <div class="col-md-2">
-        <h4>Hemisfério</h4>
-        <p>{{viewTravel.route.origin.hemisphere}}</p>
-      </div>
-      <div class="col-md-5">
-        <h4>Coordenada X</h4>
-        <p>{{viewTravel.route.origin.xCoord}}</p>
-      </div>
-      <div class="col-md-5">
-        <h4>Coordenada Y</h4>
-        <p>{{viewTravel.route.origin.yCoord}}</p>
-      </div>
-
-      <hr>
-      <h2>Destino</h2>
-      <div class="col-md-12">
-        <h4>CEP</h4>
-        <p>{{viewTravel.route.destination.zipCode}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Rua</h4>
-        <p>{{viewTravel.route.destination.street}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Numero</h4>
-        <p>{{viewTravel.route.destination.number}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Bairro</h4>
-        <p>{{viewTravel.route.destination.neighborhood}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Complemento</h4>
-        <p>{{viewTravel.route.destination.complement}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Cidade</h4>
-        <p>{{viewTravel.route.destination.city}}</p>
-      </div>
-      <div class="col-md-3">
-        <h4>Estado</h4>
-        <p>{{viewTravel.route.destination.state}}</p>
-      </div>
-      <div class="col-md-3">
-        <h4>País</h4>
-        <p>{{viewTravel.route.destination.country}}</p>
-      </div>
-      <div class="col-md-2">
-        <h4>Hemisfério</h4>
-        <p>{{viewTravel.route.destination.hemisphere}}</p>
-      </div>
-      <div class="col-md-5">
-        <h4>Coordenada X</h4>
-        <p>{{viewTravel.route.destination.xCoord}}</p>
-      </div>
-      <div class="col-md-5">
-        <h4>Coordenada Y</h4>
-        <p>{{viewTravel.route.destination.yCoord}}</p>
-      </div>
-    </div>
-    <hr class="my-2">
-    <div class="row g-3 px-5 py-4">
-      <div class="col-md-6">
-        <h4>Veiculo Utilizado</h4>
-        <p>Scania 120</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Placa do Veiculo</h4>
-        <p>{{viewTravel.vehiclePlate}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Tipo do Veiculo</h4>
-        <p>Fechada/Baú</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Reboque Utilizado</h4>
-        <p>Graneleiro</p>
-      </div>
-    </div>
-    <hr class="my-2">
-    <div class="row g-3 px-5 py-4">
-      <div class="col-md-6">
-        <h4>Produto Predominante</h4>
-        <p>{{viewTravel.product}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Tipo do Produto</h4>
-        <p>Carga Geral</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Peso da Carga</h4>
-        <p>{{viewTravel.weight}}</p>
-      </div>
-      <div class="col-md-6">
-        <h4>Valor do Frete</h4>
-        <p>{{viewTravel.freightValue}}</p>
-      </div>
-
-
-    </div>
-  </div>
-
-  <div class="modal" id="viewDocModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-fullscreen-md-down">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{cte.name}}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
-            style="width: 70rem; height: 45rem" [zoom-scale]="'page-width'">
-          </pdf-viewer>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>

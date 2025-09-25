@@ -14,6 +14,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ZipCodeService, ZipCodeData } from './service/zip-code/zip-code.service';
 import { AddModalComponent } from "./utils/add-modal/add-modal.component";
 import Modal from 'bootstrap/js/dist/modal';
+import { ViewTravelComponent } from "../view-travel/view-travel.component";
 declare var bootstrap: any;
 
 @Component({
@@ -25,7 +26,8 @@ declare var bootstrap: any;
     FormsModule,
     ReactiveFormsModule,
     NgbPaginationModule,
-    AddModalComponent
+    AddModalComponent,
+    ViewTravelComponent
 ],
   providers: [
     CityService,
@@ -45,6 +47,7 @@ export class TravelsComponent implements OnInit {
   freightvalue: number = 0;
 
   private addTravelModal: any;
+viewTravel: any;
 
   constructor(
     private http: HttpClient
@@ -62,6 +65,16 @@ export class TravelsComponent implements OnInit {
   openModalAdd() {
     const modalElement = document.getElementById('addTravelModal');
     
+    if (modalElement) {
+      const modal = new Modal(modalElement);
+      modal.show();
+    } else {
+      console.warn('Elemento do modal não encontrado.');
+    }
+  }
+  openModalView() {
+    const modalElement = document.getElementById('viewTravelModal');
+
     if (modalElement) {
       const modal = new Modal(modalElement);
       modal.show();
