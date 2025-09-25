@@ -8,23 +8,23 @@
   @for (cte of cte; track $index) {
   <div class="col ">
     <div class="card" style="width: 18rem;">
-      <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false" [zoom-scale]="'page-width'"
-        style="width: 17.5rem; height: 12rem">
-      </pdf-viewer>
-      <div class="card-img-overlay">
-          <a data-bs-toggle="modal" data-bs-target="#viewDocModal" class="icon-expand" (click)="openViewDocModal(cte)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-              class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707" />
-            </svg>
-          </a>
-        </div>
+      <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
+      [zoom-scale]="'page-width'" style="width: 17.5rem; height: 12rem">
+    </pdf-viewer>
+    <div class="card-img-overlay" style="width: 17.5rem; height: 12rem;">
+      <a data-bs-toggle="modal" data-bs-target="#viewDocModal" class="icon-expand" (click)="openViewDocModal(cte)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+          class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707" />
+        </svg>
+      </a>
+    </div>
       <div class="card-body">
         <h5 class="card-title">{{cte.name}}</h5>
         <p class="card-text">{{cte.description}} </p>
         <a href="#" class="btn btn-primary mx-1">Baixar</a>
-        <a class="btn btn-secondary"> Visualizar Viagem</a>
+        <a class="btn btn-secondary" (click)="openModalView()"> Visualizar Viagem</a>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <pdf-viewer [src]="pdfSrc" [render-text]="true" [render-text-mode]="0" [original-size]="false" 
+        <pdf-viewer [src]="pdfSrc" [render-text]="true" [render-text-mode]="0" [original-size]="false"
           style="width: 70rem; height: 45rem" [zoom-scale]="'page-width'">
         </pdf-viewer>
       </div>
@@ -106,3 +106,4 @@
     </div>
   </div>
 </div>
+<app-view-travel></app-view-travel>
