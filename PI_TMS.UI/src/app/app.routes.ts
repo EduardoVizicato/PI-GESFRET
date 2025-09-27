@@ -58,24 +58,11 @@ export const routes: Routes = [
                 title: 'Início',
 
             },
-            // {
-            //     path: 'traveltest',
-            //     component: TraveltestComponent,
-            //     data: { title: 'Lista de Viagens',},
-            //     title: 'Viagens',
-            // },
             {
                 path: 'travels',
                 component: TravelsComponent,
                 canActivate: [authGuard],
                 data: { breadcrumb: 'Travels', title: 'Lista de Viagens', roles: [Roles.ADM, Roles.FUNCIONARIO] },
-                title: 'Viagens'
-            },
-            {
-                path: 'viewTravel',
-                component: ViewTravelComponent,
-                canActivate: [authGuard],
-                data: { breadcrumb: 'Travels', title: 'Dados da Viagem', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Viagens'
             },
             {
