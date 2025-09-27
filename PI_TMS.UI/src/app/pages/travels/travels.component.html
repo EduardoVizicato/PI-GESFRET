@@ -19,14 +19,14 @@
   </thead>
   <tbody class="table-group-divider">
     @for (travel of filteredTravel | slice: (page-1) * pageSize : page * pageSize; track filteredTravel) {
-    <tr (click)="viewTravel = travel; openModalView()">
-      <th scope="row">{{ travels.length }}</th>
-      <td>{{ travel.date }}</td>
-      <td>{{ travel.route.origin }} -> {{travel.route.destination}}</td>
-      <td>{{ travel.vehiclePlate }}</td>
-      <td>{{ travel.product }}</td>
-      <td>{{ travel.weight }}</td>
-      <td>{{ travel.freightValue }}</td>
+    <tr>
+      <th scope="row" (click)="viewTravel = travel; openModalView()">{{ travels.length }}</th>
+      <td (click)="viewTravel = travel; openModalView()">{{ travel.date }}</td>
+      <td (click)="viewTravel = travel; openModalView()">{{ travel.route.origin }} -> {{travel.route.destination}}</td>
+      <td (click)="viewTravel = travel; openModalView()">{{ travel.vehiclePlate }}</td>
+      <td (click)="viewTravel = travel; openModalView()">{{ travel.product }}</td>
+      <td (click)="viewTravel = travel; openModalView()">{{ travel.weight }}</td>
+      <td (click)="viewTravel = travel; openModalView()">{{ travel.freightValue }}</td>
       <td class="text-center">
         <div class="dropstart">
           <a data-bs-toggle="dropdown">

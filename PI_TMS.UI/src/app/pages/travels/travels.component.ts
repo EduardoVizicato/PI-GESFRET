@@ -28,7 +28,7 @@ declare var bootstrap: any;
     NgbPaginationModule,
     AddModalComponent,
     ViewTravelComponent
-],
+  ],
   providers: [
     CityService,
     TravelService,
@@ -38,7 +38,7 @@ declare var bootstrap: any;
   styleUrl: './travels.component.css'
 })
 export class TravelsComponent implements OnInit {
-  
+
   travels: Travel[] = [];
   searchTerm: string = '';
   page: number = 1;
@@ -47,15 +47,15 @@ export class TravelsComponent implements OnInit {
   freightvalue: number = 0;
 
   private addTravelModal: any;
-viewTravel: any;
+  viewTravel: any;
 
   constructor(
     private http: HttpClient
-  ) {  }
+  ) { }
   ngOnInit(): void {
     this.loadTravels();
   }
-  
+
   ngAfterViewInit(): void {
     const addModalEl = document.getElementById('freteModal');
     if (addModalEl) {
@@ -64,7 +64,7 @@ viewTravel: any;
   }
   openModalAdd() {
     const modalElement = document.getElementById('addTravelModal');
-    
+
     if (modalElement) {
       const modal = new Modal(modalElement);
       modal.show();
@@ -83,7 +83,7 @@ viewTravel: any;
     }
   }
   addTravel($event: Event) {
-  throw new Error('Method not implemented.');
+    throw new Error('Method not implemented.');
   }
 
   loadTravels(): void {
@@ -103,7 +103,7 @@ viewTravel: any;
     ]
     this.travels = sampleTravels;
   }
-  
+
   get filteredTravel() {
     const term = this.searchTerm.toLowerCase();
     return this.travels.filter(u =>
@@ -117,6 +117,13 @@ viewTravel: any;
   }
 
   cloneTravel(travel: Travel) {
-    console.log('esses são os dados para clonar! :', travel)
+    const newTravel: Travel = structuredClone(travel);
+    // const newTravel = JSON.parse(JSON.stringify(travel));
+
+    newTravel.id = crypto.randomUUID();
+    newTravel.date = new Date().toLocaleDateString('pt-BR');
+
+    this.travels.push(newTravel);
   }
+
 }
