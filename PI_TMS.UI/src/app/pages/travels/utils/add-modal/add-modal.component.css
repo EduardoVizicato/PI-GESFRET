@@ -103,3 +103,47 @@ select:focus {
 .modal-footer{
   justify-content: space-between;
 }
+
+:host-context(.dark-theme) .form-control,
+:host-context(.dark-theme) .form-select {
+  background-color: var(--component-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+:host-context(.dark-theme) .form-control::placeholder {
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+:host-context(.dark-theme) #btn-calc {
+  background-color: var(--toggle-hover-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+:host-context(.dark-theme) .btn-dark {
+  background-color: #2b2b2b;
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+:host-context(.dark-theme) .btn-dark:hover {
+  background-color: #3a3a3a;
+}
+
+:host-context(.dark-theme) #tipo-carga {
+  background-color: var(--component-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+:host-context(.dark-theme) #tipo-carga:focus {
+  border-color: var(--border-color);
+  box-shadow: none;
+}
+
+:host-context(.dark-theme) #tipo-carga option {
+  background-color: var(--component-bg);
+  color: var(--text-color);
+}
