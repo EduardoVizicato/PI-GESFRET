@@ -4,7 +4,7 @@ import { ZipCodeData, ZipCodeService } from '../../service/zip-code/zip-code.ser
 import { TravelService } from '../../service/travel.service';
 import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs';
 import { City, CityService } from '../../service/city/city.service';
-import { Truck } from '../../model/travel.model';
+import { Travel, Truck } from '../../model/travel.model';
 import { PlateFormatPipe } from "../../../register/trucks/utils/plate-format.pipe";
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,7 +30,7 @@ import { routes } from '../../../../app.routes';
 export class UpdateModalComponent implements OnInit {
   travelForm: FormGroup;
   currentStep: number = 1;
-
+  travelData!: Travel;
   trucks: Truck[] = [];
 
   weightvalue: number = 0;
@@ -63,39 +63,39 @@ export class UpdateModalComponent implements OnInit {
   }
   createForm(): FormGroup {
     return this.fb.group({
-      date: [''],
+      date: [this.travelData?.date || ''],
       route: this.fb.group({
         origin: this.fb.group({
-          zipCode: [''],
-          street: [''],
-          number: [''],
-          neighborhood: [''],
-          complement: [''],
-          city: [''],
-          state: [''],
-          contry: [''],
-          hemisphere: [''],
-          xCoord: [''],
-          yCoord: ['']
+          zipCode: [this.travelData?.route?.origin?.zipCode || ''],
+          street: [this.travelData?.route?.origin?.street || ''],
+          number: [this.travelData?.route?.origin?.number || ''],
+          neighborhood: [this.travelData?.route?.origin?.neighborhood || ''],
+          complement: [this.travelData?.route?.origin?.complement || ''],
+          city: [this.travelData?.route?.origin?.city || ''],
+          state: [this.travelData?.route?.origin?.state || ''],
+          contry: [this.travelData?.route?.origin?.contry || ''],
+          hemisphere: [this.travelData?.route?.origin?.hemisphere || ''],
+          xCoord: [this.travelData?.route?.origin?.xCoord || ''],
+          yCoord: [this.travelData?.route?.origin?.yCoord || '']
         }),
         destination: this.fb.group({
-          zipCode: [''],
-          street: [''],
-          number: [''],
-          neighborhood: [''],
-          complement: [''],
-          city: [''],
-          state: [''],
-          contry: [''],
-          hemisphere: [''],
-          xCoord: [''],
-          yCoord: ['']
+          zipCode: [this.travelData?.route?.destination?.zipCode || ''],
+          street: [this.travelData?.route?.destination?.street || ''],
+          number: [this.travelData?.route?.destination?.number || ''],
+          neighborhood: [this.travelData?.route?.destination?.neighborhood || ''],
+          complement: [this.travelData?.route?.destination?.complement || ''],
+          city: [this.travelData?.route?.destination?.city || ''],
+          state: [this.travelData?.route?.destination?.state || ''],
+          contry: [this.travelData?.route?.destination?.contry || ''],
+          hemisphere: [this.travelData?.route?.destination?.hemisphere || ''],
+          xCoord: [this.travelData?.route?.destination?.xCoord || ''],
+          yCoord: [this.travelData?.route?.destination?.yCoord || '']
         }),
       }),
-      vehiclePlate: [''],
-      product: [''],
-      weight: [''],
-      freightValue: ['']
+      vehiclePlate: [this.travelData?.vehiclePlate || ''],
+      product: [this.travelData?.product || ''],
+      weight: [this.travelData?.weight || ''],
+      freightValue: [this.travelData?.freightValue || '']
     });
   }
 
