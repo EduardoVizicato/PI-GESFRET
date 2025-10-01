@@ -15,6 +15,7 @@ import { ZipCodeService, ZipCodeData } from './service/zip-code/zip-code.service
 import { AddModalComponent } from "./utils/add-modal/add-modal.component";
 import Modal from 'bootstrap/js/dist/modal';
 import { ViewTravelComponent } from "../view-travel/view-travel.component";
+import { UpdateModalComponent } from "./utils/update-modal/update-modal.component";
 declare var bootstrap: any;
 
 @Component({
@@ -27,7 +28,8 @@ declare var bootstrap: any;
     ReactiveFormsModule,
     NgbPaginationModule,
     AddModalComponent,
-    ViewTravelComponent
+    ViewTravelComponent,
+    UpdateModalComponent
   ],
   providers: [
     CityService,
@@ -64,6 +66,16 @@ export class TravelsComponent implements OnInit {
   }
   openModalAdd() {
     const modalElement = document.getElementById('addTravelModal');
+
+    if (modalElement) {
+      const modal = new Modal(modalElement);
+      modal.show();
+    } else {
+      console.warn('Elemento do modal não encontrado.');
+    }
+  }
+  openModalUpdate() {
+    const modalElement = document.getElementById('updateTravelModal');
 
     if (modalElement) {
       const modal = new Modal(modalElement);
@@ -126,4 +138,13 @@ export class TravelsComponent implements OnInit {
     this.travels.push(newTravel);
   }
 
+  updateTravel(travel: Travel) {
+
+  }
+  deleteTravel(travel: Travel) {
+    const index = this.travels.findIndex(t => t.id === travel.id);
+    if (index !== -1) {
+      this.travels.splice(index, 1);
+    }
+  }
 }

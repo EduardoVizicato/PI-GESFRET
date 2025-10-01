@@ -55,7 +55,7 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item">
+              <a class="dropdown-item" (click)="openModalUpdate()">
                 <div class="row">
                   <div class="col-md-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -71,7 +71,7 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item">
+              <a class="dropdown-item" (click)="deleteTravel(travel)">
                 <div class="row">
                   <div class="col-md-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -121,3 +121,4 @@
 
 <app-add-modal (onSubmit)="addTravel($event)"></app-add-modal>
 <app-view-travel></app-view-travel>
+<app-update-modal></app-update-modal>
