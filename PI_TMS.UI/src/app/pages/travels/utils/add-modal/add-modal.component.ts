@@ -75,7 +75,7 @@ export class AddModalComponent implements OnInit {
           complement: [''],
           city: [''],
           state: [''],
-          contry: [''],
+          country: [''],
           hemisphere: [''],
           xCoord: [''],
           yCoord: ['']
@@ -88,7 +88,7 @@ export class AddModalComponent implements OnInit {
           complement: [''],
           city: [''],
           state: [''],
-          contry: [''],
+          country: [''],
           hemisphere: [''],
           xCoord: [''],
           yCoord: ['']

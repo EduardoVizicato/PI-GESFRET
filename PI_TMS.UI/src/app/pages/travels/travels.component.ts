@@ -104,8 +104,33 @@ export class TravelsComponent implements OnInit {
         id: 'a8b2c4d6-e8f0-1234-5678-9a1b3c5d7e9f',
         date: '31/07/2025',
         route: ({
-          origin: 'Jurupema/SP ',
-          destination: 'Taquaritinga/SP',
+          origin:({
+            zipCode: '14860-000',
+            street: 'Rua 15 de Novembro',
+            number: '1000',
+            neighborhood: 'Centro',
+            complement: 'Apto 101',
+            city: 'Jurupema',
+            state: 'SP',
+            country: 'Brasil',
+            hemisphere: 'Sul',
+            xCoord: '-47.123456',
+            yCoord: '-22.123456',
+
+          }),
+          destination:({
+            zipCode: '14860-000',
+            street: 'Rua 15 de Novembro',
+            number: '1000',
+            neighborhood: 'Centro',
+            complement: 'Apto 101',
+            city: 'Taquaritinga',
+            state: 'SP',
+            country: 'Brasil',
+            hemisphere: 'Sul',
+            xCoord: '-47.123456',
+            yCoord: '-22.123456',
+          }),
         }),
         vehiclePlate: 'AAA-0000',
         product: 'TOMATE',
@@ -119,8 +144,8 @@ export class TravelsComponent implements OnInit {
   get filteredTravel() {
     const term = this.searchTerm.toLowerCase();
     return this.travels.filter(u =>
-      u.route.origin.toLowerCase().includes(term) ||
-      u.route.destination.toLowerCase().includes(term) ||
+      u.route.origin.city.toLowerCase().includes(term) ||
+      u.route.destination.city.toLowerCase().includes(term) ||
       u.vehiclePlate.toLowerCase().includes(term) ||
       u.product.toLowerCase().includes(term) ||
       u.weight.toLowerCase().includes(term) ||

@@ -10,7 +10,7 @@ export interface Travel {
             complement: string;
             city: string;
             state: string;
-            contry: string;
+            country: string;
             hemisphere: string;
             xCoord: string;
             yCoord: string;
@@ -23,7 +23,7 @@ export interface Travel {
             complement: string;
             city: string;
             state: string;
-            contry: string;
+            country: string;
             hemisphere: string;
             xCoord: string;
             yCoord: string;
