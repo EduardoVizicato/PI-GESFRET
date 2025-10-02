@@ -73,7 +73,7 @@ export class UpdateModalComponent implements OnInit {
           complement: [this.travelData?.route?.origin?.complement || ''],
           city: [this.travelData?.route?.origin?.city || ''],
           state: [this.travelData?.route?.origin?.state || ''],
-          contry: [this.travelData?.route?.origin?.contry || ''],
+          contry: [this.travelData?.route?.origin?.country || ''],
           hemisphere: [this.travelData?.route?.origin?.hemisphere || ''],
           xCoord: [this.travelData?.route?.origin?.xCoord || ''],
           yCoord: [this.travelData?.route?.origin?.yCoord || '']
@@ -86,7 +86,7 @@ export class UpdateModalComponent implements OnInit {
           complement: [this.travelData?.route?.destination?.complement || ''],
           city: [this.travelData?.route?.destination?.city || ''],
           state: [this.travelData?.route?.destination?.state || ''],
-          contry: [this.travelData?.route?.destination?.contry || ''],
+          contry: [this.travelData?.route?.destination?.country || ''],
           hemisphere: [this.travelData?.route?.destination?.hemisphere || ''],
           xCoord: [this.travelData?.route?.destination?.xCoord || ''],
           yCoord: [this.travelData?.route?.destination?.yCoord || '']

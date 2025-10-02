@@ -1,6 +1,6 @@
 <div class="table-controls">
   <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
-  <button class="add-button" (click)="openModalAdd()">Nova Viagem</button>
+  <button class="add-button" (click)="openModal('addTravelModal')">Nova Viagem</button>
 </div>
 
 @if (travels.length > 0) {
@@ -20,13 +20,15 @@
   <tbody class="table-group-divider">
     @for (travel of filteredTravel | slice: (page-1) * pageSize : page * pageSize; track filteredTravel) {
     <tr>
-      <th scope="row" (click)="viewTravel = travel; openModalView()">{{ travels.length }}</th>
-      <td (click)="viewTravel = travel; openModalView()">{{ travel.date }}</td>
-      <td (click)="viewTravel = travel; openModalView()">{{ travel.route.origin.city }}/{{ travel.route.origin.state }} -> {{ travel.route.destination.city }}/{{ travel.route.destination.state }}</td>
-      <td (click)="viewTravel = travel; openModalView()">{{ travel.vehiclePlate }}</td>
-      <td (click)="viewTravel = travel; openModalView()">{{ travel.product }}</td>
-      <td (click)="viewTravel = travel; openModalView()">{{ travel.weight }}</td>
-      <td (click)="viewTravel = travel; openModalView()">{{ travel.freightValue }}</td>
+      <th scope="row" (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travels.length }}</th>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.date }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.route.origin.city }}/{{ travel.route.origin.state }} -> {{ travel.route.destination.city }}/{{ travel.route.destination.state }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.vehiclePlate }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.product }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.weight }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.freightValue }}</td>     
+      
+
       <td class="text-center">
         <div class="dropstart">
           <a data-bs-toggle="dropdown">
@@ -55,7 +57,7 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item" (click)="openModalUpdate()">
+              <a class="dropdown-item" (click)="openModal('updateTravelModal')">
                 <div class="row">
                   <div class="col-md-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -119,6 +121,6 @@
 </div>
 }
 
-<app-add-modal (onSubmit)="addTravel($event)"></app-add-modal>
+<app-add-modal></app-add-modal>
 <app-view-travel></app-view-travel>
 <app-update-modal></app-update-modal>
