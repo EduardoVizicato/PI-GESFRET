@@ -9,14 +9,21 @@ import { Travel,Truck } from '../model/travel.model';
 })
 export class TravelService {
 
-
-
   private apiUrl = `${environment.api}/api/`;
 
   constructor(private HttpClient: HttpClient) { }
 
   getAllTrucks(): Observable<Truck[]> {
     return this.HttpClient.get<Truck[]>(`${this.apiUrl}vehicle/getAllActivedVehicles`);
+  }
+  getAllTravel(): Observable<Travel[]> {
+    return this.HttpClient.get<Travel[]>(`${this.apiUrl}travel/getAllTravels`);
+  }
+  addTravel(travel: Travel): Observable<Travel> {
+    return this.HttpClient.post<Travel>(`${this.apiUrl}travel/addTravel`, travel);
+  }
+  updateTravel(travel: Travel, id: string): Observable<Travel> {
+    return this.HttpClient.put<Travel>(`${this.apiUrl}travel/updateTravel/${id}`, travel);
   }
 
 

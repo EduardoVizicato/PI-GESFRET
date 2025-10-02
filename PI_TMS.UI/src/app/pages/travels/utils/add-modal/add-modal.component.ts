@@ -4,7 +4,7 @@ import { ZipCodeData, ZipCodeService } from '../../service/zip-code/zip-code.ser
 import { TravelService } from '../../service/travel.service';
 import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs';
 import { City, CityService } from '../../service/city/city.service';
-import { Truck } from '../../model/travel.model';
+import { Travel, Truck } from '../../model/travel.model';
 import { PlateFormatPipe } from "../../../register/trucks/utils/plate-format.pipe";
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,7 +12,10 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { RoutesOptionsComponent } from "../routes-options/routes-options.component";
 import { routes } from '../../../../app.routes';
-
+import Modal from 'bootstrap/js/dist/modal';
+import { EventService } from '../../../../shared/service/event.service';
+import { TravelsComponent } from '../../travels.component';
+declare var bootstrap: any;
 @Component({
   selector: 'app-add-modal',
   imports: [
@@ -53,7 +56,7 @@ export class AddModalComponent implements OnInit {
     allowNegative: false,
   };
 
-  constructor(private fb: FormBuilder, private travelService: TravelService,
+  constructor(private fb: FormBuilder, private travelService: TravelService, private eventService: EventService, private travelComponent: TravelsComponent
   ) { this.travelForm = this.createForm(); }
 
   ngOnInit(): void {
@@ -61,7 +64,27 @@ export class AddModalComponent implements OnInit {
   }
 
   onSubmit() {
-    throw new Error('Method not implemented.');
+    if (this.travelForm.valid) {
+      const travelData = this.travelForm.value;
+      this.addTravel(travelData);
+      this.travelForm.reset();
+      this.currentStep = 1;
+      const modalElement = document.getElementById('addTravelModal');
+      if (modalElement) {
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        modal.hide();
+      }
+    }
+  }
+  addTravel($event: Travel) {
+     this.travelService.addTravel($event).subscribe(
+      (response) => {
+        this.travelComponent.loadTravels();
+      },
+      (error) => {
+        this.eventService.showError('Erro inesperado.')
+      }
+    );
   }
   createForm(): FormGroup {
     return this.fb.group({

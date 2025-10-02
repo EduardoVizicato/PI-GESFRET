@@ -13,9 +13,10 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ZipCodeService, ZipCodeData } from './service/zip-code/zip-code.service';
 import { AddModalComponent } from "./utils/add-modal/add-modal.component";
-import Modal from 'bootstrap/js/dist/modal';
 import { ViewTravelComponent } from "../view-travel/view-travel.component";
 import { UpdateModalComponent } from "./utils/update-modal/update-modal.component";
+import { EventService } from '../../shared/service/event.service';
+import Modal from 'bootstrap/js/dist/modal';
 declare var bootstrap: any;
 
 @Component({
@@ -52,7 +53,7 @@ export class TravelsComponent implements OnInit {
   viewTravel: any;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient , private travelService: TravelService, private fb: FormBuilder, private eventService: EventService, private zipCodeService: ZipCodeService, private cityService: CityService
   ) { }
   ngOnInit(): void {
     this.loadTravels();
@@ -64,8 +65,8 @@ export class TravelsComponent implements OnInit {
       this.addTravelModal = new bootstrap.Modal(addModalEl);
     }
   }
-  openModalAdd() {
-    const modalElement = document.getElementById('addTravelModal');
+  openModal(name: string) {
+    const modalElement = document.getElementById(name);
 
     if (modalElement) {
       const modal = new Modal(modalElement);
@@ -74,71 +75,17 @@ export class TravelsComponent implements OnInit {
       console.warn('Elemento do modal não encontrado.');
     }
   }
-  openModalUpdate() {
-    const modalElement = document.getElementById('updateTravelModal');
-
-    if (modalElement) {
-      const modal = new Modal(modalElement);
-      modal.show();
-    } else {
-      console.warn('Elemento do modal não encontrado.');
-    }
-  }
-  openModalView() {
-    const modalElement = document.getElementById('viewTravelModal');
-
-    if (modalElement) {
-      const modal = new Modal(modalElement);
-      modal.show();
-    } else {
-      console.warn('Elemento do modal não encontrado.');
-    }
-  }
-  addTravel($event: Event) {
-    throw new Error('Method not implemented.');
-  }
-
+  
+ 
   loadTravels(): void {
-    const sampleTravels: Travel[] = [
-      {
-        id: 'a8b2c4d6-e8f0-1234-5678-9a1b3c5d7e9f',
-        date: '31/07/2025',
-        route: ({
-          origin:({
-            zipCode: '14860-000',
-            street: 'Rua 15 de Novembro',
-            number: '1000',
-            neighborhood: 'Centro',
-            complement: 'Apto 101',
-            city: 'Jurupema',
-            state: 'SP',
-            country: 'Brasil',
-            hemisphere: 'Sul',
-            xCoord: '-47.123456',
-            yCoord: '-22.123456',
-
-          }),
-          destination:({
-            zipCode: '14860-000',
-            street: 'Rua 15 de Novembro',
-            number: '1000',
-            neighborhood: 'Centro',
-            complement: 'Apto 101',
-            city: 'Taquaritinga',
-            state: 'SP',
-            country: 'Brasil',
-            hemisphere: 'Sul',
-            xCoord: '-47.123456',
-            yCoord: '-22.123456',
-          }),
-        }),
-        vehiclePlate: 'AAA-0000',
-        product: 'TOMATE',
-        weight: '14.570,000 Kg',
-        freightValue: 'R$ 1.234,56'
+     this.travelService.getAllTravel().subscribe(
+      (response) => {
+        this.travels = response;
       },
-    ]
-    this.travels = sampleTravels;
+      (error) => {
+        this.eventService.showError('Erro inesperado.')
+      }
+    );
   }
 
   get filteredTravel() {
