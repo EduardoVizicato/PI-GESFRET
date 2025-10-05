@@ -1,0 +1,91 @@
+<form class="row g-3 col-md-5 float-md-end mb-3 ms-md-3 px-5 py-5" [formGroup]="enterpriseForm">
+      <h1>Dados da Empresa</h1>
+      <div class="col-md-6">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="name" formControlName="enterpriseName"
+          [class.is-invalid]="enterpriseForm.get('enterpriseName')?.invalid && (enterpriseForm.get('enterpriseName')?.dirty || enterpriseForm.get('enterpriseName')?.touched)"
+          [class.is-valid]="enterpriseForm.get('enterpriseName')?.valid && (enterpriseForm.get('enterpriseName')?.dirty || enterpriseForm.get('enterpriseName')?.touched)">
+        <div
+          *ngIf="enterpriseForm.get('enterpriseName')?.invalid && (enterpriseForm.get('enterpriseName')?.dirty || enterpriseForm.get('enterpriseName')?.touched)"
+          class="invalid-feedback d-block">
+          <div *ngIf="enterpriseForm.get('enterpriseName')?.errors?.['required']">
+            Nome obrigatório.
+          </div>
+          <div *ngIf="enterpriseForm.get('enterpriseName')?.errors?.['minlength']">
+            O nome deve ter pelo menos 2 caracteres.
+          </div>
+          <div *ngIf="enterpriseForm.get('enterpriseName')?.errors?.['maxlength']">
+            O nome deve ter no máximo 50 caracteres.
+          </div>
+
+        </div>
+        <div
+          *ngIf="enterpriseForm.get('enterpriseName')?.valid && (enterpriseForm.get('enterpriseName')?.dirty || enterpriseForm.get('enterpriseName')?.touched)"
+          class="valid-feedback d-block">
+          Nome válido!
+        </div>
+      </div>
+      <div class="col-md-6" formGroupName="enterpriseTaxId">
+        <label for="" class="form-label">CNPJ</label>
+        <input type="text" class="form-control" id="" formControlName="enterpriseTaxId" mask="00.000.000/0000-00"
+          [class.is-invalid]="enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.invalid && (enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.dirty || enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.touched)"
+          [class.is-valid]="enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.valid && (enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.dirty || enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.touched)">
+
+        <div
+          *ngIf="enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.invalid && (enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.dirty || enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.touched)"
+          class="invalid-feedback d-block">
+          <div *ngIf="enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.errors?.['required']">
+            CNPJ obrigatório.
+          </div>
+          <div *ngIf="enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.errors?.['pattern']">
+            O CNPJ deve ser um CNPJ válido.
+          </div>
+          <div *ngIf="enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.hasError('cnpjInvalid')">
+            CNPJ inválido!
+          </div>
+        </div>
+        <div
+          *ngIf="enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.valid && (enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.dirty || enterpriseForm.get('enterpriseTaxId.enterpriseTaxId')?.touched)"
+          class="valid-feedback d-block">
+          CPF válido!
+        </div>
+      </div>
+      <div class="col-12">
+        <label for="" class="form-label">Email</label>
+        <input type="email" class="form-control" id="" formControlName="enterpriseEmail"
+          [class.is-invalid]="enterpriseForm.get('enterpriseEmail')?.invalid && (enterpriseForm.get('enterpriseEmail')?.dirty || enterpriseForm.get('enterpriseEmail')?.touched)"
+          [class.is-valid]="enterpriseForm.get('enterpriseEmail')?.valid && (enterpriseForm.get('enterpriseEmail')?.dirty || enterpriseForm.get('enterpriseEmail')?.touched)">
+        <div
+          *ngIf="enterpriseForm.get('enterpriseEmail')?.invalid && (enterpriseForm.get('enterpriseEmail')?.dirty || enterpriseForm.get('enterpriseEmail')?.touched)"
+          class="invalid-feedback d-block">
+          <div *ngIf="enterpriseForm.get('enterpriseEmail')?.errors?.['required']">
+            Email obrigatório.
+          </div>
+          <div *ngIf="enterpriseForm.get('enterpriseEmail')?.errors?.['email']">
+            O email deve ser um endereço de email válido.
+          </div>
+          <div *ngIf="enterpriseForm.get('enterpriseEmail')?.hasError('emailTaken')">
+            Este email já está em uso!
+          </div>
+        </div>
+        <div
+          *ngIf="enterpriseForm.get('enterpriseEmail')?.valid && (enterpriseForm.get('enterpriseEmail')?.dirty || enterpriseForm.get('enterpriseEmail')?.touched)"
+          class="valid-feedback d-block">
+          Email válido!
+        </div>
+      </div>
+      <div class="col-12">
+        <button *ngIf="!isEditing" type="button" class="btn btn-primary" (click)="enableEdit()">
+          Editar Dados
+        </button>
+
+        <button *ngIf="isEditing" type="button" class="btn btn-success me-2" (click)="updateEnterprise()">
+          Salvar
+        </button>
+
+        <button *ngIf="isEditing" type="button" class="btn btn-secondary" (click)="cancelEdit()">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
