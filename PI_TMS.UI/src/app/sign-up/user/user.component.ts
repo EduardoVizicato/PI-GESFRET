@@ -5,8 +5,9 @@ import { NgxMaskDirective } from 'ngx-mask';
 import { UserService } from './service/user.service';
 import { Router } from '@angular/router';
 import { user } from './model/user.model';
-import { emailExistsValidator } from './utils/email-exists.validator';
-import { cpfValidator } from './utils/cpf.validator';
+import { emailExistsValidator } from '../../utils/email-exists.validator';
+import { cpfValidator } from '../../utils/cpf.validator';
+import { UserVerifyService } from '../../utils/service/user-verify.service';
 
 @Component({
   selector: 'app-user',
@@ -18,7 +19,7 @@ export class UserComponent {
 
   userForm: FormGroup;
   user: user[] = [];
-  constructor(private userService: UserService, private fb: FormBuilder, private router: Router) {
+  constructor(private userService: UserService, private fb: FormBuilder, private router: Router, private userVerifyService: UserVerifyService) {
     this.userForm = this.createForm();
   }
 
@@ -28,7 +29,7 @@ export class UserComponent {
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       email: ['', {
         validators: [Validators.required, Validators.email],
-        asyncValidators: [emailExistsValidator(this.userService)],
+        asyncValidators: [emailExistsValidator(this.userVerifyService)],
         updateOn: 'blur'
       }],
       password: ['', {

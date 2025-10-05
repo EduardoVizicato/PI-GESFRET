@@ -12,13 +12,11 @@ import { FreightCalculationComponent } from './pages/freight-calculation/freight
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NfStorageComponent } from './pages/nf-storage/nf-storage.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { Title } from 'chart.js';
 import { UsersComponent } from './pages/register/users/users.component';
 import { NoPageComponent } from './no-page/no-page.component';
-import { TraveltestComponent } from './traveltest/traveltest.component';
 import { CteStorageComponent } from './pages/cte-storage/cte-storage.component';
-import { ViewTravelComponent } from './pages/view-travel/view-travel.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 export enum Roles {
     ADM = 'ADM',
@@ -66,11 +64,11 @@ export const routes: Routes = [
                 title: 'Viagens'
             },
             {
-                path: 'userInfo',
-                component: UserInfoComponent,
+                path: 'settings',
+                component: SettingsComponent,
                 canActivate: [authGuard],
-                data: { breadcrumb: 'User Info', title: 'Meu Perfil', roles: [Roles.ADM, Roles.FUNCIONARIO] },
-                title: 'Meu Perfil',
+                data: { breadcrumb: 'Configurações', title: 'Configurações', roles: [Roles.ADM, Roles.FUNCIONARIO] },
+                title: 'Configurações',
             },
             {
                 path: 'nf-storage',
