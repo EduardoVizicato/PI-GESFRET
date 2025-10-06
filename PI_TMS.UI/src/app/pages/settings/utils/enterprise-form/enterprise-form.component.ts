@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { SettingsService } from '../../service/settings.service';
 import { CommonModule } from '@angular/common';
 import { EnterpriseInfo } from '../../models/settings.model';
-import { emailExistsValidator } from '../../../../utils/email-exists.validator';
+import { emailExistsValidator, emailExistsValidatorButExcludeOriginal } from '../../../../utils/email-exists.validator';
 import { UserVerifyService } from '../../../../utils/service/user-verify.service';
 import { AuthTokenService } from '../../../../_guard/service/auth-token.service';
 import { cnpjValidator } from '../../../../utils/cnpj.validator';
@@ -31,7 +31,7 @@ export class EnterpriseFormComponent {
       enterpriseName: [{ value: '', disabled: true }, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       enterpriseEmail: [{ value: '', disabled: true }, {
         validators: [Validators.required, Validators.email],
-        asyncValidators: [emailExistsValidator(this.userVerifyService)],
+        asyncValidators: [emailExistsValidatorButExcludeOriginal(this.userVerifyService)],
         updateOn: 'blur'
       }],
       enterpriseTaxId: this.fb.group({
@@ -62,10 +62,12 @@ export class EnterpriseFormComponent {
   enableEdit(): void {
     this.isEditing = true;
     this.enterpriseForm.enable();
+    this.enterpriseForm.markAllAsTouched();
   }
   cancelEdit(): void {
     this.isEditing = false;
     this.enterpriseForm.disable();
+    this.getEnterprise();
   }
   updateEnterprise() {
     if (this.enterpriseForm.valid) {
