@@ -14,6 +14,9 @@
         <th>Placa</th>
         <!-- <th>Tipo</th> -->
         <th>Nome</th>
+        <th>Tipo de Caminhão</th>
+        <th>Tipo de Eixo</th>
+        <th>Tipo de Carroceria</th>
         <th class="actions-header">Ações</th>
       </tr>
     </thead>
@@ -22,8 +25,10 @@
       <!-- <tr *ngFor="let truck of trucks"> -->
       <tr>
         <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
-        <!-- <td>{{ truck.vehicleType }}</td> -->
         <td>{{ truck.name }}</td>
+        <td>{{ truck.truckType }}</td>
+        <td>{{ truck.wheelType }}</td>
+        <td>{{ truck.bodyType }}</td>
         <td class="actions">
           <button class="edit-button" (click)="openEditModal(truck)">Editar</button>
           <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>

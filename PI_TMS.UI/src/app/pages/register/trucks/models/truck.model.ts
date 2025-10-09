@@ -5,7 +5,7 @@ export interface Truck {
         registrationPlate: string;
     };
     userId: string;
-    truckType?: string;
+    truckType: string;
     wheelType?: string;
     bodyType?: string;
 }
