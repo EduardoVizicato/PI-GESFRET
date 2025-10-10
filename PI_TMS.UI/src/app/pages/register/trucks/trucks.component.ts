@@ -190,7 +190,7 @@ export class TrucksComponent implements OnInit, OnDestroy {
   onUpdate(): void {
     if (this.truckForm.invalid || !this.editingTruckId) {
       this.truckForm.markAllAsTouched();
-      return;
+      return; 
     }
 
     const updatedTruckData = this.truckForm.getRawValue();
