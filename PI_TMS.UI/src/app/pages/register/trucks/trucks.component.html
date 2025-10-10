@@ -212,26 +212,43 @@
             </div>
           </div>
 
-          <!-- <div class="mb-3">
-            <label for="edit-vehicleType" class="form-label">Tipo</label>
-            <select 
-              class="form-select" 
-              id="edit-vehicleType" 
-              formControlName="vehicleType"
-              [class.is-valid]="truckForm.get('vehicleType')?.valid && truckForm.get('vehicleType')?.touched"
-              [class.is-invalid]="truckForm.get('vehicleType')?.invalid && truckForm.get('vehicleType')?.touched">
-              <option [ngValue]="null" disabled>Selecione um tipo de veículo</option>
-              <option *ngFor="let typeOption of availableVehicleTypes" [ngValue]="typeOption.id">
-                {{ typeOption.name }}
-              </option>
+          
+          <div class="mb-3">
+            <label for="truckType" class="form-label">Tipo do Veículo</label>
+            <select id="truckType" class="form-select" formControlName="truckType"
+              [class.is-invalid]="truckForm.get('truckType')?.invalid && truckForm.get('truckType')?.touched">
+              <option [ngValue]="null" disabled>Selecione o tipo...</option>
+              <option *ngFor="let type of truckTypes" [value]="type">{{ type }}</option>
             </select>
-            <div class="valid-feedback">
-              Tipo selecionado!
+            <div class="invalid-feedback" *ngIf="truckForm.get('truckType')?.errors?.['required']">
+              A seleção do tipo é obrigatória.
             </div>
-            <div class="invalid-feedback" *ngIf="truckForm.get('vehicleType')?.invalid && truckForm.get('vehicleType')?.touched">
-              Por favor, selecione um tipo de veículo.
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3" *ngIf="truckForm.get('truckType')?.value === 'Tração'">
+              <label for="wheelType" class="form-label">Tipo de Rodado</label>
+              <select id="wheelType" class="form-select" formControlName="wheelType"
+                [class.is-invalid]="truckForm.get('wheelType')?.invalid && truckForm.get('wheelType')?.touched">
+                <option [ngValue]="null" disabled>Selecione o tipo de rodado...</option>
+                <option *ngFor="let type of wheelTypes" [value]="type">{{ type }}</option>
+              </select>
+              <div class="invalid-feedback" *ngIf="truckForm.get('wheelType')?.errors?.['required']">
+                A seleção do rodado é obrigatória.
+              </div>
             </div>
-          </div> -->
+            <div class="col-md-6 mb-3" *ngIf="truckForm.get('bodyType')?.enabled">
+              <label for="bodyType" class="form-label">Tipo de Carroceria</label>
+              <select id="bodyType" class="form-select" formControlName="bodyType"
+                [class.is-invalid]="truckForm.get('bodyType')?.invalid && truckForm.get('bodyType')?.touched">
+                <option [ngValue]="null" disabled>Selecione o tipo de carroceria...</option>
+                <option *ngFor="let type of bodyTypes" [value]="type">{{ type }}</option>
+              </select>
+              <div class="invalid-feedback" *ngIf="truckForm.get('bodyType')?.errors?.['required']">
+                A seleção da carroceria é obrigatória.
+              </div>
+            </div>
+          </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
