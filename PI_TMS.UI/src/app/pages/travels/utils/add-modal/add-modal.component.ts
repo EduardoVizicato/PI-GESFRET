@@ -37,6 +37,8 @@ export class AddModalComponent implements OnInit {
   currentStep: number = 1;
 
   trucks: Truck[] = [];
+  filteredTrucks: Truck[] = [];
+  filteredTrailers: Truck[] = [];
 
   weightvalue: number = 0;
 
@@ -77,7 +79,7 @@ export class AddModalComponent implements OnInit {
     }
   }
   addTravel($event: Travel) {
-     this.travelService.addTravel($event).subscribe(
+    this.travelService.addTravel($event).subscribe(
       (response) => {
         this.travelComponent.loadTravels();
       },
@@ -129,8 +131,29 @@ export class AddModalComponent implements OnInit {
     this.travelService.getAllTrucks().subscribe(
       (response) => {
         this.trucks = response;
+        this.filterTrucksByType('Tração');
+        this.filterTrailersByType('Reboque (Carreta)');
       }
     )
+  }
+
+  filterTrucksByType(type: string) {
+    this.filteredTrucks = this.trucks.filter(
+      (truck) => truck.truckType === type
+    )
+  }
+  filterTrailersByType(type: string) {
+    this.filteredTrailers = this.trucks.filter(
+      (truck) => truck.truckType === type
+    )
+  }
+  selectedTruck: any = null;
+
+  onTruckChange() {
+    const selectedPlate = this.travelForm.get('vehiclePlate')?.value;
+    this.selectedTruck = this.trucks.find(
+      (truck: any) => truck.vehicleRegistrationPlate.registrationPlate === selectedPlate
+    );
   }
 
   setCursorEnd(event: FocusEvent): void {

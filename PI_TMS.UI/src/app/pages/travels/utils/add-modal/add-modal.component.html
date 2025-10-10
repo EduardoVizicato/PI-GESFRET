@@ -15,31 +15,30 @@
               <input type="date" class="form-control" id="data" formControlName="date" required>
             </div>
             <hr>
-              <app-routes-options [parentForm]="travelForm"></app-routes-options>
+            <app-routes-options [parentForm]="travelForm"></app-routes-options>
             <hr>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="veiculo" class="form-label">Veículo Utilizado</label>
-                <select class="form-select" id="veiculo" required formControlName="vehiclePlate">
+                <select class="form-select" id="veiculo" required formControlName="vehiclePlate" (change)="onTruckChange()">
                   <option selected disabled value="">- Selecione um veículo -</option>
-                  @for (truck of trucks; track trucks) {
+                  @for (truck of filteredTrucks; track filteredTrucks) {
                   <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
                     {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
                   }
                 </select>
               </div>
-              @if (travelForm.get('vehiclePlate')?.value === 'ASD1234') {
-              <div class="col-md-6 mb-3">
+              <div *ngIf="selectedTruck?.wheelType === 'Cavalo (2-3 eixos e acopla carroceria)'" class="col-md-6 mb-3">
                 <label for="" class="form-label">Reboque Utilizado</label>
                 <select class="form-select" id="">
                   <option selected disabled value="">- Selecione um Reboque -</option>
-                  @for (truck of trucks; track trucks) {
+                  @for (truck of filteredTrailers; track filteredTrailers) {
                   <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
-                    {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
+                    {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}
+                  </option>
                   }
                 </select>
               </div>
-              }
             </div>
           </div>
           }

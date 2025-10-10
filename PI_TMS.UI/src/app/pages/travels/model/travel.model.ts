@@ -40,4 +40,8 @@ export interface Truck {
     vehicleRegistrationPlate: {
         registrationPlate: string;
     };
+    userId: string;
+    truckType: string;
+    wheelType?: string;
+    bodyType?: string;
 }
