@@ -12,7 +12,7 @@
           <div>
             <div class="mb-3">
               <label for="data" class="form-label">Data</label>
-              <input type="date" class="form-control" id="data" formControlName="date" required>
+              <input type="date" class="form-control" id="data" formControlName="startDate" required>
             </div>
             <hr>
             <app-routes-options [parentForm]="travelForm"></app-routes-options>
@@ -20,7 +20,8 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="veiculo" class="form-label">Veículo Utilizado</label>
-                <select class="form-select" id="veiculo" required formControlName="vehiclePlate" (change)="onTruckChange()">
+                <select class="form-select" id="veiculo" required formControlName="vehiclePlate"
+                  (change)="onTruckChange()">
                   <option selected disabled value="">- Selecione um veículo -</option>
                   @for (truck of filteredTrucks; track filteredTrucks) {
                   <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
@@ -44,35 +45,38 @@
           }
           @if (currentStep === 2) {
           <div>
-            <div class="mb-3">
-              <label for="produto" class="form-label">Produto Predominante</label>
-              <input type="text" class="form-control" id="produto" placeholder="" formControlName="product" required>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="pesoCarga" class="form-label">Tipo de Produto</label>
-                <select id="tipo-carga " required>
-                  <option disabled value="">- Selecione o tipo de carga -</option>
-                  <option value="1">Carga de Granel Sólido</option>
-                  <option value="2">Carga de Granel Líquido</option>
-                  <option value="3">Carga Frigorificada ou Aquecida</option>
-                  <option value="4">Carga Conteinerizada</option>
-                  <option value="5">Carga Geral</option>
-                  <option value="6">Carga Neogranel</option>
-                  <option value="7">Carga Perigosa (granel sólido)</option>
-                  <option value="8">Carga Perigosa (granel líquido)</option>
-                  <option value="9">Carga Perigosa (carga frigorificada ou aquecida)</option>
-                  <option value="10">Carga Perigosa (conteinerizada)</option>
-                  <option value="11">Carga Perigosa (carga geral)</option>
-                  <option value="12">Carga Granel Pressurizada</option>
-                </select>
+            <div formGroupName="load">
+              <div class="mb-3">
+                <label for="produto" class="form-label">Produto Predominante</label>
+                <input type="text" class="form-control" id="produto" placeholder="" formControlName="product" required>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="pesoCarga" class="form-label">Peso da Carga (kg)</label>
-                <input (focus)="setCursorEnd($event)" currencyMask [options]="weightOptions" type="text"
-                  class="form-control text-start" id="pesoCarga" placeholder="" formControlName="weight">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="pesoCarga" class="form-label">Tipo de Produto</label>
+                  <select id="tipo-carga " formControlName="loadType" required>
+                    <option disabled value="">- Selecione o tipo de carga -</option>
+                    <option value="1">Carga de Granel Sólido</option>
+                    <option value="2">Carga de Granel Líquido</option>
+                    <option value="3">Carga Frigorificada ou Aquecida</option>
+                    <option value="4">Carga Conteinerizada</option>
+                    <option value="5">Carga Geral</option>
+                    <option value="6">Carga Neogranel</option>
+                    <option value="7">Carga Perigosa (granel sólido)</option>
+                    <option value="8">Carga Perigosa (granel líquido)</option>
+                    <option value="9">Carga Perigosa (carga frigorificada ou aquecida)</option>
+                    <option value="10">Carga Perigosa (conteinerizada)</option>
+                    <option value="11">Carga Perigosa (carga geral)</option>
+                    <option value="12">Carga Granel Pressurizada</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="pesoCarga" class="form-label">Peso da Carga (kg)</label>
+                  <input (focus)="setCursorEnd($event)" currencyMask [options]="weightOptions" type="text"
+                    class="form-control text-start" id="pesoCarga" placeholder="" formControlName="weight">
+                </div>
               </div>
             </div>
+
             <hr>
             <div class="row">
               <div class="col-md-6 mb-3">
@@ -84,7 +88,7 @@
                 <div class="d-flex gap-2">
                   <input (focus)="setCursorEnd($event)" currencyMask [options]="valueOptions" type="text"
                     class="form-control flex-grow-1 text-start" id="valorFrete" step="0.01" placeholder=""
-                    formControlName="freightValue">
+                    formControlName="price">
                   <a class="btn" id="btn-calc">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                       class="bi bi-calculator" viewBox="0 0 16 16">

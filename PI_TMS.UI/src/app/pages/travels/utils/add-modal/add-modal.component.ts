@@ -90,17 +90,17 @@ export class AddModalComponent implements OnInit {
   }
   createForm(): FormGroup {
     return this.fb.group({
-      date: [''],
-      route: this.fb.group({
-        origin: this.fb.group({
-          zipCode: [''],
-          street: [''],
-          number: [''],
-          neighborhood: [''],
-          complement: [''],
-          city: [''],
-          state: [''],
-          country: [''],
+      startDate: [''],
+      endDate: [''],
+      origin: this.fb.group({
+        zipCode: [''],
+        street: [''],
+        number: [''],
+        neighborhood: [''],
+        complement: [''],
+        city: [''],
+        state: [''],
+        country: [''],
           hemisphere: [''],
           xCoord: [''],
           yCoord: ['']
@@ -118,11 +118,13 @@ export class AddModalComponent implements OnInit {
           xCoord: [''],
           yCoord: ['']
         }),
+        load: this.fb.group({
+          product: [''],
+          weight: [''],
+          loadType: ['']
       }),
       vehiclePlate: [''],
-      product: [''],
-      weight: [''],
-      freightValue: ['']
+      price: ['']
     });
   }
 

@@ -21,13 +21,13 @@
     @for (travel of filteredTravel | slice: (page-1) * pageSize : page * pageSize; track filteredTravel) {
     <tr>
       <th scope="row" (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travels.length }}</th>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.date }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.route.origin.city }}/{{ travel.route.origin.state }} -> {{ travel.route.destination.city }}/{{ travel.route.destination.state }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.startDate }} -> {{ travel.endDate }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.origin.city }}/{{ travel.origin.state }} -> {{ travel.destination.city }}/{{ travel.destination.state }}</td>
       <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.vehiclePlate }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.product }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.weight }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.freightValue }}</td>     
-      
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.load.product }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.load.weight }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.price }}</td>
+
 
       <td class="text-center">
         <div class="dropstart">
