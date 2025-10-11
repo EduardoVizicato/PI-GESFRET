@@ -63,39 +63,39 @@ export class UpdateModalComponent implements OnInit {
   }
   createForm(): FormGroup {
     return this.fb.group({
-      date: [this.travelData?.date || ''],
+      date: [this.travelData?.startDate || ''],
       route: this.fb.group({
         origin: this.fb.group({
-          zipCode: [this.travelData?.route?.origin?.zipCode || ''],
-          street: [this.travelData?.route?.origin?.street || ''],
-          number: [this.travelData?.route?.origin?.number || ''],
-          neighborhood: [this.travelData?.route?.origin?.neighborhood || ''],
-          complement: [this.travelData?.route?.origin?.complement || ''],
-          city: [this.travelData?.route?.origin?.city || ''],
-          state: [this.travelData?.route?.origin?.state || ''],
-          contry: [this.travelData?.route?.origin?.country || ''],
-          hemisphere: [this.travelData?.route?.origin?.hemisphere || ''],
-          xCoord: [this.travelData?.route?.origin?.xCoord || ''],
-          yCoord: [this.travelData?.route?.origin?.yCoord || '']
+          zipCode: [this.travelData?.origin?.zipCode || ''],
+          street: [this.travelData?.origin?.street || ''],
+          number: [this.travelData?.origin?.number || ''],
+          neighborhood: [this.travelData?.origin?.neighborhood || ''],
+          complement: [this.travelData?.origin?.complement || ''],
+          city: [this.travelData?.origin?.city || ''],
+          state: [this.travelData?.origin?.state || ''],
+          contry: [this.travelData?.origin?.country || ''],
+          hemisphere: [this.travelData?.origin?.hemisphere || ''],
+          xCoord: [this.travelData?.origin?.xCoord || ''],
+          yCoord: [this.travelData?.origin?.yCoord || '']
         }),
         destination: this.fb.group({
-          zipCode: [this.travelData?.route?.destination?.zipCode || ''],
-          street: [this.travelData?.route?.destination?.street || ''],
-          number: [this.travelData?.route?.destination?.number || ''],
-          neighborhood: [this.travelData?.route?.destination?.neighborhood || ''],
-          complement: [this.travelData?.route?.destination?.complement || ''],
-          city: [this.travelData?.route?.destination?.city || ''],
-          state: [this.travelData?.route?.destination?.state || ''],
-          contry: [this.travelData?.route?.destination?.country || ''],
-          hemisphere: [this.travelData?.route?.destination?.hemisphere || ''],
-          xCoord: [this.travelData?.route?.destination?.xCoord || ''],
-          yCoord: [this.travelData?.route?.destination?.yCoord || '']
+          zipCode: [this.travelData?.destination?.zipCode || ''],
+          street: [this.travelData?.destination?.street || ''],
+          number: [this.travelData?.destination?.number || ''],
+          neighborhood: [this.travelData?.destination?.neighborhood || ''],
+          complement: [this.travelData?.destination?.complement || ''],
+          city: [this.travelData?.destination?.city || ''],
+          state: [this.travelData?.destination?.state || ''],
+          contry: [this.travelData?.destination?.country || ''],
+          hemisphere: [this.travelData?.destination?.hemisphere || ''],
+          xCoord: [this.travelData?.destination?.xCoord || ''],
+          yCoord: [this.travelData?.destination?.yCoord || '']
         }),
       }),
       vehiclePlate: [this.travelData?.vehiclePlate || ''],
-      product: [this.travelData?.product || ''],
-      weight: [this.travelData?.weight || ''],
-      freightValue: [this.travelData?.freightValue || '']
+      product: [this.travelData?.load.product || ''],
+      weight: [this.travelData?.load.weight || ''],
+      freightValue: [this.travelData?.price || '']
     });
   }
 

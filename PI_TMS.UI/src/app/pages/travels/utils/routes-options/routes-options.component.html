@@ -26,7 +26,7 @@
 </div>
 
 @if (selectedAddressType === 'simple') {
-<div class="row" formGroupName="route">
+<div class="row" >
   <div class="col-md-6 mb-3 position-relative" formGroupName="origin">
     <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
     <input type="text" class="form-control" id="cidadeOrigem" required (input)="search($event, 'origin')"
@@ -63,7 +63,7 @@
   </div>
 </div>
 }@else if (selectedAddressType === 'complete') {
-<div class="row" formGroupName="route">
+<div class="row" >
   <div class="row" formGroupName="origin">
     <label for="cidadeOrigem" class="form-label">Cidade de Origem</label>
     <div class="col-md-12 mb-3 position-relative">
@@ -131,7 +131,7 @@
   </div>
 </div>
 }@else if (selectedAddressType === 'coordinates') {
-<div class="row" formGroupName="route">
+<div class="row" >
   <div class="col-md-2 mb-3 position-relative">
     <label for="hemisferio" class="form-label">Hemisfério</label>
     <select class="form-select" id="hemisferio">

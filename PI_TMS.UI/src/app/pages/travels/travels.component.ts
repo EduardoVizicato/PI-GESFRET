@@ -91,12 +91,12 @@ export class TravelsComponent implements OnInit {
   get filteredTravel() {
     const term = this.searchTerm.toLowerCase();
     return this.travels.filter(u =>
-      u.route.origin.city.toLowerCase().includes(term) ||
-      u.route.destination.city.toLowerCase().includes(term) ||
+      u.origin.city.toLowerCase().includes(term) ||
+      u.destination.city.toLowerCase().includes(term) ||
       u.vehiclePlate.toLowerCase().includes(term) ||
-      u.product.toLowerCase().includes(term) ||
-      u.weight.toLowerCase().includes(term) ||
-      u.freightValue.toLowerCase().includes(term)
+      u.load.product.toLowerCase().includes(term) ||
+      u.load.weight.toLowerCase().includes(term) ||
+      u.price.toLowerCase().includes(term)
     );
   }
 
@@ -105,7 +105,7 @@ export class TravelsComponent implements OnInit {
     // const newTravel = JSON.parse(JSON.stringify(travel));
 
     newTravel.id = crypto.randomUUID();
-    newTravel.date = new Date().toLocaleDateString('pt-BR');
+    newTravel.startDate = new Date().toLocaleDateString('pt-BR');
 
     this.travels.push(newTravel);
   }
