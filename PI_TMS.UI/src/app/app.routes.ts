@@ -10,7 +10,6 @@ import { UserComponent } from './sign-up/user/user.component';
 import { EnterpriseComponent } from './sign-up/enterprise/enterprise.component';
 import { FreightCalculationComponent } from './pages/freight-calculation/freight-calculation.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { NfStorageComponent } from './pages/nf-storage/nf-storage.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { Title } from 'chart.js';
 import { UsersComponent } from './pages/register/users/users.component';
@@ -69,13 +68,6 @@ export const routes: Routes = [
                 canActivate: [authGuard],
                 data: { breadcrumb: 'Configurações', title: 'Configurações', roles: [Roles.ADM, Roles.FUNCIONARIO] },
                 title: 'Configurações',
-            },
-            {
-                path: 'nf-storage',
-                component: NfStorageComponent,
-                canActivate: [authGuard],
-                data: { title: 'Notas Fiscais', roles: [Roles.ADM, Roles.FUNCIONARIO] },
-                title: 'Notas Fiscais'
             },
             {
                 path: 'cte-storage',

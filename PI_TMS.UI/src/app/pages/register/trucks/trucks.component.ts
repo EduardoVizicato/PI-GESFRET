@@ -129,6 +129,7 @@ export class TrucksComponent implements OnInit, OnDestroy {
   getAllTrucks() {
     this.truckService.getAllTrucks().subscribe(
       (response) => {
+        console.log(response);
         this.trucks = response;
       },
       (error) => {
@@ -152,7 +153,7 @@ export class TrucksComponent implements OnInit, OnDestroy {
         registrationPlate: ['', [Validators.required, Validators.pattern(/^[A-Z]{3}[0-9]{4}$|^[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}$/i)]],
       }),
       truckType: [null, [Validators.required]],
-      wheelType: [{ value: null, disabled: true }], 
+      wheelType: [{ value: null, disabled: true }],
       bodyType: [{ value: null, disabled: true }]
     });
   }
@@ -189,7 +190,7 @@ export class TrucksComponent implements OnInit, OnDestroy {
   onUpdate(): void {
     if (this.truckForm.invalid || !this.editingTruckId) {
       this.truckForm.markAllAsTouched();
-      return;
+      return; 
     }
 
     const updatedTruckData = this.truckForm.getRawValue();

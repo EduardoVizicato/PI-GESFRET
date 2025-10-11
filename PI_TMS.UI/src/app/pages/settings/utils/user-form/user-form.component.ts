@@ -3,7 +3,7 @@ import { UserInfo } from '../../models/settings.model';
 import { SettingsService } from '../../service/settings.service';
 import { AuthTokenService } from '../../../../_guard/service/auth-token.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { emailExistsValidator } from '../../../../utils/email-exists.validator';
+import { emailExistsValidator, emailExistsValidatorButExcludeOriginal } from '../../../../utils/email-exists.validator';
 import { UserVerifyService } from '../../../../utils/service/user-verify.service';
 import { cpfValidator } from '../../../../utils/cpf.validator';
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,7 @@ export class UserFormComponent {
   user: UserInfo | null = null;
   userForm: FormGroup;
   isEditing = false;
-  constructor(private settingsService: SettingsService, private authTokenService: AuthTokenService, private fb: FormBuilder,private userVerifyService: UserVerifyService) {
+  constructor(private settingsService: SettingsService, private authTokenService: AuthTokenService, private fb: FormBuilder, private userVerifyService: UserVerifyService) {
     this.userForm = this.createForm();
   }
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class UserFormComponent {
       lastName: [{ value: '', disabled: true }, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       email: [{ value: '', disabled: true }, {
         validators: [Validators.required, Validators.email],
-        asyncValidators: [emailExistsValidator(this.userVerifyService)],
+        asyncValidators: [emailExistsValidatorButExcludeOriginal(this.userVerifyService)],
         updateOn: 'blur'
       }],
       taxId: this.fb.group({
@@ -63,14 +63,16 @@ export class UserFormComponent {
       );
     }
   }
-  
+
   enableEdit(): void {
     this.isEditing = true;
     this.userForm.enable();
+    this.userForm.markAllAsTouched();
   }
   cancelEdit(): void {
     this.isEditing = false;
     this.userForm.disable();
+    this.getUser();
   }
   updateUser() {
     if (this.userForm.valid) {
