@@ -25,8 +25,8 @@
       <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.origin.city }}/{{ travel.origin.state }} -> {{ travel.destination.city }}/{{ travel.destination.state }}</td>
       <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.vehiclePlate }}</td>
       <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.load.product }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.load.weight }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.price }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.load.weight | weightFormat }}</td>
+      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.price | currency:'BRL':'symbol':'1.2-2':'pt-BR'  }}</td>
 
 
       <td class="text-center">
