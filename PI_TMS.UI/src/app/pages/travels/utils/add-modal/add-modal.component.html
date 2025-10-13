@@ -10,9 +10,15 @@
         <form id="formFrete" [formGroup]="travelForm" (ngSubmit)="onSubmit()">
           @if (currentStep === 1) {
           <div>
-            <div class="mb-3">
-              <label for="data" class="form-label">Data</label>
-              <input type="date" class="form-control" id="data" formControlName="startDate" required>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="startDate" class="form-label">Data de Saida</label>
+                <input type="date" class="form-control" id="startDate" formControlName="startDate" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="endDate" class="form-label">Data de Chegada</label>
+                <input type="date" class="form-control" id="endDate" formControlName="endDate" required>
+              </div>
             </div>
             <hr>
             <app-routes-options [parentForm]="travelForm"></app-routes-options>

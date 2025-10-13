@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgxCurrencyDirective } from "ngx-currency";
 import { Observable, Subject, of } from 'rxjs';
@@ -24,6 +24,7 @@ declare var bootstrap: any;
   standalone: true,
   imports: [
     CommonModule,
+    DatePipe,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

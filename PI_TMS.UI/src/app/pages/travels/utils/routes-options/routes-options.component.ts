@@ -70,10 +70,10 @@ export class RoutesOptionsComponent {
     const cityName = `${city.nome}/${city.estado}`;
 
     if (type === 'origin') {
-      this.parentForm.get('route.origin.city')?.setValue(cityName);
+      this.parentForm.get('origin.city')?.setValue(cityName);
       this.showSuggestionsOrigin = false;
     } else {
-      this.parentForm.get('route.destination.city')?.setValue(cityName);
+      this.parentForm.get('destination.city')?.setValue(cityName);
       this.showSuggestionsDestination = false;
     }
   }
@@ -82,7 +82,7 @@ export class RoutesOptionsComponent {
     const zipCode = input.value;
     if (type === 'origin') {
       this.zipCodeService.searchZipCode(zipCode).subscribe((data: ZipCodeData | null) => {
-        const routeGroup = this.parentForm.get('route.origin') as FormGroup;
+        const routeGroup = this.parentForm.get('origin') as FormGroup;
         if (data) {
           routeGroup.patchValue({
             street: data.logradouro,
@@ -102,7 +102,7 @@ export class RoutesOptionsComponent {
       });
     } else if (type === 'destination') {
       this.zipCodeService.searchZipCode(zipCode).subscribe((data: ZipCodeData | null) => {
-        const routeGroup = this.parentForm.get('route.destination') as FormGroup;
+        const routeGroup = this.parentForm.get('destination') as FormGroup;
         if (data) {
           routeGroup.patchValue({
             street: data.logradouro,
