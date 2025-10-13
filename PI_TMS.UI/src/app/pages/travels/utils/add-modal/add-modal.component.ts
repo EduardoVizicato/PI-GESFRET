@@ -66,6 +66,10 @@ export class AddModalComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.travelForm.invalid) {
+      this.travelForm.markAllAsTouched();
+      return;
+    }
     if (this.travelForm.valid) {
       const travelData = this.travelForm.value;
       this.addTravel(travelData);
@@ -73,13 +77,13 @@ export class AddModalComponent implements OnInit {
       this.currentStep = 1;
       const modalElement = document.getElementById('addTravelModal');
       if (modalElement) {
-        const modal = bootstrap.Modal.getInstance(modalElement);
+        const modal = new Modal(modalElement);
         modal.hide();
       }
     }
   }
-  addTravel($event: Travel) {
-    this.travelService.addTravel($event).subscribe(
+  addTravel($travelData: Travel) {
+    this.travelService.addTravel($travelData).subscribe(
       (response) => {
         this.travelComponent.loadTravels();
       },
@@ -101,27 +105,27 @@ export class AddModalComponent implements OnInit {
         city: [''],
         state: [''],
         country: [''],
-          hemisphere: [''],
-          xCoord: [''],
-          yCoord: ['']
-        }),
-        destination: this.fb.group({
-          zipCode: [''],
-          street: [''],
-          number: [''],
-          neighborhood: [''],
-          complement: [''],
-          city: [''],
-          state: [''],
-          country: [''],
-          hemisphere: [''],
-          xCoord: [''],
-          yCoord: ['']
-        }),
-        load: this.fb.group({
-          product: [''],
-          weight: [''],
-          loadType: ['']
+        hemisphere: [''],
+        xCoord: [''],
+        yCoord: ['']
+      }),
+      destination: this.fb.group({
+        zipCode: [''],
+        street: [''],
+        number: [''],
+        neighborhood: [''],
+        complement: [''],
+        city: [''],
+        state: [''],
+        country: [''],
+        hemisphere: [''],
+        xCoord: [''],
+        yCoord: ['']
+      }),
+      load: this.fb.group({
+        product: [''],
+        weight: [''],
+        loadType: ['']
       }),
       vehiclePlate: [''],
       price: ['']
