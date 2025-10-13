@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgxCurrencyDirective } from "ngx-currency";
 import { Observable, Subject, of } from 'rxjs';
@@ -17,6 +17,7 @@ import { ViewTravelComponent } from "../view-travel/view-travel.component";
 import { UpdateModalComponent } from "./utils/update-modal/update-modal.component";
 import { EventService } from '../../shared/service/event.service';
 import Modal from 'bootstrap/js/dist/modal';
+import { WeightFormatPipe } from "./utils/WeightFormat/weight-format.pipe";
 declare var bootstrap: any;
 
 @Component({
@@ -25,14 +26,16 @@ declare var bootstrap: any;
   imports: [
     CommonModule,
     DatePipe,
+    CurrencyPipe,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgbPaginationModule,
     AddModalComponent,
     ViewTravelComponent,
-    UpdateModalComponent
-  ],
+    UpdateModalComponent,
+    WeightFormatPipe
+],
   providers: [
     CityService,
     TravelService,
