@@ -1,4 +1,4 @@
-import { Component, input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CityService } from './service/city/city.service';
@@ -28,7 +28,7 @@ declare var bootstrap: any;
     NgbPaginationModule,
     AddModalComponent,
     ViewTravelComponent,
-    UpdateModalComponent,
+    // UpdateModalComponent,
     WeightFormatPipe
   ],
   providers: [
@@ -47,30 +47,28 @@ export class TravelsComponent implements OnInit {
   pageSize: number = 10;
 
   freightvalue: number = 0;
-
-  private addTravelModal: any;
+  showAddTravelModal = false;
   selectedTravelId: string = '';
 
   constructor(
-    private http: HttpClient, private travelService: TravelService, private fb: FormBuilder, private eventService: EventService
+    private http: HttpClient, private travelService: TravelService, private fb: FormBuilder, private eventService: EventService, private cdr: ChangeDetectorRef
   ) { }
   ngOnInit(): void {
     this.loadTravels();
   }
 
-  ngAfterViewInit(): void {
-    const addModalEl = document.getElementById('freteModal');
-    if (addModalEl) {
-      this.addTravelModal = new bootstrap.Modal(addModalEl);
-    }
-  }
   viewTravel(travelId: string) {
     this.selectedTravelId = travelId;
+    this.cdr.detectChanges();
     this.openModal('viewTravelModal');
+  }
+  openAddTravelModal() {
+    this.showAddTravelModal = true;
+    this.cdr.detectChanges();
+    this.openModal('addTravelModal');
   }
   openModal(name: string) {
     const modalElement = document.getElementById(name);
-
     if (modalElement) {
       const modal = new Modal(modalElement);
       modal.show();
@@ -78,7 +76,9 @@ export class TravelsComponent implements OnInit {
       console.warn('Elemento do modal não encontrado.');
     }
   }
-
+  closeModal() {
+    this.showAddTravelModal = false;
+  }
 
   loadTravels(): void {
     this.travelService.getAllTravel().subscribe(

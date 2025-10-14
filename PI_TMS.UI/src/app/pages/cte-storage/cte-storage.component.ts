@@ -14,7 +14,7 @@ declare var bootstrap: any;
   styleUrl: './cte-storage.component.css'
 })
 export class CteStorageComponent {
-
+  selectedTravelId: string = '';
   link: [string, string, string][] = [
     ['name1', 'generic description 1', '/pdf/teste1.pdf'],
     ['name2', 'generic description 2', '/pdf/teste2.pdf'],

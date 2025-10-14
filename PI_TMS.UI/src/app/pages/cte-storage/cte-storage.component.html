@@ -106,4 +106,4 @@
     </div>
   </div>
 </div>
-<app-view-travel></app-view-travel>
+<app-view-travel *ngIf="selectedTravelId" [travelId]="selectedTravelId"></app-view-travel>

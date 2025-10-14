@@ -1,203 +1,206 @@
 <div class="modal fade" id="viewTravelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="viewTravelModal" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-fullscreen-md-down">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- <h3 class="modal-title" id="viewTravelModal">Dados da Viagem de Cod {{viewTravel.id}}</h3> -->
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="main-content">
-          <div class="clearfix">
-            <div class="col-md-4 float-md-end mb-3 ms-md-3 px-2 py-5">
-              <h1>CT-e</h1>
-              <div class="card" style="width: 20rem;">
-                <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
-                  [zoom-scale]="'page-width'" style="width: 20rem; height: 25rem">
-                </pdf-viewer>
-                <div class="card-img-overlay">
-                  <a data-bs-toggle="modal" data-bs-target="#viewDocModal" id="icon-expand">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                      class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd"
-                        d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707" />
-                    </svg>
-                  </a>
+    <ng-container *ngIf="viewTravel as travel">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="viewTravelModal">Dados da Viagem de Cod [ {{viewTravel.id}} ]</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="main-content">
+            <div class="clearfix">
+              <div class="col-md-4 float-md-end mb-3 ms-md-3 px-2 py-5">
+                <h1>CT-e</h1>
+                <div class="card" style="width: 20rem;">
+                  <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
+                    [zoom-scale]="'page-width'" style="width: 20rem; height: 25rem">
+                  </pdf-viewer>
+                  <div class="card-img-overlay">
+                    <a data-bs-toggle="modal" data-bs-target="#viewDocModal" id="icon-expand">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707" />
+                      </svg>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{cte.name}}</h5>
+                    <p class="card-text">{{cte.description}} </p>
+                    <a href="#" class="btn btn-primary mx-1">Baixar</a>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{cte.name}}</h5>
-                  <p class="card-text">{{cte.description}} </p>
-                  <a href="#" class="btn btn-primary mx-1">Baixar</a>
+
+              </div>
+              <div class="row g-3 px-5 py-4">
+                <div class="col-6">
+                  <p>Data de Saida</p>
+                  <h4>{{viewTravel.startDate | date:'dd/MM/yyyy'}}</h4>
+                </div>
+                <div class="col-6">
+                  <p>Data de Chegada</p>
+                  <h4>{{viewTravel.endDate | date:'dd/MM/yyyy'}}</h4>
+                </div>
+                <hr>
+                <h3>Origem</h3>
+                <div class="col-md-12" *ngIf="viewTravel.origin.zipCode">
+                  <p>CEP</p>
+                  <h4>{{viewTravel.origin.zipCode}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.origin.street">
+                  <p>Rua</p>
+                  <h4>{{viewTravel.origin.street}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.origin.number">
+                  <p>Numero</p>
+                  <h4>{{viewTravel.origin.number}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.origin.neighborhood">
+                  <p>Bairro</p>
+                  <h4>{{viewTravel.origin.neighborhood}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.origin.complement">
+                  <p>Complemento</p>
+                  <h4>{{viewTravel.origin.complement}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.origin.city">
+                  <p>Cidade</p>
+                  <h4>{{viewTravel.origin.city}}</h4>
+                </div>
+                <div class="col-md-3" *ngIf="viewTravel.origin.state">
+                  <p>Estado</p>
+                  <h4>{{viewTravel.origin.state}}</h4>
+                </div>
+                <div class="col-md-3" *ngIf="viewTravel.origin.country">
+                  <p>País</p>
+                  <h4>{{viewTravel.origin.country}}</h4>
+                </div>
+                <div class="col-md-2" *ngIf="viewTravel.origin.hemisphere">
+                  <p>Hemisfério</p>
+                  <h4>{{viewTravel.origin.hemisphere}}</h4>
+                </div>
+                <div class="col-md-5" *ngIf="viewTravel.origin.xCoord">
+                  <p>Coordenada X</p>
+                  <h4>{{viewTravel.origin.xCoord}}</h4>
+                </div>
+                <div class="col-md-5" *ngIf="viewTravel.origin.yCoord">
+                  <p>Coordenada Y</p>
+                  <h4>{{viewTravel.origin.yCoord}}</h4>
+                </div>
+                <hr>
+                <h3>Destino</h3>
+                <div class="col-md-12" *ngIf="viewTravel.destination.zipCode">
+                  <p>CEP</p>
+                  <h4>{{viewTravel.destination.zipCode}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.destination.street">
+                  <p>Rua</p>
+                  <h4>{{viewTravel.destination.street}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.destination.number">
+                  <p>Numero</p>
+                  <h4>{{viewTravel.destination.number}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.destination.neighborhood">
+                  <p>Bairro</p>
+                  <h4>{{viewTravel.destination.neighborhood}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.destination.complement">
+                  <p>Complemento</p>
+                  <h4>{{viewTravel.destination.complement}}</h4>
+                </div>
+                <div class="col-md-6" *ngIf="viewTravel.destination.city">
+                  <p>Cidade</p>
+                  <h4>{{viewTravel.destination.city}}</h4>
+                </div>
+                <div class="col-md-3" *ngIf="viewTravel.destination.state">
+                  <p>Estado</p>
+                  <h4>{{viewTravel.destination.state}}</h4>
+                </div>
+                <div class="col-md-3" *ngIf="viewTravel.destination.country">
+                  <p>País</p>
+                  <h4>{{viewTravel.destination.country}}</h4>
+                </div>
+                <div class="col-md-2" *ngIf="viewTravel.destination.hemisphere">
+                  <p>Hemisfério</p>
+                  <h4>{{viewTravel.destination.hemisphere}}</h4>
+                </div>
+                <div class="col-md-5" *ngIf="viewTravel.destination.xCoord">
+                  <p>Coordenada X</p>
+                  <h4>{{viewTravel.destination.xCoord}}</h4>
+                </div>
+                <div class="col-md-5" *ngIf="viewTravel.destination.yCoord">
+                  <p>Coordenada Y</p>
+                  <h4>{{viewTravel.destination.yCoord}}</h4>
                 </div>
               </div>
-
-            </div>
-            <div class="row g-3 px-5 py-4">
-              <div class="col-6">
-                <p>Data de Saida</p>
-                <h4>{{viewTravel.startDate | date:'dd/MM/yyyy'}}</h4>
+              <hr class="my-2">
+              <div class="row g-3 px-5 py-4">
+                <div class="col-md-6">
+                  <p>Veiculo Utilizado</p>
+                  <h4>Scania 120</h4>
+                </div>
+                <div class="col-md-6">
+                  <p>Placa do Veiculo</p>
+                  <h4>{{viewTravel.vehiclePlate}}</h4>
+                </div>
+                <div class="col-md-6">
+                  <p>Tipo do Veiculo</p>
+                  <h4>Fechada/Baú</h4>
+                </div>
+                <div class="col-md-6">
+                  <p>Reboque Utilizado</p>
+                  <h4>Graneleiro</h4>
+                </div>
               </div>
-              <div class="col-6">
-                <p>Data de Chegada</p>
-                <h4>{{viewTravel.endDate | date:'dd/MM/yyyy'}}</h4>
-              </div>
-              <hr>
-              <h3>Origem</h3>
-              <div class="col-md-12" *ngIf="viewTravel.origin.zipCode">
-                <p>CEP</p>
-                <h4>{{viewTravel.origin.zipCode}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.origin.street">
-                <p>Rua</p>
-                <h4>{{viewTravel.origin.street}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.origin.number">
-                <p>Numero</p>
-                <h4>{{viewTravel.origin.number}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.origin.neighborhood">
-                <p>Bairro</p>
-                <h4>{{viewTravel.origin.neighborhood}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.origin.complement">
-                <p>Complemento</p>
-                <h4>{{viewTravel.origin.complement}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.origin.city">
-                <p>Cidade</p>
-                <h4>{{viewTravel.origin.city}}</h4>
-              </div>
-              <div class="col-md-3" *ngIf="viewTravel.origin.state">
-                <p>Estado</p>
-                <h4>{{viewTravel.origin.state}}</h4>
-              </div>
-              <div class="col-md-3" *ngIf="viewTravel.origin.country">
-                <p>País</p>
-                <h4>{{viewTravel.origin.country}}</h4>
-              </div>
-              <div class="col-md-2" *ngIf="viewTravel.origin.hemisphere">
-                <p>Hemisfério</p>
-                <h4>{{viewTravel.origin.hemisphere}}</h4>
-              </div>
-              <div class="col-md-5" *ngIf="viewTravel.origin.xCoord">
-                <p>Coordenada X</p>
-                <h4>{{viewTravel.origin.xCoord}}</h4>
-              </div>
-              <div class="col-md-5" *ngIf="viewTravel.origin.yCoord">
-                <p>Coordenada Y</p>
-                <h4>{{viewTravel.origin.yCoord}}</h4>
-              </div>
-              <hr>
-              <h3>Destino</h3>
-              <div class="col-md-12" *ngIf="viewTravel.destination.zipCode">
-                <p>CEP</p>
-                <h4>{{viewTravel.destination.zipCode}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.destination.street">
-                <p>Rua</p>
-                <h4>{{viewTravel.destination.street}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.destination.number">
-                <p>Numero</p>
-                <h4>{{viewTravel.destination.number}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.destination.neighborhood">
-                <p>Bairro</p>
-                <h4>{{viewTravel.destination.neighborhood}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.destination.complement">
-                <p>Complemento</p>
-                <h4>{{viewTravel.destination.complement}}</h4>
-              </div>
-              <div class="col-md-6" *ngIf="viewTravel.destination.city">
-                <p>Cidade</p>
-                <h4>{{viewTravel.destination.city}}</h4>
-              </div>
-              <div class="col-md-3" *ngIf="viewTravel.destination.state">
-                <p>Estado</p>
-                <h4>{{viewTravel.destination.state}}</h4>
-              </div>
-              <div class="col-md-3" *ngIf="viewTravel.destination.country">
-                <p>País</p>
-                <h4>{{viewTravel.destination.country}}</h4>
-              </div>
-              <div class="col-md-2" *ngIf="viewTravel.destination.hemisphere">
-                <p>Hemisfério</p>
-                <h4>{{viewTravel.destination.hemisphere}}</h4>
-              </div>
-              <div class="col-md-5" *ngIf="viewTravel.destination.xCoord">
-                <p>Coordenada X</p>
-                <h4>{{viewTravel.destination.xCoord}}</h4>
-              </div>
-              <div class="col-md-5" *ngIf="viewTravel.destination.yCoord">
-                <p>Coordenada Y</p>
-                <h4>{{viewTravel.destination.yCoord}}</h4>
-              </div>
-            </div>
-            <hr class="my-2">
-            <div class="row g-3 px-5 py-4">
-              <div class="col-md-6">
-                <p>Veiculo Utilizado</p>
-                <h4>Scania 120</h4>
-              </div>
-              <div class="col-md-6">
-                <p>Placa do Veiculo</p>
-                <h4>{{viewTravel.vehiclePlate}}</h4>
-              </div>
-              <div class="col-md-6">
-                <p>Tipo do Veiculo</p>
-                <h4>Fechada/Baú</h4>
-              </div>
-              <div class="col-md-6">
-                <p>Reboque Utilizado</p>
-                <h4>Graneleiro</h4>
-              </div>
-            </div>
-            <hr class="my-2">
-            <div class="row g-3 px-5 py-4">
-              <div class="col-md-6">
-                <p>Produto Predominante</p>
-                <h4>{{viewTravel.load.product}}</h4>
-              </div>
-              <div class="col-md-6">
-                <p>Tipo do Produto</p>
-                <h4>{{viewTravel.load.loadType}}</h4>
-              </div>
-              <div class="col-md-6">
-                <p>Peso da Carga</p>
-                <h4>{{viewTravel.load.weight | weightFormat}}</h4>
-              </div>
-              <div class="col-md-6">
-                <p>Valor do Frete</p>
-                <h4>{{viewTravel.price | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</h4>
-              </div>
+              <hr class="my-2">
+              <div class="row g-3 px-5 py-4">
+                <div class="col-md-6">
+                  <p>Produto Predominante</p>
+                  <h4>{{viewTravel.load.product}}</h4>
+                </div>
+                <div class="col-md-6">
+                  <p>Tipo do Produto</p>
+                  <h4>{{viewTravel.load.loadType}}</h4>
+                </div>
+                <div class="col-md-6">
+                  <p>Peso da Carga</p>
+                  <h4>{{viewTravel.load.weight | weightFormat}}</h4>
+                </div>
+                <div class="col-md-6">
+                  <p>Valor do Frete</p>
+                  <h4>{{viewTravel.price | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</h4>
+                </div>
 
 
+              </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<div class="modal" id="viewDocModal" tabindex="-1">
-  <div class="modal-dialog modal-xl modal-fullscreen-md-down">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{cte.name}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal" id="viewDocModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-fullscreen-md-down">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">{{cte.name}}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
+                style="width: 70rem; height: 45rem" [zoom-scale]="'page-width'">
+              </pdf-viewer>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
-          style="width: 70rem; height: 45rem" [zoom-scale]="'page-width'">
-        </pdf-viewer>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
+    </ng-container>
   </div>
 </div>

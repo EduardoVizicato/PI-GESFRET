@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addTravelModal">Registrar Nova Viagem</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close.emit()"></button>
       </div>
       <div class="modal-body">
         <form id="formFrete" [formGroup]="travelForm" (ngSubmit)="onSubmit()">
@@ -29,7 +29,7 @@
                 <select class="form-select" id="veiculo" required formControlName="vehiclePlate"
                   (change)="onTruckChange()">
                   <option selected disabled value="">- Selecione um veículo -</option>
-                  @for (truck of filteredTrucks; track filteredTrucks) {
+                  @for (truck of filteredTrucks; track truck.id) {
                   <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
                     {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
                   }
@@ -39,7 +39,7 @@
                 <label for="" class="form-label">Reboque Utilizado</label>
                 <select class="form-select" id="">
                   <option selected disabled value="">- Selecione um Reboque -</option>
-                  @for (truck of filteredTrailers; track filteredTrailers) {
+                  @for (truck of filteredTrailers; track truck.id) {
                   <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
                     {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}
                   </option>
@@ -113,7 +113,7 @@
       </div>
       <div class="modal-footer">
         @if (currentStep === 1) {
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="close.emit()">Cancelar</button>
         <button type="button" class="btn btn-dark" (click)="nextStep()">Próximo</button>
         }
         @if (currentStep === 2) {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ZipCodeData, ZipCodeService } from '../../service/zip-code/zip-code.service';
 import { TravelService } from '../../service/travel.service';
@@ -33,6 +33,7 @@ declare var bootstrap: any;
 })
 
 export class AddModalComponent implements OnInit {
+  @Output() close = new EventEmitter<void>();
   travelForm: FormGroup;
   currentStep: number = 1;
 

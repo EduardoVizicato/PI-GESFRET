@@ -14,7 +14,7 @@ import { WeightFormatPipe } from "../../utils/Formats/WeightFormat/weight-format
 })
 export class ViewTravelComponent {
   @Input() travelId!: string;
-  viewTravel!: Travel;
+  viewTravel?: Travel;
   pdfSrc: any;
   openPdf() { }
   cte: any = { name: 'name2', description: 'generic description 2', path: '/pdf/teste2.pdf' };
@@ -25,7 +25,6 @@ export class ViewTravelComponent {
       this.getTravel();
     }
   }
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes['travelId'] && changes['travelId'].currentValue) {
       this.getTravel();

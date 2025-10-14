@@ -22,7 +22,7 @@
                 <label for="veiculo" class="form-label">Veículo Utilizado</label>
                 <select class="form-select" id="veiculo" required formControlName="vehiclePlate">
                   <option selected disabled value="">- Selecione um veículo -</option>
-                  @for (truck of trucks; track trucks) {
+                  @for (truck of trucks; track truck.id) {
                   <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
                     {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
                   }
@@ -33,7 +33,7 @@
                 <label for="" class="form-label">Reboque Utilizado</label>
                 <select class="form-select" id="">
                   <option selected disabled value="">- Selecione um Reboque -</option>
-                  @for (truck of trucks; track trucks) {
+                  @for (truck of trucks; track truck.id) {
                   <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
                     {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
                   }
