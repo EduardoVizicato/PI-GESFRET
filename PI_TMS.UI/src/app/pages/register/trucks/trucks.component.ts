@@ -6,10 +6,10 @@ import { TruckService } from './Services/truck.service';
 import { Truck } from './models/truck.model';
 import { ActivatedRoute, Router, RouterModule, } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
-import { PlateFormatPipe } from "./utils/plate-format.pipe";
 import { EventService } from '../../../shared/service/event.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { PlateFormatPipe } from '../../../utils/Formats/PlateFormat/plate-format.pipe';
 
 declare var bootstrap: any;
 
