@@ -20,13 +20,13 @@
   <tbody class="table-group-divider">
     @for (travel of filteredTravel | slice: (page-1) * pageSize : page * pageSize; track filteredTravel) {
     <tr>
-      <th scope="row" (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travels.length }}</th>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.startDate | date:'dd/MM/yyyy' }} -> {{ travel.endDate | date:'dd/MM/yyyy' }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.origin.city }}/{{ travel.origin.state }} -> {{ travel.destination.city }}/{{ travel.destination.state }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.vehiclePlate }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.load.product }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.load.weight | weightFormat }}</td>
-      <td (click)="viewTravel = travel; openModal('viewTravelModal')">{{ travel.price | currency:'BRL':'symbol':'1.2-2':'pt-BR'  }}</td>
+      <th scope="row" (click)="viewTravel(travel.id)">{{ travels.length }}</th>
+      <td (click)="viewTravel(travel.id)">{{ travel.startDate | date:'dd/MM/yyyy' }} -> {{ travel.endDate | date:'dd/MM/yyyy' }}</td>
+      <td (click)="viewTravel(travel.id)">{{ travel.origin.city }}/{{ travel.origin.state }} -> {{ travel.destination.city }}/{{ travel.destination.state }}</td>
+      <td (click)="viewTravel(travel.id)">{{ travel.vehiclePlate }}</td>
+      <td (click)="viewTravel(travel.id)">{{ travel.load.product }}</td>
+      <td (click)="viewTravel(travel.id)">{{ travel.load.weight | weightFormat }}</td>
+      <td (click)="viewTravel(travel.id)">{{ travel.price | currency:'BRL':'symbol':'1.2-2':'pt-BR'  }}</td>
 
 
       <td class="text-center">
@@ -122,5 +122,5 @@
 }
 
 <app-add-modal></app-add-modal>
-<app-view-travel></app-view-travel>
+<app-view-travel *ngIf="selectedTravelId" [travelId]="selectedTravelId"></app-view-travel>
 <app-update-modal></app-update-modal>
