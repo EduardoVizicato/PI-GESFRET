@@ -4,7 +4,7 @@ import { ZipCodeData, ZipCodeService } from '../../service/zip-code/zip-code.ser
 import { City, CityService } from '../../service/city/city.service';
 import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { PlateFormatPipe } from '../PlateFormat/plate-format.pipe';
+import { PlateFormatPipe } from '../../../../utils/Formats/PlateFormat/plate-format.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CurrencyMaskModule } from 'ng2-currency-mask';

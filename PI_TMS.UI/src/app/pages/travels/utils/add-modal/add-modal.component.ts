@@ -5,7 +5,6 @@ import { TravelService } from '../../service/travel.service';
 import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs';
 import { City, CityService } from '../../service/city/city.service';
 import { Travel, Truck } from '../../model/travel.model';
-import { PlateFormatPipe } from "../../../register/trucks/utils/plate-format.pipe";
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,6 +14,7 @@ import { routes } from '../../../../app.routes';
 import Modal from 'bootstrap/js/dist/modal';
 import { EventService } from '../../../../shared/service/event.service';
 import { TravelsComponent } from '../../travels.component';
+import { PlateFormatPipe } from '../../../../utils/Formats/PlateFormat/plate-format.pipe';
 declare var bootstrap: any;
 @Component({
   selector: 'app-add-modal',

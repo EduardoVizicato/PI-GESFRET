@@ -69,11 +69,11 @@
           <tbody>
             <tr>
               <td>Data de Criação: </td>
-              <td>{{ viewUser.createdAt | dateFormat }}</td>
+              <td>{{ viewUser.createdAt | date:'dd/MM/yyyy' }}</td>
             </tr>
             <tr>
               <td>Ultima Atualização: </td>
-              <td>{{ viewUser.updateAt | dateFormat }}</td>
+              <td>{{ viewUser.updateAt | date:'dd/MM/yyyy' }}</td>
             </tr>
           </tbody>
         </table>

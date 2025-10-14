@@ -5,13 +5,13 @@ import { TravelService } from '../../service/travel.service';
 import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs';
 import { City, CityService } from '../../service/city/city.service';
 import { Travel, Truck } from '../../model/travel.model';
-import { PlateFormatPipe } from "../../../register/trucks/utils/plate-format.pipe";
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { RoutesOptionsComponent } from "../routes-options/routes-options.component";
 import { routes } from '../../../../app.routes';
+import { PlateFormatPipe } from '../../../../utils/Formats/PlateFormat/plate-format.pipe';
 @Component({
   selector: 'app-update-modal',
   imports: [

@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { NgxCurrencyDirective } from "ngx-currency";
-import { Observable, Subject, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, tap, catchError } from 'rxjs/operators';
-import { City, CityService } from './service/city/city.service';
+import { CityService } from './service/city/city.service';
 import { TravelService } from './service/travel.service';
-import { Truck } from './model/travel.model';
 import { Travel } from './model/travel.model';
-import { PlateFormatPipe } from "../register/trucks/utils/plate-format.pipe";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ZipCodeService, ZipCodeData } from './service/zip-code/zip-code.service';
@@ -16,8 +11,8 @@ import { AddModalComponent } from "./utils/add-modal/add-modal.component";
 import { ViewTravelComponent } from "../view-travel/view-travel.component";
 import { UpdateModalComponent } from "./utils/update-modal/update-modal.component";
 import { EventService } from '../../shared/service/event.service';
+import { WeightFormatPipe } from "../../utils/Formats/WeightFormat/weight-format.pipe";
 import Modal from 'bootstrap/js/dist/modal';
-import { WeightFormatPipe } from "./utils/WeightFormat/weight-format.pipe";
 declare var bootstrap: any;
 
 @Component({

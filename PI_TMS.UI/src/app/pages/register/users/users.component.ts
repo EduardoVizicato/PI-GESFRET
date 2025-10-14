@@ -1,19 +1,18 @@
 import { Component, ViewChild } from '@angular/core';
 import { user } from './models/user.model';
 import { UsersService } from './services/users.service';
-import { CommonModule } from '@angular/common';
-import { TaxFormatPipe } from "./utils/taxPipe/tax-format.pipe";
-import { PhoneFormatPipe } from "./utils/phonePipe/phone-format.pipe";
+import { CommonModule, DatePipe } from '@angular/common';
+import { TaxFormatPipe } from "../../../utils/Formats/taxPipe/tax-format.pipe";
+import { PhoneFormatPipe } from "../../../utils/Formats/phonePipe/phone-format.pipe";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from "./utils/modalAdd/modal.component";
 import Modal from 'bootstrap/js/dist/modal';
-import { DateFormatPipe } from "./utils/datePipe/date-format.pipe";
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { UpdateModalComponent } from './utils/update-modal/update-modal.component';
 
 @Component({
   selector: 'app-users',
-  imports: [CommonModule, FormsModule, TaxFormatPipe, ReactiveFormsModule, PhoneFormatPipe, ModalComponent, DateFormatPipe, NgbPaginationModule, UpdateModalComponent],
+  imports: [CommonModule, FormsModule, TaxFormatPipe, ReactiveFormsModule, PhoneFormatPipe, ModalComponent, DatePipe, NgbPaginationModule, UpdateModalComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 
