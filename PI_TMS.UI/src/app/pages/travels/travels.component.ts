@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CityService } from './service/city/city.service';
@@ -30,7 +30,7 @@ declare var bootstrap: any;
     ViewTravelComponent,
     UpdateModalComponent,
     WeightFormatPipe
-],
+  ],
   providers: [
     CityService,
     TravelService,
@@ -49,10 +49,10 @@ export class TravelsComponent implements OnInit {
   freightvalue: number = 0;
 
   private addTravelModal: any;
-  viewTravel: any;
+  selectedTravelId: string = '';
 
   constructor(
-    private http: HttpClient , private travelService: TravelService, private fb: FormBuilder, private eventService: EventService, private zipCodeService: ZipCodeService, private cityService: CityService
+    private http: HttpClient, private travelService: TravelService, private fb: FormBuilder, private eventService: EventService
   ) { }
   ngOnInit(): void {
     this.loadTravels();
@@ -64,6 +64,10 @@ export class TravelsComponent implements OnInit {
       this.addTravelModal = new bootstrap.Modal(addModalEl);
     }
   }
+  viewTravel(travelId: string) {
+    this.selectedTravelId = travelId;
+    this.openModal('viewTravelModal');
+  }
   openModal(name: string) {
     const modalElement = document.getElementById(name);
 
@@ -74,10 +78,10 @@ export class TravelsComponent implements OnInit {
       console.warn('Elemento do modal não encontrado.');
     }
   }
-  
- 
+
+
   loadTravels(): void {
-     this.travelService.getAllTravel().subscribe(
+    this.travelService.getAllTravel().subscribe(
       (response) => {
         this.travels = response;
       },
