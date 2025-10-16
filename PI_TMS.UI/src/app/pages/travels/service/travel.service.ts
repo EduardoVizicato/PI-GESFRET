@@ -25,6 +25,9 @@ export class TravelService {
   updateTravel(travel: Travel, id: string): Observable<Travel> {
     return this.HttpClient.put<Travel>(`${this.apiUrl}travel/updateTravel/${id}`, travel);
   }
+  deleteTravel(id: string): Observable<Travel> {
+    return this.HttpClient.delete<Travel>(`${this.apiUrl}travel/deleteTravel/${id}`)
+  }
 
 
 

@@ -20,7 +20,7 @@
   <tbody class="table-group-divider">
     @for (travel of filteredTravel | slice: (page-1) * pageSize : page * pageSize; track filteredTravel) {
     <tr>
-      <th scope="row" (click)="viewTravel(travel.id)">{{ travels.length }}</th>
+      <th scope="row" (click)="viewTravel(travel.id)">{{ travel }}</th>
       <td (click)="viewTravel(travel.id)">{{ travel.startDate | date:'dd/MM/yyyy' }} -> {{ travel.endDate | date:'dd/MM/yyyy' }}</td>
       <td (click)="viewTravel(travel.id)">{{ travel.origin.city }}/{{ travel.origin.state }} -> {{ travel.destination.city }}/{{ travel.destination.state }}</td>
       <td (click)="viewTravel(travel.id)">{{ travel.vehiclePlate }}</td>
@@ -73,7 +73,7 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item" (click)="deleteTravel(travel)">
+              <a class="dropdown-item" (click)="deleteTravel(travel.id)">
                 <div class="row">
                   <div class="col-md-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

@@ -103,23 +103,22 @@ export class TravelsComponent implements OnInit {
     );
   }
 
-  cloneTravel(travel: Travel) {
-    const newTravel: Travel = structuredClone(travel);
-    // const newTravel = JSON.parse(JSON.stringify(travel));
-
-    newTravel.id = crypto.randomUUID();
-    newTravel.startDate = new Date().toLocaleDateString('pt-BR');
-
-    this.travels.push(newTravel);
+  cloneTravel(travelData: Travel) {
+    const newTravel: Travel = travelData;
+    this.travelService.addTravel(newTravel).subscribe(
+      (response) => {
+        this.loadTravels();
+      },
+      (error) => {
+        this.eventService.showError('Erro inesperado.')
+      }
+    );
   }
 
   updateTravel(travel: Travel) {
 
   }
-  deleteTravel(travel: Travel) {
-    const index = this.travels.findIndex(t => t.id === travel.id);
-    if (index !== -1) {
-      this.travels.splice(index, 1);
-    }
+  deleteTravel(id: string) {
+    this.travelService.deleteTravel(id);
   }
 }
