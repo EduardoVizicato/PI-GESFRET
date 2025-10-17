@@ -43,7 +43,50 @@ Felipe Barbisan
 
 ------Sprint 9---------03/09 - 10/09
 - fix travel origin and destination 
-- clone travel working 
+- clone travel icon 
 - user-info update 
 
 ------Sprint 10---------10/09 - 17/09
+- create a add Modal in travel
+- separating routes from add Modal
+- fix parentForm problem
+
+------Sprint 11---------17/09 - 24/09
+- add mask in routeForm
+- fix bugs in routeForm
+- create edit user and enterprise
+- finish user update
+- add route values in travel view
+- save theme in local storage
+
+------Sprint 12---------24/09 - 01/10
+- change view travel for a Modal
+- clone button working
+- creating base for update and delete travel
+- change the api values for the new version
+
+------Sprint 13---------01/10 - 08/10
+- try fix bugs in back
+- add verify in interprise edit
+- change userInfo for SettingPage
+- Organize the validators
+- fix email validation
+- fix the truck backend (API) - change names and fix enums
+- add Truck working
+
+------Sprint 10---------08/10 - 15/10
+- fix bug in selection truck and trailer
+- update truck working
+- delete nf-storage
+- travel page working 
+- add travel working
+- add pipeFormats
+- view travel getting values
+- fix bug in modals
+- clone travel working with back
+- fix bug in enums (API)
+- fix update Truck (API)
+- change travel entity (add origin and destination with addressVO) (API)
+- delete some inutils variables in travel (API)
+- change addressVO for nullable (API)
+- fix bugs to work  (API)
