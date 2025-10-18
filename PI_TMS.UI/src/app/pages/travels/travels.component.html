@@ -18,11 +18,13 @@
     </tr>
   </thead>
   <tbody class="table-group-divider">
-    @for (travel of filteredTravel | slice: (page-1) * pageSize : page * pageSize; track filteredTravel) {
-    <tr>
-      <th scope="row" (click)="viewTravel(travel.id)">{{ travel }}</th>
-      <td (click)="viewTravel(travel.id)">{{ travel.startDate | date:'dd/MM/yyyy' }} -> {{ travel.endDate | date:'dd/MM/yyyy' }}</td>
-      <td (click)="viewTravel(travel.id)">{{ travel.origin.city }}/{{ travel.origin.state }} -> {{ travel.destination.city }}/{{ travel.destination.state }}</td>
+    <!-- @for (travel of filteredTravel | slice: (page-1) * pageSize : page * pageSize; track filteredTravel) { -->
+    <tr *ngFor="let travel of pagedTravels; let i = index; trackBy: trackByTravel">
+      <th scope="row" (click)="viewTravel(travel.id)">{{ (page - 1) * pageSize + i + 1 }}</th>
+      <td (click)="viewTravel(travel.id)">{{ travel.startDate | date:'dd/MM/yyyy' }} ->
+        {{ travel.endDate | date:'dd/MM/yyyy' }}</td>
+      <td (click)="viewTravel(travel.id)">{{ travel.origin.city }}/{{ travel.origin.state }} ->
+        {{ travel.destination.city }}/{{ travel.destination.state }}</td>
       <td (click)="viewTravel(travel.id)">{{ travel.vehiclePlate }}</td>
       <td (click)="viewTravel(travel.id)">{{ travel.load.product }}</td>
       <td (click)="viewTravel(travel.id)">{{ travel.load.weight | weightFormat }}</td>
@@ -94,11 +96,11 @@
         </div>
       </td>
     </tr>
-    }
+    <!-- } -->
   </tbody>
 </table>
 <footer class="footer text-center py-5 d-flex justify-content-end">
-  <ngb-pagination [collectionSize]="filteredTravel.length" [(page)]="page" [boundaryLinks]="true">
+  <ngb-pagination [collectionSize]="sortedFilteredTravel.length" [(page)]="page" [boundaryLinks]="true" (pageChange)="onPageChanged($event)">
     <ng-template ngbPaginationPages let-page let-pages="pages">
       @if (pages.length > 0) {
       <li class="ngb-custom-pages-item">

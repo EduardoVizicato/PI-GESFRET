@@ -45,14 +45,20 @@ export class TravelsComponent implements OnInit {
   searchTerm: string = '';
   page: number = 1;
   pageSize: number = 10;
-
+  sortedFilteredTravel: Travel[] = [];
+  pagedTravels: Travel[] = [];
   freightvalue: number = 0;
   showAddTravelModal = false;
   selectedTravelId: string = '';
 
   constructor(
-    private http: HttpClient, private travelService: TravelService, private fb: FormBuilder, private eventService: EventService, private cdr: ChangeDetectorRef
+    private http: HttpClient,
+    private travelService: TravelService,
+    private fb: FormBuilder,
+    private eventService: EventService,
+    private cdr: ChangeDetectorRef
   ) { }
+
   ngOnInit(): void {
     this.loadTravels();
   }
@@ -62,11 +68,13 @@ export class TravelsComponent implements OnInit {
     this.cdr.detectChanges();
     this.openModal('viewTravelModal');
   }
+
   openAddTravelModal() {
     this.showAddTravelModal = true;
     this.cdr.detectChanges();
     this.openModal('addTravelModal');
   }
+
   openModal(name: string) {
     const modalElement = document.getElementById(name);
     if (modalElement) {
@@ -76,6 +84,7 @@ export class TravelsComponent implements OnInit {
       console.warn('Elemento do modal não encontrado.');
     }
   }
+
   closeModal() {
     this.showAddTravelModal = false;
   }
@@ -83,42 +92,101 @@ export class TravelsComponent implements OnInit {
   loadTravels(): void {
     this.travelService.getAllTravel().subscribe(
       (response) => {
-        this.travels = response;
+        this.travels = response || [];
+        this.applyFiltersAndSort();
       },
       (error) => {
-        this.eventService.showError('Erro inesperado.')
+        this.eventService.showError('Erro inesperado.');
       }
     );
   }
 
+  onSearchChange(term: string) {
+    this.searchTerm = term;
+    this.page = 1; // resetar para a primeira página ao filtrar
+    this.applyFiltersAndSort();
+  }
+
+  applyFiltersAndSort() {
+    // filtrar e ordenar antes de paginar
+    const listToSort = this.filteredTravel.slice(); // cópia para não mutar
+    this.sortedFilteredTravel = listToSort.sort((a, b) => {
+      const da = Date.parse(String(a?.startDate)) || 0;
+      const db = Date.parse(String(b?.startDate)) || 0;
+      return db - da; // descrescente (mais recente primeiro)
+    });
+
+    this.updatePagedTravels();
+  }
+
+  updatePagedTravels() {
+    const start = (this.page - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    this.pagedTravels = this.sortedFilteredTravel.slice(start, end);
+  }
+
+  trackByTravel(index: number, travel: Travel) {
+    return travel.id;
+  }
+
   get filteredTravel() {
-    const term = this.searchTerm.toLowerCase();
-    return this.travels.filter(u =>
-      u.origin.city.toLowerCase().includes(term) ||
-      u.destination.city.toLowerCase().includes(term) ||
-      u.vehiclePlate.toLowerCase().includes(term) ||
-      u.load.product.toLowerCase().includes(term) ||
-      u.load.weight.toLowerCase().includes(term) ||
-      u.price.toLowerCase().includes(term)
-    );
+    const term = (this.searchTerm || '').toLowerCase().trim();
+    if (!term) {
+      return this.travels;
+    }
+
+    return this.travels.filter(u => {
+      const originCity = (u?.origin?.city || '').toString().toLowerCase();
+      const destCity = (u?.destination?.city || '').toString().toLowerCase();
+      const plate = (u?.vehiclePlate || '').toString().toLowerCase();
+      const product = (u?.load?.product || '').toString().toLowerCase();
+      const weight = String(u?.load?.weight ?? '').toLowerCase();
+      const price = String(u?.price ?? '').toLowerCase();
+
+      return originCity.includes(term) ||
+             destCity.includes(term) ||
+             plate.includes(term) ||
+             product.includes(term) ||
+             weight.includes(term) ||
+             price.includes(term);
+    });
+  }
+
+  onPageChanged(newPage: number) {
+    this.page = newPage;
+    this.updatePagedTravels();
+    // opcional: rolar p/ topo da tabela
+    // window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   cloneTravel(travelData: Travel) {
-    const newTravel: Travel = travelData;
+    const newTravel: Travel = { ...travelData } as Travel;
+    // remover id se necessário para evitar conflito
+    if ((newTravel as any).id) {
+      delete (newTravel as any).id;
+    }
+
     this.travelService.addTravel(newTravel).subscribe(
       (response) => {
         this.loadTravels();
       },
       (error) => {
-        this.eventService.showError('Erro inesperado.')
+        this.eventService.showError('Erro inesperado.');
       }
     );
   }
 
   updateTravel(travel: Travel) {
-
   }
+
   deleteTravel(id: string) {
-    this.travelService.deleteTravel(id);
+    this.travelService.deleteTravel(id).subscribe(
+      () => {
+        this.loadTravels();
+      },
+      (error) => {
+        this.eventService.showError('Erro ao deletar viagem.');
+      }
+    );
   }
 }
