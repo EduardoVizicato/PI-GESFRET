@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, input, OnInit, ViewChild, signal, WritableSignal } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CityService } from './service/city/city.service';
@@ -12,6 +12,8 @@ import { ViewTravelComponent } from "../view-travel/view-travel.component";
 import { UpdateModalComponent } from "./utils/update-modal/update-modal.component";
 import { EventService } from '../../shared/service/event.service';
 import { WeightFormatPipe } from "../../utils/Formats/WeightFormat/weight-format.pipe";
+// 1. Importação do NgxSkeletonLoaderModule
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader'; 
 import Modal from 'bootstrap/js/dist/modal';
 declare var bootstrap: any;
 
@@ -29,7 +31,8 @@ declare var bootstrap: any;
     AddModalComponent,
     ViewTravelComponent,
     // UpdateModalComponent,
-    WeightFormatPipe
+    WeightFormatPipe,
+    NgxSkeletonLoaderModule 
   ],
   providers: [
     CityService,
@@ -50,6 +53,7 @@ export class TravelsComponent implements OnInit {
   freightvalue: number = 0;
   showAddTravelModal = false;
   selectedTravelId: string = '';
+  travelsLoaded: WritableSignal<boolean> = signal<boolean>(false); 
 
   constructor(
     private http: HttpClient,
@@ -94,26 +98,27 @@ export class TravelsComponent implements OnInit {
       (response) => {
         this.travels = response || [];
         this.applyFiltersAndSort();
+        this.travelsLoaded.set(true); 
       },
       (error) => {
         this.eventService.showError('Erro inesperado.');
+        this.travelsLoaded.set(true); 
       }
     );
   }
 
   onSearchChange(term: string) {
     this.searchTerm = term;
-    this.page = 1; // resetar para a primeira página ao filtrar
+    this.page = 1;
     this.applyFiltersAndSort();
   }
 
   applyFiltersAndSort() {
-    // filtrar e ordenar antes de paginar
-    const listToSort = this.filteredTravel.slice(); // cópia para não mutar
+    const listToSort = this.filteredTravel.slice();
     this.sortedFilteredTravel = listToSort.sort((a, b) => {
       const da = Date.parse(String(a?.startDate)) || 0;
       const db = Date.parse(String(b?.startDate)) || 0;
-      return db - da; // descrescente (mais recente primeiro)
+      return db - da;
     });
 
     this.updatePagedTravels();
