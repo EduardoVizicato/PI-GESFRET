@@ -32,6 +32,7 @@ declare var bootstrap: any;
     ViewTravelComponent,
     // UpdateModalComponent,
     WeightFormatPipe,
+    UpdateModalComponent,
     NgxSkeletonLoaderModule 
   ],
   providers: [
@@ -52,6 +53,7 @@ export class TravelsComponent implements OnInit {
   pagedTravels: Travel[] = [];
   freightvalue: number = 0;
   showAddTravelModal = false;
+  showUpdateTravelModal = false;
   selectedTravelId: string = '';
   travelsLoaded: WritableSignal<boolean> = signal<boolean>(false); 
 
@@ -77,6 +79,12 @@ export class TravelsComponent implements OnInit {
     this.showAddTravelModal = true;
     this.cdr.detectChanges();
     this.openModal('addTravelModal');
+  }
+  openUpdateTravelModal(travelId: string) {
+    this.showUpdateTravelModal = true;
+    this.selectedTravelId = travelId;
+    this.cdr.detectChanges();
+    this.openModal('updateTravelModal');
   }
 
   openModal(name: string) {
