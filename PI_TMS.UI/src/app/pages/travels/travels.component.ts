@@ -29,8 +29,9 @@ declare var bootstrap: any;
     AddModalComponent,
     ViewTravelComponent,
     // UpdateModalComponent,
-    WeightFormatPipe
-  ],
+    WeightFormatPipe,
+    UpdateModalComponent
+],
   providers: [
     CityService,
     TravelService,
@@ -49,6 +50,7 @@ export class TravelsComponent implements OnInit {
   pagedTravels: Travel[] = [];
   freightvalue: number = 0;
   showAddTravelModal = false;
+  showUpdateTravelModal = false;
   selectedTravelId: string = '';
 
   constructor(
@@ -73,6 +75,12 @@ export class TravelsComponent implements OnInit {
     this.showAddTravelModal = true;
     this.cdr.detectChanges();
     this.openModal('addTravelModal');
+  }
+  openUpdateTravelModal(travelId: string) {
+    this.showUpdateTravelModal = true;
+    this.selectedTravelId = travelId;
+    this.cdr.detectChanges();
+    this.openModal('updateTravelModal');
   }
 
   openModal(name: string) {

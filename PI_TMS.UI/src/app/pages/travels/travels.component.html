@@ -59,7 +59,7 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item" (click)="openModal('updateTravelModal')">
+              <a class="dropdown-item" (click)="openUpdateTravelModal(travel.id)">
                 <div class="row">
                   <div class="col-md-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -125,4 +125,4 @@
 
 <app-add-modal *ngIf="showAddTravelModal" (close)="closeModal()"></app-add-modal>
 <app-view-travel *ngIf="selectedTravelId" [travelId]="selectedTravelId"></app-view-travel>
-<!-- <app-update-modal></app-update-modal> -->
+<app-update-modal *ngIf="showUpdateTravelModal" [travelId]="selectedTravelId" (close)="closeModal()"></app-update-modal>
