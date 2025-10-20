@@ -19,6 +19,9 @@ export class TravelService {
   getAllTravel(): Observable<Travel[]> {
     return this.HttpClient.get<Travel[]>(`${this.apiUrl}travel/getAllTravels`);
   }
+  getTravelById(id: string): Observable<Travel> {
+    return this.HttpClient.get<Travel>(`${this.apiUrl}travel/getTravelById?id=${id}`);
+  }
   addTravel(travel: Travel): Observable<Travel> {
     return this.HttpClient.post<Travel>(`${this.apiUrl}travel/addTravel`, travel);
   }

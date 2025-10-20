@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ZipCodeData, ZipCodeService } from '../../service/zip-code/zip-code.service';
 import { TravelService } from '../../service/travel.service';
@@ -28,11 +28,15 @@ import { PlateFormatPipe } from '../../../../utils/Formats/PlateFormat/plate-for
   styleUrl: './update-modal.component.css'
 })
 export class UpdateModalComponent implements OnInit {
+  @Input() travelId!: string;
+  @Output() close = new EventEmitter<void>();
   travelForm: FormGroup;
   currentStep: number = 1;
   travelData!: Travel;
   trucks: Truck[] = [];
-
+  selectedTruck: any = null;
+  filteredTrucks: Truck[] = [];
+  filteredTrailers: Truck[] = [];
   weightvalue: number = 0;
 
   weightOptions = {
@@ -56,6 +60,23 @@ export class UpdateModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectTruck();
+    this.loadTravel();
+  }
+  loadTravel() {
+    if (!this.travelId) {
+      throw new Error('Travel ID is not set.');
+    }
+
+    this.travelService.getTravelById(this.travelId).subscribe(
+      (response) => {
+        this.travelData = response;
+        this.travelForm = this.createForm();
+        console.log('Loaded travel data:', this.travelData);
+      },
+      (error) => {
+        console.error('Error loading travel:', error);
+      }
+    );
   }
 
   onSubmit() {
@@ -63,39 +84,41 @@ export class UpdateModalComponent implements OnInit {
   }
   createForm(): FormGroup {
     return this.fb.group({
-      date: [this.travelData?.startDate || ''],
-      route: this.fb.group({
-        origin: this.fb.group({
-          zipCode: [this.travelData?.origin?.zipCode || ''],
-          street: [this.travelData?.origin?.street || ''],
-          number: [this.travelData?.origin?.number || ''],
-          neighborhood: [this.travelData?.origin?.neighborhood || ''],
-          complement: [this.travelData?.origin?.complement || ''],
-          city: [this.travelData?.origin?.city || ''],
-          state: [this.travelData?.origin?.state || ''],
-          contry: [this.travelData?.origin?.country || ''],
-          hemisphere: [this.travelData?.origin?.hemisphere || ''],
-          xCoord: [this.travelData?.origin?.xCoord || ''],
-          yCoord: [this.travelData?.origin?.yCoord || '']
-        }),
-        destination: this.fb.group({
-          zipCode: [this.travelData?.destination?.zipCode || ''],
-          street: [this.travelData?.destination?.street || ''],
-          number: [this.travelData?.destination?.number || ''],
-          neighborhood: [this.travelData?.destination?.neighborhood || ''],
-          complement: [this.travelData?.destination?.complement || ''],
-          city: [this.travelData?.destination?.city || ''],
-          state: [this.travelData?.destination?.state || ''],
-          contry: [this.travelData?.destination?.country || ''],
-          hemisphere: [this.travelData?.destination?.hemisphere || ''],
-          xCoord: [this.travelData?.destination?.xCoord || ''],
-          yCoord: [this.travelData?.destination?.yCoord || '']
-        }),
+      startDate: [this.travelData?.startDate || ''],
+      endDate: [this.travelData?.endDate || ''],
+      origin: this.fb.group({
+        zipCode: [this.travelData?.origin?.zipCode || ''],
+        street: [this.travelData?.origin?.street || ''],
+        number: [this.travelData?.origin?.number || ''],
+        neighborhood: [this.travelData?.origin?.neighborhood || ''],
+        complement: [this.travelData?.origin?.complement || ''],
+        city: [this.travelData?.origin?.city || ''],
+        state: [this.travelData?.origin?.state || ''],
+        contry: [this.travelData?.origin?.country || ''],
+        hemisphere: [this.travelData?.origin?.hemisphere || ''],
+        xCoord: [this.travelData?.origin?.xCoord || ''],
+        yCoord: [this.travelData?.origin?.yCoord || '']
+      }),
+      destination: this.fb.group({
+        zipCode: [this.travelData?.destination?.zipCode || ''],
+        street: [this.travelData?.destination?.street || ''],
+        number: [this.travelData?.destination?.number || ''],
+        neighborhood: [this.travelData?.destination?.neighborhood || ''],
+        complement: [this.travelData?.destination?.complement || ''],
+        city: [this.travelData?.destination?.city || ''],
+        state: [this.travelData?.destination?.state || ''],
+        contry: [this.travelData?.destination?.country || ''],
+        hemisphere: [this.travelData?.destination?.hemisphere || ''],
+        xCoord: [this.travelData?.destination?.xCoord || ''],
+        yCoord: [this.travelData?.destination?.yCoord || '']
+      }),
+      load: this.fb.group({
+        product: [this.travelData?.load?.product || ''],
+        weight: [this.travelData?.load?.weight || ''],
+        loadType: [this.travelData?.load?.loadType || '']
       }),
       vehiclePlate: [this.travelData?.vehiclePlate || ''],
-      product: [this.travelData?.load.product || ''],
-      weight: [this.travelData?.load.weight || ''],
-      freightValue: [this.travelData?.price || '']
+      price: [this.travelData?.price || '']
     });
   }
 
@@ -104,8 +127,28 @@ export class UpdateModalComponent implements OnInit {
     this.travelService.getAllTrucks().subscribe(
       (response) => {
         this.trucks = response;
+        this.filterTrucksByType('Tração');
+        this.filterTrailersByType('Reboque (Carreta)');
       }
     )
+  }
+
+  filterTrucksByType(type: string) {
+    this.filteredTrucks = this.trucks.filter(
+      (truck) => truck.truckType === type
+    )
+  }
+  filterTrailersByType(type: string) {
+    this.filteredTrailers = this.trucks.filter(
+      (truck) => truck.truckType === type
+    )
+  }
+
+  onTruckChange() {
+    const selectedPlate = this.travelForm.get('vehiclePlate')?.value;
+    this.selectedTruck = this.trucks.find(
+      (truck: any) => truck.vehicleRegistrationPlate.registrationPlate === selectedPlate
+    );
   }
 
   setCursorEnd(event: FocusEvent): void {
