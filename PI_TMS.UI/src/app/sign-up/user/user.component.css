@@ -1,3 +1,28 @@
+:root {
+  --bg-color: #1c1c1c;
+  --text-color: #1c1c1c;
+  --text-secondary: #6b7280;
+  --primary: #1d4ed8;
+  --input-bg: #f9fafb;
+  --input-border: #d1d5db;
+  --button-bg: #74c009;
+  --button-text: #ffffff;
+  --button-hover-bg: #353535;
+  --input-icon: #000000;
+}
+body.dark-mode {
+  --bg-color: #ffffff;
+  --text-color: #ffffff;
+  --text-secondary: #d1d5db;
+  --primary: #3b82f6;
+  --input-bg: #374151;
+  --input-border: #d1d5db;
+  --button-bg: #2ef107 !important;
+  --button-text: #1c1c1c;
+  --button-hover-bg: #209408;
+  --input-icon: #ffffff;
+}
+
 .main-container {
   display: flex;
   flex-direction: row;
@@ -6,7 +31,8 @@
 }
 
 .form-container {
-  background-color: #ffffff;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   width: 40%;
   height: 100%;
   padding: 30px;
@@ -28,7 +54,7 @@
 .form-title {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #1c1c1c;
+  color: var(--text-color);
   text-align: center;
   margin-bottom: 3px;
   width: 100%;
@@ -36,7 +62,7 @@
 
 .form-subtitle {
   font-size: 0.95rem;
-  color: #6B7280;
+  color: var(--text-secondary);
   text-align: center;
   margin-bottom: 20px;
   width: 100%;
@@ -57,7 +83,7 @@
   display: block;
   margin-bottom: 6px;
   font-weight: 600;
-  color: #374151;
+  color: var(--text-color);
 }
 
 .icon{
@@ -73,8 +99,8 @@
 }
 
 .input-icon {
-  background: #FFFFFF;
-  color: #6B7280;
+  background: var(--bg-color);
+  color: var(--text-secondary);
   min-width: 45px;
   display: flex;
   justify-content: center;
@@ -89,14 +115,15 @@
     width: 100%;
     padding: 7px;
     border-radius: 0px 8px 8px 0px;
-    background-color: #F9FAFB;
+    background-color: var(--input-bg);
+    color: var(--text-color);
     border: 1px solid #D1D5DB;
     transition: border-color 0.2s, background-color 0.2s;
 }
 
 .input-field:focus {
-    border-color: var(--primary);
-    background-color: white;
+  border-color: var(--primary);
+  background-color: var(--bg-color);
     outline: none;
 }
 
@@ -106,8 +133,8 @@
 
 .submit-button {
     width: 100%;
-    background-color: #1c1c1c;
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     border-radius: 8px;
     padding: 10px;
     margin-top: 20px;
@@ -119,7 +146,7 @@
 }
 
 .submit-button:hover {
-    background-color: #353535;
+    background-color: var(--button-hover-bg);
 }
 
 .form-footer {
@@ -129,7 +156,7 @@
 }
 
 .form-footer-text {
-  color: #111;
+  color: var(--text-color);
 }
 
 .form-footer-text a {

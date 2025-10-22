@@ -3,15 +3,16 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { UserService } from './service/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { user } from './model/user.model';
 import { emailExistsValidator } from '../../utils/email-exists.validator';
 import { cpfValidator } from '../../utils/cpf.validator';
 import { UserVerifyService } from '../../utils/service/user-verify.service';
+import { ThemeService } from '../../contrast/theme.service';
 
 @Component({
   selector: 'app-user',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective, RouterModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
@@ -19,9 +20,16 @@ export class UserComponent {
 
   userForm: FormGroup;
   user: user[] = [];
-  constructor(private userService: UserService, private fb: FormBuilder, private router: Router, private userVerifyService: UserVerifyService) {
+  constructor(
+    private userService: UserService, 
+    private fb: FormBuilder, 
+    private router: Router, 
+    private userVerifyService: UserVerifyService,
+    public themeService: ThemeService
+  ) {
     this.userForm = this.createForm();
   }
+
 
   createForm(): FormGroup {
     return this.fb.group({

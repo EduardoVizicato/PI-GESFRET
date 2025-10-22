@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgxMaskDirective } from 'ngx-mask';
 import { enterprise } from './model/enterprise.model';
+import { ThemeService } from '../../contrast/theme.service';
 
 @Component({
   selector: 'app-enterprise',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective, RouterModule],
   templateUrl: './enterprise.component.html',
   styleUrl: './enterprise.component.css'
 })
@@ -15,7 +16,11 @@ export class EnterpriseComponent {
 
   enterpriseForm: FormGroup;
   enterprises: enterprise[] = [];
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(
+    private router: Router, 
+    private fb: FormBuilder,
+    public themeService: ThemeService
+  ) {
     this.enterpriseForm = this.createForm();
   }
 
@@ -29,7 +34,7 @@ export class EnterpriseComponent {
     });
   }
 
-  onSubmit(mainContainer: HTMLElement): void {
+  onSubmit(): void {
     if (this.enterpriseForm.invalid) {
       console.log('Formulário inválido');
       this.enterpriseForm.markAllAsTouched();
@@ -38,6 +43,7 @@ export class EnterpriseComponent {
     // mainContainer.classList.add('active');
     // setTimeout(() => {
     this.router.navigate(['/signUp-user']);
+    console.log('router funcionando');
     // }, 1500);
   }
 
