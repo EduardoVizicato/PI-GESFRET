@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, output } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'; // Importei Validators
 import { ZipCodeData, ZipCodeService } from '../../service/zip-code/zip-code.service';
 import { TravelService } from '../../service/travel.service';
 import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs';
@@ -18,6 +18,7 @@ import { PlateFormatPipe } from '../../../../utils/Formats/PlateFormat/plate-for
 declare var bootstrap: any;
 @Component({
   selector: 'app-add-modal',
+  standalone: true,
   imports: [
     PlateFormatPipe,
     CommonModule,
@@ -71,32 +72,36 @@ export class AddModalComponent implements OnInit {
       this.travelForm.markAllAsTouched();
       return;
     }
-    if (this.travelForm.valid) {
-      const travelData = this.travelForm.value;
-      this.addTravel(travelData);
-      this.travelForm.reset();
-      this.currentStep = 1;
-      const modalElement = document.getElementById('addTravelModal');
-      if (modalElement) {
-        const modal = new Modal(modalElement);
-        modal.hide();
-      }
-    }
+    
+    this.addTravel(this.travelForm.value);
   }
-  addTravel($travelData: Travel) {
-    this.travelService.addTravel($travelData).subscribe(
-      (response) => {
+
+  addTravel(travelData: Travel) {
+    this.travelService.addTravel(travelData).subscribe({
+      next: (response) => {
         this.travelComponent.loadTravels();
+
+        this.travelForm.reset();
+        this.currentStep = 1;
+
+        const modalElement = document.getElementById('addTravelModal');
+        if (modalElement) {
+          const modal = Modal.getInstance(modalElement);
+          if (modal) {
+            modal.hide();
+          }
+        }
       },
-      (error) => {
-        this.eventService.showError('Erro inesperado.')
+      error: (error) => {
+        this.eventService.showError('Erro inesperado ao salvar a viagem.');
       }
-    );
+    });
   }
+
   createForm(): FormGroup {
     return this.fb.group({
-      startDate: [''],
-      endDate: [''],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
       origin: this.fb.group({
         zipCode: [''],
         street: [''],
@@ -124,12 +129,12 @@ export class AddModalComponent implements OnInit {
         yCoord: ['']
       }),
       load: this.fb.group({
-        product: [''],
-        weight: [''],
-        loadType: ['']
+        product: ['', Validators.required],
+        weight: ['', Validators.required],
+        loadType: ['', Validators.required]
       }),
-      vehiclePlate: [''],
-      price: ['']
+      vehiclePlate: ['', Validators.required],
+      price: ['', Validators.required]
     });
   }
 
