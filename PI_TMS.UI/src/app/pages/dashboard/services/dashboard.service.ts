@@ -13,8 +13,8 @@ export class DashboardService {
 
   constructor(private HttpClient: HttpClient) { }
 
-  getAllTravel(): Observable<Travel[]> {
-    return this.HttpClient.get<Travel[]>(`${this.apiUrl}travel/getAllTravels`);
+  getAllTravel(isCancelled?: boolean): Observable<Travel[]> {
+    return this.HttpClient.get<Travel[]>(`${this.apiUrl}travel/getAllTravels?isCancelled=${isCancelled}`);
   }
 
 }

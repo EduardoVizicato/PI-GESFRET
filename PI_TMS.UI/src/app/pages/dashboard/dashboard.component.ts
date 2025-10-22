@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
   currentDashboard: any;
 
   getTravelValues() {
-    this.dashboardService.getAllTravel().subscribe(
+    this.dashboardService.getAllTravel(false).subscribe(
       (response) => {
         this.travels = response || [];
         this.setValues()

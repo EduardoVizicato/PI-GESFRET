@@ -102,7 +102,7 @@ export class TravelsComponent implements OnInit {
   }
 
   loadTravels(): void {
-    this.travelService.getAllTravel().subscribe(
+    this.travelService.getAllTravel(false).subscribe(
       (response) => {
         this.travels = response || [];
         this.applyFiltersAndSort();
