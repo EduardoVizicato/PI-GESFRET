@@ -61,12 +61,12 @@ export class DashboardComponent implements OnInit {
 
     for (const travel of this.travels) {
       const fv = Number(travel.price) || 0;
-      console.log(fv)
+      // console.log(fv)
       
       const start = travel.startDate ? new Date(travel.startDate) : null;
-      console.log(start)
+      // console.log(start)
       const end = travel.endDate ? new Date(travel.endDate) : null;
-      console.log(end)
+      // console.log(end)
 
       const validStart = start instanceof Date && !isNaN(start.getTime());
       const validEnd = end instanceof Date && !isNaN(end.getTime());
@@ -91,10 +91,10 @@ export class DashboardComponent implements OnInit {
     this.anualGain = anualGain;
     this.averageGain = anualCount > 0 ? anualGain / anualCount : 0;
     this.totalTravels = this.travels.length;
-    console.log(monthGain)
-    console.log(anualGain)
-    console.log(this.averageGain)
-    console.log(this.totalTravels)
+    // console.log(monthGain)
+    // console.log(anualGain)
+    // console.log(this.averageGain)
+    // console.log(this.totalTravels)
 
     this.dashboardSets = [
       {
@@ -103,7 +103,7 @@ export class DashboardComponent implements OnInit {
           { label: 'Ganhos desse Mês', value: this.monthGain },
           { label: 'Ganho desse Ano', value: this.anualGain },
           { label: 'Media de Ganhos desse ano', value: this.averageGain },
-          { label: 'Viagens', value: this.totalTravels }
+          { label: 'Total de Viagens Cadastradas', value: this.totalTravels }
         ],
         chartOptions1: {
           title: { text: 'Ganhos ao Longo do Ano' },
