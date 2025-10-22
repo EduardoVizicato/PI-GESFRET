@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
@@ -10,9 +11,11 @@ import { Travel } from '../models/dashboard.model';
 export class DashboardService {
   private apiUrl = `${environment.api}/api/`;
 
+
   constructor(private HttpClient: HttpClient) { }
 
   getAllTravel(): Observable<Travel[]> {
     return this.HttpClient.get<Travel[]>(`${this.apiUrl}travel/getAllTravels`);
   }
+
 }
