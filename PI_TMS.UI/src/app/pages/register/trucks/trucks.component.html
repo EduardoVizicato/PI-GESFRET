@@ -6,9 +6,10 @@
   <button class="add-button" (click)="showAddModal()">Adicionar</button>
 </div>
 
-<div *ngIf="trucks.length > 0; else noTruckCard">
+@defer (when trucksLoaded()) {
 
-  <table class="table table-sm">
+  @if (filteredTrucks.length > 0) {
+    <table class="table table-sm">
     <thead class="table-custom">
       <tr>
         <th>Placa</th>
@@ -20,7 +21,7 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
-      @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track filteredTrucks) {
+      @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track truck.id) {
       <!-- <tr *ngFor="let truck of trucks"> -->
       <tr>
         <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
@@ -36,15 +37,46 @@
       }
     </tbody>
   </table>
-</div>
-<ng-template #noTruckCard>
+ 
+} @else {
   <div class="card mt-3">
     <div class="card-body text-center p-5">
       <h5 class="card-title">Você não tem nenhum caminhão</h5>
       <p class="card-text text-muted">Clique em "Adicionar" para começar a registrar.</p>
     </div>
   </div>
-</ng-template>
+}
+
+} @placeholder (minimum 300ms) {
+  <div class="skeleton-container">
+    <table class="table table-sm">
+      <thead class="table-custom">
+        <tr>
+          <th>Placa</th>
+          <th>Nome</th>
+          <th>Tipo de Caminhão</th>
+          <th>Tipo de Eixo</th>
+          <th>Tipo de Carroceria</th>
+          <th class="actions-header">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        @for (item of [].constructor(10); track $index) {
+          <tr>
+            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '80px', 'height': '15px' }"></ngx-skeleton-loader></td>
+            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '120px', 'height': '15px' }"></ngx-skeleton-loader></td>
+            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '150px', 'height': '15px' }"></ngx-skeleton-loader></td>
+            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '200px', 'height': '15px' }"></ngx-skeleton-loader></td>
+            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '150px', 'height': '15px' }"></ngx-skeleton-loader></td>
+            <td class="actions">
+              <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '120px', 'height': '30px' }"></ngx-skeleton-loader>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
 
 
 <footer class="footer text-center py-5 d-flex justify-content-end">

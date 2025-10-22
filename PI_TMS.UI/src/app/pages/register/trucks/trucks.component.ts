@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, WritableSignal } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -10,12 +10,13 @@ import { EventService } from '../../../shared/service/event.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { PlateFormatPipe } from '../../../utils/Formats/PlateFormat/plate-format.pipe';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-trucks',
-  imports: [HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe, NgbPaginationModule],
+  imports: [HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective, PlateFormatPipe, NgbPaginationModule, NgxSkeletonLoaderModule],
   providers: [provideNgxMask()],
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
@@ -28,6 +29,7 @@ export class TrucksComponent implements OnInit, OnDestroy {
   trucks: Truck[] = [];
   truckForm: FormGroup;
   editingTruckId: string | null = null;
+  trucksLoaded: WritableSignal<boolean> = signal<boolean>(false);
   private subscriptions: Subscription[] = [];
 
   private addTruckModal: any;
@@ -127,15 +129,17 @@ export class TrucksComponent implements OnInit, OnDestroy {
   }
 
   getAllTrucks() {
-    this.truckService.getAllTrucks().subscribe(
-      (response) => {
+    this.truckService.getAllTrucks().subscribe({
+      next: (response) => {
         console.log(response);
         this.trucks = response;
+        this.trucksLoaded.set(true);
       },
-      (error) => {
-        this.eventService.showError('Erro inesperado.')
+      error: (error) => {
+        this.eventService.showError('Erro inesperado.');
+        this.trucksLoaded.set(true);
       }
-    );
+    });
   }
 
   get filteredTrucks() {
