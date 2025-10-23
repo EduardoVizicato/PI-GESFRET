@@ -45,7 +45,7 @@
       <tbody class="table-group-divider">
         @for (travel of pagedTravels; track travel.id) {
           <tr>
-            <th scope="row" (click)="viewTravel(travel.id)">{{ (page - 1) * pageSize + $index + 1 }}</th>
+            <th scope="row" (click)="viewTravel(travel.id)">{{ (page - 1) * pageSize + (pagedTravels.length - $index )}}</th>
             <td (click)="viewTravel(travel.id)">{{ travel.startDate | date:'dd/MM/yyyy' }} ->
               {{ travel.endDate | date:'dd/MM/yyyy' }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.origin.city }}/{{ travel.origin.state }} ->
