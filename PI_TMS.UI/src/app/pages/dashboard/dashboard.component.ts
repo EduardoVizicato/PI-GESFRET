@@ -29,8 +29,6 @@ export class DashboardComponent implements OnInit {
   dashboardSets: { title: string; cards: { label: string; value: any; }[]; chartOptions1: { title: { text: string; }; tooltip: {}; xAxis: { type: string; data: string[]; }; yAxis: { type: string; }; series: { data: number[]; type: string; }[]; }; chartOptions2: { title: { text: string; }; tooltip: { trigger: string; }; legend: { bottom: string; left: string; }; series: { name: string; type: string; radius: string; data: { value: number; name: string; }[]; }[]; }; }[] | undefined;
 
   constructor(private dashboardService: DashboardService, private eventService: EventService) { }
-
-
   travels: Travel[] = [];
   monthGain: any;
   anualGain: any;
@@ -49,24 +47,25 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-
   setValues() {
     const now = new Date();
-    const currentMonth = now.getMonth(); // 0..11
+    const currentMonth = now.getMonth();
     const currentYear = now.getFullYear();
 
-    let monthGain = 0;
+    let monthGainTot = 0;
     let anualGain = 0;
     let anualCount = 0;
 
+    const monthGain: number[] = new Array(12).fill(0);
+    const quantMonth: number[] = new Array(12).fill(0);
+
+    const msPerDay = 24 * 60 * 60 * 1000;
+
     for (const travel of this.travels) {
       const fv = Number(travel.price) || 0;
-      // console.log(fv)
-      
+
       const start = travel.startDate ? new Date(travel.startDate) : null;
-      // console.log(start)
       const end = travel.endDate ? new Date(travel.endDate) : null;
-      // console.log(end)
 
       const validStart = start instanceof Date && !isNaN(start.getTime());
       const validEnd = end instanceof Date && !isNaN(end.getTime());
@@ -75,32 +74,73 @@ export class DashboardComponent implements OnInit {
         continue;
       }
 
-      // Ganho anual: ambos no ano atual
-      if (start.getFullYear() === currentYear && end.getFullYear() === currentYear) {
-        anualGain += fv;
-        anualCount++;
+      if (end.getTime() < start.getTime()) {
+        continue;
+      }
 
-        // Ganho mensal: além de estarem no mesmo ano, também no mesmo mês atual
-        if (start.getMonth() === currentMonth && end.getMonth() === currentMonth) {
-          monthGain += fv;
+      const yearStart = new Date(currentYear, 0, 1);
+      const yearEnd = new Date(currentYear, 11, 31, 23, 59, 59, 999);
+
+      const overlapStart = start.getTime() < yearStart.getTime() ? yearStart : start;
+      const overlapEnd = end.getTime() > yearEnd.getTime() ? yearEnd : end;
+
+      if (overlapStart.getTime() > overlapEnd.getTime()) {
+        // não há sobreposição com o ano atual -> pular (não conta para ganhos/quantidades do ano atual)
+        continue;
+      }
+
+
+      const totalTripDays = Math.floor((end.getTime() - start.getTime()) / msPerDay) + 1;
+
+      anualCount++;
+
+      const daysInYearOverlap = Math.floor((overlapEnd.getTime() - overlapStart.getTime()) / msPerDay) + 1;
+      const valueInYear = totalTripDays > 0 ? (fv * (daysInYearOverlap / totalTripDays)) : 0;
+      anualGain += valueInYear;
+
+
+      let iter = new Date(overlapStart.getFullYear(), overlapStart.getMonth(), 1);
+      const lastIter = new Date(overlapEnd.getFullYear(), overlapEnd.getMonth(), 1);
+
+      while (iter.getTime() <= lastIter.getTime()) {
+        const monthIndex = iter.getMonth();
+
+
+        const monthFirst = new Date(iter.getFullYear(), iter.getMonth(), 1);
+        const monthLast = new Date(iter.getFullYear(), iter.getMonth() + 1, 0, 23, 59, 59, 999);
+
+
+        const segStart = start.getTime() > monthFirst.getTime() ? start : monthFirst;
+        const segEnd = end.getTime() < monthLast.getTime() ? end : monthLast;
+
+        if (segStart.getTime() <= segEnd.getTime()) {
+          const daysCovered = Math.floor((segEnd.getTime() - segStart.getTime()) / msPerDay) + 1;
+
+          const valueForThisMonth = totalTripDays > 0 ? fv * (daysCovered / totalTripDays) : 0;
+          monthGain[monthIndex] += valueForThisMonth;
+
+          quantMonth[monthIndex] += 1;
         }
+
+        iter = new Date(iter.getFullYear(), iter.getMonth() + 1, 1);
       }
     }
 
+    monthGainTot = monthGain[currentMonth];
+
     this.monthGain = monthGain;
+    const monthGainTotal = monthGainTot;
     this.anualGain = anualGain;
     this.averageGain = anualCount > 0 ? anualGain / anualCount : 0;
     this.totalTravels = this.travels.length;
-    // console.log(monthGain)
-    // console.log(anualGain)
-    // console.log(this.averageGain)
-    // console.log(this.totalTravels)
+
+    const monthGainRounded = monthGain.map(v => Math.round((v + Number.EPSILON) * 100) / 100);
 
     this.dashboardSets = [
       {
         title: 'Visão Financeira',
         cards: [
-          { label: 'Ganhos desse Mês', value: this.monthGain },
+          { label: 'Ganhos desse Mês', value: monthGainTotal },
           { label: 'Ganho desse Ano', value: this.anualGain },
           { label: 'Media de Ganhos desse ano', value: this.averageGain },
           { label: 'Total de Viagens Cadastradas', value: this.totalTravels }
@@ -108,11 +148,11 @@ export class DashboardComponent implements OnInit {
         chartOptions1: {
           title: { text: 'Ganhos ao Longo do Ano' },
           tooltip: {},
-          xAxis: { type: 'category', data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'] },
+          xAxis: { type: 'category', data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'] },
           yAxis: { type: 'value' },
           series: [
             {
-              data: [30000, 4000, 15000, 0, 7000, 8000],
+              data: monthGainRounded,
               type: 'bar'
             }
           ]
@@ -127,58 +167,64 @@ export class DashboardComponent implements OnInit {
               type: 'pie',
               radius: '55%',
               data: [
-                { value: 130, name: 'Jan' },
-                { value: 2, name: 'Fev' },
-                { value: 50, name: 'Mar' },
-                { value: 0, name: 'Abr' },
-                { value: 20, name: 'Mai' },
-                { value: 30, name: 'Jun' }
+                { value: quantMonth[0], name: 'Jan' },
+                { value: quantMonth[1], name: 'Fev' },
+                { value: quantMonth[2], name: 'Mar' },
+                { value: quantMonth[3], name: 'Abr' },
+                { value: quantMonth[4], name: 'Mai' },
+                { value: quantMonth[5], name: 'Jun' },
+                { value: quantMonth[6], name: 'Jul' },
+                { value: quantMonth[7], name: 'Ago' },
+                { value: quantMonth[8], name: 'Set' },
+                { value: quantMonth[9], name: 'Out' },
+                { value: quantMonth[10], name: 'Nov' },
+                { value: quantMonth[11], name: 'Dez' }
               ]
             }
           ]
         }
       },
-      {
-        title: 'Visão Operacional',
-        cards: [
-          { label: 'Quantidade de Veículos', value: 14 },
-          { label: 'Viagens no Ano', value: 230 },
-          { label: 'Viagens no Mês', value: 20 },
-          { label: 'Motoristas Ativos', value: 8 }
-        ],
-        chartOptions1: {
-          title: { text: 'Distâncias Percorridas ao Longo do Ano' },
-          tooltip: {},
-          xAxis: { type: 'category', data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'] },
-          yAxis: { type: 'value' },
-          series: [
-            {
-              data: [400, 600, 1000, 40, 2000, 500],
-              type: 'bar'
-            }
-          ]
-        },
-        chartOptions2: {
-          title: { text: 'Quantidade de Viagem Por Categoria de Caminhão' },
-          tooltip: { trigger: 'item' },
-          legend: { bottom: '0%', left: 'center' },
-          series: [
-            {
-              name: 'Quantidade de Viagem Por Categoria de Caminhão',
-              type: 'pie',
-              radius: '55%',
-              data: [
-                { value: 130, name: 'Caminhão truck (3-4 eixos)' },
-                { value: 2, name: 'Caminhão toco (2 eixos)' },
-                { value: 50, name: 'Cavalo (2-3 eixos)' },
-                { value: 0, name: 'VAN' },
-                { value: 20, name: 'Fechada/Baú' },
-                { value: 30, name: 'Granelera' }
-              ]
-            }
-          ]
-        }
-      }
+      // {
+      //   title: 'Visão Operacional',
+      //   cards: [
+      //     { label: 'Quantidade de Veículos', value: 14 },
+      //     { label: 'Viagens no Ano', value: 230 },
+      //     { label: 'Viagens no Mês', value: 20 },
+      //     { label: 'Motoristas Ativos', value: 8 }
+      //   ],
+      //   chartOptions1: {
+      //     title: { text: 'Distâncias Percorridas ao Longo do Ano' },
+      //     tooltip: {},
+      //     xAxis: { type: 'category', data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'] },
+      //     yAxis: { type: 'value' },
+      //     series: [
+      //       {
+      //         data: [400, 600, 1000, 40, 2000, 500],
+      //         type: 'bar'
+      //       }
+      //     ]
+      //   },
+      //   chartOptions2: {
+      //     title: { text: 'Quantidade de Viagem Por Categoria de Caminhão' },
+      //     tooltip: { trigger: 'item' },
+      //     legend: { bottom: '0%', left: 'center' },
+      //     series: [
+      //       {
+      //         name: 'Quantidade de Viagem Por Categoria de Caminhão',
+      //         type: 'pie',
+      //         radius: '55%',
+      //         data: [
+      //           { value: 130, name: 'Caminhão truck (3-4 eixos)' },
+      //           { value: 2, name: 'Caminhão toco (2 eixos)' },
+      //           { value: 50, name: 'Cavalo (2-3 eixos)' },
+      //           { value: 0, name: 'VAN' },
+      //           { value: 20, name: 'Fechada/Baú' },
+      //           { value: 30, name: 'Granelera' }
+      //         ]
+      //       }
+      //     ]
+      //   }
+      // }
     ];
     const saved = localStorage.getItem('dashboardIndex');
     let index = saved ? parseInt(saved) : Math.floor(Math.random() * this.dashboardSets.length);
