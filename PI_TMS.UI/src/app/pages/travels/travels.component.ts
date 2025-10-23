@@ -56,6 +56,7 @@ export class TravelsComponent implements OnInit {
   showUpdateTravelModal = false;
   selectedTravelId: string = '';
   travelsLoaded: WritableSignal<boolean> = signal<boolean>(false); 
+  activeFilter: boolean | undefined = undefined;
 
   constructor(
     private http: HttpClient,
@@ -101,8 +102,13 @@ export class TravelsComponent implements OnInit {
     this.showAddTravelModal = false;
   }
 
+  onFilterChange(filterValue: boolean | undefined): void {
+    this.activeFilter = filterValue;
+    this.loadTravels();
+  }
+
   loadTravels(): void {
-    this.travelService.getAllTravel(false).subscribe(
+    this.travelService.getAllTravel(this.activeFilter).subscribe(
       (response) => {
         this.travels = response || [];
         this.applyFiltersAndSort();

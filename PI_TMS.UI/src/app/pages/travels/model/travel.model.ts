@@ -37,7 +37,7 @@ export interface Travel {
     createdAt: string;
     updatedAt: string;
     price: string;
-    isActive: boolean;
+    isCanceled: boolean;
 }
 export interface Truck {
     id: string;

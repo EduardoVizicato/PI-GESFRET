@@ -1,5 +1,27 @@
 <div class="table-controls">
-  <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
+  <div class="search-and-filter">
+    <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
+    <div class="dropdown">
+    <button class="btn btn-sm dropdown-toggle border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+        <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+      </svg>
+      <span class="ms-1 fw-bold">
+        @if (activeFilter === undefined) { <span>Todas</span> }
+        @else if (activeFilter === false) { <span>Ativas</span> }
+        @else { <span>Canceladas</span> }
+      </span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item disabled">Selecione um filtro</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" style="cursor: pointer;" (click)="onFilterChange(undefined)"><span class="badge text-bg-secondary">Todas</span></a></li>
+      <li><a class="dropdown-item" style="cursor: pointer;" (click)="onFilterChange(false)"><span class="badge text-bg-success">Ativas</span></a></li>
+      <li><a class="dropdown-item" style="cursor: pointer;" (click)="onFilterChange(true)"><span class="badge text-bg-danger">Canceladas</span></a></li>
+    </ul>
+  </div>
+  </div>
+
   <button class="add-button" (click)="openAddTravelModal()">Nova Viagem</button>
 </div>
 
@@ -13,9 +35,10 @@
           <th scope="col">Data</th>
           <th scope="col">Origem -> Destino</th>
           <th scope="col">Placa / Veículo</th>
-          <th scope="col">Produto Predominante</th>
+          <th scope="col">Produto</th>
           <th scope="col">Peso da Carga</th>
           <th scope="col">Valor do Frete</th>
+          <th scope="col">Status</th>
           <th scope="col" class="text-center">Ações</th>
         </tr>
       </thead>
@@ -31,6 +54,12 @@
             <td (click)="viewTravel(travel.id)">{{ travel.load.product }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.load.weight | weightFormat }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.price | currency:'BRL':'symbol':'1.2-2':'pt-BR'  }}</td>
+
+            @if(travel.isCanceled === false){
+              <td><span class="badge text-bg-success">Ativa</span></td>
+            } @else {
+               <td><span class="badge text-bg-danger">Cancelada</span></td>
+            }
 
             <td class="text-center">
               <div class="dropstart">

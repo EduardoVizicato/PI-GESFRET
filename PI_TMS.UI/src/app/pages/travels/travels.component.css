@@ -12,6 +12,11 @@
   align-items: center;
 }
 
+.search-and-filter{
+  display: flex;
+  gap: 0.25rem;
+}
+
 .search-input {
   padding: 7px;
   border: 1px solid var(--border-color);

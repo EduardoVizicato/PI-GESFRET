@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable, tap } from 'rxjs';
 import { Travel,Truck } from '../model/travel.model';
@@ -17,9 +17,15 @@ export class TravelService {
     return this.HttpClient.get<Truck[]>(`${this.apiUrl}vehicle/getAllActivedVehicles`);
   }
   getAllTravel(isCancelled?: boolean): Observable<Travel[]> {
-    return this.HttpClient.get<Travel[]>(`${this.apiUrl}travel/getAllTravels?isCancelled=${isCancelled}`).pipe(
-      tap(res => console.log(res))
-    );
+    let params = new HttpParams();
+
+    if (isCancelled !== undefined) {
+      params = params.set('isCancelled', isCancelled);
+    }
+
+    const url = `${this.apiUrl}travel/getAllTravels`;
+
+    return this.HttpClient.get<Travel[]>(url, { params });
   }
   getTravelById(id: string): Observable<Travel> {
     return this.HttpClient.get<Travel>(`${this.apiUrl}travel/getTravelById?id=${id}`);
