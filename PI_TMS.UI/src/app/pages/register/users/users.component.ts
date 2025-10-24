@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild, WritableSignal } from '@angular/core';
 import { user } from './models/user.model';
 import { UsersService } from './services/users.service';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -9,10 +9,11 @@ import { ModalComponent } from "./utils/modalAdd/modal.component";
 import Modal from 'bootstrap/js/dist/modal';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { UpdateModalComponent } from './utils/update-modal/update-modal.component';
+import { NgxSkeletonLoaderComponent } from "ngx-skeleton-loader";
 
 @Component({
   selector: 'app-users',
-  imports: [CommonModule, FormsModule, TaxFormatPipe, ReactiveFormsModule, PhoneFormatPipe, ModalComponent, DatePipe, NgbPaginationModule, UpdateModalComponent],
+  imports: [CommonModule, FormsModule, TaxFormatPipe, ReactiveFormsModule, PhoneFormatPipe, ModalComponent, DatePipe, NgbPaginationModule, UpdateModalComponent, NgxSkeletonLoaderComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 
@@ -26,6 +27,7 @@ export class UsersComponent {
   users: user[] = [];
   selectedUser: user | null = null;
   viewUser: user | null = null;
+  usersLoaded: WritableSignal<boolean> = signal<boolean>(false);
 
   constructor(private usersService: UsersService, private fb: FormBuilder) {
   }
@@ -66,9 +68,11 @@ export class UsersComponent {
       next: (response: user[]) => {
         this.users = response;
         console.log('Usuários obtidos com sucesso:', this.users);
+        this.usersLoaded.set(true);
       },
       error: (error: any) => {
         console.error('Erro ao obter usuários:', error);
+        this.usersLoaded.set(true);
       }
     });
   }
