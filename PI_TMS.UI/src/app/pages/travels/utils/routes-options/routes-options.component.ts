@@ -70,10 +70,12 @@ export class RoutesOptionsComponent {
     const cityName = `${city.nome}/${city.estado}`;
 
     if (type === 'origin') {
-      this.parentForm.get('origin.city')?.setValue(cityName);
+      this.parentForm.get('origin.city')?.setValue(city.nome);
+      this.parentForm.get('origin.state')?.setValue(city.estado);
       this.showSuggestionsOrigin = false;
     } else {
-      this.parentForm.get('destination.city')?.setValue(cityName);
+      this.parentForm.get('destination.city')?.setValue(city.nome);
+      this.parentForm.get('destination.state')?.setValue(city.estado);
       this.showSuggestionsDestination = false;
     }
   }
@@ -123,6 +125,26 @@ export class RoutesOptionsComponent {
   }
   updateTypeAddress(type: string): void {
     this.selectedAddressType = type;
+
+    const stateControlDest = this.parentForm.get('destination.state') ?? this.parentForm.get('destination')?.get('state');
+    const stateControlOrig = this.parentForm.get('origin.state') ?? this.parentForm.get('origin')?.get('state');
+
+    if (!stateControlDest || !stateControlOrig) {
+      console.warn('Controle destination.state ou origin.state não encontrado');
+      return;
+    }
+
+    if (type === 'simple') {
+      stateControlDest.disable({ onlySelf: true }); 
+      stateControlOrig.disable({ onlySelf: true });
+      // console.log("Endereço Simples selecionado");
+
+    } else if (type === 'complete') {
+      stateControlDest.enable({ onlySelf: true });
+      stateControlOrig.enable({ onlySelf: true });
+      // console.log("Endereço completo selecionado");
+    }
+
     this.parentForm.get('route')?.reset();
   }
 }
