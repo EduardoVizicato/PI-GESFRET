@@ -3,7 +3,7 @@
 
 <div class="table-controls">
   <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
-  <button class="add-button" (click)="showAddModal()">Adicionar</button>
+  <button class="add-button" (click)="openAddTruckModal()">Adicionar</button>
 </div>
 
 @defer (when trucksLoaded()) {
@@ -30,7 +30,7 @@
         <td>{{ truck.wheelType }}</td>
         <td>{{ truck.bodyType }}</td>
         <td class="actions">
-          <button class="edit-button" (click)="openEditModal(truck)">Editar</button>
+          <button class="edit-button" (click)="openUpdateTruckModal(truck.id)">Editar</button>
           <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
         </td>
       </tr>
@@ -98,5 +98,5 @@
 
 
 <!-- Modal -->
-<app-add-truck-modal></app-add-truck-modal>
-<app-update-truck-modal></app-update-truck-modal>
+<app-add-truck-modal *ngIf="showAddTruckModal" (close)="showAddTruckModal = false"></app-add-truck-modal>
+<app-update-truck-modal *ngIf="showUpdateTruckModal" [truckId]="selectedTruckId" (close)="showUpdateTruckModal = false"></app-update-truck-modal>

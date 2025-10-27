@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, signal, WritableSignal } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, WritableSignal, ChangeDetectorRef } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -13,12 +13,12 @@ import { PlateFormatPipe } from '../../../utils/Formats/PlateFormat/plate-format
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AddTruckModalComponent } from "./utils/add-truck-modal/add-truck-modal.component";
 import { UpdateTruckModalComponent } from "./utils/update-truck-modal/update-truck-modal.component";
-
+import Modal from 'bootstrap/js/dist/modal';
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-trucks',
-  imports: [ CommonModule,FormsModule, PlateFormatPipe, NgbPaginationModule, NgxSkeletonLoaderModule, AddTruckModalComponent, UpdateTruckModalComponent],
+  imports: [CommonModule, FormsModule, PlateFormatPipe, NgbPaginationModule, NgxSkeletonLoaderModule, AddTruckModalComponent, UpdateTruckModalComponent],
   providers: [provideNgxMask()],
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
@@ -29,35 +29,28 @@ export class TrucksComponent implements OnInit, OnDestroy {
   page: number = 1;
   pageSize: number = 10;
   trucks: Truck[] = [];
-  
-  
+  showAddTruckModal = false;
+  showUpdateTruckModal = false;
+  selectedTruckId: string = '';
+
   trucksLoaded: WritableSignal<boolean> = signal<boolean>(false);
 
 
-  constructor(private truckService: TruckService, private router: Router, private route: ActivatedRoute, private eventService: EventService,) {
-    
+  constructor(private truckService: TruckService, private router: Router, private route: ActivatedRoute, private eventService: EventService, private cdr: ChangeDetectorRef) {
+
   }
 
   ngOnInit(): void {
     this.getAllTrucks();
   }
-  
-  
+
+
   ngAfterViewInit(): void {
-    // const addModalEl = document.getElementById('addTruckModal');
-    // if (addModalEl) {
-    //   this.addTruckModal = new bootstrap.Modal(addModalEl);
-    // }
-    // const editModalEl = document.getElementById('editTruckModal');
-    // if (editModalEl) {
-    //   this.editTruckModal = new bootstrap.Modal(editModalEl);
-    // }
+
   }
 
   ngOnDestroy(): void {
-    // this.addTruckModal?.dispose();
-    // this.editTruckModal?.dispose();
-    // this.subscriptions.forEach(sub => sub.unsubscribe());
+
   }
 
   getAllTrucks() {
@@ -82,23 +75,42 @@ export class TrucksComponent implements OnInit, OnDestroy {
     );
   }
 
-  
-
-  showAddModal(): void {
-    // this.truckForm.reset();
-    // this.truckForm.get('wheelType')?.disable();
-    // this.truckForm.get('bodyType')?.disable();
-    // this.addTruckModal?.show();
+  openAddTruckModal(): void {
+    this.showAddTruckModal = true;
+    this.cdr.detectChanges();
+    this.openModal('addTruckModal');
   }
 
+  openUpdateTruckModal(truckId: string) {
+    this.showUpdateTruckModal = true;
+    this.selectedTruckId = truckId;
+    this.cdr.detectChanges();
+    this.openModal('editTruckModal');
+  }
+  openModal(name: string) {
+    const modalElement = document.getElementById(name);
+    if (modalElement) {
+      const modal = new Modal(modalElement);
+      modal.show();
+    } else {
+      console.warn('Elemento do modal não encontrado.');
+    }
+  }
   
-  openEditModal(truck: Truck): void {
-    // this.editingTruckId = truck.id;
-    // this.truckForm.patchValue(truck);
-    // this.editTruckModal?.show();
+  closeModal(name: string) {
+    const modalElement = document.getElementById(name);
+    if (modalElement) {
+      const modal = Modal.getInstance(modalElement);
+      if (modal) {
+        modal.hide();
+      }
+      this.showUpdateTruckModal = false;
+      this.showAddTruckModal = false;
+    } else {
+      console.warn('Elemento do modal não encontrado.');
+    }
   }
 
-  
   truckDelete(id: string): void {
     this.truckService.deleteTruck(id).subscribe({
       next: (response) => {

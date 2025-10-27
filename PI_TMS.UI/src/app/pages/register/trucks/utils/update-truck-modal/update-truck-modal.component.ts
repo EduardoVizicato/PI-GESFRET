@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, Input, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { Truck } from '../../models/truck.model';
@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { TruckService } from '../../Services/truck.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../../../../shared/service/event.service';
+import { TrucksComponent } from '../../trucks.component';
 
 @Component({
   selector: 'app-update-truck-modal',
@@ -15,6 +16,7 @@ import { EventService } from '../../../../../shared/service/event.service';
   styleUrl: './update-truck-modal.component.css'
 })
 export class UpdateTruckModalComponent {
+  @Input() truckId!: string;
   trucks: Truck[] = [];
   truckForm: FormGroup;
   editingTruckId: string | null = null;
@@ -42,7 +44,7 @@ export class UpdateTruckModalComponent {
     'Sider'
   ];
 
-  constructor(private truckService: TruckService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private eventService: EventService,) {
+  constructor(private truckService: TruckService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private eventService: EventService, private trucksComponent: TrucksComponent) {
     this.truckForm = this.createForm();
   }
 
@@ -98,21 +100,6 @@ export class UpdateTruckModalComponent {
     control.updateValueAndValidity();
   }
 
-  // getAllTrucks() {
-  //   this.truckService.getAllTrucks().subscribe({
-  //     next: (response) => {
-  //       console.log(response);
-  //       this.trucks = response;
-  //       this.trucksLoaded.set(true);
-  //     },
-  //     error: (error) => {
-  //       this.eventService.showError('Erro inesperado.');
-  //       this.trucksLoaded.set(true);
-  //     }
-  //   });
-  // }
-
-  
 
   createForm(): FormGroup {
     return this.fb.group({
@@ -125,11 +112,6 @@ export class UpdateTruckModalComponent {
       bodyType: [{ value: null, disabled: true }]
     });
   }
-
-  
-
-  
-
   
 
   onUpdate(): void {
@@ -141,10 +123,10 @@ export class UpdateTruckModalComponent {
     const updatedTruckData = this.truckForm.getRawValue();
     this.truckService.updateTruck(this.editingTruckId, updatedTruckData).subscribe({
       next: () => {
-        // this.getAllTrucks();
-        // this.editTruckModal?.hide();
+        this.trucksComponent.getAllTrucks();
         this.truckForm.reset();
         this.editingTruckId = null;
+        this.trucksComponent.closeModal('editTruckModal');
       },
       error: (err) => this.eventService.showError('Erro inesperado.')
     });
