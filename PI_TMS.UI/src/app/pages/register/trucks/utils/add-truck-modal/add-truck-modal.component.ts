@@ -8,6 +8,8 @@ import { Subscription } from 'rxjs';
 import { TruckService } from '../../Services/truck.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../../../../shared/service/event.service';
+import Modal from 'bootstrap/js/dist/modal';
+import { TrucksComponent } from '../../trucks.component';
 
 @Component({
   selector: 'app-add-truck-modal',
@@ -42,7 +44,7 @@ export class AddTruckModalComponent {
     'Sider'
   ];
 
-  constructor(private truckService: TruckService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private eventService: EventService,) {
+  constructor(private truckService: TruckService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private eventService: EventService, private trucksComponent: TrucksComponent) {
     this.truckForm = this.createForm();
   }
 
@@ -117,9 +119,9 @@ export class AddTruckModalComponent {
     const truckData: Truck = this.truckForm.getRawValue();
     this.truckService.addTruck(truckData).subscribe({
       next: (response) => {
-        // this.getAllTrucks();
-        // this.addTruckModal?.hide();
+        this.trucksComponent.getAllTrucks();
         this.truckForm.reset();
+        this.trucksComponent.closeModal('addTruckModal');
       },
       error: (err) => this.eventService.showError('Erro inesperado.')
     });
