@@ -110,7 +110,10 @@ export class AddTruckModalComponent {
       bodyType: [{ value: null, disabled: true }]
     });
   }
-
+  close(){
+    this.truckForm.reset();
+    this.trucksComponent.closeModal('addTruckModal');
+  }
   addTruck() {
     if (this.truckForm.invalid) {
       this.truckForm.markAllAsTouched();
