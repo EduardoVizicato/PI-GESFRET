@@ -21,7 +21,9 @@ export class TruckService {
   addTruck(truck: Truck): Observable<Truck> {
     return this.HttpClient.post<Truck>(`${this.apiUrl}addVehicle`, truck);
   }
-
+  getTruckById(id: string): Observable<Truck> {
+    return this.HttpClient.get<Truck>(`${this.apiUrl}getVehicleById?id=${id}`);
+  }
   updateTruck(id: string, truck: Truck): Observable<Truck> {
     return this.HttpClient.put<Truck>(`${this.apiUrl}updateVehicle?ID=${id}`, truck);
   }

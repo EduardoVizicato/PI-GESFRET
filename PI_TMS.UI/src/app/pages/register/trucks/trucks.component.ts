@@ -23,7 +23,7 @@ declare var bootstrap: any;
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
 })
-export class TrucksComponent implements OnInit, OnDestroy {
+export class TrucksComponent {
 
   searchTerm: string = '';
   page: number = 1;
@@ -42,15 +42,6 @@ export class TrucksComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getAllTrucks();
-  }
-
-
-  ngAfterViewInit(): void {
-
-  }
-
-  ngOnDestroy(): void {
-
   }
 
   getAllTrucks() {

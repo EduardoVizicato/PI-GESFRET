@@ -8,8 +8,48 @@
 
 @defer (when trucksLoaded()) {
 
-  @if (filteredTrucks.length > 0) {
-    <table class="table table-sm">
+@if (filteredTrucks.length > 0) {
+<table class="table table-sm table-hover">
+  <thead class="table-custom">
+    <tr>
+      <th>Placa</th>
+      <th>Nome</th>
+      <th>Tipo de Caminhão</th>
+      <th>Tipo de Eixo</th>
+      <th>Tipo de Carroceria</th>
+      <th class="actions-header">Ações</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider ">
+    @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track truck.id) {
+    <!-- <tr *ngFor="let truck of trucks"> -->
+    <tr>
+      <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
+      <td>{{ truck.name }}</td>
+      <td>{{ truck.truckType }}</td>
+      <td>{{ truck.wheelType }}</td>
+      <td>{{ truck.bodyType }}</td>
+      <td class="actions">
+        <button class="edit-button" (click)="openUpdateTruckModal(truck.id)">Editar</button>
+        <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+} @else {
+<div class="card mt-3">
+  <div class="card-body text-center p-5">
+    <h5 class="card-title">Você não tem nenhum caminhão</h5>
+    <p class="card-text text-muted">Clique em "Adicionar" para começar a registrar.</p>
+  </div>
+</div>
+}
+
+} @placeholder (minimum 300ms) {
+<div class="skeleton-container">
+  <table class="table table-sm">
     <thead class="table-custom">
       <tr>
         <th>Placa</th>
@@ -21,61 +61,37 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
-      @for (truck of filteredTrucks | slice: (page-1) * pageSize : page * pageSize; track truck.id) {
-      <!-- <tr *ngFor="let truck of trucks"> -->
+      @for (item of [].constructor(10); track $index) {
       <tr>
-        <td>{{ truck.vehicleRegistrationPlate.registrationPlate | plateFormat }}</td>
-        <td>{{ truck.name }}</td>
-        <td>{{ truck.truckType }}</td>
-        <td>{{ truck.wheelType }}</td>
-        <td>{{ truck.bodyType }}</td>
+        <td>
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '80px', 'height': '15px' }">
+          </ngx-skeleton-loader>
+        </td>
+        <td>
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '120px', 'height': '15px' }">
+          </ngx-skeleton-loader>
+        </td>
+        <td>
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '150px', 'height': '15px' }">
+          </ngx-skeleton-loader>
+        </td>
+        <td>
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '200px', 'height': '15px' }">
+          </ngx-skeleton-loader>
+        </td>
+        <td>
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '150px', 'height': '15px' }">
+          </ngx-skeleton-loader>
+        </td>
         <td class="actions">
-          <button class="edit-button" (click)="openUpdateTruckModal(truck.id)">Editar</button>
-          <button class="delete-button" (click)="truckDelete(truck.id)">Excluir</button>
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '120px', 'height': '18px' }">
+          </ngx-skeleton-loader>
         </td>
       </tr>
       }
     </tbody>
   </table>
- 
-} @else {
-  <div class="card mt-3">
-    <div class="card-body text-center p-5">
-      <h5 class="card-title">Você não tem nenhum caminhão</h5>
-      <p class="card-text text-muted">Clique em "Adicionar" para começar a registrar.</p>
-    </div>
-  </div>
-}
-
-} @placeholder (minimum 300ms) {
-  <div class="skeleton-container">
-    <table class="table table-sm">
-      <thead class="table-custom">
-        <tr>
-          <th>Placa</th>
-          <th>Nome</th>
-          <th>Tipo de Caminhão</th>
-          <th>Tipo de Eixo</th>
-          <th>Tipo de Carroceria</th>
-          <th class="actions-header">Ações</th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-        @for (item of [].constructor(10); track $index) {
-          <tr>
-            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '80px', 'height': '15px' }"></ngx-skeleton-loader></td>
-            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '120px', 'height': '15px' }"></ngx-skeleton-loader></td>
-            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '150px', 'height': '15px' }"></ngx-skeleton-loader></td>
-            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '200px', 'height': '15px' }"></ngx-skeleton-loader></td>
-            <td><ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '150px', 'height': '15px' }"></ngx-skeleton-loader></td>
-            <td class="actions">
-              <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '120px', 'height': '18px' }"></ngx-skeleton-loader>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+</div>
 }
 
 
@@ -98,5 +114,5 @@
 
 
 <!-- Modal -->
-<app-add-truck-modal *ngIf="showAddTruckModal" (close)="showAddTruckModal = false"></app-add-truck-modal>
-<app-update-truck-modal *ngIf="showUpdateTruckModal" [truckId]="selectedTruckId" (close)="showUpdateTruckModal = false"></app-update-truck-modal>
+<app-add-truck-modal *ngIf="showAddTruckModal"></app-add-truck-modal>
+<app-update-truck-modal *ngIf="showUpdateTruckModal" [truckId]="selectedTruckId"></app-update-truck-modal>

@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Caminhão</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="truckForm" (ngSubmit)="addTruck()" class="needs-validation" novalidate>
@@ -78,7 +78,7 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="close()">Cancelar</button>
             <button type="submit" class="btn btn-dark" [disabled]="truckForm.invalid">
               Adicionar
             </button>
