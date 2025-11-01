@@ -42,7 +42,7 @@ export class EnterpriseFormComponent {
   getEnterprise() {
     const enterpriseId = this.authTokenService.getEnterpriseId();
     if (enterpriseId) {
-      this.settingsService.getUserbyId(enterpriseId).subscribe(
+      this.settingsService.getEnterprisebyId(enterpriseId).subscribe(
         (enterprise: any) => {
           this.enterpriseForm.patchValue({
             enterpriseName: enterprise.name,
@@ -71,20 +71,20 @@ export class EnterpriseFormComponent {
   }
   updateEnterprise() {
     if (this.enterpriseForm.valid) {
-    //   const updatedEnterprise = this.enterpriseForm.value;
-    //   this.settingsService.putEnterprise(this.enterpriseForm.get('id')?.value, updatedEnterprise).subscribe({
-    //     next: (response) => {
-    //       console.log('Enterprise put successfully:', response);
-    //       this.getEnterprise();
-    //     },
-    //     error: (error) => {
-    //       console.error('Error updating enterprise:', error);
-    //     }
-    //   });
-    //   this.isEditing = false;
-    //   this.enterpriseForm.disable();
-    // } else {
-    //   console.error('Enterprise is null. Cannot update enterprise.');
+      const updatedEnterprise = this.enterpriseForm.value;
+      this.settingsService.putEnterprise(this.enterpriseForm.get('id')?.value, updatedEnterprise).subscribe({
+        next: (response) => {
+          console.log('Enterprise put successfully:', response);
+          this.getEnterprise();
+        },
+        error: (error) => {
+          console.error('Error updating enterprise:', error);
+        }
+      });
+      this.isEditing = false;
+      this.enterpriseForm.disable();
+    } else {
+      console.error('Enterprise is null. Cannot update enterprise.');
     }
   }
 }
