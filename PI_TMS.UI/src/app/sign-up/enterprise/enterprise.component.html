@@ -51,7 +51,7 @@
               <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
             </svg>
           </i>
-          <input type="text" name="taxId" id="taxId" formControlName="taxId" placeholder="CNPJ" class="input-field" mask="00.000.000/0000-00"
+          <input type="text" name="taxId" id="taxId" formControlName="taxId" placeholder="CNPJ" class="input-field" 
             [class.is-invalid]="enterpriseForm.get('taxId.taxId')?.invalid && (enterpriseForm.get('taxId.taxId')?.dirty || enterpriseForm.get('taxId.taxId')?.touched)"
             [class.is-valid]="enterpriseForm.get('taxId.taxId')?.valid && (enterpriseForm.get('taxId.taxId')?.dirty || enterpriseForm.get('taxId.taxId')?.touched)">
         </div>
