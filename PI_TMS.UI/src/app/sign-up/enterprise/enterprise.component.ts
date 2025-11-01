@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { NgxMaskDirective } from 'ngx-mask';
 import { enterprise } from './model/enterprise.model';
 import { ThemeService } from '../../contrast/theme.service';
+import { EnterpriseService } from './service/enterprise.service';
 
 @Component({
   selector: 'app-enterprise',
@@ -17,6 +18,7 @@ export class EnterpriseComponent {
   enterpriseForm: FormGroup;
   enterprises: enterprise[] = [];
   constructor(
+    private enterpriseService: EnterpriseService,
     private router: Router, 
     private fb: FormBuilder,
     public themeService: ThemeService
@@ -28,7 +30,7 @@ export class EnterpriseComponent {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       taxId: this.fb.group({
-        taxId: ['', [Validators.required, Validators.pattern(/^\d{14}$/)]]
+        taxId: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]]
       }),
       email: ['', [Validators.required, Validators.email]]
     });
@@ -40,11 +42,16 @@ export class EnterpriseComponent {
       this.enterpriseForm.markAllAsTouched();
       return;
     }
-    // mainContainer.classList.add('active');
-    // setTimeout(() => {
-    this.router.navigate(['/signUp-user']);
-    console.log('router funcionando');
-    // }, 1500);
+    const enterpriseData: enterprise = this.enterpriseForm.value;
+    this.enterpriseService.registerEnterprise(enterpriseData).subscribe({
+      next: (response) => {
+        console.log('Enterprise registered successfully:', response);
+        this.router.navigate(['/signUp-user']);
+      },
+      error: (error) => {
+        console.error('Error registering enterprise:', error);
+      }
+    });
   }
 
 
