@@ -89,4 +89,4 @@ Felipe Barbisan
 - change travel entity (add origin and destination with addressVO) (API)
 - delete some inutils variables in travel (API)
 - change addressVO for nullable (API)
-- fix bugs to work  (API)
+- fix bugs to work  (API).
