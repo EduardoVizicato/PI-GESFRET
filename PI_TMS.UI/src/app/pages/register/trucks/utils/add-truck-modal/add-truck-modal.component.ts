@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, signal, WritableSignal, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { Truck } from '../../models/truck.model';
@@ -8,8 +8,6 @@ import { Subscription } from 'rxjs';
 import { TruckService } from '../../Services/truck.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../../../../shared/service/event.service';
-import Modal from 'bootstrap/js/dist/modal';
-import { TrucksComponent } from '../../trucks.component';
 
 @Component({
   selector: 'app-add-truck-modal',
@@ -17,7 +15,10 @@ import { TrucksComponent } from '../../trucks.component';
   templateUrl: './add-truck-modal.component.html',
   styleUrl: './add-truck-modal.component.css'
 })
-export class AddTruckModalComponent {
+export class AddTruckModalComponent implements AfterViewInit {
+
+  @Output() loaded = new EventEmitter<void>();
+  @Output() closeModal = new EventEmitter<void>();
 
   trucks: Truck[] = [];
   truckForm: FormGroup;
@@ -44,12 +45,16 @@ export class AddTruckModalComponent {
     'Sider'
   ];
 
-  constructor(private truckService: TruckService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private eventService: EventService, private trucksComponent: TrucksComponent) {
+  constructor(private truckService: TruckService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private eventService: EventService) {
     this.truckForm = this.createForm();
   }
 
   ngOnInit(): void {
     this.setupConditionalLogic();
+  }
+
+  ngAfterViewInit(): void {
+    this.loaded.emit();
   }
 
   private setupConditionalLogic(): void {
@@ -110,10 +115,12 @@ export class AddTruckModalComponent {
       bodyType: [{ value: null, disabled: true }]
     });
   }
-  close(){
+  
+  close(): void {
     this.truckForm.reset();
-    this.trucksComponent.closeModal('addTruckModal');
+    this.closeModal.emit();
   }
+
   addTruck() {
     if (this.truckForm.invalid) {
       this.truckForm.markAllAsTouched();
@@ -122,13 +129,10 @@ export class AddTruckModalComponent {
     const truckData: Truck = this.truckForm.getRawValue();
     this.truckService.addTruck(truckData).subscribe({
       next: (response) => {
-        this.trucksComponent.getAllTrucks();
-        this.truckForm.reset();
-        this.trucksComponent.closeModal('addTruckModal');
+        // O ideal é emitir um evento para o pai recarregar a lista
+        this.close();
       },
       error: (err) => this.eventService.showError('Erro inesperado.')
     });
   }
-
-
 }

@@ -29,11 +29,11 @@ export class TrucksComponent {
   page: number = 1;
   pageSize: number = 10;
   trucks: Truck[] = [];
-  showAddTruckModal = false;
-  showUpdateTruckModal = false;
   selectedTruckId: string = '';
 
   trucksLoaded: WritableSignal<boolean> = signal<boolean>(false);
+  showAddTruckModal: WritableSignal<boolean> = signal<boolean>(false);
+  showUpdateTruckModal: WritableSignal<boolean> = signal<boolean>(false);
 
 
   constructor(private truckService: TruckService, private router: Router, private route: ActivatedRoute, private eventService: EventService, private cdr: ChangeDetectorRef) {
@@ -67,17 +67,22 @@ export class TrucksComponent {
   }
 
   openAddTruckModal(): void {
-    this.showAddTruckModal = true;
-    this.cdr.detectChanges();
-    this.openModal('addTruckModal');
+    this.showAddTruckModal.set(true);
   }
 
   openUpdateTruckModal(truckId: string) {
-    this.showUpdateTruckModal = true;
     this.selectedTruckId = truckId;
-    this.cdr.detectChanges();
+    this.showUpdateTruckModal.set(true);
+  }
+
+  onAddModalLoaded() {
+    this.openModal('addTruckModal');
+  }
+
+  onUpdateModalLoaded() {
     this.openModal('editTruckModal');
   }
+
   openModal(name: string) {
     const modalElement = document.getElementById(name);
     if (modalElement) {
@@ -95,8 +100,11 @@ export class TrucksComponent {
       if (modal) {
         modal.hide();
       }
-      this.showUpdateTruckModal = false;
-      this.showAddTruckModal = false;
+      if (name === 'addTruckModal') {
+        this.showAddTruckModal.set(false);
+      } else if (name === 'editTruckModal') {
+        this.showUpdateTruckModal.set(false);
+      }
     } else {
       console.warn('Elemento do modal não encontrado.');
     }
