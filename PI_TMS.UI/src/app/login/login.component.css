@@ -157,7 +157,7 @@ body.dark-mode {
 }
 
 .submit-button:hover {
-   background-color: var(--button-hover-bg);
+   background-color: #5c9708f3;
    /* background-color: #5c9708f3; */
 }
 
