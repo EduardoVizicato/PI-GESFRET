@@ -50,6 +50,7 @@ export class DashboardComponent implements OnInit {
   }
   setValues() {
     const dashboardQuant = ['DashboardFinance', 'DashboardOperationational'];
+    // const dashboardQuant = ['DashboardFinance'];
     const saved = localStorage.getItem('dashboardIndex');
     let index = saved ? parseInt(saved) : Math.floor(Math.random() * dashboardQuant.length);
 
