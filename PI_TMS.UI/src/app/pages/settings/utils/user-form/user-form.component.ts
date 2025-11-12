@@ -74,6 +74,10 @@ export class UserFormComponent {
     this.userForm.disable();
     this.getUser();
   }
+
+  changePassword(): void{
+    
+  }
   updateUser() {
     if (this.userForm.valid) {
       const updatedUser = this.userForm.value;

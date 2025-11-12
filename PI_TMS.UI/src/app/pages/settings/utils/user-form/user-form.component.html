@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <label for="surname" class="form-label">Sobre Nome</label>
+        <label for="surname" class="form-label">Sobrenome</label>
         <input type="text" class="form-control" id="surname" formControlName="lastName"
           [class.is-invalid]="userForm.get('lastName')?.invalid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)"
           [class.is-valid]="userForm.get('lastName')?.valid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)">
@@ -123,12 +123,17 @@
           Editar Dados
         </button>
 
-        <button *ngIf="isEditing" type="button" class="btn btn-success me-2" (click)="updateUser()">
+         <button *ngIf="isEditing" type="button" class="btn btn-primary me-2" (click)="changePassword()">
+          Alterar senha
+        </button>
+
+        <button *ngIf="isEditing" type="button" class="btn btn-secondary me-2" (click)="cancelEdit()">
+          Cancelar
+        </button>
+
+        <button *ngIf="isEditing" type="button" class="btn btn-success" (click)="updateUser()">
           Salvar
         </button>
 
-        <button *ngIf="isEditing" type="button" class="btn btn-secondary" (click)="cancelEdit()">
-          Cancelar
-        </button>
       </div>
     </form>
