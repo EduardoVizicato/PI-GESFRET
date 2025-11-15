@@ -8,4 +8,5 @@ export interface Truck {
     truckType: string;
     wheelType?: string;
     bodyType?: string;
+    enterpriseId: string;
 }
