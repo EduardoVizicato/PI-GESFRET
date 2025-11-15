@@ -7,4 +7,5 @@ export interface user {
     taxId: {
         taxId: string;
     }
+    enterpriseId: string;
 }

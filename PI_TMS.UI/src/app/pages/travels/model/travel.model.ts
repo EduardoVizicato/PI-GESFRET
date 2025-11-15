@@ -38,6 +38,8 @@ export interface Travel {
     updatedAt: string;
     price: string;
     isCanceled: boolean;
+    enterpriseId: string;
+    truckId: string;
 }
 export interface Truck {
     id: string;

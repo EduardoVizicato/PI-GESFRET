@@ -38,6 +38,7 @@ export interface Travel {
     updatedAt: string;
     price: string;
     isActive: boolean;
+    truckId: string;
 }
 export interface Truck {
     id: string;
