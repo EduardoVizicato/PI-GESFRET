@@ -16,6 +16,7 @@ import { UsersComponent } from './pages/register/users/users.component';
 import { NoPageComponent } from './no-page/no-page.component';
 import { CteStorageComponent } from './pages/cte-storage/cte-storage.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { VerifyMailComponent } from './sign-up/verify-mail/verify-mail.component';
 
 export enum Roles {
     ADM = 'ADM',
@@ -42,6 +43,11 @@ export const routes: Routes = [
         path: 'signUp-enterprise',
         component: EnterpriseComponent,
         title: 'Criar Empresa',
+    },
+    {
+        path: 'verify',
+        component: VerifyMailComponent,
+        title: 'Verifique seu email',
     },
     {
         path: '',

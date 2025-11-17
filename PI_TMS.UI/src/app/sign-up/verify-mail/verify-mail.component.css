@@ -1,0 +1,41 @@
+.verification-code-input {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.verification-code-input::-webkit-outer-spin-button,
+.verification-code-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.verification-code-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.btn-primary{
+    background-color: var(--primary);
+    border: none;
+}
+
+.navlogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+    text-decoration: none;
+    display: inline;
+}
+
+.logo-2{
+    color: var(--primary);
+    text-decoration: none;
+}
