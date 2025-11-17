@@ -26,11 +26,11 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="veiculo" class="form-label">Veículo Utilizado</label>
-                <select class="form-select" id="veiculo" required formControlName="vehiclePlate"
+                <select class="form-select" id="veiculo" required formControlName="truckId"
                   (change)="onTruckChange()">
                   <option selected disabled value="">- Selecione um veículo -</option>
                   @for (truck of filteredTrucks; track truck.id) {
-                  <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
+                  <option value="{{truck.id}}">
                     {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}</option>
                   }
                 </select>
@@ -40,7 +40,7 @@
                 <select class="form-select" id="">
                   <option selected disabled value="">- Selecione um Reboque -</option>
                   @for (truck of filteredTrailers; track truck.id) {
-                  <option value="{{truck.vehicleRegistrationPlate.registrationPlate}}">
+                  <option value="{{truck.id}}">
                     {{truck.vehicleRegistrationPlate.registrationPlate | plateFormat}} | {{truck.name}}
                   </option>
                   }

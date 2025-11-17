@@ -28,7 +28,6 @@ export interface Travel {
         xCoord: string;
         yCoord: string;
     }
-    vehiclePlate: string;
     load: {
         product: string;
         weight: string;
@@ -46,7 +45,6 @@ export interface Truck {
     vehicleRegistrationPlate: {
         registrationPlate: string;
     };
-    userId: string;
     truckType: string;
     wheelType?: string;
     bodyType?: string;

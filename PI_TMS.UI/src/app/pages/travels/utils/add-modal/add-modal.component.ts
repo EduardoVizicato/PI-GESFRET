@@ -133,8 +133,9 @@ export class AddModalComponent implements OnInit {
         weight: ['', Validators.required],
         loadType: ['', Validators.required]
       }),
-      vehiclePlate: ['', Validators.required],
-      price: ['', Validators.required]
+      truckId: ['', Validators.required],
+      price: ['', Validators.required],
+      enterpriseId: ['21c65e9b-f103-473c-82cc-5bf3298e5133'] // ID fixo temporariamente
     });
   }
 

@@ -50,7 +50,7 @@
               {{ travel.endDate | date:'dd/MM/yyyy' }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.origin.city }}/{{ travel.origin.state }} ->
               {{ travel.destination.city }}/{{ travel.destination.state }}</td>
-            <td (click)="viewTravel(travel.id)">{{ travel.vehiclePlate }}</td>
+            <td (click)="viewTravel(travel.id)">{{ travel.truckId }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.load.product }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.load.weight | weightFormat }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.price | currency:'BRL':'symbol':'1.2-2':'pt-BR'  }}</td>

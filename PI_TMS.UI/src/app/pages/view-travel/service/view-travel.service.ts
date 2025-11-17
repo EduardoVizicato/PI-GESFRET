@@ -16,4 +16,7 @@ export class ViewTravelService {
   getTravelById(id: string): Observable<any> {
     return this.HttpClient.get<any>(`${this.apiUrl}/getTravelById?id=${id}`);
   }
+  getTruckById(id: string): Observable<Truck> {
+    return this.HttpClient.get<Truck>(`${environment.api}/api/vehicle/getVehicleById?id=${id}`);
+  }
 }
