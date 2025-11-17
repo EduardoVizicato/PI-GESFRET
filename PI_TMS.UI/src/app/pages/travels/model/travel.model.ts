@@ -28,7 +28,6 @@ export interface Travel {
         xCoord: string;
         yCoord: string;
     }
-    vehiclePlate: string;
     load: {
         product: string;
         weight: string;

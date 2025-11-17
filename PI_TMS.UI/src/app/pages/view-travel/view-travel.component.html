@@ -139,20 +139,20 @@
               <hr class="my-2">
               <div class="row g-3 px-5 py-4">
                 <div class="col-md-6">
-                  <p>Veiculo Utilizado</p>
-                  <h4>Scania 120</h4>
-                </div>
-                <div class="col-md-6">
-                  <p>Placa do Veiculo</p>
-                  <h4>{{viewTravel.vehiclePlate}}</h4>
-                </div>
-                <div class="col-md-6">
-                  <p>Tipo do Veiculo</p>
-                  <h4>Fechada/Baú</h4>
-                </div>
+                    <p>Veiculo Utilizado</p>
+                    <h4>{{truck?.name}}</h4>
+                  </div>
+                  <div class="col-md-6">
+                    <p>Placa do Veiculo</p>
+                    <h4>{{ (truck?.vehicleRegistrationPlate?.registrationPlate || '') | plateFormat }}</h4>
+                  </div>
+                  <div class="col-md-6">
+                    <p>Tipo do Veiculo</p>
+                    <h4>{{truck?.truckType}}</h4>
+                  </div>
                 <div class="col-md-6">
                   <p>Reboque Utilizado</p>
-                  <h4>Graneleiro</h4>
+                  <h4>{{truck?.bodyType}}</h4>
                 </div>
               </div>
               <hr class="my-2">

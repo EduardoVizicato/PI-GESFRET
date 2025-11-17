@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable, tap } from 'rxjs';
-import { Travel,Truck } from '../model/travel.model';
+import { Travel, Truck } from '../model/travel.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +39,8 @@ export class TravelService {
   deleteTravel(id: string): Observable<Travel> {
     return this.HttpClient.delete<Travel>(`${this.apiUrl}travel/cancelTravel?id=${id}`)
   }
-
-
+  getTruckById(id: string): Observable<Truck> {
+    return this.HttpClient.get<Truck>(`${environment.api}/api/vehicle/getVehicleById?id=${id}`);
+  }
 
 }

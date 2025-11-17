@@ -3,7 +3,7 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CityService } from './service/city/city.service';
 import { TravelService } from './service/travel.service';
-import { Travel } from './model/travel.model';
+import { Travel, Truck } from './model/travel.model';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ZipCodeService, ZipCodeData } from './service/zip-code/zip-code.service';
@@ -13,7 +13,7 @@ import { UpdateModalComponent } from "./utils/update-modal/update-modal.componen
 import { EventService } from '../../shared/service/event.service';
 import { WeightFormatPipe } from "../../utils/Formats/WeightFormat/weight-format.pipe";
 // 1. Importação do NgxSkeletonLoaderModule
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader'; 
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import Modal from 'bootstrap/js/dist/modal';
 declare var bootstrap: any;
 
@@ -33,7 +33,7 @@ declare var bootstrap: any;
     // UpdateModalComponent,
     WeightFormatPipe,
     UpdateModalComponent,
-    NgxSkeletonLoaderModule 
+    NgxSkeletonLoaderModule
   ],
   providers: [
     CityService,
@@ -46,6 +46,7 @@ declare var bootstrap: any;
 export class TravelsComponent implements OnInit {
 
   travels: Travel[] = [];
+  trucks: Truck[] = [];
   searchTerm: string = '';
   page: number = 1;
   pageSize: number = 10;
@@ -55,7 +56,7 @@ export class TravelsComponent implements OnInit {
   showAddTravelModal = false;
   showUpdateTravelModal = false;
   selectedTravelId: string = '';
-  travelsLoaded: WritableSignal<boolean> = signal<boolean>(false); 
+  travelsLoaded: WritableSignal<boolean> = signal<boolean>(false);
   activeFilter: boolean | undefined = undefined;
 
   constructor(
@@ -112,14 +113,16 @@ export class TravelsComponent implements OnInit {
       (response) => {
         this.travels = response || [];
         this.applyFiltersAndSort();
-        this.travelsLoaded.set(true); 
-      },
-      (error) => {
-        this.eventService.showError('Erro inesperado.');
-        this.travelsLoaded.set(true); 
-      }
+        this.travelsLoaded.set(true);
+
+        },
+        (error) => {
+          this.eventService.showError('Erro inesperado.');
+          this.travelsLoaded.set(true);
+        }
     );
   }
+  
 
   onSearchChange(term: string) {
     this.searchTerm = term;
@@ -157,17 +160,15 @@ export class TravelsComponent implements OnInit {
     return this.travels.filter(u => {
       const originCity = (u?.origin?.city || '').toString().toLowerCase();
       const destCity = (u?.destination?.city || '').toString().toLowerCase();
-      const plate = (u?.vehiclePlate || '').toString().toLowerCase();
       const product = (u?.load?.product || '').toString().toLowerCase();
       const weight = String(u?.load?.weight ?? '').toLowerCase();
       const price = String(u?.price ?? '').toLowerCase();
 
       return originCity.includes(term) ||
-             destCity.includes(term) ||
-             plate.includes(term) ||
-             product.includes(term) ||
-             weight.includes(term) ||
-             price.includes(term);
+        destCity.includes(term) ||
+        product.includes(term) ||
+        weight.includes(term) ||
+        price.includes(term);
     });
   }
 

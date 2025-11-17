@@ -117,7 +117,7 @@ export class UpdateModalComponent implements OnInit {
         weight: [this.travelData?.load?.weight || ''],
         loadType: [this.travelData?.load?.loadType || '']
       }),
-      vehiclePlate: [this.travelData?.vehiclePlate || ''],
+      truckId: [this.travelData?.truckId || ''],
       price: [this.travelData?.price || '']
     });
   }
