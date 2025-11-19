@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, signal, WritableSignal, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, signal, WritableSignal, Output, EventEmitter, AfterViewInit, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { Truck } from '../../models/truck.model';
@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { TruckService } from '../../Services/truck.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../../../../shared/service/event.service';
+import { TokenService } from '../../../../../token/token.service';
 
 @Component({
   selector: 'app-add-truck-modal',
@@ -15,10 +16,11 @@ import { EventService } from '../../../../../shared/service/event.service';
   templateUrl: './add-truck-modal.component.html',
   styleUrl: './add-truck-modal.component.css'
 })
-export class AddTruckModalComponent implements AfterViewInit {
+export class AddTruckModalComponent implements OnInit, AfterViewInit {
 
   @Output() loaded = new EventEmitter<void>();
   @Output() closeModal = new EventEmitter<void>();
+  @Output() truckAdded = new EventEmitter<void>();
 
   trucks: Truck[] = [];
   truckForm: FormGroup;
@@ -45,7 +47,14 @@ export class AddTruckModalComponent implements AfterViewInit {
     'Sider'
   ];
 
-  constructor(private truckService: TruckService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private eventService: EventService) {
+  constructor(
+    private truckService: TruckService,
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private eventService: EventService,
+    private tokenService: TokenService
+  ) {
     this.truckForm = this.createForm();
   }
 
@@ -115,7 +124,7 @@ export class AddTruckModalComponent implements AfterViewInit {
       bodyType: [{ value: null, disabled: true }]
     });
   }
-  
+
   close(): void {
     this.truckForm.reset();
     this.closeModal.emit();
@@ -126,13 +135,25 @@ export class AddTruckModalComponent implements AfterViewInit {
       this.truckForm.markAllAsTouched();
       return;
     }
-    const truckData: Truck = this.truckForm.getRawValue();
+
+    const enterpriseId = this.tokenService.getEnterpriseId();
+    if (!enterpriseId) {
+      this.eventService.showError('Erro: ID da empresa não encontrado. Faça login novamente.');
+      return;
+    }
+
+    const truckData: Truck = {
+      ...this.truckForm.getRawValue(),
+      enterpriseId: enterpriseId
+    };
+
     this.truckService.addTruck(truckData).subscribe({
       next: (response) => {
-        // O ideal é emitir um evento para o pai recarregar a lista
+        
+        this.truckAdded.emit();
         this.close();
       },
-      error: (err) => this.eventService.showError('Erro inesperado.')
+      error: (err) => this.eventService.showError('Erro inesperado ao adicionar caminhão.')
     });
   }
 }

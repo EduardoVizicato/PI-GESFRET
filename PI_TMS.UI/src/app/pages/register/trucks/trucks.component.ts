@@ -1,29 +1,26 @@
-import { Component, OnInit, OnDestroy, signal, WritableSignal, ChangeDetectorRef } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { Component, OnInit, signal, WritableSignal, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TruckService } from './Services/truck.service';
 import { Truck } from './models/truck.model';
-import { ActivatedRoute, Router, RouterModule, } from '@angular/router';
-import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../../shared/service/event.service';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { Subscription } from 'rxjs';
-import { PlateFormatPipe } from '../../../utils/Formats/PlateFormat/plate-format.pipe';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AddTruckModalComponent } from "./utils/add-truck-modal/add-truck-modal.component";
 import { UpdateTruckModalComponent } from "./utils/update-truck-modal/update-truck-modal.component";
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { PlateFormatPipe } from '../../../utils/Formats/PlateFormat/plate-format.pipe';
+import { FormsModule } from '@angular/forms';
+import { TokenService } from '../../../token/token.service';
 import Modal from 'bootstrap/js/dist/modal';
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-trucks',
   imports: [CommonModule, FormsModule, PlateFormatPipe, NgbPaginationModule, NgxSkeletonLoaderModule, AddTruckModalComponent, UpdateTruckModalComponent],
-  providers: [provideNgxMask()],
   templateUrl: './trucks.component.html',
   styleUrl: './trucks.component.css'
 })
-export class TrucksComponent {
+export class TrucksComponent implements OnInit {
 
   searchTerm: string = '';
   page: number = 1;
@@ -36,23 +33,36 @@ export class TrucksComponent {
   showUpdateTruckModal: WritableSignal<boolean> = signal<boolean>(false);
 
 
-  constructor(private truckService: TruckService, private router: Router, private route: ActivatedRoute, private eventService: EventService, private cdr: ChangeDetectorRef) {
-
-  }
+  constructor(
+    private truckService: TruckService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private eventService: EventService,
+    private cdr: ChangeDetectorRef,
+    private tokenService: TokenService
+  ) { }
 
   ngOnInit(): void {
     this.getAllTrucks();
   }
 
   getAllTrucks() {
-    this.truckService.getAllTrucks().subscribe({
+    this.trucksLoaded.set(false);
+    const enterpriseId = this.tokenService.getEnterpriseId();
+
+    if (!enterpriseId) {
+      this.eventService.showError('ID da empresa não encontrado. Faça o login novamente.');
+      this.trucksLoaded.set(true);
+      return;
+    }
+
+    this.truckService.getAllTrucks(enterpriseId).subscribe({
       next: (response) => {
-        console.log(response);
         this.trucks = response;
         this.trucksLoaded.set(true);
       },
       error: (error) => {
-        this.eventService.showError('Erro inesperado.');
+        this.eventService.showError('Erro ao carregar os caminhões.');
         this.trucksLoaded.set(true);
       }
     });
@@ -92,7 +102,7 @@ export class TrucksComponent {
       console.warn('Elemento do modal não encontrado.');
     }
   }
-  
+
   closeModal(name: string) {
     const modalElement = document.getElementById(name);
     if (modalElement) {
@@ -114,9 +124,14 @@ export class TrucksComponent {
     this.truckService.deleteTruck(id).subscribe({
       next: (response) => {
         this.trucks = this.trucks.filter(truck => truck.id !== id);
+        
       },
-      error: (err) => this.eventService.showError('Erro inesperado.')
+      error: (err) => this.eventService.showError('Erro inesperado ao excluir caminhão.')
     });
+  }
+
+  onTruckAdded() {
+    this.getAllTrucks();
   }
 
   setPage(page: number) {

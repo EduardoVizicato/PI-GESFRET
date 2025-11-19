@@ -116,7 +116,11 @@
 <!-- Modal -->
 @if (showAddTruckModal()) {
   @defer (when showAddTruckModal()) {
-    <app-add-truck-modal (loaded)="onAddModalLoaded()" (closeModal)="closeModal('addTruckModal')"></app-add-truck-modal>
+    <app-add-truck-modal 
+        (loaded)="onAddModalLoaded()" 
+        (closeModal)="closeModal('addTruckModal')" 
+        (truckAdded)="onTruckAdded()">
+    </app-add-truck-modal>
   } @loading (minimum 300ms) {
     <div class="modal-backdrop fade show"></div>
     <div class="modal d-block" tabindex="-1">
@@ -138,7 +142,11 @@
 
 @if (showUpdateTruckModal()) {
   @defer (when showUpdateTruckModal()) {
-    <app-update-truck-modal [truckId]="selectedTruckId" (loaded)="onUpdateModalLoaded()" (closeModal)="closeModal('editTruckModal')"></app-update-truck-modal>
+    <app-update-truck-modal 
+        [truckId]="selectedTruckId" 
+        (loaded)="onUpdateModalLoaded()" 
+        (closeModal)="closeModal('editTruckModal')">
+    </app-update-truck-modal>
   } @loading (minimum 300ms) {
     <div class="modal-backdrop fade show"></div>
     <div class="modal d-block" tabindex="-1">

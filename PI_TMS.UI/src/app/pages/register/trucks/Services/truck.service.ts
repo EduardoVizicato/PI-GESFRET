@@ -9,21 +9,22 @@ import { Observable } from 'rxjs';
 })
 export class TruckService {
 
-   
   private apiUrl = `${environment.api}/api/vehicle/`;
 
-  constructor(private HttpClient: HttpClient) {}
+  constructor(private HttpClient: HttpClient) { }
 
-  getAllTrucks(): Observable<Truck[]> {
-    return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllActivedVehicles`);
-  } 
+  getAllTrucks(enterpriseId: string): Observable<Truck[]> {
+    return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllVehicles?EnterpriseId=${enterpriseId}`);
+  }
 
   addTruck(truck: Truck): Observable<Truck> {
     return this.HttpClient.post<Truck>(`${this.apiUrl}addVehicle`, truck);
   }
+
   getTruckById(id: string): Observable<Truck> {
     return this.HttpClient.get<Truck>(`${this.apiUrl}getVehicleById?id=${id}`);
   }
+  
   updateTruck(id: string, truck: Truck): Observable<Truck> {
     return this.HttpClient.put<Truck>(`${this.apiUrl}updateVehicle?ID=${id}`, truck);
   }
@@ -31,6 +32,4 @@ export class TruckService {
   deleteTruck(id: string): Observable<void> {
     return this.HttpClient.delete<void>(`${this.apiUrl}desactiveVehicle?id=${id}`);
   }
-
-  
 }
