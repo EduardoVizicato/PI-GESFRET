@@ -39,6 +39,7 @@ export interface Travel {
     isCanceled: boolean;
     enterpriseId: string;
     truckId: string;
+    file: File;
 }
 export interface Truck {
     id: string;

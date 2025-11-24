@@ -100,8 +100,8 @@ export class AddModalComponent implements OnInit {
 
   createForm(): FormGroup {
     return this.fb.group({
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      startDate: [''],
+      endDate: [''],
       origin: this.fb.group({
         zipCode: [''],
         street: [''],
@@ -129,13 +129,14 @@ export class AddModalComponent implements OnInit {
         yCoord: ['']
       }),
       load: this.fb.group({
-        product: ['', Validators.required],
-        weight: ['', Validators.required],
-        loadType: ['', Validators.required]
+        product: [''],
+        weight: [''],
+        loadType: ['']
       }),
-      truckId: ['', Validators.required],
-      price: ['', Validators.required],
-      enterpriseId: ['21c65e9b-f103-473c-82cc-5bf3298e5133'] // ID fixo temporariamente
+      truckId: [''],
+      price: [''],
+      enterpriseId: ['21c65e9b-f103-473c-82cc-5bf3298e5133'],
+      file: [null]
     });
   }
 
