@@ -175,25 +175,6 @@ export class TravelsComponent implements OnInit {
   onPageChanged(newPage: number) {
     this.page = newPage;
     this.updatePagedTravels();
-    // opcional: rolar p/ topo da tabela
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  cloneTravel(travelData: Travel) {
-    const newTravel: Travel = { ...travelData } as Travel;
-    // remover id se necessário para evitar conflito
-    if ((newTravel as any).id) {
-      delete (newTravel as any).id;
-    }
-
-    this.travelService.addTravel(newTravel).subscribe(
-      (response) => {
-        this.loadTravels();
-      },
-      (error) => {
-        this.eventService.showError('Erro inesperado.');
-      }
-    );
   }
 
   updateTravel(travel: Travel) {

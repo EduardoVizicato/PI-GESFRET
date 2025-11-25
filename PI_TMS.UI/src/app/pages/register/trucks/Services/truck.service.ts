@@ -14,7 +14,7 @@ export class TruckService {
   constructor(private HttpClient: HttpClient) { }
 
   getAllTrucks(enterpriseId: string): Observable<Truck[]> {
-    return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllVehicles?EnterpriseId=${enterpriseId}`);
+    return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllActivedVehicles`);
   }
 
   addTruck(truck: Truck): Observable<Truck> {

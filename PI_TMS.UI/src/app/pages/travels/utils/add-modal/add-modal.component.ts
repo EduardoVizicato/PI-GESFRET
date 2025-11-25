@@ -41,6 +41,7 @@ export class AddModalComponent implements OnInit {
   trucks: Truck[] = [];
   filteredTrucks: Truck[] = [];
   filteredTrailers: Truck[] = [];
+  selectedFile: File | null = null;
 
   weightvalue: number = 0;
 
@@ -77,11 +78,43 @@ export class AddModalComponent implements OnInit {
   }
 
   addTravel(travelData: Travel) {
-    this.travelService.addTravel(travelData).subscribe({
+    const formData = new FormData();
+    
+    // Append simple fields
+    formData.append('startDate', travelData.startDate);
+    formData.append('endDate', travelData.endDate);
+    formData.append('truckId', travelData.truckId);
+    formData.append('price', travelData.price.toString());
+    formData.append('enterpriseId', travelData.enterpriseId);
+    
+    // Append nested objects as JSON strings
+    formData.append('origin', JSON.stringify(travelData.origin));
+    formData.append('destination', JSON.stringify(travelData.destination));
+    formData.append('load', JSON.stringify(travelData.load));
+    
+    // Append the ACTUAL file object, not the form control value!
+    if (this.selectedFile) {
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+      console.log('✅ File added to FormData:', this.selectedFile.name);
+    } else {
+      console.warn('⚠️ No file selected!');
+    }
+    
+    // Log FormData contents for debugging
+    console.log('📦 FormData contents:');
+    formData.forEach((value, key) => {
+      if (value instanceof File) {
+        console.log(`  ${key}: [File] ${value.name} (${value.size} bytes)`);
+      } else {
+        console.log(`  ${key}:`, value);
+      }
+    });
+    
+    this.travelService.addTravel(formData).subscribe({
       next: (response) => {
         this.travelComponent.loadTravels();
-
         this.travelForm.reset();
+        this.selectedFile = null; // Clear selected file
         this.currentStep = 1;
 
         const modalElement = document.getElementById('addTravelModal');
@@ -93,6 +126,7 @@ export class AddModalComponent implements OnInit {
         }
       },
       error: (error) => {
+        console.error('❌ Error saving travel:', error);
         this.eventService.showError('Erro inesperado ao salvar a viagem.');
       }
     });
@@ -184,5 +218,13 @@ export class AddModalComponent implements OnInit {
 
   previousStep() {
     this.currentStep--;
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+    this.selectedFile = file;
+      console.log('📎 File selected:', file.name, file.size, 'bytes');
+    }
   }
 }
