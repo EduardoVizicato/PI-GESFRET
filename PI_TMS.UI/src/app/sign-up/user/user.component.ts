@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { UserService } from './service/user.service';
@@ -9,6 +9,7 @@ import { emailExistsValidator } from '../../utils/email-exists.validator';
 import { cpfValidator } from '../../utils/cpf.validator';
 import { UserVerifyService } from '../../utils/service/user-verify.service';
 import { ThemeService } from '../../contrast/theme.service';
+import { EnterpriseComponent } from '../enterprise/enterprise.component';
 
 @Component({
   selector: 'app-user',
@@ -21,18 +22,20 @@ export class UserComponent {
   userForm: FormGroup;
   user: user[] = [];
   constructor(
-    private userService: UserService, 
-    private fb: FormBuilder, 
-    private router: Router, 
+    private userService: UserService,
+    private fb: FormBuilder,
+    private router: Router,
     private userVerifyService: UserVerifyService,
     public themeService: ThemeService
   ) {
+    this.Id = history.state.enterpriseId; 
     this.userForm = this.createForm();
   }
-
+  Id: string | undefined;
 
   createForm(): FormGroup {
     return this.fb.group({
+      enterpriseId: this.Id,
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       email: ['', {
