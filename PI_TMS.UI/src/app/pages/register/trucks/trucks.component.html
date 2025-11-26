@@ -145,7 +145,8 @@
     <app-update-truck-modal 
         [truckId]="selectedTruckId" 
         (loaded)="onUpdateModalLoaded()" 
-        (closeModal)="closeModal('editTruckModal')">
+        (closeModal)="closeModal('editTruckModal')"
+        (truckUpdated)="onTruckUpdated()">
     </app-update-truck-modal>
   } @loading (minimum 300ms) {
     <div class="modal-backdrop fade show"></div>

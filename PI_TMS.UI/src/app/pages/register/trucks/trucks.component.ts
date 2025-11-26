@@ -134,6 +134,10 @@ export class TrucksComponent implements OnInit {
     this.getAllTrucks();
   }
 
+  onTruckUpdated() { 
+    this.getAllTrucks();
+  }
+
   setPage(page: number) {
     this.page = page;
   }
