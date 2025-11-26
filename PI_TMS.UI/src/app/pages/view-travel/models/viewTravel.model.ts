@@ -39,6 +39,7 @@ export interface Travel {
     isActive: boolean;
     truckId: string;
     filepath: string;
+    fileName: null | string;
 }
 export interface Truck {
     id: string;

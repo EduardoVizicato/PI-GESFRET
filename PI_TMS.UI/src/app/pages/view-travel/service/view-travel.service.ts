@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Truck } from '../models/viewTravel.model';
 import { environment } from '../../../../environments/environment.development';
@@ -18,5 +18,17 @@ export class ViewTravelService {
   }
   getTruckById(id: string): Observable<Truck> {
     return this.HttpClient.get<Truck>(`${environment.api}/api/vehicle/getVehicleById?id=${id}`);
+  }
+   downloadTravelPdf(id: string): Observable<ArrayBuffer> {
+    const url = `${this.apiUrl}/download/${id}`;
+    return this.HttpClient.get(url, { responseType: 'arraybuffer' as 'arraybuffer' });
+  }
+
+  downloadTravelPdfWithResponse(id: string): Observable<HttpResponse<ArrayBuffer>> {
+    const url = `${this.apiUrl}/download/${id}`;
+    return this.HttpClient.get(url, {
+      responseType: 'arraybuffer' as 'arraybuffer',
+      observe: 'response' as 'response'
+    }) as Observable<HttpResponse<ArrayBuffer>>;
   }
 }
