@@ -206,7 +206,11 @@
             Senha válida!
           </div>
         </div>
-        <input class="submit-button" type="submit" value="Entrar" [disabled]="userForm.invalid">
+        <button class="submit-button" 
+                type="submit" 
+                [disabled]="userForm.invalid || isLoading">
+          {{ isLoading ? 'Processando...' : 'Entrar' }}
+        </button>
         <div class="form-footer">
           <p class="form-footer-text">
             Já tem uma conta? <a routerLink="/login">Entrar</a>
