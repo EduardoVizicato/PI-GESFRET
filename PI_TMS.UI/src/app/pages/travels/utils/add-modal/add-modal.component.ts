@@ -16,6 +16,7 @@ import { EventService } from '../../../../shared/service/event.service';
 import { TravelsComponent } from '../../travels.component';
 import { PlateFormatPipe } from '../../../../utils/Formats/PlateFormat/plate-format.pipe';
 declare var bootstrap: any;
+
 @Component({
   selector: 'app-add-modal',
   standalone: true,
@@ -71,104 +72,84 @@ export class AddModalComponent implements OnInit {
   onSubmit() {
     if (this.travelForm.invalid) {
       this.travelForm.markAllAsTouched();
+      this.eventService.showError('Por favor, preencha todos os campos obrigatórios.');
       return;
     }
     
-    this.addTravel(this.travelForm.value);
+    this.addTravel(this.travelForm.getRawValue()); 
   }
 
-  addTravel(travelData: Travel) {
+  addTravel(travelData: any) { 
     const formData = new FormData();
     
-    // Append simple fields
     formData.append('startDate', travelData.startDate);
     formData.append('endDate', travelData.endDate);
     formData.append('truckId', travelData.truckId);
     formData.append('price', travelData.price.toString());
     formData.append('enterpriseId', travelData.enterpriseId);
+
+    Object.keys(travelData.origin).forEach(key => {
+      formData.append(`origin.${key}`, travelData.origin[key]);
+    });
+
+    Object.keys(travelData.destination).forEach(key => {
+      formData.append(`destination.${key}`, travelData.destination[key]);
+    });
+
+    Object.keys(travelData.load).forEach(key => {
+      formData.append(`load.${key}`, travelData.load[key]);
+    });
     
-    // Append nested objects as JSON strings
-    formData.append('origin', JSON.stringify(travelData.origin));
-    formData.append('destination', JSON.stringify(travelData.destination));
-    formData.append('load', JSON.stringify(travelData.load));
-    
-    // Append the ACTUAL file object, not the form control value!
     if (this.selectedFile) {
       formData.append('file', this.selectedFile, this.selectedFile.name);
-      console.log('✅ File added to FormData:', this.selectedFile.name);
-    } else {
-      console.warn('⚠️ No file selected!');
     }
     
-    // Log FormData contents for debugging
-    console.log('📦 FormData contents:');
-    formData.forEach((value, key) => {
-      if (value instanceof File) {
-        console.log(`  ${key}: [File] ${value.name} (${value.size} bytes)`);
-      } else {
-        console.log(`  ${key}:`, value);
-      }
-    });
+    console.log('Enviando FormData para o backend:');
+    formData.forEach((value, key) => { console.log(`  ${key}:`, value); });
     
     this.travelService.addTravel(formData).subscribe({
       next: (response) => {
+
         this.travelComponent.loadTravels();
         this.travelForm.reset();
-        this.selectedFile = null; // Clear selected file
+        this.selectedFile = null;
         this.currentStep = 1;
 
         const modalElement = document.getElementById('addTravelModal');
         if (modalElement) {
           const modal = Modal.getInstance(modalElement);
-          if (modal) {
-            modal.hide();
-          }
+          if (modal) modal.hide();
         }
       },
       error: (error) => {
-        console.error('❌ Error saving travel:', error);
+        console.error('❌ Erro ao salvar viagem:', error);
         this.eventService.showError('Erro inesperado ao salvar a viagem.');
       }
     });
   }
 
   createForm(): FormGroup {
+
     return this.fb.group({
-      startDate: [''],
-      endDate: [''],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
       origin: this.fb.group({
-        zipCode: [''],
-        street: [''],
-        number: [''],
-        neighborhood: [''],
-        complement: [''],
-        city: [''],
-        state: [{ value: '', disabled: true }],
-        country: [''],
-        hemisphere: [''],
-        xCoord: [''],
-        yCoord: ['']
+        zipCode: [''], street: [''], number: [''], neighborhood: [''],
+        complement: [''], city: [''], state: [{ value: '', disabled: true }],
+        country: [''], hemisphere: [''], xCoord: [''], yCoord: ['']
       }),
       destination: this.fb.group({
-        zipCode: [''],
-        street: [''],
-        number: [''],
-        neighborhood: [''],
-        complement: [''],
-        city: [''],
-        state: [{ value: '', disabled: true }],
-        country: [''],
-        hemisphere: [''],
-        xCoord: [''],
-        yCoord: ['']
+        zipCode: [''], street: [''], number: [''], neighborhood: [''],
+        complement: [''], city: [''], state: [{ value: '', disabled: true }],
+        country: [''], hemisphere: [''], xCoord: [''], yCoord: ['']
       }),
       load: this.fb.group({
-        product: [''],
-        weight: [''],
-        loadType: ['']
+        product: ['', Validators.required],
+        weight: ['', Validators.required],
+        loadType: ['', Validators.required]
       }),
-      truckId: [''],
-      price: [''],
+      truckId: ['', Validators.required],
+      price: ['', Validators.required],
       enterpriseId: ['21c65e9b-f103-473c-82cc-5bf3298e5133'],
       file: [null]
     });
@@ -224,7 +205,7 @@ export class AddModalComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
     this.selectedFile = file;
-      console.log('📎 File selected:', file.name, file.size, 'bytes');
+      console.log('📎 Arquivo selecionado:', file.name, file.size, 'bytes');
     }
   }
 }
