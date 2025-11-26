@@ -13,8 +13,8 @@ export class UserService {
 
   constructor(private HttpClients: HttpClient) { }
 
-  registerUser(user: user): Observable<user[]> {
-    return this.HttpClients.post<user[]>(`${this.apiUrl}/addUser`, user)
+  registerUser(user: user): Observable<any> {
+    return this.HttpClients.post<any>(`${this.apiUrl}/addUser`, user);
   }
 
   checkEmail(email: string): Observable<{ exists: boolean }> {
@@ -22,6 +22,6 @@ export class UserService {
   }
 
   authenticate(email: string): Observable<any> {
-    return this.HttpClients.post(`${this.authUrl}/Authenticate`, { email });
+    return this.HttpClients.post(`${this.authUrl}/Authenticate`, { email }, { responseType: 'text' });
   }
 }

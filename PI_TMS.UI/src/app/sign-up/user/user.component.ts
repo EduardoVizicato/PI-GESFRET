@@ -21,6 +21,7 @@ export class UserComponent {
   userForm: FormGroup;
   user: user[] = [];
   Id: string | undefined;
+  isLoading: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -61,30 +62,37 @@ export class UserComponent {
       return;
     }
 
-    console.log('Formulário válido, iniciando registro...', this.userForm.value);
+    this.isLoading = true; 
+    console.log('Iniciando processo de cadastro...');
     const userData: user = this.userForm.value;
 
     this.userService.registerUser(userData).subscribe({
-      next: (response) => {
-        console.log('Usuário registrado com sucesso:', response);
+      next: (registerResponse) => {
+        console.log('Usuário registrado com sucesso:', registerResponse);
+        
+        console.log('Enviando código de verificação para:', userData.email);
         
         this.userService.authenticate(userData.email).subscribe({
           next: (authResponse) => {
-            console.log('Email de autenticação enviado:', authResponse);
+            console.log('Código enviado com sucesso:', authResponse);
+            this.isLoading = false;
             
-            this.router.navigate(['/verify'], { 
-              state: { email: userData.email } 
-            });
           },
           error: (authError) => {
-            console.error('Erro ao enviar email de autenticação:', authError);
-            alert('Usuário criado, mas houve um erro ao enviar o código de verificação.');
+            this.isLoading = false;
+            console.error('Erro ao enviar código:', authError);
+            alert('Usuário criado, mas erro ao enviar código de verificação. Verifique o console.');
+            // this.router.navigate(['/verify'], { state: { email: userData.email } });
           }
         });
+        this.router.navigate(['/verify'], { 
+              state: { email: userData.email } 
+            });
       },
-      error: (error) => {
-        console.error('Erro ao registrar usuário:', error);
-        alert('Erro ao realizar o cadastro. Tente novamente.');
+      error: (registerError) => {
+        this.isLoading = false;
+        console.error('Erro ao registrar usuário:', registerError);
+        alert('Erro ao registrar usuário: ' + (registerError.error?.message || registerError.message || 'Erro desconhecido'));
       }
     });
   }
