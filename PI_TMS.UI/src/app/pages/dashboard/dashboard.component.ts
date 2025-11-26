@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
     );
   }
   setValues() {
-    const dashboardQuant = ['DashboardFinance', 'DashboardOperationational'];
+    const dashboardQuant = ['DashboardFinance'];
     // const dashboardQuant = ['DashboardFinance'];
     const saved = localStorage.getItem('dashboardIndex');
     let index = saved ? parseInt(saved) : Math.floor(Math.random() * dashboardQuant.length);
@@ -162,7 +162,8 @@ export class DashboardComponent implements OnInit {
           { label: 'Ganhos desse Mês', value: monthGainTotal },
           { label: 'Ganho desse Ano', value: this.anualGain },
           { label: 'Media de Ganhos desse ano', value: this.averageGain },
-          { label: 'Total de Viagens Cadastradas', value: this.totalTravels }
+          { label: 'Total de Viagens Cadastradas', value: this.totalTravels },
+          { label: 'Quantidade de Veículos', value: 14 },
         ],
         chartOptions1: {
           title: { text: 'Ganhos ao Longo do Ano' },
