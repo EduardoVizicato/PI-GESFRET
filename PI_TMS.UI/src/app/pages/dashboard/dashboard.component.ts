@@ -6,10 +6,11 @@ import html2pdf from 'html2pdf.js';
 import { Travel } from './models/dashboard.model';
 import { DashboardService } from './services/dashboard.service';
 import { EventService } from '../../shared/service/event.service';
+import { TruckService } from '../register/trucks/Services/truck.service';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true, // ESSENCIAL!
+  standalone: true,
   imports: [
     CommonModule,
     NgxEchartsModule
@@ -28,12 +29,18 @@ import { EventService } from '../../shared/service/event.service';
 export class DashboardComponent implements OnInit {
   dashboardSets: { title: string; cards: { label: string; value: any; }[]; chartOptions1: { title: { text: string; }; tooltip: {}; xAxis: { type: string; data: string[]; }; yAxis: { type: string; }; series: { data: number[]; type: string; }[]; }; chartOptions2: { title: { text: string; }; tooltip: { trigger: string; }; legend: { bottom: string; left: string; }; series: { name: string; type: string; radius: string; data: { value: number; name: string; }[]; }[]; }; }[] | undefined;
 
-  constructor(private dashboardService: DashboardService, private eventService: EventService) { }
+  constructor(
+    private dashboardService: DashboardService, 
+    private eventService: EventService,
+    private truckService: TruckService
+  ) { }
+  
   travels: Travel[] = [];
   monthGain: any;
   anualGain: any;
   averageGain: any;
   totalTravels: any;
+  totalTrucks: number = 0;
   currentDashboard: any;
   SelectedDashboard:any;
 
@@ -41,16 +48,27 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getAllTravel(false).subscribe(
       (response) => {
         this.travels = response || [];
-        this.setValues()
+        
+        this.truckService.getAllTrucks().subscribe(
+          (trucks) => {
+            this.totalTrucks = trucks ? trucks.length : 0;
+            this.setValues();
+          },
+          (error) => {
+            console.error('Erro ao buscar veículos', error);
+            this.totalTrucks = 0;
+            this.setValues();
+          }
+        );
       },
       (error) => {
         this.eventService.showError('Erro inesperado.');
       }
     );
   }
+
   setValues() {
     const dashboardQuant = ['DashboardFinance'];
-    // const dashboardQuant = ['DashboardFinance'];
     const saved = localStorage.getItem('dashboardIndex');
     let index = saved ? parseInt(saved) : Math.floor(Math.random() * dashboardQuant.length);
 
@@ -63,8 +81,6 @@ export class DashboardComponent implements OnInit {
 
     const nextIndex = (index + 1) % dashboardQuant.length;
     localStorage.setItem('dashboardIndex', nextIndex.toString());
-    // const index = Math.floor(Math.random() * this.dashboardSets.length);
-    // this.currentDashboard = this.dashboardSets[index];
   }
   DashboardFinance() {
     const now = new Date();
@@ -163,7 +179,7 @@ export class DashboardComponent implements OnInit {
           { label: 'Ganho desse Ano', value: this.anualGain },
           { label: 'Media de Ganhos desse ano', value: this.averageGain },
           { label: 'Total de Viagens Cadastradas', value: this.totalTravels },
-          { label: 'Quantidade de Veículos', value: 14 },
+          { label: 'Quantidade de Veículos', value: this.totalTrucks },
         ],
         chartOptions1: {
           title: { text: 'Ganhos ao Longo do Ano' },
@@ -212,7 +228,7 @@ export class DashboardComponent implements OnInit {
       {
         title: 'Visão Operacional',
         cards: [
-          { label: 'Quantidade de Veículos', value: 14 },
+          { label: 'Quantidade de Veículos', value: this.totalTrucks },
           { label: 'Viagens no Ano', value: 230 },
           { label: 'Viagens no Mês', value: 20 },
           { label: 'Motoristas Ativos', value: 8 }
@@ -270,7 +286,7 @@ export class DashboardComponent implements OnInit {
       margin: 5,
       filename: 'dashboard.pdf',
       image: { type: 'jpeg', quality: 1 },
-      html2canvas: { scale: 3 }, // 3x mais nítido
+      html2canvas: { scale: 3 },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
     };
     if (element) {
@@ -280,5 +296,3 @@ export class DashboardComponent implements OnInit {
     }
   }
 }
-
-
