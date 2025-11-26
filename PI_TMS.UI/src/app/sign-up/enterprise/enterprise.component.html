@@ -61,7 +61,7 @@
           <div *ngIf="enterpriseForm.get('taxId.taxId')?.errors?.['required']">
             CNPJ obrigatório.
           </div>
-          <div *ngIf="enterpriseForm.get('taxId.taxId')?.errors?.['pattern']">
+          <div *ngIf="enterpriseForm.get('taxId.taxId')?.errors?.['cnpjInvalid']">
             CNPJ inválido.
           </div>
         </div>
@@ -105,6 +105,12 @@
       <div class="form-footer">
       <p class="form-footer-text">
         Já tem uma conta? <a routerLink="/login">Entrar</a>
+      </p>
+      <div class="space">
+
+      </div>
+      <p class="form-footer-text">
+        Caso seja um funcionario, solicite ao administrador da sua empresa o convite para acessar o sistema.
       </p>
     </div>
     </form>
