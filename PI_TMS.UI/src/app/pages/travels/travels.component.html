@@ -50,7 +50,9 @@
               {{ travel.endDate | date:'dd/MM/yyyy' }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.origin.city }}/{{ travel.origin.state }} ->
               {{ travel.destination.city }}/{{ travel.destination.state }}</td>
-            <td (click)="viewTravel(travel.id)">{{ travel.truckId }}</td>
+            
+            <td (click)="viewTravel(travel.id)">{{ getTruckPlate(travel.truckId) | plateFormat }}</td>
+            
             <td (click)="viewTravel(travel.id)">{{ travel.load.product }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.load.weight | weightFormat }}</td>
             <td (click)="viewTravel(travel.id)">{{ travel.price | currency:'BRL':'symbol':'1.2-2':'pt-BR'  }}</td>
@@ -195,4 +197,3 @@
 <app-add-modal *ngIf="showAddTravelModal" (close)="closeModal()"></app-add-modal>
 <app-view-travel *ngIf="selectedTravelId" [travelId]="selectedTravelId"></app-view-travel>
 <app-update-modal *ngIf="showUpdateTravelModal" [travelId]="selectedTravelId" (close)="closeModal()"></app-update-modal>
-

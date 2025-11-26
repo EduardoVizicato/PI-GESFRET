@@ -3,6 +3,7 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CityService } from './service/city/city.service';
 import { TravelService } from './service/travel.service';
+import { TruckService } from '../register/trucks/Services/truck.service';  
 import { Travel, Truck } from './model/travel.model';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,9 +13,9 @@ import { ViewTravelComponent } from "../view-travel/view-travel.component";
 import { UpdateModalComponent } from "./utils/update-modal/update-modal.component";
 import { EventService } from '../../shared/service/event.service';
 import { WeightFormatPipe } from "../../utils/Formats/WeightFormat/weight-format.pipe";
-// 1. Importação do NgxSkeletonLoaderModule
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import Modal from 'bootstrap/js/dist/modal';
+import { PlateFormatPipe } from "../../utils/Formats/PlateFormat/plate-format.pipe";
 declare var bootstrap: any;
 
 @Component({
@@ -30,14 +31,15 @@ declare var bootstrap: any;
     NgbPaginationModule,
     AddModalComponent,
     ViewTravelComponent,
-    // UpdateModalComponent,
     WeightFormatPipe,
     UpdateModalComponent,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    PlateFormatPipe
   ],
   providers: [
     CityService,
     TravelService,
+    TruckService,
     ZipCodeService
   ],
   templateUrl: './travels.component.html',
@@ -62,6 +64,7 @@ export class TravelsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private travelService: TravelService,
+    private truckService: TruckService,
     private fb: FormBuilder,
     private eventService: EventService,
     private cdr: ChangeDetectorRef
@@ -69,6 +72,24 @@ export class TravelsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTravels();
+    this.loadTrucks();
+  }
+
+  loadTrucks(): void {
+    this.truckService.getAllTrucks().subscribe(
+      (response) => {
+        this.trucks = response || [];
+      },
+      (error) => {
+        console.error('Erro ao carregar caminhões', error);
+        this.eventService.showError('Erro ao carregar lista de caminhões.');
+      }
+    );
+  }
+
+  getTruckPlate(truckId: string): string {
+    const truck = this.trucks.find(t => t.id === truckId);
+    return truck?.vehicleRegistrationPlate?.registrationPlate || '---';
   }
 
   viewTravel(travelId: string) {
@@ -162,13 +183,15 @@ export class TravelsComponent implements OnInit {
       const destCity = (u?.destination?.city || '').toString().toLowerCase();
       const product = (u?.load?.product || '').toString().toLowerCase();
       const weight = String(u?.load?.weight ?? '').toLowerCase();
-      const price = String(u?.price ?? '').toLowerCase();
+      const price = String(u?.price ?? '').toLowerCase();      
+      const truckPlate = this.getTruckPlate(u.truckId).toLowerCase();
 
       return originCity.includes(term) ||
         destCity.includes(term) ||
         product.includes(term) ||
         weight.includes(term) ||
-        price.includes(term);
+        price.includes(term) || 
+        truckPlate.includes(term);
     });
   }
 
