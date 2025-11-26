@@ -14,26 +14,38 @@
               <div class="col-md-4 float-md-end mb-3 ms-md-3 px-2 py-5">
                 <h1>CT-e</h1>
                 <div class="card" style="width: 20rem;">
-                  <pdf-viewer [src]="viewTravel.filepath" [render-text]="true" [render-text-mode]="0" [original-size]="false"
-                    [zoom-scale]="'page-width'" style="width: 20rem; height: 25rem">
+                  <!-- mostra o pdf apenas quando pdfSrc estiver pronto -->
+                  <pdf-viewer *ngIf="pdfSrc"
+                    [src]="pdfSrc"
+                    [render-text]="true"
+                    [render-text-mode]="0"
+                    [original-size]="false"
+                    [zoom-scale]="'page-width'"
+                    style="width: 20rem; height: 25rem">
                   </pdf-viewer>
-                  <div class="card-img-overlay">
-                    <a data-bs-toggle="modal" data-bs-target="#viewDocModal" id="icon-expand">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                          d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707" />
-                      </svg>
-                    </a>
-                  </div>
+
+                    <!-- <div class="card-img-overlay">
+                      <a data-bs-toggle="modal" data-bs-target="#viewDocModal" id="icon-expand">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                          class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707" />
+                        </svg>
+                      </a>
+                    </div> -->
                   <div class="card-body">
-                    <h5 class="card-title">{{cte.name}}</h5>
-                    <p class="card-text">{{cte.description}} </p>
-                    <a href="#" class="btn btn-primary mx-1">Baixar</a>
+                    <!-- Abrir em nova aba -->
+                    <a *ngIf="pdfSrc" [href]="pdfSrc" target="_blank" class="btn btn-secondary mx-1">Abrir</a>
+                    <!-- Forçar download -->
+                    <button *ngIf="pdfSrc" (click)="DownloadPdf()" class="btn btn-primary mx-1">Baixar</button>
+                    <!-- Caso queira exibir botão mesmo sem pdfSrc (desabilitado) -->
+                    <a *ngIf="!pdfSrc" class="btn btn-primary mx-1 disabled">Baixar</a>
                   </div>
                 </div>
 
               </div>
+
+              <!-- resto do conteúdo permanece igual -->
               <div class="row g-3 px-5 py-4">
                 <div class="col-6">
                   <p>Data de Saida</p>
@@ -173,8 +185,6 @@
                   <p>Valor do Frete</p>
                   <h4>{{viewTravel.price | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</h4>
                 </div>
-
-
               </div>
             </div>
             <div class="modal-footer">
@@ -183,24 +193,27 @@
           </div>
         </div>
       </div>
+
+      <!-- modal expandido do documento -->
       <div class="modal" id="viewDocModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-fullscreen-md-down">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">{{cte.name}}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
+              <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [render-text]="true" [render-text-mode]="0" [original-size]="false"
                 style="width: 70rem; height: 45rem" [zoom-scale]="'page-width'">
               </pdf-viewer>
+              <div *ngIf="!pdfSrc">Documento não disponível para exibição.</div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
           </div>
         </div>
       </div>
+
     </ng-container>
   </div>
 </div>
