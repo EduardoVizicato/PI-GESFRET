@@ -26,6 +26,7 @@ export class UpdateTruckModalComponent implements OnInit, AfterViewInit {
 
   truckForm: FormGroup;
   truck: Truck | undefined;
+  private subscriptions: Subscription[] = [];
 
   truckTypes: string[] = ['Tração', 'Reboque (Carreta)'];
   wheelTypes: string[] = [
@@ -68,6 +69,9 @@ export class UpdateTruckModalComponent implements OnInit, AfterViewInit {
           this.truck = truck;
           this.truckForm.patchValue(truck);
           this.setupConditionalLogic();
+          
+          this.truckForm.get('truckType')?.updateValueAndValidity();
+          this.truckForm.get('wheelType')?.updateValueAndValidity();
         },
         error: (err) => this.eventService.showError('Erro ao carregar dados do caminhão.')
       });
@@ -79,34 +83,54 @@ export class UpdateTruckModalComponent implements OnInit, AfterViewInit {
   }
 
   setupConditionalLogic(): void {
-    const truckTypeControl = this.truckForm.get('truckType');
-    const wheelTypeControl = this.truckForm.get('wheelType');
-    const bodyTypeControl = this.truckForm.get('bodyType');
+    this.subscriptions.forEach(sub => sub.unsubscribe());
 
-    if (!truckTypeControl || !wheelTypeControl || !bodyTypeControl) return;
+    const truckTypeControl = this.truckForm.get('truckType') as FormControl;
+    const wheelTypeControl = this.truckForm.get('wheelType') as FormControl;
+    const bodyTypeControl = this.truckForm.get('bodyType') as FormControl;
 
-    truckTypeControl.valueChanges.subscribe(type => {
+    const truckTypeSub = truckTypeControl.valueChanges.subscribe(type => {
+      wheelTypeControl.reset();
+      bodyTypeControl.reset();
+
       if (type === 'Tração') {
-        wheelTypeControl.setValidators([Validators.required]);
-        wheelTypeControl.enable();
-        bodyTypeControl.clearValidators();
-        bodyTypeControl.disable();
+        this.setValidatorsAndEnable(wheelTypeControl, [Validators.required]);
+        this.clearValidatorsAndDisable(bodyTypeControl);
       } else if (type === 'Reboque (Carreta)') {
-        bodyTypeControl.setValidators([Validators.required]);
-        bodyTypeControl.enable();
-        wheelTypeControl.clearValidators();
-        wheelTypeControl.disable();
+        this.setValidatorsAndEnable(bodyTypeControl, [Validators.required]);
+        this.clearValidatorsAndDisable(wheelTypeControl);
       } else {
-        wheelTypeControl.clearValidators();
-        wheelTypeControl.disable();
-        bodyTypeControl.clearValidators();
-        bodyTypeControl.disable();
+        this.clearValidatorsAndDisable(wheelTypeControl);
+        this.clearValidatorsAndDisable(bodyTypeControl);
       }
-      wheelTypeControl.updateValueAndValidity();
-      bodyTypeControl.updateValueAndValidity();
     });
 
-    truckTypeControl.updateValueAndValidity();
+
+    const wheelTypeSub = wheelTypeControl.valueChanges.subscribe(wheelType => {
+      if (truckTypeControl.value !== 'Tração') return;
+
+      if (wheelType === 'Cavalo (2-3 eixos e acopla carroceria)') {
+        bodyTypeControl.reset();
+        this.clearValidatorsAndDisable(bodyTypeControl);
+      } else {
+
+        this.setValidatorsAndEnable(bodyTypeControl, [Validators.required]);
+      }
+    });
+
+    this.subscriptions.push(truckTypeSub, wheelTypeSub);
+  }
+
+  private setValidatorsAndEnable(control: FormControl, validators: any[]): void {
+    control.setValidators(validators);
+    control.enable();
+    control.updateValueAndValidity();
+  }
+
+  private clearValidatorsAndDisable(control: FormControl): void {
+    control.clearValidators();
+    control.disable();
+    control.updateValueAndValidity();
   }
 
   onUpdate(): void {
@@ -137,5 +161,9 @@ export class UpdateTruckModalComponent implements OnInit, AfterViewInit {
 
   close(): void {
     this.closeModal.emit();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
