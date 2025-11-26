@@ -19,7 +19,6 @@ export class ViewTravelComponent {
   truck?: Truck;
   pdfSrc: any;
   openPdf() { }
-  cte: any = { name: 'name2', description: 'generic description 2', path: '/pdf/teste2.pdf' };
 
   constructor(private viewTravelService: ViewTravelService, private eventService: EventService) { }
   ngOnInit() {

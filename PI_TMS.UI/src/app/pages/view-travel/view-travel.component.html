@@ -14,7 +14,7 @@
               <div class="col-md-4 float-md-end mb-3 ms-md-3 px-2 py-5">
                 <h1>CT-e</h1>
                 <div class="card" style="width: 20rem;">
-                  <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
+                  <pdf-viewer [src]="viewTravel.filePath" [render-text]="true" [render-text-mode]="0" [original-size]="false"
                     [zoom-scale]="'page-width'" style="width: 20rem; height: 25rem">
                   </pdf-viewer>
                   <div class="card-img-overlay">
@@ -27,8 +27,6 @@
                     </a>
                   </div>
                   <div class="card-body">
-                    <h5 class="card-title">{{cte.name}}</h5>
-                    <p class="card-text">{{cte.description}} </p>
                     <a href="#" class="btn btn-primary mx-1">Baixar</a>
                   </div>
                 </div>
@@ -187,11 +185,11 @@
         <div class="modal-dialog modal-xl modal-fullscreen-md-down">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">{{cte.name}}</h5>
+              <h5 class="modal-title">Cte</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <pdf-viewer [src]="cte.path" [render-text]="true" [render-text-mode]="0" [original-size]="false"
+              <pdf-viewer [src]="viewTravel.filePath" [render-text]="true" [render-text-mode]="0" [original-size]="false"
                 style="width: 70rem; height: 45rem" [zoom-scale]="'page-width'">
               </pdf-viewer>
             </div>

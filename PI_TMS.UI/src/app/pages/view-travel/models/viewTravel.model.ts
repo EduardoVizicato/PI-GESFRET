@@ -33,6 +33,7 @@ export interface Travel {
         weight: string;
         loadType: string;
     }
+    filePath: string;
     createdAt: string;
     updatedAt: string;
     price: string;
