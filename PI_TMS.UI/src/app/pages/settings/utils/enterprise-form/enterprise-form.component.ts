@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { EnterpriseInfo } from '../../models/settings.model';
 import { emailExistsValidator, emailExistsValidatorButExcludeOriginal } from '../../../../utils/email-exists.validator';
 import { UserVerifyService } from '../../../../utils/service/user-verify.service';
-import { AuthTokenService } from '../../../../_guard/service/auth-token.service';
+import { TokenService } from '../../../../token/token.service';
 import { cnpjValidator } from '../../../../utils/cnpj.validator';
 import { NgxMaskDirective } from "ngx-mask";
 
@@ -19,7 +19,7 @@ export class EnterpriseFormComponent {
   enterprise: EnterpriseInfo | null = null;
   enterpriseForm: FormGroup<any>;
   isEditing = false;
-  constructor(private settingsService: SettingsService, private fb: FormBuilder, private authTokenService: AuthTokenService, private userVerifyService: UserVerifyService) {
+  constructor(private settingsService: SettingsService, private fb: FormBuilder, private TokenService: TokenService, private userVerifyService: UserVerifyService) {
     this.enterpriseForm = this.createForm();
   }
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class EnterpriseFormComponent {
     });
   }
   getEnterprise() {
-    const enterpriseId = this.authTokenService.getEnterpriseId();
+    const enterpriseId = this.TokenService.getEnterpriseId();
     if (enterpriseId) {
       this.settingsService.getEnterprisebyId(enterpriseId).subscribe(
         (enterprise: any) => {

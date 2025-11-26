@@ -48,15 +48,15 @@ export class TrucksComponent implements OnInit {
 
   getAllTrucks() {
     this.trucksLoaded.set(false);
-    const enterpriseId = this.tokenService.getEnterpriseId();
+    // const enterpriseId = this.tokenService.getEnterpriseId();
 
-    if (!enterpriseId) {
-      this.eventService.showError('ID da empresa não encontrado. Faça o login novamente.');
-      this.trucksLoaded.set(true);
-      return;
-    }
+    // if (!enterpriseId) {
+    //   this.eventService.showError('ID da empresa não encontrado. Faça o login novamente.');
+    //   this.trucksLoaded.set(true);
+    //   return;
+    // }
 
-    this.truckService.getAllTrucks(enterpriseId).subscribe({
+    this.truckService.getAllTrucks().subscribe({
       next: (response) => {
         this.trucks = response;
         this.trucksLoaded.set(true);

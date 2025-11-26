@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { Truck } from '../models/truck.model';
 import { Observable } from 'rxjs';
+import { TokenService } from '../../../../token/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TruckService {
-
+  private enterpriseId: string | null;
   private apiUrl = `${environment.api}/api/vehicle/`;
 
-  constructor(private HttpClient: HttpClient) { }
+  constructor(private HttpClient: HttpClient, private TokenService: TokenService) {
+    this.enterpriseId = this.TokenService.getEnterpriseId();
+  }
 
-  getAllTrucks(enterpriseId: string): Observable<Truck[]> {
-    return this.HttpClient.get<Truck[]>(`${this.apiUrl}getAllActivedVehicles`);
+  getAllTrucks(): Observable<Truck[]> {
+    let params = new HttpParams().set('enterpriseId', String(this.enterpriseId));
+    const url = `${this.apiUrl}getAllActivedVehicles`;
+
+    return this.HttpClient.get<Truck[]>(url, { params });
   }
 
   addTruck(truck: Truck): Observable<Truck> {
@@ -24,7 +30,7 @@ export class TruckService {
   getTruckById(id: string): Observable<Truck> {
     return this.HttpClient.get<Truck>(`${this.apiUrl}getVehicleById?id=${id}`);
   }
-  
+
   updateTruck(id: string, truck: Truck): Observable<Truck> {
     return this.HttpClient.put<Truck>(`${this.apiUrl}updateVehicle?ID=${id}`, truck);
   }

@@ -54,10 +54,11 @@ export class AuthTokenService {
     return 'ADM'; // payload?.role ?? null;
     // return payload?.role ?? null;
   }
-  getEnterpriseId(): string | null {
-    const payload = this.decodePayloadJWT();
-    return payload?.primarysid ?? null;
-  }
+  // getEnterpriseId(): string | null {
+  //   const payload = this.decodePayloadJWT();
+  //   console.log('Enterprise ID Payload:', payload);
+  //   return payload?.primarysid ?? null;
+  // }
 }
 
 // https://medium.com/xp-inc/angular-decode-payload-jwt-6d2618ec444d
