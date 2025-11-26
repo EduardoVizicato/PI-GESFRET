@@ -1,17 +1,36 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { VerifyMailService } from './services/verify-mail.service';
 
 @Component({
   selector: 'app-verify-mail',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './verify-mail.component.html',
   styleUrl: './verify-mail.component.css'
 })
 export class VerifyMailComponent {
   code: string[] = new Array(6).fill('');
+  email: string = '';
 
   @ViewChildren('codeInput') inputs!: QueryList<ElementRef>;
+
+  constructor(
+    private router: Router,
+    private verifyMailService: VerifyMailService
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as { email: string } || history.state;
+    
+    if (state && state.email) {
+      this.email = state.email;
+    } else {
+      console.warn('Email não encontrado no estado da navegação.');
+      // this.router.navigate(['/signUp-user']);
+    }
+  }
 
   onInput(event: Event, index: number): void {
     const input = event.target as HTMLInputElement;
@@ -57,5 +76,29 @@ export class VerifyMailComponent {
 
   isCodeIncomplete(): boolean {
     return this.code.some(digit => digit === '');
+  }
+
+  verifyCode(): void {
+    if (this.isCodeIncomplete()) return;
+
+    if (!this.email) {
+      alert('Erro: Email não identificado. Por favor, realize o cadastro novamente.');
+      return;
+    }
+
+    const fullCode = this.code.join('');
+    
+    this.verifyMailService.verify(this.email, fullCode).subscribe({
+      next: (response) => {
+        console.log('Verificação realizada com sucesso:', response);
+
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        console.error('Erro na verificação:', error);
+        alert('Código inválido ou expirado. Tente novamente.');
+        // this.code = new Array(6).fill('');
+      }
+    });
   }
 }

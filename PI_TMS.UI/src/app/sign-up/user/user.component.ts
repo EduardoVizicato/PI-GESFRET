@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { UserService } from './service/user.service';
 import { Router, RouterModule } from '@angular/router';
@@ -9,7 +9,6 @@ import { emailExistsValidator } from '../../utils/email-exists.validator';
 import { cpfValidator } from '../../utils/cpf.validator';
 import { UserVerifyService } from '../../utils/service/user-verify.service';
 import { ThemeService } from '../../contrast/theme.service';
-import { EnterpriseComponent } from '../enterprise/enterprise.component';
 
 @Component({
   selector: 'app-user',
@@ -21,6 +20,8 @@ export class UserComponent {
 
   userForm: FormGroup;
   user: user[] = [];
+  Id: string | undefined;
+
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
@@ -31,7 +32,6 @@ export class UserComponent {
     this.Id = history.state.enterpriseId; 
     this.userForm = this.createForm();
   }
-  Id: string | undefined;
 
   createForm(): FormGroup {
     return this.fb.group({
@@ -53,27 +53,39 @@ export class UserComponent {
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
     });
   }
-  // 
 
   onSubmit() {
     if (this.userForm.invalid) {
       console.log('Formulário inválido');
-      this.userForm.markAllAsTouched(); // mostra erros
+      this.userForm.markAllAsTouched();
       return;
     }
 
-    console.log('Formulário válido:', this.userForm.value);
-
+    console.log('Formulário válido, iniciando registro...', this.userForm.value);
     const userData: user = this.userForm.value;
+
     this.userService.registerUser(userData).subscribe({
       next: (response) => {
-        console.log('User registered successfully:', response);
-        this.router.navigate(['/login']);
+        console.log('Usuário registrado com sucesso:', response);
+        
+        this.userService.authenticate(userData.email).subscribe({
+          next: (authResponse) => {
+            console.log('Email de autenticação enviado:', authResponse);
+            
+            this.router.navigate(['/verify'], { 
+              state: { email: userData.email } 
+            });
+          },
+          error: (authError) => {
+            console.error('Erro ao enviar email de autenticação:', authError);
+            alert('Usuário criado, mas houve um erro ao enviar o código de verificação.');
+          }
+        });
       },
       error: (error) => {
-        console.error('Error registering user:', error);
+        console.error('Erro ao registrar usuário:', error);
+        alert('Erro ao realizar o cadastro. Tente novamente.');
       }
     });
   }
-
 }
