@@ -38,8 +38,8 @@ export class TravelService {
   addTravel(travel: FormData): Observable<any> {
     return this.HttpClient.post(`${this.apiUrl}travel/addTravel`, travel);
   }
-  updateTravel(travel: Travel, id: string): Observable<Travel> {
-    return this.HttpClient.put<Travel>(`${this.apiUrl}travel/updateTravel/${id}`, travel);
+  updateTravel(travel: any, id: string): Observable<any> {
+    return this.HttpClient.put<any>(`${this.apiUrl}travel/updateTravel/${id}`, travel);
   }
   deleteTravel(id: string): Observable<Travel> {
     return this.HttpClient.delete<Travel>(`${this.apiUrl}travel/cancelTravel?id=${id}`)
