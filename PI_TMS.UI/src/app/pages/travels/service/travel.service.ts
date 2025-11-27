@@ -15,12 +15,13 @@ export class TravelService {
 
   constructor(private HttpClient: HttpClient, private TokenService: TokenService) {
     this.enterpriseId = this.TokenService.getEnterpriseId();
-    console.log('Enterprise ID in TravelService:', this.enterpriseId);
   }
 
   getAllTrucks(): Observable<Truck[]> {
-    return this.HttpClient.get<Truck[]>(`${this.apiUrl}vehicle/getAllActivedVehicles`);
+    let params = new HttpParams().set('enterpriseId', String(this.enterpriseId));
+    return this.HttpClient.get<Truck[]>(`${this.apiUrl}vehicle/getAllActivedVehicles`, { params });
   }
+
   getAllTravel(isCancelled?: boolean): Observable<Travel[]> {
     let params = new HttpParams().set('enterpriseId', String(this.enterpriseId));
 
