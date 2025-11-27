@@ -9,11 +9,12 @@ import { TokenService } from '../../../../token/token.service';
   providedIn: 'root',
 })
 export class TruckService {
-  private enterpriseId: string | null;
   private apiUrl = `${environment.api}/api/vehicle/`;
 
-  constructor(private HttpClient: HttpClient, private TokenService: TokenService) {
-    this.enterpriseId = this.TokenService.getEnterpriseId();
+  constructor(private HttpClient: HttpClient, private TokenService: TokenService) { }
+
+  private get enterpriseId(): string | null {
+    return this.TokenService.getEnterpriseId();
   }
 
   getAllTrucks(): Observable<Truck[]> {

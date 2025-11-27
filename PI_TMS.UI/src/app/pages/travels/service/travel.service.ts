@@ -10,11 +10,13 @@ import { TokenService } from '../../../token/token.service';
 })
 export class TravelService {
 
-  private enterpriseId: string | null;
   private apiUrl = `${environment.api}/api/`;
 
-  constructor(private HttpClient: HttpClient, private TokenService: TokenService) {
-    this.enterpriseId = this.TokenService.getEnterpriseId();
+  constructor(private HttpClient: HttpClient, private TokenService: TokenService) { }
+
+  // Helper para pegar o ID sempre atualizado
+  private get enterpriseId(): string | null {
+    return this.TokenService.getEnterpriseId();
   }
 
   getAllTrucks(): Observable<Truck[]> {
@@ -33,18 +35,24 @@ export class TravelService {
 
     return this.HttpClient.get<Travel[]>(url, { params });
   }
+
   getTravelById(id: string): Observable<Travel> {
     return this.HttpClient.get<Travel>(`${this.apiUrl}travel/getTravelById?id=${id}`);
   }
+
   addTravel(travel: FormData): Observable<any> {
+
     return this.HttpClient.post(`${this.apiUrl}travel/addTravel`, travel);
   }
+
   updateTravel(travel: any, id: string): Observable<any> {
     return this.HttpClient.put<any>(`${this.apiUrl}travel/updateTravel/${id}`, travel);
   }
+
   deleteTravel(id: string): Observable<Travel> {
     return this.HttpClient.delete<Travel>(`${this.apiUrl}travel/cancelTravel?id=${id}`)
   }
+
   getTruckById(id: string): Observable<Truck> {
     return this.HttpClient.get<Truck>(`${environment.api}/api/vehicle/getVehicleById?id=${id}`);
   }
