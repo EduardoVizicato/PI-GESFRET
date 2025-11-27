@@ -184,14 +184,12 @@ export class TravelsComponent implements OnInit {
       const product = (u?.load?.product || '').toString().toLowerCase();
       const weight = String(u?.load?.weight ?? '').toLowerCase();
       const price = String(u?.price ?? '').toLowerCase();      
-      const truckPlate = this.getTruckPlate(u.truckId).toLowerCase();
 
       return originCity.includes(term) ||
         destCity.includes(term) ||
         product.includes(term) ||
         weight.includes(term) ||
-        price.includes(term) || 
-        truckPlate.includes(term);
+        price.includes(term);
     });
   }
 
