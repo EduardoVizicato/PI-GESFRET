@@ -1,29 +1,47 @@
-import { Component, AfterViewInit, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
+import { Component, AfterViewInit, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms'; 
+import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { EventService } from '../../../../shared/service/event.service';
+import { ChangePasswordPayload } from '../../models/settings.model';
+import { SettingsService } from '../../service/settings.service';
+import { TokenService } from '../../../../token/token.service';
 
 @Component({
   selector: 'app-change-password-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './change-password-form.component.html',
-  styleUrl: './change-password-form.component.css'
+  styleUrls: ['./change-password-form.component.css']
 })
 export class ChangePasswordFormComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('changePasswordNgForm') changePasswordForm!: NgForm;
+  changePasswordForm!: FormGroup;
 
   @Output() loaded = new EventEmitter<void>();
   @Output() closeModal = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private settings: SettingsService , private eventService: EventService, private token: TokenService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      if (this.changePasswordForm) {
-        this.changePasswordForm.resetForm();
-      }
-    }, 0);
+    this.initForm();
+  }
+
+  private initForm(): void {
+    this.changePasswordForm = new FormGroup({
+      currentPassword: new FormControl('', [Validators.required]),
+      newPassword: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{6,}$/)]),
+      confirmPassword: new FormControl('', [Validators.required])
+    }, { validators: this.passwordMatchValidator });
+  }
+
+  private passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const newPassword = control.get('newPassword')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+
+    if (newPassword !== confirmPassword && confirmPassword) {
+      return { passwordMismatch: true };
+    }
+    return null;
   }
 
   ngAfterViewInit(): void {
@@ -31,22 +49,44 @@ export class ChangePasswordFormComponent implements OnInit, AfterViewInit {
   }
 
   close(): void {
-    if (this.changePasswordForm) {
-      this.changePasswordForm.resetForm();
-    }
+    this.changePasswordForm.reset();
     this.closeModal.emit();
   }
 
   changePassword(): void {
     if (this.changePasswordForm.invalid) {
-      Object.values(this.changePasswordForm.controls).forEach(control => {
-        control.markAsTouched();
-      });
+      this.changePasswordForm.markAllAsTouched();
       return;
     }
 
-    console.log('Formulário de alterar senha enviado!', this.changePasswordForm.value);
+    const formValue = this.changePasswordForm.value;
+    const userEmail = this.token.getUserEmail(); 
 
-    this.close();
+    if (!userEmail) {
+      this.eventService.showError('Sessão expirada ou inválida. Por favor, faça login novamente.');
+      return;
+    }
+
+    const payload: ChangePasswordPayload = {
+      email: userEmail,
+      oldPassword: formValue.currentPassword,
+      newPassword: formValue.newPassword,
+      confirmPassword: formValue.confirmPassword
+    };
+
+    this.settings.changePassword(payload).subscribe(
+    (response) => {
+        if (response && response.success == true) {
+          this.eventService.showSuccess('Senha alterada com sucesso!');
+          this.close();
+          return;
+        }
+        this.eventService.showError('Erro ao alterar a senha. Verifique a senha atual e tente novamente.');
+      },
+      (error) => {
+        this.eventService.showError('Erro Inesperado ao alterar a senha. Tente novamente mais tarde.');
+      }
+    );
   }
-}
+  
+}   

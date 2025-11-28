@@ -46,9 +46,9 @@ export class EnterpriseFormComponent {
         (enterprise: any) => {
           this.enterpriseForm.patchValue({
             enterpriseName: enterprise.name,
-            enterpriseemail: enterprise.email,
-            enterprisetaxId: {
-              enterprisetaxId: enterprise.taxId?.taxId
+            enterpriseEmail: enterprise.email,
+            enterpriseTaxId: {
+              enterpriseTaxId: enterprise.taxId?.taxId
             }
           });
         },

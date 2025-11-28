@@ -60,6 +60,7 @@ export class TravelsComponent implements OnInit {
   selectedTravelId: string = '';
   travelsLoaded: WritableSignal<boolean> = signal<boolean>(false);
   activeFilter: boolean | undefined = undefined;
+  truckVerify: boolean = true;
 
   constructor(
     private http: HttpClient,
@@ -78,6 +79,11 @@ export class TravelsComponent implements OnInit {
   loadTrucks(): void {
     this.truckService.getAllTrucks().subscribe(
       (response) => {
+        if (response && response.length === 0) {
+          this.truckVerify = false;
+        }else{
+          this.truckVerify = true;
+        }
         this.trucks = response || [];
       },
       (error) => {
@@ -99,9 +105,14 @@ export class TravelsComponent implements OnInit {
   }
 
   openAddTravelModal() {
-    this.showAddTravelModal = true;
-    this.cdr.detectChanges();
-    this.openModal('addTravelModal');
+    if (!this.truckVerify) {
+      this.eventService.showError('Nenhum caminhão cadastrado. Cadastre um caminhão para registrar viagens.');
+      return;
+    }else{
+      this.showAddTravelModal = true;
+      this.cdr.detectChanges();
+      this.openModal('addTravelModal');
+    }
   }
   openUpdateTravelModal(travelId: string) {
     this.showUpdateTravelModal = true;

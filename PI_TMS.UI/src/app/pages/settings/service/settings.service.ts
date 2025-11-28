@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { EnterpriseInfo, UserInfo } from '../models/settings.model';
+import { ChangePasswordPayload, EnterpriseInfo, UserInfo } from '../models/settings.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,9 @@ export class SettingsService {
   }
   putEnterprise(id: string, enterpriseInfo: EnterpriseInfo): Observable<EnterpriseInfo> {
     return this.HttpClient.put<EnterpriseInfo>(`${this.apiUrl}enterprise/updateEnterprise?id=${id}`, enterpriseInfo);
+  }
+  changePassword(ChangePasswordData: ChangePasswordPayload): Observable<any> {
+    return this.HttpClient.post(`${this.apiUrl}auth/ChangePassword`, ChangePasswordData);
   }
 
 }

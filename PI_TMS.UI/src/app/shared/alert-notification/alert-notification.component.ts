@@ -9,9 +9,15 @@ import { Component, Input } from '@angular/core';
 })
 export class AlertNotificationComponent {
   @Input() message: string = '';
+  @Input() type: 'success' | 'error' = 'error';
+
   show: boolean = true;
 
   close() {
     this.show = false;
+  }
+
+  get label(): string {
+    return this.type === 'success' ? 'Success' : 'Alert';
   }
 }

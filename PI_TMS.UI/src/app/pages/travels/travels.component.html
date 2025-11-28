@@ -1,6 +1,6 @@
 <div class="table-controls">
   <div class="search-and-filter">
-    <input type="text" [(ngModel)]="searchTerm" class="search-input" placeholder="Pesquisar">
+    <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange($event)" class="search-input" placeholder="Pesquisar">
     <div class="dropdown">
     <button class="btn btn-sm dropdown-toggle border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">

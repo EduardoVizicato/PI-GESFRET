@@ -38,7 +38,7 @@ export interface Travel {
     price: string;
     isActive: boolean;
     truckId: string;
-    filepath: string;
+    filePath: string;
     fileName: null | string;
 }
 export interface Truck {

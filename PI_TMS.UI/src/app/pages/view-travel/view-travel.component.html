@@ -1,8 +1,8 @@
 <div class="modal fade" id="viewTravelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="viewTravelModal" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-fullscreen-md-down">
-    <ng-container *ngIf="viewTravel as travel">
-
+    
+    @if (viewTravel) {
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title" id="viewTravelModal">Dados da Viagem de Cod [ {{viewTravel.id}} ]</h3>
@@ -11,41 +11,28 @@
         <div class="modal-body">
           <div class="main-content">
             <div class="clearfix">
+              
+              <!-- Seção do Documento (CT-e) -->
               <div class="col-md-4 float-md-end mb-3 ms-md-3 px-2 py-5">
                 <h1>CT-e</h1>
-                <div class="card" style="width: 20rem;">
-                  <!-- mostra o pdf apenas quando pdfSrc estiver pronto -->
-                  <pdf-viewer *ngIf="pdfSrc"
-                    [src]="pdfSrc"
-                    [render-text]="true"
-                    [render-text-mode]="0"
-                    [original-size]="false"
-                    [zoom-scale]="'page-width'"
-                    style="width: 20rem; height: 25rem">
-                  </pdf-viewer>
-
-                    <!-- <div class="card-img-overlay">
-                      <a data-bs-toggle="modal" data-bs-target="#viewDocModal" id="icon-expand">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                          class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd"
-                            d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707" />
-                        </svg>
-                      </a>
-                    </div> -->
+                <div class="card text-center shadow-sm" style="width: 20rem;">
                   <div class="card-body">
-                    <!-- Abrir em nova aba -->
-                    <a *ngIf="pdfSrc" [href]="pdfSrc" target="_blank" class="btn btn-secondary mx-1">Abrir</a>
-                    <!-- Forçar download -->
-                    <button *ngIf="pdfSrc" (click)="DownloadPdf()" class="btn btn-primary mx-1">Baixar</button>
-                    <!-- Caso queira exibir botão mesmo sem pdfSrc (desabilitado) -->
-                    <a *ngIf="!pdfSrc" class="btn btn-primary mx-1 disabled">Baixar</a>
+                    <h5 class="card-title mb-3">Documento da Viagem</h5>
+
+                    @if (viewTravel.filePath != null) {
+                      <button (click)="DownloadPdf()" class="btn btn-primary w-100">
+                        Baixar Documento
+                      </button>
+                    } @else {
+                      <div class="alert alert-secondary py-2 px-1 mt-3 mb-0 small" role="alert">
+                        Nenhum documento anexado.
+                      </div>
+                    }
+
                   </div>
                 </div>
-
               </div>
 
-              <!-- resto do conteúdo permanece igual -->
               <div class="row g-3 px-5 py-4">
                 <div class="col-6">
                   <p>Data de Saida</p>
@@ -57,96 +44,142 @@
                 </div>
                 <hr>
                 <h3>Origem</h3>
-                <div class="col-md-12" *ngIf="viewTravel.origin.zipCode">
-                  <p>CEP</p>
-                  <h4>{{viewTravel.origin.zipCode}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.origin.street">
-                  <p>Rua</p>
-                  <h4>{{viewTravel.origin.street}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.origin.number">
-                  <p>Numero</p>
-                  <h4>{{viewTravel.origin.number}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.origin.neighborhood">
-                  <p>Bairro</p>
-                  <h4>{{viewTravel.origin.neighborhood}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.origin.complement">
-                  <p>Complemento</p>
-                  <h4>{{viewTravel.origin.complement}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.origin.city">
-                  <p>Cidade</p>
-                  <h4>{{viewTravel.origin.city}}</h4>
-                </div>
-                <div class="col-md-3" *ngIf="viewTravel.origin.state">
-                  <p>Estado</p>
-                  <h4>{{viewTravel.origin.state}}</h4>
-                </div>
-                <div class="col-md-3" *ngIf="viewTravel.origin.country">
-                  <p>País</p>
-                  <h4>{{viewTravel.origin.country}}</h4>
-                </div>
-                <div class="col-md-2" *ngIf="viewTravel.origin.hemisphere">
-                  <p>Hemisfério</p>
-                  <h4>{{viewTravel.origin.hemisphere}}</h4>
-                </div>
-                <div class="col-md-5" *ngIf="viewTravel.origin.xCoord">
-                  <p>Coordenada X</p>
-                  <h4>{{viewTravel.origin.xCoord}}</h4>
-                </div>
-                <div class="col-md-5" *ngIf="viewTravel.origin.yCoord">
-                  <p>Coordenada Y</p>
-                  <h4>{{viewTravel.origin.yCoord}}</h4>
-                </div>
+                
+                @if (viewTravel.origin.zipCode != null && viewTravel.origin.zipCode != 'null') {
+                  <div class="col-md-12">
+                    <p>CEP</p>
+                    <h4>{{viewTravel.origin.zipCode}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.street != null && viewTravel.origin.street != 'null') {
+                  <div class="col-md-6">
+                    <p>Rua</p>
+                    <h4>{{viewTravel.origin.street}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.number != null && viewTravel.origin.number != 'null') {
+                  <div class="col-md-6">
+                    <p>Numero</p>
+                    <h4>{{viewTravel.origin.number}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.neighborhood != null && viewTravel.origin.neighborhood != 'null') {
+                  <div class="col-md-6">
+                    <p>Bairro</p>
+                    <h4>{{viewTravel.origin.neighborhood}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.complement != null && viewTravel.origin.complement != 'null') {
+                  <div class="col-md-6">
+                    <p>Complemento</p>
+                    <h4>{{viewTravel.origin.complement}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.city != null && viewTravel.origin.city != 'null') {
+                  <div class="col-md-6">
+                    <p>Cidade</p>
+                    <h4>{{viewTravel.origin.city}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.state != null && viewTravel.origin.state != 'null') {
+                  <div class="col-md-3">
+                    <p>Estado</p>
+                    <h4>{{viewTravel.origin.state}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.country != null && viewTravel.origin.country != 'null') {
+                  <div class="col-md-3">
+                    <p>País</p>
+                    <h4>{{viewTravel.origin.country}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.hemisphere != null && viewTravel.origin.hemisphere != 'null') {
+                  <div class="col-md-2">
+                    <p>Hemisfério</p>
+                    <h4>{{viewTravel.origin.hemisphere}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.xCoord != null && viewTravel.origin.xCoord != 'null') {
+                  <div class="col-md-5">
+                    <p>Coordenada X</p>
+                    <h4>{{viewTravel.origin.xCoord}}</h4>
+                  </div>
+                }
+                @if (viewTravel.origin.yCoord != null && viewTravel.origin.yCoord != 'null') {
+                  <div class="col-md-5">
+                    <p>Coordenada Y</p>
+                    <h4>{{viewTravel.origin.yCoord}}</h4>
+                  </div>
+                }
+
                 <hr>
                 <h3>Destino</h3>
-                <div class="col-md-12" *ngIf="viewTravel.destination.zipCode">
-                  <p>CEP</p>
-                  <h4>{{viewTravel.destination.zipCode}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.destination.street">
-                  <p>Rua</p>
-                  <h4>{{viewTravel.destination.street}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.destination.number">
-                  <p>Numero</p>
-                  <h4>{{viewTravel.destination.number}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.destination.neighborhood">
-                  <p>Bairro</p>
-                  <h4>{{viewTravel.destination.neighborhood}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.destination.complement">
-                  <p>Complemento</p>
-                  <h4>{{viewTravel.destination.complement}}</h4>
-                </div>
-                <div class="col-md-6" *ngIf="viewTravel.destination.city">
-                  <p>Cidade</p>
-                  <h4>{{viewTravel.destination.city}}</h4>
-                </div>
-                <div class="col-md-3" *ngIf="viewTravel.destination.state">
-                  <p>Estado</p>
-                  <h4>{{viewTravel.destination.state}}</h4>
-                </div>
-                <div class="col-md-3" *ngIf="viewTravel.destination.country">
-                  <p>País</p>
-                  <h4>{{viewTravel.destination.country}}</h4>
-                </div>
-                <div class="col-md-2" *ngIf="viewTravel.destination.hemisphere">
-                  <p>Hemisfério</p>
-                  <h4>{{viewTravel.destination.hemisphere}}</h4>
-                </div>
-                <div class="col-md-5" *ngIf="viewTravel.destination.xCoord">
-                  <p>Coordenada X</p>
-                  <h4>{{viewTravel.destination.xCoord}}</h4>
-                </div>
-                <div class="col-md-5" *ngIf="viewTravel.destination.yCoord">
-                  <p>Coordenada Y</p>
-                  <h4>{{viewTravel.destination.yCoord}}</h4>
-                </div>
+                @if (viewTravel.destination.zipCode != null   && viewTravel.destination.zipCode != 'null') {
+                  <div class="col-md-12">
+                    <p>CEP</p>
+                    <h4>{{viewTravel.destination.zipCode}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.street != null && viewTravel.destination.street != 'null') {
+                  <div class="col-md-6">
+                    <p>Rua</p>
+                    <h4>{{viewTravel.destination.street}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.number != null && viewTravel.destination.number != 'null') {
+                  <div class="col-md-6">
+                    <p>Numero</p>
+                    <h4>{{viewTravel.destination.number}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.neighborhood != null && viewTravel.destination.neighborhood != 'null') {
+                  <div class="col-md-6">
+                    <p>Bairro</p>
+                    <h4>{{viewTravel.destination.neighborhood}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.complement != null && viewTravel.destination.complement != 'null') {
+                  <div class="col-md-6">
+                    <p>Complemento</p>
+                    <h4>{{viewTravel.destination.complement}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.city != null && viewTravel.destination.city != 'null') {
+                  <div class="col-md-6">
+                    <p>Cidade</p>
+                    <h4>{{viewTravel.destination.city}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.state != null  && viewTravel.destination.state != 'null') {
+                  <div class="col-md-3">
+                    <p>Estado</p>
+                    <h4>{{viewTravel.destination.state}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.country != null && viewTravel.destination.country != 'null') {
+                  <div class="col-md-3">
+                    <p>País</p>
+                    <h4>{{viewTravel.destination.country}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.hemisphere != null && viewTravel.destination.hemisphere != 'null') {
+                  <div class="col-md-2">
+                    <p>Hemisfério</p>
+                    <h4>{{viewTravel.destination.hemisphere}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.xCoord != null && viewTravel.destination.xCoord != 'null') {
+                  <div class="col-md-5">
+                    <p>Coordenada X</p>
+                    <h4>{{viewTravel.destination.xCoord}}</h4>
+                  </div>
+                }
+                @if (viewTravel.destination.yCoord != null && viewTravel.destination.yCoord != 'null') {
+                  <div class="col-md-5">
+                    <p>Coordenada Y</p>
+                    <h4>{{viewTravel.destination.yCoord}}</h4>
+                  </div>
+                }
               </div>
               <hr class="my-2">
               <div class="row g-3 px-5 py-4">
@@ -162,10 +195,10 @@
                     <p>Tipo do Veiculo</p>
                     <h4>{{truck?.truckType}}</h4>
                   </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <p>Reboque Utilizado</p>
                   <h4>{{truck?.bodyType}}</h4>
-                </div>
+                </div> -->
               </div>
               <hr class="my-2">
               <div class="row g-3 px-5 py-4">
@@ -193,27 +226,6 @@
           </div>
         </div>
       </div>
-
-      <!-- modal expandido do documento -->
-      <div class="modal" id="viewDocModal" tabindex="-1">
-        <div class="modal-dialog modal-xl modal-fullscreen-md-down">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [render-text]="true" [render-text-mode]="0" [original-size]="false"
-                style="width: 70rem; height: 45rem" [zoom-scale]="'page-width'">
-              </pdf-viewer>
-              <div *ngIf="!pdfSrc">Documento não disponível para exibição.</div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </ng-container>
+    }
   </div>
 </div>

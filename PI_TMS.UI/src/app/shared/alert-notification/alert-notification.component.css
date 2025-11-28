@@ -1,13 +1,19 @@
 .alert-container {
   position: fixed;
   top: 20px;
-  right: 35%;
-  left: 35%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 9999;
-  /* background-color: #ffdddd;
-  border: 1px solid #f44336; */
-  /* color: #a94442; */
-  /* padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
+  width: auto;
+  max-width: 90%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .alert-container {
+    max-width: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }

@@ -38,4 +38,9 @@ export class TokenService {
     const decodedToken = this.getDecodedToken();
     return decodedToken ? decodedToken.Enterprise : null;
   }
+
+  getUserEmail(): string | null {
+    const payload = this.getDecodedToken();
+    return payload?.email ?? null;
+  }
 }
